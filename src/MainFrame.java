@@ -20,7 +20,7 @@ public class MainFrame extends JFrame {
 		// Add Swing Components to content pane
 		Container c = getContentPane();
 		
-		c.add(registerPanel, BorderLayout.WEST);
+		c.add(registerPanel, BorderLayout.CENTER);
 		
 		//Add Behavior
 	}
