@@ -4,9 +4,11 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -27,7 +29,11 @@ public class RegisterPanel extends JPanel {
 	
 	
 	
-	public RegisterPanel() {
+	public RegisterPanel(JFrame frameRecibido) {
+		
+		JFrame frame = frameRecibido;
+		
+		
 		Dimension size = getPreferredSize();
 		size.width = 500;
 		setPreferredSize(size);
@@ -114,6 +120,10 @@ public class RegisterPanel extends JPanel {
 				String email = emailField.getText();
 				
 				System.out.println("Nombre: " + name + " Email: " + email);
+				
+				
+				//metodo para cerrar el Frame Principal
+				frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 			}
 		});
 		

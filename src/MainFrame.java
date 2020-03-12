@@ -38,13 +38,15 @@ public class MainFrame extends JFrame {
 		btnContainer = new JPanel();
 		btnContainer.setLayout(cl2);
 		
-		registerPanel = new RegisterPanel();
+		registerPanel = new RegisterPanel(this);
 		
 		secondPanel = new JPanel();
 		secondPanel.setBackground(Color.RED);
 		
 		loginBtn = new JButton("Login");
 		registerBtn = new JButton("Register");
+		
+		
 		
 		// Add Swing Components to content pane
 		//Container c = getContentPane();
@@ -59,7 +61,6 @@ public class MainFrame extends JFrame {
 		
 		cl.show(container, "1");
 		cl2.show(btnContainer, "1");
-		
 		
 		
 		
