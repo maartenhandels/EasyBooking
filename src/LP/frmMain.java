@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class MainFrame extends JFrame {
+public class frmMain extends JFrame {
 	
 	private JButton loginBtn; // Boton que lleva a panel de iniciar sesion
 	private JButton registerBtn; // Boton que lleva a panel de registro
@@ -24,7 +24,7 @@ public class MainFrame extends JFrame {
 	CardLayout cl = new CardLayout(); // Layout que permite cambiar entre paneles
 	CardLayout cl2 = new CardLayout(); // Layout que permite cambiar entre paneles
 	
-	public MainFrame(String title) {
+	public frmMain(String title) {
 		
 		super(title);
 		

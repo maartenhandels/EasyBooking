@@ -18,7 +18,7 @@ import java.awt.*;
  * El detalle de cada vuelo tiene que venir de la clase vuelo
  */
 
-public class clsReserva extends JFrame 
+public class frmReserva extends JFrame 
 {
 	
 	JLabel txt1, txt2;
@@ -31,7 +31,7 @@ public class clsReserva extends JFrame
 	JButton btnReserva, btnVolver;
 	JScrollPane scroll;
 	
-	public clsReserva()
+	public frmReserva()
 	{
 		setLayout(null);
 		
@@ -133,7 +133,7 @@ public class clsReserva extends JFrame
 	public static void main(String[] args) 
 	{
 		
-		clsReserva ventanaReserva = new clsReserva();
+		frmReserva ventanaReserva = new frmReserva();
 		
 		ventanaReserva.setBounds(200, 70, 1000, 700);
 		ventanaReserva.setVisible(true);

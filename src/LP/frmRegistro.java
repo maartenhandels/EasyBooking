@@ -1,7 +1,7 @@
 package LP;
 import javax.swing.*; 
 
-public class clsRegistro{
+public class frmRegistro{
 	
 	
 	

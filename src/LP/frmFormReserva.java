@@ -15,7 +15,7 @@ import javax.swing.*;
  * Crear tantos formularios como asientos seleccionados en panel2
  */
 
-public class clsFormReserva extends JFrame 
+public class frmFormReserva extends JFrame 
 {
 
 	JLabel txt1, txt2, txt3, txt4, txt5, txt6, txt7, txt8, txt9;
@@ -25,7 +25,7 @@ public class clsFormReserva extends JFrame
 	JRadioButton rdbtnModoPago1,rdbtnModoPago2 ;
 	JButton btnCancelar, btnReservar;
 	
-	public clsFormReserva()
+	public frmFormReserva()
 	{
 		setLayout(null);
 		
@@ -151,7 +151,7 @@ public class clsFormReserva extends JFrame
 	
 	public static void main(String[] args) 
 	{
-		clsFormReserva ventanaFormReserva = new clsFormReserva();
+		frmFormReserva ventanaFormReserva = new frmFormReserva();
 		
 		ventanaFormReserva.setBounds(200, 40, 1000, 850);
 		ventanaFormReserva.setVisible(true);
