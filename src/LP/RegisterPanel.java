@@ -1,5 +1,6 @@
 package LP;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -8,25 +9,36 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class RegisterPanel extends JPanel {
 	
-	private JLabel nameLabel;
-	private JLabel emailLabel;
-	private JLabel passwordLabel;
+	private JLabel header;
+	private JLabel nameLbl;
+	private JLabel lastNameLbl;
+	private JLabel userNameLbl;
+	private JLabel dniLbl;
+	private JLabel emailLbl;
+	private JLabel passwordLbl;
 	
 	private JTextField nameField;
+	private JTextField lastNameField;
+	private JTextField userNameField;
+	private JTextField dniField;
 	private JTextField emailField;
 	
 	private JPasswordField passwordField;
 	
 	private JButton registerButton;
+	
+	private ImageIcon img;
 	
 	
 	
@@ -39,76 +51,174 @@ public class RegisterPanel extends JPanel {
 		size.width = 500;
 		setPreferredSize(size);
 		
-		setBorder(BorderFactory.createTitledBorder("Registro EasyBooking"));
+		//setBorder(BorderFactory.createTitledBorder("Registro EasyBooking"));
 		
 		
-		nameLabel = new JLabel("Nombre: ");
-		emailLabel = new JLabel("Email: ");
-		passwordLabel = new JLabel("Contraseña: ");
+		header = new JLabel("Registro Nuevo Usuario");
+		nameLbl = new JLabel("Nombre:");
+		lastNameLbl = new JLabel("Apellido:");
+		userNameLbl = new JLabel("Nombre Usuario:");
+		emailLbl = new JLabel("Email:");
+		dniLbl = new JLabel("Dni:");
+		passwordLbl = new JLabel("Contraseña:");
 		
-		nameField = new JTextField(15);
+		nameField = new JTextField(20);
+		lastNameField = new JTextField(20);
+		userNameField = new JTextField(20);
+		dniField = new JTextField(20);
 		emailField = new JTextField(20);
-		passwordField = new JPasswordField(15);
+		
+		passwordField = new JPasswordField(20);
 		
 		
 		registerButton = new JButton("Register");
+		
+		img = new ImageIcon("src/images/flight.png");
 		
 		setLayout(new GridBagLayout());
 		
 		GridBagConstraints gc = new GridBagConstraints();
 		
-		////First Column /////
-		
-		gc.anchor = GridBagConstraints.LINE_END;
-		
-		gc.insets = new Insets(90,0,0,0);
-		gc.weightx = 0.5;
-		gc.weighty = 0.3;
+		// Imagen Avion
 		
 		gc.gridx = 0;
 		gc.gridy = 0;
-		add(emailLabel, gc);
+		gc.gridwidth = 2;
+		gc.gridheight = 1;
 		
-		gc.insets = new Insets(0,0,0,0);
+		gc.insets = new Insets(3,3,3,3);
+		
+		JLabel lblImage = new JLabel(img);
+		
+		add(lblImage, gc);
+				
+				
+		// Titulo
+		header.setFont(new Font("Verdana", Font.PLAIN, 24));
 		
 		gc.gridx = 0;
 		gc.gridy = 1;
-		add(nameLabel, gc);
+		gc.gridwidth = 2;
+		gc.gridheight = 2;
 		
+		gc.insets = new Insets(3,3,20,3);
+		
+		gc.fill = GridBagConstraints.VERTICAL;
+		
+		add(header, gc);
+		
+		// Separacion entre campos 
+		gc.insets = new Insets(3,3,3,3);
+		
+		// Campo nombre
 		gc.gridx = 0;
-		gc.gridy = 2;
-		add(passwordLabel, gc); 
+		gc.gridy = 3;
+		gc.gridwidth = 1;
+		gc.gridheight = 1;
 		
-		
-		////Second Column ////
-		
-		gc.anchor = GridBagConstraints.LINE_START;
-		
-		gc.insets = new Insets(90,0,0,0);
-		gc.gridx = 1;
-		gc.gridy = 0;
-		add(emailField, gc);
-		
-		gc.insets = new Insets(0,0,0,0);
-		gc.gridx = 1;
-		gc.gridy = 1;
-		add(nameField, gc);
-		
-		gc.gridx = 1;
-		gc.gridy = 2;
-		add(passwordField, gc);
-		
-		
-		/// Final Row ///
-		
-		gc.insets = new Insets(50,45,0,0);
-		gc.weighty = 2;
-		gc.anchor = GridBagConstraints.FIRST_LINE_START;
+		add(nameLbl, gc);
 		
 		gc.gridx = 1;
 		gc.gridy = 3;
+		gc.gridwidth = 1;
+		gc.gridheight = 1;
+		
+		add(nameField, gc);
+		
+		
+		// Campo apellido
+		gc.gridx = 0;
+		gc.gridy = 4;
+		gc.gridwidth = 1;
+		gc.gridheight = 1;
+		
+		add(lastNameLbl, gc);
+		
+		gc.gridx = 1;
+		gc.gridy = 4;
+		gc.gridwidth = 1;
+		gc.gridheight = 1;
+		
+		add(lastNameField, gc);
+		
+		
+		// Campo nombre de usuario
+		gc.gridx = 0;
+		gc.gridy = 5;
+		gc.gridwidth = 1;
+		gc.gridheight = 1;
+		
+		add(userNameLbl, gc);
+		
+		gc.gridx = 1;
+		gc.gridy = 5;
+		gc.gridwidth = 1;
+		gc.gridheight = 1;
+		
+		add(userNameField, gc);
+		
+		
+		// Campo dni
+		gc.gridx = 0;
+		gc.gridy = 6;
+		gc.gridwidth = 1;
+		gc.gridheight = 1;
+		
+		add(dniLbl, gc);
+		
+		gc.gridx = 1;
+		gc.gridy = 6;
+		gc.gridwidth = 1;
+		gc.gridheight = 1;
+		
+		add(dniField, gc);
+		
+		
+		// Campo email
+		gc.gridx = 0;
+		gc.gridy = 7;
+		gc.gridwidth = 1;
+		gc.gridheight = 1;
+		
+		add(emailLbl, gc);
+		
+		gc.gridx = 1;
+		gc.gridy = 7;
+		gc.gridwidth = 1;
+		gc.gridheight = 1;
+		
+		add(emailField, gc);
+		
+		
+		// Campo contraseña
+		gc.gridx = 0;
+		gc.gridy = 8;
+		gc.gridwidth = 1;
+		gc.gridheight = 1;
+		
+		add(passwordLbl, gc);
+		
+		gc.gridx = 1;
+		gc.gridy = 8;
+		gc.gridwidth = 1;
+		gc.gridheight = 1;
+		
+		add(passwordField, gc);
+		
+		
+		// Boton registrar
+		gc.gridx = 0;
+		gc.gridy = 9;
+		gc.gridwidth = 2;
+		gc.gridheight = 1;
+		
+		gc.insets = new Insets(20,3,3,3);
+		
 		
 		add(registerButton, gc);
+		
+		
+		
 		
 		
 		

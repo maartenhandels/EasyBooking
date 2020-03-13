@@ -10,8 +10,8 @@ public class clsMain {
 
 			public void run() {
 				
-				JFrame frame = new frmMain("Hello World Swing");
-				frame.setSize(500, 400);
+				JFrame frame = new frmMain("Pagina de Inicio");
+				frame.setSize(500, 600);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setVisible(true);
 				
