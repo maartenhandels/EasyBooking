@@ -1,3 +1,4 @@
+package LP;
 import javax.swing.*; 
 
 public class clsRegistro{

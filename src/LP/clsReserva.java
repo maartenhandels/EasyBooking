@@ -1,3 +1,4 @@
+package LP;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -62,7 +63,7 @@ public class clsReserva extends JFrame
 		btnReserva.setFont(new Font("Serif", Font.BOLD, 20));
 		btnReserva.setBounds(750, 100, 175, 40);
 		
-		btnVolver=new JButton("Nueva Búsqueda");
+		btnVolver=new JButton("Nueva Bï¿½squeda");
 		btnVolver.setFont(new Font("Serif", Font.BOLD, 20));
 		btnVolver.setBounds(750, 150, 175, 40);
 		

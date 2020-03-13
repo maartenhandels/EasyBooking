@@ -1,3 +1,4 @@
+package LP;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -10,7 +11,7 @@ import javax.swing.*;
  * 
  * Cosas que faltan:
  * En los 5 primero items faltan JLabels para imprimir los datos del vuelo
- * En el TextField de asientos hay que realizar una comprobación
+ * En el TextField de asientos hay que realizar una comprobaciï¿½n
  * Crear tantos formularios como asientos seleccionados en panel2
  */
 
@@ -30,7 +31,7 @@ public class clsFormReserva extends JFrame
 		
 		setTitle("Datos reserva");
 		
-		txt1 = new JLabel("El código del vuelo seleccionado es:");
+		txt1 = new JLabel("El cï¿½digo del vuelo seleccionado es:");
 		txt1.setFont(new Font("Serif", Font.BOLD, 22));
 		txt1.setBounds(30, 20, 400, 40);
 		
@@ -42,7 +43,7 @@ public class clsFormReserva extends JFrame
 		txt3.setFont(new Font("Serif", Font.BOLD, 22));
 		txt3.setBounds(500, 80, 400, 40);
 		
-		txt4 = new JLabel("Aerolínea:");
+		txt4 = new JLabel("Aerolï¿½nea:");
 		txt4.setFont(new Font("Serif", Font.BOLD, 22));
 		txt4.setBounds(30, 140, 400, 40);
 		
@@ -50,7 +51,7 @@ public class clsFormReserva extends JFrame
 		txt5.setFont(new Font("Serif", Font.BOLD, 22));
 		txt5.setBounds(30, 200, 400, 40);
 		
-		txt6 = new JLabel("Número de asientos a reservar:");
+		txt6 = new JLabel("Nï¿½mero de asientos a reservar:");
 		txt6.setFont(new Font("Serif", Font.BOLD, 22));
 		txt6.setBounds(30, 260, 400, 40);
 		
@@ -109,7 +110,7 @@ public class clsFormReserva extends JFrame
 		rdbtnModoPago1.setFont(new Font("Serif", Font.PLAIN, 20));
 		rdbtnModoPago1.setBounds(400, 655, 200, 40);
 		
-		rdbtnModoPago2=new JRadioButton("Tarjeta de crédito");
+		rdbtnModoPago2=new JRadioButton("Tarjeta de crï¿½dito");
 		rdbtnModoPago2.setFont(new Font("Serif", Font.PLAIN, 20));
 		rdbtnModoPago2.setBounds(600, 655, 200, 40);
 		
