@@ -2,22 +2,30 @@ package main.java.LN;
 
 import java.util.ArrayList;
 
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
+
+
+@PersistenceCapable
 public class clsUsuario {
 	
+	@PrimaryKey
+	private String dni;
 	private String nombre;
 	private String apellido;
-	private String dni;
 	private String email;
 	
 	private clsAeropuerto aeropuerto; // No se como llamarle a esto
 	
-	private String metodoAutorizacion; // Habria que mirar si no es mejor con algo distinto a String
-	private String metodoPago; // Habria que mirar si no es mejor con algo distinto a String
+	private boolean metodoAutorizacion; // Habria que mirar si no es mejor con algo distinto a String
+	private boolean metodoPago;
+	
+	
 	
 	private ArrayList<clsReserva> reservasUsuario;
 	
 	
-	public clsUsuario(String nombre, String apellido, String dni, String email, clsAeropuerto aeropuerto, String metodoAutorizacion, String metodoPago)
+	public clsUsuario(String nombre, String apellido, String dni, String email, clsAeropuerto aeropuerto, boolean metodoAutorizacion, boolean metodoPago)
 	{
 		super();
 		this.nombre = nombre;
@@ -81,22 +89,22 @@ public class clsUsuario {
 	}
 
 
-	public String getmetodoAutorizacion() {
+	public boolean getmetodoAutorizacion() {
 		return metodoAutorizacion;
 	}
 
 
-	public void setMetodoAutorizacion(String metodoAutorizacion) {
+	public void setMetodoAutorizacion(boolean metodoAutorizacion) {
 		this.metodoAutorizacion = metodoAutorizacion;
 	}
 
 
-	public String getmetodoPago() {
+	public boolean getmetodoPago() {
 		return metodoPago;
 	}
 
 
-	public void setMetodoPago(String metodoPago) {
+	public void setMetodoPago(boolean metodoPago) {
 		this.metodoPago = metodoPago;
 	}
 
