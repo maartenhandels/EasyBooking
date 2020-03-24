@@ -1,6 +1,7 @@
 package LN;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
@@ -11,8 +12,26 @@ public class Main {
 	
 	public static void main(String [] args) {
 		
-		clsAeropuerto aero1 = new clsAeropuerto("123", "Loiu");
-		clsUsuario user1 = new clsUsuario("ibone", "urquiola", "7255556674G", "ibone@hotmail.com", aero1, false, true);
+		Aeropuerto aero1 = new Aeropuerto("123", "Loiu");
+		Aeropuerto aero2 = new Aeropuerto("234", "Biarritz");
+		
+		Aerolinea aerol1 = new Aerolinea("Iberia", "IB");
+		
+		Usuario user1 = new Usuario("ibone", "urquiola", "7255556674G", "ibone@hotmail.com", aero1, false, true);
+		
+		ArrayList<Pasajero> pasajeros = new ArrayList <Pasajero>();
+		
+		Pasajero pas1 = new Pasajero("Maarten", "Handels", "72345634K");
+		Pasajero pas2 = new Pasajero("Laura", "Llorente", "73035427Y");
+		Pasajero pas3 = new Pasajero("Gabriela", "Garaizabal", "73542711T");
+		
+		pasajeros.add(pas1);
+		pasajeros.add(pas2);
+		pasajeros.add(pas3);
+		
+		Reserva res1 = new Reserva("Res01", "Pag01", pasajeros, true, "IB0987",aerol1 );
+		
+		user1.getReservasUsuario().add(res1);
 		
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 
@@ -35,7 +54,13 @@ public class Main {
 			//Start the transaction
 			tx.begin();
 			
-			pm.makePersistent(user1);			
+			pm.makePersistent(user1);
+			pm.makePersistent(pas1);
+			pm.makePersistent(pas2);
+			pm.makePersistent(pas3);
+			pm.makePersistent(aero1);
+			pm.makePersistent(res1);
+	
 			
 			//End the transaction
 			tx.commit();			

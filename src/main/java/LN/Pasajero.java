@@ -1,13 +1,19 @@
 package LN;
 
-public class clsPasajero {
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable
+public class Pasajero {
 	
+	@PrimaryKey
+	private String dni;
 	private String nombre;
 	private String apellido;
-	private String dni;
 	
 	
-	public clsPasajero(String nombre, String apellido, String dni) {
+	
+	public Pasajero(String nombre, String apellido, String dni) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;

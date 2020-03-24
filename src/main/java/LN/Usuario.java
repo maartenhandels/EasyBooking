@@ -1,13 +1,15 @@
 package LN;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
 
 @PersistenceCapable
-public class clsUsuario {
+public class Usuario {
 	
 	@PrimaryKey
 	private String dni;
@@ -15,17 +17,17 @@ public class clsUsuario {
 	private String apellido;
 	private String email;
 	
-	private clsAeropuerto aeropuerto; // No se como llamarle a esto
+	private Aeropuerto aeropuerto; // No se como llamarle a esto
 	
 	private boolean metodoAutorizacion; // Habria que mirar si no es mejor con algo distinto a String
 	private boolean metodoPago;
 	
 	
+	@Join
+	private List<Reserva> reservasUsuario = new ArrayList <Reserva>();
 	
-	private ArrayList<clsReserva> reservasUsuario;
 	
-	
-	public clsUsuario(String nombre, String apellido, String dni, String email, clsAeropuerto aeropuerto, boolean metodoAutorizacion, boolean metodoPago)
+	public Usuario(String nombre, String apellido, String dni, String email, Aeropuerto aeropuerto, boolean metodoAutorizacion, boolean metodoPago)
 	{
 		super();
 		this.nombre = nombre;
@@ -35,7 +37,6 @@ public class clsUsuario {
 		this.aeropuerto = aeropuerto;
 		this.metodoAutorizacion = metodoAutorizacion;
 		this.metodoPago = metodoPago;
-		this.reservasUsuario = new ArrayList<clsReserva>();
 	}
 
 
@@ -79,12 +80,12 @@ public class clsUsuario {
 	}
 
 
-	public clsAeropuerto getAeropuerto() {
+	public Aeropuerto getAeropuerto() {
 		return aeropuerto;
 	}
 
 
-	public void setAeropuerto(clsAeropuerto aeropuerto) {
+	public void setAeropuerto(Aeropuerto aeropuerto) {
 		this.aeropuerto = aeropuerto;
 	}
 
@@ -109,12 +110,12 @@ public class clsUsuario {
 	}
 
 
-	public ArrayList<clsReserva> getReservasUsuario() {
+	public List<Reserva> getReservasUsuario() {
 		return reservasUsuario;
 	}
 
 
-	public void setReservasUsuario(ArrayList<clsReserva> reservasUsuario) {
+	public void setReservasUsuario(List<Reserva> reservasUsuario) {
 		this.reservasUsuario = reservasUsuario;
 	}
 	

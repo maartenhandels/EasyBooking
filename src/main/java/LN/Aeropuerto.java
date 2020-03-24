@@ -1,12 +1,18 @@
 package LN;
 
-public class clsAeropuerto {
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable
+public class Aeropuerto {
 	
 	private String nombre;
+	
+	@PrimaryKey
 	private String codAeropuerto;
 	
 	
-	public clsAeropuerto(String nombre, String codAeropuerto) {
+	public Aeropuerto(String nombre, String codAeropuerto) {
 		super();
 		this.nombre = nombre;
 		this.codAeropuerto = codAeropuerto;

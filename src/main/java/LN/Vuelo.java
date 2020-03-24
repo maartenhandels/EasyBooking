@@ -1,17 +1,17 @@
 package LN;
 
-public class clsVuelo {
+public class Vuelo {
 	
 	private String codVuelo;
 	private String codAerolinea;
 	
-	private clsAeropuerto aeropuertoSalida;
-	private clsAeropuerto aeropuertoDestino;
+	private Aeropuerto aeropuertoSalida;
+	private Aeropuerto aeropuertoDestino;
 	
 	// Algun atributo para los asientos libres y asi??
 	
 	
-	public clsVuelo(String codVuelo, String codAerolinea, clsAeropuerto aeropuertoSalida, clsAeropuerto aeropuertoDestino) 
+	public Vuelo(String codVuelo, String codAerolinea, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoDestino) 
 	{
 		super();
 		this.codVuelo = codVuelo;
@@ -36,19 +36,19 @@ public class clsVuelo {
 		this.codAerolinea = codAerolinea;
 	}
 
-	public clsAeropuerto getAeropuertoSalida() {
+	public Aeropuerto getAeropuertoSalida() {
 		return aeropuertoSalida;
 	}
 
-	public void setAeropuertoSalida(clsAeropuerto aeropuertoSalida) {
+	public void setAeropuertoSalida(Aeropuerto aeropuertoSalida) {
 		this.aeropuertoSalida = aeropuertoSalida;
 	}
 
-	public clsAeropuerto getAeropuertoDestino() {
+	public Aeropuerto getAeropuertoDestino() {
 		return aeropuertoDestino;
 	}
 
-	public void setAeropuertoDestino(clsAeropuerto aeropuertoDestino) {
+	public void setAeropuertoDestino(Aeropuerto aeropuertoDestino) {
 		this.aeropuertoDestino = aeropuertoDestino;
 	}
 	

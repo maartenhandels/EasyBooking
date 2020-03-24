@@ -1,12 +1,17 @@
 package LN;
 
-public class clsAerolinea {
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
 
-	private String nombre;
+@PersistenceCapable
+public class Aerolinea {
+
+	@PrimaryKey
 	private String codAerolinea;
+	private String nombre;
 	
 	
-	public clsAerolinea(String nombre, String codAerolinea) 
+	public Aerolinea(String nombre, String codAerolinea) 
 	{
 		super();
 		this.nombre = nombre;
