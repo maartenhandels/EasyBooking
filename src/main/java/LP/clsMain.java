@@ -1,4 +1,4 @@
-package main.java.LP;
+package LP;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;

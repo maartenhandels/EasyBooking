@@ -1,4 +1,4 @@
-package main.java.LN;
+package LN;
 
 public class clsAerolinea {
 

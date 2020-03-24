@@ -1,4 +1,4 @@
-package main.java.LP;
+package LP;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;

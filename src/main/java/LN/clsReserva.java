@@ -1,4 +1,4 @@
-package main.java.LN;
+package LN;
 
 import java.util.ArrayList;
 
