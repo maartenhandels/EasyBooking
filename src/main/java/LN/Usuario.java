@@ -3,6 +3,7 @@ package LN;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.jdo.annotations.Element;
 import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
@@ -23,7 +24,7 @@ public class Usuario {
 	private boolean metodoPago;
 	
 	
-	@Join
+	@Element(column="USUARIO_DNI")
 	private List<Reserva> reservasUsuario = new ArrayList <Reserva>();
 	
 	
