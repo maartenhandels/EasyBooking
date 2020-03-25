@@ -73,8 +73,13 @@ public class frmMain extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				cl.show(container, "2");
-				cl2.show(btnContainer, "2");
+//				cl.show(container, "2");
+//				cl2.show(btnContainer, "2");
+				dispose();
+				frmInicioSesion ventana = new frmInicioSesion();
+				ventana.setBounds(600,200,600,700);
+				ventana.setVisible(true);
+				ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				
 			}
 		});

@@ -1,7 +1,10 @@
 package LP;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -48,15 +51,15 @@ public class frmInicioSesion extends JFrame
 		panel2.setBackground(Color.black);
 		panel2.setBounds(380, 170, 130, 10);
 		
-		img = new ImageIcon("src/images/flight.png");
+		img = new ImageIcon("src/main/resources/images/flight.png");
 		lblImage = new JLabel(img);
 		lblImage.setBounds(160,70,250,200);
 		
-		img2 = new ImageIcon("src/images/username.png");
+		img2 = new ImageIcon("src/main/resources/images/username.png");
 		lblImage2 = new JLabel(img2);
 		lblImage2.setBounds(10,220,250,200);
 		
-		img3 = new ImageIcon("src/images/password.png");
+		img3 = new ImageIcon("src/main/resources/images/password.png");
 		lblImage3 = new JLabel(img3);
 		lblImage3.setBounds(10,310,250,200);
 		
@@ -98,6 +101,17 @@ public class frmInicioSesion extends JFrame
 		add(txtPassword);
 		add(btnLogin);
 		add(btnRegister);
+		
+		btnRegister.addActionListener(new ActionListener() {
+	
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				frmAutorizacion ventana = new frmAutorizacion();
+				ventana.setBounds(600,200,760,500);
+				ventana.setVisible(true);
+				ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			}
+		});
 		
 
 	}

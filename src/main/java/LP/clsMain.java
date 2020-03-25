@@ -11,8 +11,9 @@ public class clsMain {
 
 			public void run() {
 				
-				JFrame frame = new frmMain("Pagina de Inicio");
-				frame.setSize(500, 600);
+				JFrame frame = new frmBuscarVuelo();
+				frame.setTitle("Página de Inicio");
+				//frame.setSize(500, 600);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setVisible(true);
 				

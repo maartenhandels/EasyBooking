@@ -55,6 +55,20 @@ public class frmBuscarVuelo extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JButton btnLogin = new JButton("Login");
+		btnLogin.setBounds(800, 10, 100, 20);
+		contentPane.add(btnLogin);
+		btnLogin.addActionListener(new ActionListener() {
+	
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				frmInicioSesion frameInicio = new frmInicioSesion();
+				frameInicio.setBounds(600,200,600,700);
+				frameInicio.setVisible(true);
+				frameInicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			}
+		});
+		
 		JLabel lblAeropuertoOrigen = new JLabel("Aeropuerto origen:");
 		lblAeropuertoOrigen.setFont(new Font("Serif", Font.BOLD, 20));
 		lblAeropuertoOrigen.setBackground(Color.BLACK);
@@ -120,7 +134,7 @@ public class frmBuscarVuelo extends JFrame {
 		contentPane.add(comboBox);
 		
 		JButton lblCambio = new JButton();
-		lblCambio.setIcon(new ImageIcon (frmBuscarVuelo.class.getResource("images/cambio.png")));
+//		lblCambio.setIcon(new ImageIcon (frmBuscarVuelo.class.getResource("images/cambio.png")));
 		lblCambio.setBounds(297, 105, 58, 39);
 		contentPane.add(lblCambio);
 		
@@ -135,7 +149,23 @@ public class frmBuscarVuelo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(398, 431, 185, 60);
+		btnNewButton.setBounds(300, 431, 185, 60);
 		contentPane.add(btnNewButton);
+		
+		JButton btnReservar = new JButton("Reservar");
+		btnReservar.setFont(new Font("Serif", Font.BOLD, 24));
+		btnReservar.setBounds(500, 431, 185, 60);
+		btnReservar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				frmFormReserva frmReserva = new frmFormReserva();
+				frmReserva.setBounds(200, 40, 1000, 850);
+				frmReserva.setVisible(true);
+				frmReserva.setResizable(false);	
+				frmReserva.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			}
+		});
+		contentPane.add(btnReservar);
+		
 	}
 }

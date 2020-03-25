@@ -28,6 +28,7 @@ public class frmFormReserva extends JFrame
 	
 	public frmFormReserva()
 	{
+		
 		setLayout(null);
 		
 		setTitle("Datos reserva");
@@ -157,6 +158,8 @@ public class frmFormReserva extends JFrame
 		ventanaFormReserva.setBounds(200, 40, 1000, 850);
 		ventanaFormReserva.setVisible(true);
 		ventanaFormReserva.setResizable(false);	
+		ventanaFormReserva.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 
 	}
 
