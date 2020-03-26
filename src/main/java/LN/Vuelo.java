@@ -2,38 +2,47 @@ package LN;
 
 public class Vuelo {
 	
-	private String codVuelo;
-	private String codAerolinea;
+	private Aerolinea aerolinea;
+	private int codVuelo; // 4 digits
 	
 	private Aeropuerto aeropuertoSalida;
 	private Aeropuerto aeropuertoDestino;
 	
-	// Algun atributo para los asientos libres y asi??
+	private int asientosTotales;
+	private int asientosLibres;
+	
+	private long salida;
+	private long llegada;
 	
 	
-	public Vuelo(String codVuelo, String codAerolinea, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoDestino) 
+	
+	public Vuelo(int codVuelo, Aerolinea Aerolinea, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoDestino, int asientosTotales, int asientosLibres, long salida, long llegada) 
 	{
 		super();
 		this.codVuelo = codVuelo;
-		this.codAerolinea = codAerolinea;
+		this.aerolinea = Aerolinea;
 		this.aeropuertoSalida = aeropuertoSalida;
 		this.aeropuertoDestino = aeropuertoDestino;
+		this.asientosTotales = asientosTotales;
+		this.asientosLibres = asientosLibres;
+		this.salida = salida;
+		this.llegada = llegada;
 	}
 
-	public String getCodVuelo() {
+	public int getCodVuelo() {
 		return codVuelo;
 	}
 
-	public void setCodVuelo(String codVuelo) {
+	public void setCodVuelo(int codVuelo) {
 		this.codVuelo = codVuelo;
 	}
 
-	public String getCodAerolinea() {
-		return codAerolinea;
+	public Aerolinea getAerolinea() {
+		return aerolinea;
 	}
 
-	public void setCodAerolinea(String codAerolinea) {
-		this.codAerolinea = codAerolinea;
+	public void setAerolinea(Aerolinea aerolinea) {
+		this.aerolinea = aerolinea;
 	}
 
 	public Aeropuerto getAeropuertoSalida() {
@@ -51,6 +60,41 @@ public class Vuelo {
 	public void setAeropuertoDestino(Aeropuerto aeropuertoDestino) {
 		this.aeropuertoDestino = aeropuertoDestino;
 	}
+
+	public int getAsientosTotales() {
+		return asientosTotales;
+	}
+
+	public void setAsientosTotales(int asientosTotales) {
+		this.asientosTotales = asientosTotales;
+	}
+
+	public int getAsientosLibres() {
+		return asientosLibres;
+	}
+
+	public void setAsientosLibres(int asientosLibres) {
+		this.asientosLibres = asientosLibres;
+	}
+
+	public long getSalida() {
+		return salida;
+	}
+
+	public void setSalida(long salida) {
+		this.salida = salida;
+	}
+
+	public long getLlegada() {
+		return llegada;
+	}
+
+	public void setLlegada(long llegada) {
+		this.llegada = llegada;
+	}
+	
+	
+	
 	
 
 }

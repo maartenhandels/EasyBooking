@@ -3,38 +3,56 @@ package LN;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.jdo.annotations.Column;
+import javax.jdo.annotations.Element;
 import javax.jdo.annotations.Join;
+import javax.jdo.annotations.NotPersistent;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
 public class Reserva {
 
 	@PrimaryKey
-	private String codReserva; // Hay que mirar si mejor algo diferente a int
-	private String codPago; // Hay que mirar si mejor algo diferente a int
-	private String codVuelo; // Nose muy bien si habria que poner esto aqui
+	private String codReserva; // Habría que generar de alguna manera un numero random
+	private String codPago; // Habría que generar de alguna manera un numero random
 	
 	private Aerolinea aerolinea;
 	
-	@Join
+	@Column(name="VUELO_CODVUELO")
+	private Vuelo vuelo; 
+	
+	@Persistent(table="RESERVA_PASAJEROS")
+    @Join(column="RESERVA_CODRESERVA_OID")
+    @Element(column="PASAJERO_DNI_EID")
 	private List<Pasajero> pasajeros = new ArrayList <Pasajero>();
 	
-	private boolean usuarioViaja; // Podriamos hacer algo asi para saber si el usuario es un pasajero o no
+	@NotPersistent
+	private int numeroPasajeros;
+	
+	@NotPersistent
+	private boolean usuarioViaja;
 	
 	
-
 	
 	
-	public Reserva(String codReserva, String codPago, ArrayList<Pasajero> pasajeros, boolean usuarioViaja, String codVuelo, Aerolinea aerolinea) {
+	public Reserva(String codReserva, String codPago, ArrayList<Pasajero> pasajeros, boolean usuarioViaja, Vuelo vuelo) {
 		
 		super();
 		this.codReserva = codReserva;
 		this.codPago = codPago;
 		this.pasajeros = pasajeros;
 		this.usuarioViaja = usuarioViaja;
-		this.codVuelo = codVuelo;
-		this.aerolinea = aerolinea;
+		this.vuelo = vuelo;
+		this.aerolinea = vuelo.getAerolinea();
+		
+		if(usuarioViaja == true){
+			this.numeroPasajeros = pasajeros.size() + 1;
+		}else {
+			this.numeroPasajeros = pasajeros.size();
+		}
+		
 	}
 
 	public String getCodReserva() {
@@ -68,14 +86,6 @@ public class Reserva {
 	public void setUsuarioViaja(boolean usuarioViaja) {
 		this.usuarioViaja = usuarioViaja;
 	}
-
-	public String getCodVuelo() {
-		return codVuelo;
-	}
-
-	public void setCodVuelo(String codVuelo) {
-		this.codVuelo = codVuelo;
-	}
 	
 	public Aerolinea getAerolinea() {
 		return aerolinea;
@@ -83,6 +93,22 @@ public class Reserva {
 
 	public void setAerolinea(Aerolinea aerolinea) {
 		this.aerolinea = aerolinea;
+	}
+
+	public int getNumeroPasajeros() {
+		return numeroPasajeros;
+	}
+
+	public void setNumeroPasajeros(int numeroPasajeros) {
+		this.numeroPasajeros = numeroPasajeros;
+	}
+
+	public Vuelo getVuelo() {
+		return vuelo;
+	}
+
+	public void setVuelo(Vuelo vuelo) {
+		this.vuelo = vuelo;
 	}
 	
 	

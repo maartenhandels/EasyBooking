@@ -16,8 +16,10 @@ public class Main {
 		Aeropuerto aero2 = new Aeropuerto("234", "Biarritz");
 		
 		Aerolinea aerol1 = new Aerolinea("Iberia", "IB");
+				
+		Vuelo vuelo1 = new Vuelo(1234, aerol1, aero1, aero2, 100, 70, 1233131231, 1231231312);
 		
-		Usuario user1 = new Usuario("ibone", "urquiola", "7255556674G", "ibone@hotmail.com", aero1, false, true);
+		Usuario user1 = new Usuario("ibone@hotmail.com", aero1, false, true);
 		
 		ArrayList<Pasajero> pasajeros = new ArrayList <Pasajero>();
 		
@@ -29,7 +31,7 @@ public class Main {
 		pasajeros.add(pas2);
 		pasajeros.add(pas3);
 		
-		Reserva res1 = new Reserva("Res01", "Pag01", pasajeros, true, "IB0987",aerol1 );
+		Reserva res1 = new Reserva("Res01", "Pag01", pasajeros, true, vuelo1);
 		
 		user1.getReservasUsuario().add(res1);
 		

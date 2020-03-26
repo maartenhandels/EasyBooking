@@ -1,5 +1,6 @@
 package LN;
 
+import javax.jdo.annotations.NotPersistent;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
@@ -7,8 +8,12 @@ import javax.jdo.annotations.PrimaryKey;
 public class Aerolinea {
 
 	@PrimaryKey
-	private String codAerolinea;
-	private String nombre;
+	private String codAerolinea; // 3 Alphanumeric Characters - Ex: IBE o KLM
+	
+	@NotPersistent
+	private String nombre; 
+	
+	// Hay algo de unas comisiones que nose si deberian ir aqui
 	
 	
 	public Aerolinea(String nombre, String codAerolinea) 

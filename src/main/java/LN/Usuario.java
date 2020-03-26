@@ -13,10 +13,10 @@ import javax.jdo.annotations.PrimaryKey;
 public class Usuario {
 	
 	@PrimaryKey
+	private String email;
 	private String dni;
 	private String nombre;
 	private String apellido;
-	private String email;
 	
 	private Aeropuerto aeropuerto; // No se como llamarle a esto
 	
@@ -24,16 +24,13 @@ public class Usuario {
 	private boolean metodoPago;
 	
 	
-	@Element(column="USUARIO_DNI")
+	@Element(column="USUARIO_EMAIL")
 	private List<Reserva> reservasUsuario = new ArrayList <Reserva>();
 	
 	
-	public Usuario(String nombre, String apellido, String dni, String email, Aeropuerto aeropuerto, boolean metodoAutorizacion, boolean metodoPago)
+	public Usuario(String email, Aeropuerto aeropuerto, boolean metodoAutorizacion, boolean metodoPago)
 	{
 		super();
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.dni = dni;
 		this.email = email;
 		this.aeropuerto = aeropuerto;
 		this.metodoAutorizacion = metodoAutorizacion;

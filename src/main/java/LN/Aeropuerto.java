@@ -1,15 +1,19 @@
 package LN;
 
+import javax.jdo.annotations.NotPersistent;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
 public class Aeropuerto {
 	
-	private String nombre;
 	
 	@PrimaryKey
-	private String codAeropuerto;
+	private String codAeropuerto; // 3 Alphanumeric Characters- Ex: BIO
+	
+	@NotPersistent
+	private String nombre; 
+	
 	
 	
 	public Aeropuerto(String nombre, String codAeropuerto) {

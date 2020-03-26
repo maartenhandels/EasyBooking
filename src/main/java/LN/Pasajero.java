@@ -13,6 +13,8 @@ public class Pasajero {
 	
 	
 	
+	
+	
 	public Pasajero(String nombre, String apellido, String dni) {
 		super();
 		this.nombre = nombre;
