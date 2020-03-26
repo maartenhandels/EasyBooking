@@ -11,8 +11,8 @@ public class Vuelo {
 	private int asientosTotales;
 	private int asientosLibres;
 	
-	private long salida;
-	private long llegada;
+	private long salida; // Esto es porque hay que usar UNIX pero no se muy bien como va
+	private long llegada; // Esto es porque hay que usar UNIX pero no se muy bien como va
 	
 	
 	
