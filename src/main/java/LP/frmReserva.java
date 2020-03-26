@@ -64,7 +64,7 @@ public class frmReserva extends JFrame
 		btnReserva.setFont(new Font("Serif", Font.BOLD, 20));
 		btnReserva.setBounds(750, 100, 175, 40);
 		
-		btnVolver=new JButton("Nueva B�squeda");
+		btnVolver=new JButton("Nueva Busqueda");
 		btnVolver.setFont(new Font("Serif", Font.BOLD, 20));
 		btnVolver.setBounds(750, 150, 175, 40);
 		

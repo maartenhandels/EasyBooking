@@ -17,7 +17,7 @@ public class frmAutorizacion extends JFrame {
 	public frmAutorizacion()
 	{
 		setLayout(null);
-		setTitle("Autorización");
+		setTitle("Autorizacion");
 		
 		btnGoogle = new JButton();
 		icon1 = new ImageIcon("src/main/resources/images/google.png");
@@ -29,7 +29,7 @@ public class frmAutorizacion extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				JFrame frame = new frmMain("Página de Inicio");
+				JFrame frame = new frmMain("Pagina de Inicio");
 				frame.setSize(500, 600);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setVisible(true);	
@@ -46,7 +46,7 @@ public class frmAutorizacion extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				JFrame frame = new frmMain("Página de Inicio");
+				JFrame frame = new frmMain("Pagina de Inicio");
 				frame.setSize(500, 600);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setVisible(true);

@@ -90,7 +90,7 @@ public class frmBuscarVuelo extends JFrame {
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblFecha = new JLabel("\u00BFCu\u00E1ndo te vas?");
+		JLabel lblFecha = new JLabel("Cuando te vas?");
 		lblFecha.setFont(new Font("Serif", Font.BOLD, 20));
 		lblFecha.setBounds(704, 64, 174, 20);
 		contentPane.add(lblFecha);
@@ -117,7 +117,7 @@ public class frmBuscarVuelo extends JFrame {
 		rdbtnPremium.setBounds(424, 322, 109, 29);
 		contentPane.add(rdbtnPremium);
 		
-		JLabel lblNmeroDePasajeros = new JLabel("N\u00FAmero de pasajeros:");
+		JLabel lblNmeroDePasajeros = new JLabel("Numero de pasajeros:");
 		lblNmeroDePasajeros.setFont(new Font("Serif", Font.BOLD, 20));
 		lblNmeroDePasajeros.setBounds(67, 250, 209, 20);
 		contentPane.add(lblNmeroDePasajeros);

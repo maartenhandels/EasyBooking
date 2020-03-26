@@ -60,7 +60,7 @@ public class RegisterPanel extends JPanel {
 		userNameLbl = new JLabel("Nombre Usuario:");
 		emailLbl = new JLabel("Email:");
 		dniLbl = new JLabel("Dni:");
-		passwordLbl = new JLabel("Contraseña:");
+		passwordLbl = new JLabel("Contrasena:");
 		
 		nameField = new JTextField(20);
 		lastNameField = new JTextField(20);
@@ -216,10 +216,6 @@ public class RegisterPanel extends JPanel {
 		
 		
 		add(registerButton, gc);
-		
-		
-		
-		
 		
 		
 		registerButton.addActionListener(new ActionListener() {

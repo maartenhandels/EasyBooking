@@ -12,7 +12,7 @@ import javax.swing.*;
  * 
  * Cosas que faltan:
  * En los 5 primero items faltan JLabels para imprimir los datos del vuelo
- * En el TextField de asientos hay que realizar una comprobaci�n
+ * En el TextField de asientos hay que realizar una comprobacion
  * Crear tantos formularios como asientos seleccionados en panel2
  */
 
@@ -33,7 +33,7 @@ public class frmFormReserva extends JFrame
 		
 		setTitle("Datos reserva");
 		
-		txt1 = new JLabel("El c�digo del vuelo seleccionado es:");
+		txt1 = new JLabel("El codigo del vuelo seleccionado es:");
 		txt1.setFont(new Font("Serif", Font.BOLD, 22));
 		txt1.setBounds(30, 20, 400, 40);
 		
@@ -45,7 +45,7 @@ public class frmFormReserva extends JFrame
 		txt3.setFont(new Font("Serif", Font.BOLD, 22));
 		txt3.setBounds(500, 80, 400, 40);
 		
-		txt4 = new JLabel("Aerol�nea:");
+		txt4 = new JLabel("Aerolinea:");
 		txt4.setFont(new Font("Serif", Font.BOLD, 22));
 		txt4.setBounds(30, 140, 400, 40);
 		
@@ -53,7 +53,7 @@ public class frmFormReserva extends JFrame
 		txt5.setFont(new Font("Serif", Font.BOLD, 22));
 		txt5.setBounds(30, 200, 400, 40);
 		
-		txt6 = new JLabel("N�mero de asientos a reservar:");
+		txt6 = new JLabel("Numero de asientos a reservar:");
 		txt6.setFont(new Font("Serif", Font.BOLD, 22));
 		txt6.setBounds(30, 260, 400, 40);
 		
@@ -112,7 +112,7 @@ public class frmFormReserva extends JFrame
 		rdbtnModoPago1.setFont(new Font("Serif", Font.PLAIN, 20));
 		rdbtnModoPago1.setBounds(400, 655, 200, 40);
 		
-		rdbtnModoPago2=new JRadioButton("Tarjeta de cr�dito");
+		rdbtnModoPago2=new JRadioButton("Tarjeta de credito");
 		rdbtnModoPago2.setFont(new Font("Serif", Font.PLAIN, 20));
 		rdbtnModoPago2.setBounds(600, 655, 200, 40);
 		
