@@ -21,7 +21,7 @@ public class Usuario {
 	private Aeropuerto aeropuerto; // No se como llamarle a esto
 	
 	private boolean metodoAutorizacion; // Habria que mirar si no es mejor con algo distinto a String
-	private boolean metodoPago;
+	private boolean metodoPago; //true -> Paypal  false -> Tarjeta
 	
 	
 	@Element(column="USUARIO_EMAIL")
