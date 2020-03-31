@@ -1,12 +1,13 @@
 package LN;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
-
 
 public class Main 
 {
@@ -15,14 +16,15 @@ public class Main
 	{
 		
 		Aeropuerto aero1 = new Aeropuerto("123", "Loiu");
-		Aeropuerto aero2 = new Aeropuerto("234", "Biarritz");
+		Aeropuerto aero2 = new Aeropuerto("456", "Biarritz");
 		
 		Aerolinea aerol1 = new Aerolinea("Iberia", "IB");
 				
 		Vuelo vuelo1 = new Vuelo(1234, aerol1, aero1, aero2, 100, 70, 1233131231, 1231231312);
 		
-		Usuario user1 = new Usuario("ibone@hotmail.com", aero1, false, true);
-		Usuario user2 = new Usuario("maite@gmail.com", aero2, true, true);
+		Usuario user1 = new Usuario("ibone2@hotmail.com", aero1, false, true);
+		Usuario user2 = new Usuario("maite2@gmail.com", aero2, true, true);
+		Usuario user3 = new Usuario("maarten2@gmail.com", aero2, true, false);
 		
 		ArrayList<Pasajero> pasajeros = new ArrayList <Pasajero>();
 		
@@ -34,7 +36,7 @@ public class Main
 		pasajeros.add(pas2);
 		pasajeros.add(pas3);
 		
-		Reserva res1 = new Reserva("Res01", "Pag01", pasajeros, true, vuelo1);
+		Reserva res1 = new Reserva("Res02", "Pag01", pasajeros, true, vuelo1);
 		
 		user1.getReservasUsuario().add(res1);
 		
@@ -46,52 +48,91 @@ public class Main
 		//Transaction to group DB operations
 		Transaction tx = null;		
 		
-		try 
-		{
-			System.out.println("- Guardar objetos en la BD");			
-			
-			//Get the Persistence Manager
+//		try 
+//		{
+//			System.out.println("- Guardar objetos en la BD");			
+//			
+//			//Get the Persistence Manager
+//			pm = pmf.getPersistenceManager();
+//
+//			//Obtain the current transaction
+//			tx = pm.currentTransaction();		
+//
+//			//Start the transaction
+//			tx.begin();
+//			
+//			pm.makePersistent(aero1);
+//			pm.makePersistent(aero2);
+//			
+//			pm.makePersistent(user1);
+//			pm.makePersistent(user2);
+//			pm.makePersistent(user3);
+//			
+//			pm.makePersistent(pas1);
+//			pm.makePersistent(pas2);
+//			pm.makePersistent(pas3);
+//			
+//			pm.makePersistent(res1);
+//	
+//			
+//			//End the transaction
+//			tx.commit();			
+//			
+//			System.out.println("Los objetos se han guardado satisfactoriamente");
+//		}
+//
+//		catch (Exception ex) 
+//		{
+//			System.err.println(" $ Error storing objects in the DB: " + ex.getMessage());
+//			ex.printStackTrace();
+//		}
+//
+//		finally 
+//		{
+//			if (tx != null && tx.isActive()) {
+//				tx.rollback();
+//			}
+//			
+//			if (pm != null && !pm.isClosed()) 
+//			{
+//				pm.close();
+//				// ATTENTION -  Datanucleus detects that the objects in memory were changed and they are flushed to DB
+//			}
+//		}
+		
+		try {
 			pm = pmf.getPersistenceManager();
-
+			
 			//Obtain the current transaction
-			tx = pm.currentTransaction();		
-
+			tx = pm.currentTransaction();
 			//Start the transaction
 			tx.begin();
 			
-			pm.makePersistent(user1);
-			pm.makePersistent(user2);
-			pm.makePersistent(pas1);
-			pm.makePersistent(pas2);
-			pm.makePersistent(pas3);
-			pm.makePersistent(aero1);
-			pm.makePersistent(res1);
-	
 			
-			//End the transaction
-			tx.commit();			
-			
-			System.out.println("Los objetos se han guardado satisfactoriamente");
-		}
-
-		catch (Exception ex) 
+	        Usuario usuario = pm.getObjectById(Usuario.class, "ibone2@hotmail.com");
+	        
+	        usuario.setEmail("ibone@hotmail.com");
+	        
+	        System.out.println("Se ha cambiado el email de Ibone" + usuario.getEmail());
+	        
+	        tx.commit();
+	        
+	    }catch (Exception ex)
 		{
-			System.err.println(" $ Error storing objects in the DB: " + ex.getMessage());
+			System.err.println(" $ Error updating the DB: " + ex.getMessage());
 			ex.printStackTrace();
-		}
-
-		finally 
-		{
-			if (tx != null && tx.isActive()) {
+		} finally {
+	    	
+	    	if (tx != null && tx.isActive()) 
+			{
 				tx.rollback();
 			}
 			
 			if (pm != null && !pm.isClosed()) 
 			{
 				pm.close();
-				// ATTENTION -  Datanucleus detects that the objects in memory were changed and they are flushed to DB
 			}
-		}
+	    }
 		
 		
 		try
@@ -106,21 +147,44 @@ public class Main
 			
 			//Delete users from DB
 			
-			Query<Usuario> query1 = pm.newQuery(Usuario.class);
-			System.out.println(" Usuarios eliminados ");
 			
-			Query<Aeropuerto> query2 = pm.newQuery(Aeropuerto.class);
-			System.out.println(" Aeropuertos eliminados ");
+			Query<Aerolinea> query1 = pm.newQuery(Aerolinea.class);
 			
-			Query<Pasajero> query3 = pm.newQuery(Pasajero.class);
-			System.out.println(" Pasajeros eliminados ");
+			// query1.deletePersistentAll();
 			
-			Query<Aerolinea> query4 = pm.newQuery(Aerolinea.class);
-			System.out.println(" Aerolineas eliminadas ");
+			@SuppressWarnings("unchecked")
+			List<Aerolinea> aerolineas = (List<Aerolinea>) query1.execute();
 			
-			Query<Reserva> query5 = pm.newQuery(Reserva.class);
-			System.out.println(" Reservas eliminadas ");
+			for (Aerolinea a: aerolineas)
+			{
+				System.out.println(a.getCodAerolinea());
+				aerolineas.remove(a);
+			}
 			
+			aerolineas.removeAll(aerolineas);
+			
+//			Usuario usuario = pm.getObjectById(Usuario.class,
+//		            "ibone2@hotmail.com");
+//			
+//			System.out.println("El metodo de pago es " + usuario.getmetodoPago());
+//			
+//			pm.deletePersistent(usuario);
+//			System.out.println(" Usuarios eliminados ");
+//			
+//			// Query<Aeropuerto> query2 = pm.newQuery(Aeropuerto.class);
+//			// pm.deletePersistent(query2);
+//			
+//			System.out.println(" Aeropuertos eliminados ");
+//			
+//			Query<Pasajero> query3 = pm.newQuery(Pasajero.class);
+//			System.out.println(" Pasajeros eliminados ");
+//			
+//			Query<Aerolinea> query4 = pm.newQuery(Aerolinea.class);
+//			System.out.println(" Aerolineas eliminadas ");
+//			
+//			Query<Reserva> query5 = pm.newQuery(Reserva.class);
+//			System.out.println(" Reservas eliminadas ");
+//			
 			//End the transaction
 			tx.commit();
 		}

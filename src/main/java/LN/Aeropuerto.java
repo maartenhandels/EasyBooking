@@ -16,10 +16,10 @@ public class Aeropuerto {
 	
 	
 	
-	public Aeropuerto(String nombre, String codAeropuerto) {
+	public Aeropuerto(String codAeropuerto, String nombre) {
 		super();
-		this.nombre = nombre;
 		this.codAeropuerto = codAeropuerto;
+		this.nombre = nombre;
 	}
 
 
