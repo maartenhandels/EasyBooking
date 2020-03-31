@@ -80,6 +80,7 @@ public class Main
 			tx.commit();			
 			
 			System.out.println("Los objetos se han guardado satisfactoriamente");
+			System.out.println("");
 		}
 
 		catch (Exception ex) 
@@ -113,6 +114,7 @@ public class Main
 	        Usuario usuario1 = pm.getObjectById(Usuario.class, "maarten2@gmail.com");
 			        		        
 	        System.out.println("El usuario buscado es " + usuario1.getEmail());
+	        System.out.println("");
 			        
 	        tx.commit();
 					        
@@ -147,6 +149,7 @@ public class Main
 	        usuario2.setEmail("ibone2@gmail.com");
 	        
 	        System.out.println("Se ha cambiado el email de Ibone" + usuario2.getEmail());
+	        System.out.println("");
 	        
 	        tx.commit();
 		        
