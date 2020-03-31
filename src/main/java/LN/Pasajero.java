@@ -3,7 +3,7 @@ package LN;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
-@PersistenceCapable
+@PersistenceCapable(detachable ="true")
 public class Pasajero {
 	
 	@PrimaryKey
@@ -11,10 +11,7 @@ public class Pasajero {
 	private String nombre;
 	private String apellido;
 	
-	
-	
-	
-	
+
 	public Pasajero(String nombre, String apellido, String dni) {
 		super();
 		this.nombre = nombre;

@@ -48,75 +48,74 @@ public class Main
 		//Transaction to group DB operations
 		Transaction tx = null;		
 		
-//		try 
-//		{
-//			System.out.println("- Guardar objetos en la BD");			
-//			
-//			//Get the Persistence Manager
-//			pm = pmf.getPersistenceManager();
-//
-//			//Obtain the current transaction
-//			tx = pm.currentTransaction();		
-//
-//			//Start the transaction
-//			tx.begin();
-//			
-//			pm.makePersistent(aero1);
-//			pm.makePersistent(aero2);
-//			
-//			pm.makePersistent(user1);
-//			pm.makePersistent(user2);
-//			pm.makePersistent(user3);
-//			
-//			pm.makePersistent(pas1);
-//			pm.makePersistent(pas2);
-//			pm.makePersistent(pas3);
-//			
-//			pm.makePersistent(res1);
-//	
-//			
-//			//End the transaction
-//			tx.commit();			
-//			
-//			System.out.println("Los objetos se han guardado satisfactoriamente");
-//		}
-//
-//		catch (Exception ex) 
-//		{
-//			System.err.println(" $ Error storing objects in the DB: " + ex.getMessage());
-//			ex.printStackTrace();
-//		}
-//
-//		finally 
-//		{
-//			if (tx != null && tx.isActive()) {
-//				tx.rollback();
-//			}
-//			
-//			if (pm != null && !pm.isClosed()) 
-//			{
-//				pm.close();
-//				// ATTENTION -  Datanucleus detects that the objects in memory were changed and they are flushed to DB
-//			}
-//		}
-		
-		try {
-			pm = pmf.getPersistenceManager();
+		//INSERT
+		try 
+		{
+			System.out.println("- Guardar objetos en la BD");			
 			
+			//Get the Persistence Manager
+			pm = pmf.getPersistenceManager();
+
 			//Obtain the current transaction
-			tx = pm.currentTransaction();
+			tx = pm.currentTransaction();		
+
 			//Start the transaction
 			tx.begin();
 			
+			pm.makePersistent(aero1);
+			pm.makePersistent(aero2);
 			
-	        Usuario usuario = pm.getObjectById(Usuario.class, "ibone2@hotmail.com");
-	        
-	        usuario.setEmail("ibone@hotmail.com");
-	        
-	        System.out.println("Se ha cambiado el email de Ibone" + usuario.getEmail());
-	        
+			pm.makePersistent(user1);
+			pm.makePersistent(user2);
+			pm.makePersistent(user3);
+			
+			pm.makePersistent(pas1);
+			pm.makePersistent(pas2);
+			pm.makePersistent(pas3);
+			
+			pm.makePersistent(res1);
+	
+			
+			//End the transaction
+			tx.commit();			
+			
+			System.out.println("Los objetos se han guardado satisfactoriamente");
+		}
+
+		catch (Exception ex) 
+		{
+			System.err.println(" $ Error storing objects in the DB: " + ex.getMessage());
+			ex.printStackTrace();
+		}
+
+		finally 
+		{
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+			
+			if (pm != null && !pm.isClosed()) 
+			{
+				pm.close();
+				// ATTENTION -  Datanucleus detects that the objects in memory were changed and they are flushed to DB
+			}
+		}
+		
+		//SELECT
+		try {
+			
+			System.out.println("- Seleccionar datos de BD");	
+			
+			pm = pmf.getPersistenceManager();
+			tx = pm.currentTransaction();
+			tx.begin();
+				
+	        Usuario usuario1 = pm.getObjectById(Usuario.class, "maarten2@gmail.com");
+			        		        
+	        System.out.println("El usuario buscado es " + usuario1.getEmail());
+			        
 	        tx.commit();
-	        
+					        
 	    }catch (Exception ex)
 		{
 			System.err.println(" $ Error updating the DB: " + ex.getMessage());
@@ -134,20 +133,49 @@ public class Main
 			}
 	    }
 		
+		//UPDATE
+		try {
+			
+			System.out.println("- Actuailzar datos de la BD");	
+			
+			pm = pmf.getPersistenceManager();
+			tx = pm.currentTransaction();
+			tx.begin();
+				
+	        Usuario usuario2 = pm.getObjectById(Usuario.class, "ibone2@hotmail.com");
+	        
+	        usuario2.setEmail("ibone2@gmail.com");
+	        
+	        System.out.println("Se ha cambiado el email de Ibone" + usuario2.getEmail());
+	        
+	        tx.commit();
+		        
+	    }catch (Exception ex)
+		{
+			System.err.println(" $ Error updating the DB: " + ex.getMessage());
+			ex.printStackTrace();
+		} finally {
+	    	
+	    	if (tx != null && tx.isActive()) 
+			{
+				tx.rollback();
+			}
+			
+			if (pm != null && !pm.isClosed()) 
+			{
+				pm.close();
+			}
+	    }
 		
+		//DELETE
 		try
 		{
-			System.out.println("- Limpiar la BD");			
-			//Get the Persistence Manager
+			System.out.println("- Limpiar la BD");		
 			pm = pmf.getPersistenceManager();
-			//Obtain the current transaction
 			tx = pm.currentTransaction();
-			//Start the transaction
 			tx.begin();
 			
 			//Delete users from DB
-			
-			
 			Query<Aerolinea> query1 = pm.newQuery(Aerolinea.class);
 			
 			// query1.deletePersistentAll();
@@ -163,6 +191,7 @@ public class Main
 			
 			aerolineas.removeAll(aerolineas);
 			
+//			
 //			Usuario usuario = pm.getObjectById(Usuario.class,
 //		            "ibone2@hotmail.com");
 //			
@@ -206,9 +235,7 @@ public class Main
 			{
 				pm.close();
 			}
-		}
-
-		
+		}	
 	}
-
+	
 }

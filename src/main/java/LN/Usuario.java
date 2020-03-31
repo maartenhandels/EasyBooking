@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.annotations.Element;
-import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
 
-@PersistenceCapable
+@PersistenceCapable(detachable ="true")
 public class Usuario {
 	
 	@PrimaryKey
