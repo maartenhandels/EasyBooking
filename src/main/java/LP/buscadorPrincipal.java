@@ -32,6 +32,13 @@ public class buscadorPrincipal extends JFrame {
 	private JLabel lblNewLabel_1;
 	private JLabel lblBooking;
 	private JTextField textField;
+	private JScrollPane scrollPane;
+	private JLabel lblAeropuertoOrigen;
+	private JTextField textField_1;
+	private JButton btnNewButton_1;
+	private JLabel lblAeropuertoDestino;
+	private JTextField textField_2;
+	private JButton button;
 
 	/**
 	 * Launch the application.
@@ -54,7 +61,7 @@ public class buscadorPrincipal extends JFrame {
 	 */
 	public buscadorPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1056, 661);
+		setBounds(100, 100, 1067, 699);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -95,7 +102,7 @@ public class buscadorPrincipal extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(95, 158, 160));
-		panel_1.setBounds(5, 63, 270, 526);
+		panel_1.setBounds(5, 63, 270, 564);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -109,6 +116,38 @@ public class buscadorPrincipal extends JFrame {
 		lblNewLabel_2.setIcon(new ImageIcon("src/main/resources/images/filter.png"));
 		lblNewLabel_2.setBounds(219, 16, 38, 38);
 		panel_1.add(lblNewLabel_2);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(15, 548, 240, -494);
+		panel_1.add(scrollPane);
+		
+		lblAeropuertoOrigen = new JLabel("Aeropuerto Origen");
+		lblAeropuertoOrigen.setBounds(10, 65, 142, 20);
+		panel_1.add(lblAeropuertoOrigen);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(15, 87, 183, 26);
+		panel_1.add(textField_1);
+		textField_1.setColumns(10);
+		
+		btnNewButton_1 = new JButton("");
+		btnNewButton_1.setIcon(new ImageIcon("src/main/resources/images/lupa.png"));
+		btnNewButton_1.setBounds(204, 86, 51, 27);
+		panel_1.add(btnNewButton_1);
+		
+		lblAeropuertoDestino = new JLabel("Aeropuerto Destino");
+		lblAeropuertoDestino.setBounds(10, 125, 194, 20);
+		panel_1.add(lblAeropuertoDestino);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(15, 150, 183, 26);
+		panel_1.add(textField_2);
+		
+		button = new JButton("");
+		button.setIcon(new ImageIcon("src/main/resources/images/.png"));
+		button.setBounds(204, 149, 51, 27);
+		panel_1.add(button);
 		
 		textField = new JTextField();
 		textField.setBounds(290, 64, 580, 26);
