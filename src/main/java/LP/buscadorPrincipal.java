@@ -23,6 +23,9 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.JSlider;
 
 public class buscadorPrincipal extends JFrame {
 
@@ -32,13 +35,17 @@ public class buscadorPrincipal extends JFrame {
 	private JLabel lblNewLabel_1;
 	private JLabel lblBooking;
 	private JTextField textField;
-	private JScrollPane scrollPane;
 	private JLabel lblAeropuertoOrigen;
 	private JTextField textField_1;
 	private JButton btnNewButton_1;
 	private JLabel lblAeropuertoDestino;
 	private JTextField textField_2;
 	private JButton button;
+	private JLabel lblNPasajeros;
+	private JLabel lblRangoDePrecio;
+	private JLabel label_2;
+	private JLabel lblFechaSalida;
+	private JTextField textField_3;
 
 	/**
 	 * Launch the application.
@@ -117,12 +124,9 @@ public class buscadorPrincipal extends JFrame {
 		lblNewLabel_2.setBounds(219, 16, 38, 38);
 		panel_1.add(lblNewLabel_2);
 		
-		scrollPane = new JScrollPane();
-		scrollPane.setBounds(15, 548, 240, -494);
-		panel_1.add(scrollPane);
-		
 		lblAeropuertoOrigen = new JLabel("Aeropuerto Origen");
-		lblAeropuertoOrigen.setBounds(10, 65, 142, 20);
+		lblAeropuertoOrigen.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		lblAeropuertoOrigen.setBounds(10, 66, 142, 20);
 		panel_1.add(lblAeropuertoOrigen);
 		
 		textField_1 = new JTextField();
@@ -136,7 +140,8 @@ public class buscadorPrincipal extends JFrame {
 		panel_1.add(btnNewButton_1);
 		
 		lblAeropuertoDestino = new JLabel("Aeropuerto Destino");
-		lblAeropuertoDestino.setBounds(10, 125, 194, 20);
+		lblAeropuertoDestino.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		lblAeropuertoDestino.setBounds(10, 126, 194, 20);
 		panel_1.add(lblAeropuertoDestino);
 		
 		textField_2 = new JTextField();
@@ -145,9 +150,57 @@ public class buscadorPrincipal extends JFrame {
 		panel_1.add(textField_2);
 		
 		button = new JButton("");
-		button.setIcon(new ImageIcon("src/main/resources/images/.png"));
+		button.setIcon(new ImageIcon("src/main/resources/images/lupa.png"));
 		button.setBounds(204, 149, 51, 27);
 		panel_1.add(button);
+		
+		lblNPasajeros = new JLabel("Nº Pasajeros");
+		lblNPasajeros.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		lblNPasajeros.setBounds(10, 223, 104, 20);
+		panel_1.add(lblNPasajeros);
+		
+		JSpinner spinner = new JSpinner();
+		spinner.setFont(new Font("Century Gothic", Font.PLAIN, 20));
+		spinner.setModel(new SpinnerNumberModel(0, null, 8, 1));
+		spinner.setBounds(204, 204, 47, 38);
+		panel_1.add(spinner);
+		
+		lblRangoDePrecio = new JLabel("Rango de precios (€)");
+		lblRangoDePrecio.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		lblRangoDePrecio.setBounds(10, 277, 204, 20);
+		panel_1.add(lblRangoDePrecio);
+		
+		JSlider slider = new JSlider();
+		slider.setToolTipText("");
+		slider.setMinimum(25);
+		slider.setMaximum(500);
+		slider.setBounds(37, 333, 200, 26);
+		panel_1.add(slider);
+		
+		JLabel label_1 = new JLabel("25");
+		label_1.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+		label_1.setBounds(37, 313, 25, 20);
+		panel_1.add(label_1);
+		
+		label_2 = new JLabel("500");
+		label_2.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+		label_2.setBounds(217, 313, 38, 20);
+		panel_1.add(label_2);
+		
+		lblFechaSalida = new JLabel("Fecha salida (dd/mm/aaaa)");
+		lblFechaSalida.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		lblFechaSalida.setBounds(15, 387, 222, 20);
+		panel_1.add(lblFechaSalida);
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(58, 423, 146, 26);
+		panel_1.add(textField_3);
+		textField_3.setColumns(10);
+		
+		JButton btnNewButton_2 = new JButton("Aplicar filtros");
+		btnNewButton_2.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		btnNewButton_2.setBounds(37, 505, 200, 29);
+		panel_1.add(btnNewButton_2);
 		
 		textField = new JTextField();
 		textField.setBounds(290, 64, 580, 26);
@@ -159,5 +212,14 @@ public class buscadorPrincipal extends JFrame {
 		btnNewButton.setFont(new Font("Century Gothic", Font.BOLD, 16));
 		btnNewButton.setBounds(879, 63, 150, 27);
 		contentPane.add(btnNewButton);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(95, 158, 160));
+		panel_2.setBounds(279, 588, 750, 39);
+		contentPane.add(panel_2);
+		
+		JButton btnRealizarReserva = new JButton("Realizar reserva");
+		btnRealizarReserva.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		panel_2.add(btnRealizarReserva);
 	}
 }
