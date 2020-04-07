@@ -3,6 +3,7 @@ package LP;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -35,7 +36,9 @@ public class frmInicioSesion extends JFrame
 	public frmInicioSesion() 
 	{
 		setLayout(null);
-		setTitle("Login");
+		setTitle("Login - EasyBooking");
+		Image image = new ImageIcon("src/main/resources/images/Flight_prin.png").getImage();
+		setIconImage(image);
 		
 		blue=new Color(76, 129, 194);
 		
@@ -122,6 +125,7 @@ public class frmInicioSesion extends JFrame
 		ventana.setBounds(600,200,600,700);
 		ventana.setVisible(true);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 
 	}
 

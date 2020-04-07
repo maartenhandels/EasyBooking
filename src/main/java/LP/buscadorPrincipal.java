@@ -17,10 +17,14 @@ import javax.swing.ImageIcon;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.CardLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
@@ -67,8 +71,11 @@ public class buscadorPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public buscadorPrincipal() {
+		setTitle("Buscador de vuelos - EasyBooking");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1067, 699);
+		Image image = new ImageIcon("src/main/resources/images/Flight_prin.png").getImage();
+		setIconImage(image);
+		setBounds(80, 10, 1067, 699);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -213,6 +220,7 @@ public class buscadorPrincipal extends JFrame {
 		btnNewButton.setBounds(879, 63, 150, 27);
 		contentPane.add(btnNewButton);
 		
+		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(95, 158, 160));
 		panel_2.setBounds(279, 588, 750, 39);
@@ -221,5 +229,15 @@ public class buscadorPrincipal extends JFrame {
 		JButton btnRealizarReserva = new JButton("Realizar reserva");
 		btnRealizarReserva.setFont(new Font("Century Gothic", Font.BOLD, 16));
 		panel_2.add(btnRealizarReserva);
+		btnRealizarReserva.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				frmReserva2 frameReserva = new frmReserva2();
+				frameReserva.setBounds(100, 100, 763, 493);
+				frameReserva.setVisible(true);
+				frameReserva.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			}
+		});
 	}
 }

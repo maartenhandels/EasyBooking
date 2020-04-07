@@ -1,5 +1,6 @@
 package LP;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,7 +18,9 @@ public class frmAutorizacion extends JFrame {
 	public frmAutorizacion()
 	{
 		setLayout(null);
-		setTitle("Autorizacion");
+		setTitle("Autorizacion - EasyBookign");
+		Image image = new ImageIcon("src/main/resources/images/Flight_prin.png").getImage();
+		setIconImage(image);
 		
 		btnGoogle = new JButton();
 		icon1 = new ImageIcon("src/main/resources/images/google.png");
