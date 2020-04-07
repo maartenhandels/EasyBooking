@@ -15,6 +15,8 @@ import javax.swing.JRadioButton;
 import javax.swing.border.LineBorder;
 import java.awt.Canvas;
 import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Checkbox;
 import java.awt.Button;
 
@@ -205,6 +207,16 @@ public class frmReserva2 extends JFrame {
 		JButton btnNewButton_1 = new JButton("Cancelar");
 		btnNewButton_1.setBounds(40, 119, 115, 29);
 		panel_3.add(btnNewButton_1);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				buscadorPrincipal frame = new buscadorPrincipal();
+				frame.setBounds(100, 100, 763, 493);
+				frame.setVisible(true);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			}
+		});
 		
 		JButton btnNewButton = new JButton("Pagar ahora");
 		btnNewButton.setFont(new Font("Century Gothic", Font.BOLD, 16));
