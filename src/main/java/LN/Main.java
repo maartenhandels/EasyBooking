@@ -17,7 +17,7 @@ public class Main
 	public static void main(String [] args) 
 	{
 		
-		Aeropuerto aero1 = new Aeropuerto("123", "Loiu");
+		Aeropuerto aero1 = new Aeropuerto("098", "Loiu");
 		Aeropuerto aero2 = new Aeropuerto("456", "Biarritz");
 		
 		Aerolinea aerol1 = new Aerolinea("Iberia", "IB");
@@ -46,12 +46,20 @@ public class Main
 		
 		
 		Aeropuerto arrayAeropuertos[]= {aero2};
+		Aerolinea arrayAerolineas[]= {aerol1};
+		Pasajero arrayPasajeros[]= {pas2};
 		
 		GestorBD gestor = new GestorBD();
 		
-		//gestor.guardarElementos(arrayAeropuertos);
+		// gestor.guardarElementos(arrayPasajeros);
 		
-		gestor.modificarCodAeropuerto(aero1, "098");
+		gestor.buscarModificarCodAeropuerto(aero1, "567");
+		
+		// gestor.eliminarAeropuerto(aero1);
+		// gestor.eliminarAeropuerto(aero2);
+	
+		
+		gestor.cerrarBD();
 		
 		
 		
