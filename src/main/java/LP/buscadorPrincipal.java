@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
@@ -129,6 +130,20 @@ public class buscadorPrincipal extends JFrame {
 		btnNewButton_1.setIcon(new ImageIcon("src/main/resources/images/lupa.png"));
 		btnNewButton_1.setBounds(204, 86, 51, 27);
 		panel_1.add(btnNewButton_1);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				//Aquí tendremos que aplicar un filtro para que solamente salgan vuelos con ese origen
+				if(textField_1.getText().isEmpty())
+				{
+					JOptionPane.showMessageDialog(null,"No has seleccionado el origen del vuelo","Origen vuelo",JOptionPane.INFORMATION_MESSAGE);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null,"No hay vuelos corresponientes a ese origen en el sistema","Origen vuelo",JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+		});
 		
 		lblAeropuertoDestino = new JLabel("Aeropuerto Destino");
 		lblAeropuertoDestino.setFont(new Font("Century Gothic", Font.PLAIN, 16));
@@ -144,6 +159,20 @@ public class buscadorPrincipal extends JFrame {
 		button.setIcon(new ImageIcon("src/main/resources/images/lupa.png"));
 		button.setBounds(204, 149, 51, 27);
 		panel_1.add(button);
+		button.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				//Aquí tendremos que aplicar un filtro para que solamente salgan vuelos con ese origen
+				if(textField_2.getText().isEmpty())
+				{
+					JOptionPane.showMessageDialog(null,"No has seleccionado el destino del vuelo","Destino vuelo",JOptionPane.INFORMATION_MESSAGE);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null,"No hay vuelos corresponientes a ese destino en el sistema","Destino vuelo",JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+		});
 		
 		lblNPasajeros = new JLabel("Nº Pasajeros");
 		lblNPasajeros.setFont(new Font("Century Gothic", Font.PLAIN, 16));
@@ -152,7 +181,7 @@ public class buscadorPrincipal extends JFrame {
 		
 		JSpinner spinner = new JSpinner();
 		spinner.setFont(new Font("Century Gothic", Font.PLAIN, 20));
-		spinner.setModel(new SpinnerNumberModel(0, null, 8, 1));
+		spinner.setModel(new SpinnerNumberModel(1, 1, 8, 1));
 		spinner.setBounds(204, 204, 47, 38);
 		panel_1.add(spinner);
 		

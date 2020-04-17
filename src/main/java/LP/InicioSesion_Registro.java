@@ -5,9 +5,16 @@ import java.awt.EventQueue;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
@@ -15,9 +22,7 @@ public class InicioSesion_Registro extends JFrame{
 
 	private JTextField textField;
 	private JTextField textField_1;
-
-
-
+	private JPasswordField contraField;
 
 	/**
 	 * Initialize the contents of the frame.
@@ -59,15 +64,32 @@ public class InicioSesion_Registro extends JFrame{
 		label_1.setBounds(15, 207, 142, 31);
 		panel_3.add(label_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(15, 254, 306, 40);
-		panel_3.add(textField_1);
+		contraField = new JPasswordField();
+		contraField.setColumns(10);
+		contraField.setBounds(15, 254, 306, 40);
+		panel_3.add(contraField);
 		
 		JButton btnEntrar = new JButton("Entrar");
 		btnEntrar.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		btnEntrar.setBounds(101, 354, 119, 40);
 		panel_3.add(btnEntrar);
+		btnEntrar.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				if(textField.getText().isEmpty() || contraField.getPassword()==null)
+				{
+					JOptionPane.showMessageDialog(null,"Te faltan campos de información por rellenar","INICIO SESIÓN",JOptionPane.INFORMATION_MESSAGE);
+				}
+				else
+				{
+					dispose();
+					buscadorPrincipal frame = new buscadorPrincipal();
+					frame.setVisible(true);
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
+			}
+		});
+
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(95, 158, 160));
@@ -97,7 +119,7 @@ public class InicioSesion_Registro extends JFrame{
 		
 		JLabel label = new JLabel("REGISTRO");
 		label.setForeground(new Color(255, 255, 255));
-		label.setBounds(109, 16, 116, 32);
+		label.setBounds(109, 16, 232, 32);
 		label.setFont(new Font("Century Gothic", Font.BOLD, 25));
 		panel_2.add(label);
 		

@@ -196,7 +196,6 @@ public class Reserva extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				buscadorPrincipal frame = new buscadorPrincipal();
-				frame.setBounds(100, 100, 763, 493);
 				frame.setVisible(true);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
