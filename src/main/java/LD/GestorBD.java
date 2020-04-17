@@ -20,8 +20,7 @@ public class GestorBD {
 	private Transaction tx = null;
 	
 	
-	
-	
+
 	public <T> boolean guardarElementos( T[]a ){
 		
 		 boolean guardado = true;
