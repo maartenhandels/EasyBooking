@@ -14,7 +14,7 @@ public class GestorBD {
 	private PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 
 	// Persistence Manager
-	private PersistenceManager pm = pmf.getPersistenceManager();;
+	private PersistenceManager pm = pmf.getPersistenceManager();
 
 	//Transaction to group DB operations
 	private Transaction tx = null;
@@ -45,7 +45,6 @@ public class GestorBD {
 				 
 			 }
 	
-			 pm.setDetachAllOnCommit(true);
 			
 			 //End the transaction
 			 tx.commit();			
