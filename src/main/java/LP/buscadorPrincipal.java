@@ -7,16 +7,25 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
+import javax.swing.ListCellRenderer;
+
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import LN.Aerolinea;
+import LN.Aeropuerto;
+import LN.Vuelo;
+
 import java.awt.Component;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
+
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.CardLayout;
@@ -25,6 +34,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
@@ -32,18 +42,20 @@ import javax.swing.JSpinner;
 import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JSlider;
+import javax.swing.JList;
 /**
  * Clase que contiene el buscador de vuelos. Para poder buscar vuelos que se ajusten a tus necesidades hemos creado
  * un apartado con filtros que se pueden aplicar. 
  * @author Human Compilers
  *
  */
-public class buscadorPrincipal extends JFrame {
+public class buscadorPrincipal extends JFrame{
 
 	private JPanel contentPane;
 	private JPanel panel;
 	private JPanel panel_1;
 	private JPanel panel_2;
+	private JPanel panel_3;
 	
 	private JLabel lblEasybooking;
 	private JLabel lblNewLabel;
@@ -69,9 +81,12 @@ public class buscadorPrincipal extends JFrame {
 	private JButton btnNewButton_2;
 	private JButton btnNewButton;
 	private JButton btnRealizarReserva;
+	private JButton btn2;
 	
 	private JSlider slider;
 	private JSpinner spinner;
+	private ImageIcon img3;
+	private JList<Vuelo> listaVuelos;
 	
 	/**
 	 * Create the frame.
@@ -88,7 +103,7 @@ public class buscadorPrincipal extends JFrame {
 		contentPane.setLayout(null);
 		
 		panel = new JPanel();
-		panel.setBounds(5, 5, 1024, 54);
+		panel.setBounds(5, 5, 1030, 54);
 		panel.setToolTipText("");
 		panel.setBackground(new Color(95, 158, 160));
 		contentPane.add(panel);
@@ -100,25 +115,38 @@ public class buscadorPrincipal extends JFrame {
 		panel.add(lblNewLabel_1);
 		
 		lblEasybooking = new JLabel("EasyBooking");
-		lblEasybooking.setBounds(336, 0, 293, 54);
+		lblEasybooking.setBounds(336, 0, 350, 54);
 		lblEasybooking.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEasybooking.setFont(new Font("Century Gothic", Font.BOLD, 35));
 		panel.add(lblEasybooking);
 		
 		lblBooking = new JLabel("usuario");
 		lblBooking.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBooking.setBounds(816, 0, 122, 54);
+		lblBooking.setBounds(800, 0, 122, 54);
 		lblBooking.setFont(new Font("Century Gothic", Font.PLAIN, 20));
 		panel.add(lblBooking);
 		
 		lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(943, 0, 48, 54);
+		lblNewLabel.setBounds(895, 0, 69, 54);
 		lblNewLabel.setToolTipText("");
 		lblNewLabel.setLabelFor(this);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel.setIcon(new ImageIcon("src/main/resources/images/user_P.png"));
 		panel.add(lblNewLabel);
-		panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNewLabel_1, lblEasybooking}));
+		
+		img3 = new ImageIcon("src/main/resources/images/salir.png");
+		btn2 = new JButton(img3);
+		btn2.setBounds(980, 8, 40, 40);
+		panel.add(btn2);
+		btn2.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				InicioSesion_Registro frame = new InicioSesion_Registro();
+				frame.setVisible(true);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			}
+		});
 		
 		panel_1 = new JPanel();
 		panel_1.setBackground(new Color(95, 158, 160));
@@ -262,14 +290,20 @@ public class buscadorPrincipal extends JFrame {
 		btnNewButton = new JButton("Buscar");
 		btnNewButton.setIcon(new ImageIcon("src/main/resources/images/lupa.png"));
 		btnNewButton.setFont(new Font("Century Gothic", Font.BOLD, 16));
-		btnNewButton.setBounds(879, 63, 150, 27);
+		btnNewButton.setBounds(879, 63, 156, 27);
 		contentPane.add(btnNewButton);
-		
 		
 		panel_2 = new JPanel();
 		panel_2.setBackground(new Color(95, 158, 160));
-		panel_2.setBounds(279, 588, 750, 39);
+		panel_2.setBounds(279, 588, 756, 39);
 		contentPane.add(panel_2);
+		
+		//Aqui tendremos que añadir los diferentes paneles a la lista con el metodo createListVuelos
+		//Para eso tenemos que implemetar bien la clase Vuelo
+		panel_3 = new JPanel();
+		panel_3.setBounds(290, 99, 745, 473);
+		//panel_3.add(new JScrollPane(listaVuelos = createListVuelos()),BorderLayout.CENTER);
+		contentPane.add(panel_3);
 		
 		btnRealizarReserva = new JButton("Realizar reserva");
 		btnRealizarReserva.setFont(new Font("Century Gothic", Font.BOLD, 16));
@@ -284,5 +318,18 @@ public class buscadorPrincipal extends JFrame {
 				frameReserva.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 		});
+	}
+	
+	
+	public static void createListVuelos(List<Vuelo>vuelos)
+	{
+
+		for( int i=0; i<vuelos.size(); i++)
+		{
+			PanelVuelos panelV=new PanelVuelos(vuelos.get(i)); 
+			panelV.setVisible(true);
+			
+		}
+
 	}
 }
