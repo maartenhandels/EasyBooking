@@ -11,50 +11,29 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class InicioSesion_Registro {
+public class InicioSesion_Registro extends JFrame{
 
-	private JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					InicioSesion_Registro window = new InicioSesion_Registro();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the application.
-	 */
-	public InicioSesion_Registro() {
-		initialize();
-	}
+
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(255, 255, 255));
-		frame.setSize(750, 800);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+	public InicioSesion_Registro() {
+//		frame = new JFrame();
+		getContentPane().setBackground(new Color(255, 255, 255));
+		setSize(750, 800);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(95, 158, 160));
 		panel_3.setBounds(15, 318, 336, 410);
-		frame.getContentPane().add(panel_3);
+		getContentPane().add(panel_3);
 		panel_3.setLayout(null);
 		
 		JLabel lblInicioDeSesion = new JLabel("INICIO DE SESION");
@@ -93,7 +72,7 @@ public class InicioSesion_Registro {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(95, 158, 160));
 		panel_1.setBounds(0, 0, 728, 60);
-		frame.getContentPane().add(panel_1);
+		getContentPane().add(panel_1);
 		
 		JLabel lblEasyBooking = new JLabel("EASYBOOKING");
 		lblEasyBooking.setForeground(new Color(255, 255, 255));
@@ -103,7 +82,7 @@ public class InicioSesion_Registro {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(95, 158, 160));
 		panel_2.setBounds(377, 318, 336, 410);
-		frame.getContentPane().add(panel_2);
+		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 		
 		ImageIcon img2 = new ImageIcon("src/main/resources/images/facebook.jpg");
@@ -131,7 +110,7 @@ public class InicioSesion_Registro {
 		panel_4.setBackground(new Color(95, 158, 160));
 		panel_4.setBounds(0, 58, 728, 200);
 		panel_4.setLayout(null);
-		frame.getContentPane().add(panel_4);
+		getContentPane().add(panel_4);
 		
 		ImageIcon img = new ImageIcon("src/main/resources/images/flight.png");
 		JLabel lblImage = new JLabel(img);
@@ -151,7 +130,7 @@ public class InicioSesion_Registro {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(0, 258, 728, 60);
-		frame.getContentPane().add(panel);
+		getContentPane().add(panel);
 		
 		JLabel lblDisfrutaDeLa = new JLabel("¡Disfruta de la experiencia completa!");
 		lblDisfrutaDeLa.setFont(new Font("Century Gothic", Font.BOLD, 25));

@@ -52,22 +52,6 @@ public class buscadorPrincipal extends JFrame {
 	private JTextField textField_3;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					buscadorPrincipal frame = new buscadorPrincipal();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public buscadorPrincipal() {
@@ -233,7 +217,7 @@ public class buscadorPrincipal extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				frmReserva2 frameReserva = new frmReserva2();
+				Reserva frameReserva = new Reserva();
 				frameReserva.setBounds(100, 100, 763, 493);
 				frameReserva.setVisible(true);
 				frameReserva.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
