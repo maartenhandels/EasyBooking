@@ -11,12 +11,15 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-@PersistenceCapable(detachable ="true")
+@PersistenceCapable()
 public class Reserva {
 
 	@PrimaryKey
 	private String codReserva; // Habría que generar de alguna manera un numero random
 	private String codPago; // Habría que generar de alguna manera un numero random
+	
+	@Column(name="USUARIO_EMAIL")
+	private Usuario usuario;
 	
 	private Aerolinea aerolinea;
 	
@@ -28,6 +31,7 @@ public class Reserva {
     @Element(column="PASAJERO_DNI_EID")
 	private List<Pasajero> pasajeros = new ArrayList <Pasajero>();
 	
+	
 	@NotPersistent
 	private int numeroPasajeros;
 	
@@ -37,9 +41,10 @@ public class Reserva {
 	
 	
 	
-	public Reserva(String codReserva, String codPago, ArrayList<Pasajero> pasajeros, boolean usuarioViaja, Vuelo vuelo) {
+	public Reserva(Usuario usuario, String codReserva, String codPago, ArrayList<Pasajero> pasajeros, boolean usuarioViaja, Vuelo vuelo) {
 		
 		super();
+		this.usuario = usuario;
 		this.codReserva = codReserva;
 		this.codPago = codPago;
 		this.pasajeros = pasajeros;

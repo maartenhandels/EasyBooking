@@ -3,7 +3,7 @@ package LN;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
-@PersistenceCapable(detachable ="true")
+@PersistenceCapable()
 public class Pasajero {
 	
 	@PrimaryKey

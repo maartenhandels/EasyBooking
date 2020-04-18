@@ -3,6 +3,7 @@ package LN;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.jdo.annotations.Column;
 import javax.jdo.annotations.Element;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -18,15 +19,15 @@ public class Usuario {
 	private String nombre;
 	private String apellido;
 	
-	@Persistent(mappedBy="codAeropuerto")
+	@Column(name="CODAEROPUERTO")
 	private Aeropuerto aeropuerto; // No se como llamarle a esto
 	
 	private boolean metodoAutorizacion; // Habria que mirar si no es mejor con algo distinto a String
 	private boolean metodoPago; //true -> Paypal  false -> Tarjeta
 	
 	
-	@Element(column="USUARIO_EMAIL")
-	private List<Reserva> reservasUsuario = new ArrayList <Reserva>();
+	@Persistent(mappedBy="usuario")
+	private List<Reserva> reservasUsuario; 
 	
 	
 	public Usuario(String email, Aeropuerto aeropuerto, boolean metodoAutorizacion, boolean metodoPago)
@@ -36,6 +37,7 @@ public class Usuario {
 		this.aeropuerto = aeropuerto;
 		this.metodoAutorizacion = metodoAutorizacion;
 		this.metodoPago = metodoPago;
+		this.reservasUsuario = new ArrayList <Reserva>();
 	}
 
 
