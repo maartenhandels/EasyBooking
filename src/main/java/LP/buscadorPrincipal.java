@@ -328,6 +328,7 @@ public class buscadorPrincipal extends JFrame{
 		{
 			PanelVuelos panelV=new PanelVuelos(vuelos.get(i)); 
 			panelV.setVisible(true);
+			panelV.setSize(745, 100);
 			
 		}
 
