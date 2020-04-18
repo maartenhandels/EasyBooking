@@ -5,10 +5,11 @@ import java.util.List;
 
 import javax.jdo.annotations.Element;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 
-@PersistenceCapable(detachable ="true")
+@PersistenceCapable()
 public class Usuario {
 	
 	@PrimaryKey
@@ -17,6 +18,7 @@ public class Usuario {
 	private String nombre;
 	private String apellido;
 	
+	@Persistent(mappedBy="codAeropuerto")
 	private Aeropuerto aeropuerto; // No se como llamarle a esto
 	
 	private boolean metodoAutorizacion; // Habria que mirar si no es mejor con algo distinto a String

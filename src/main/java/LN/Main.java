@@ -17,14 +17,15 @@ public class Main
 	public static void main(String [] args) 
 	{
 		
-		Aeropuerto aero1 = new Aeropuerto("098", "Loiu");
+		Aeropuerto aero1 = new Aeropuerto("123", "Loiu");
 		Aeropuerto aero2 = new Aeropuerto("456", "Biarritz");
 		
 		Aerolinea aerol1 = new Aerolinea("Iberia", "IB");
+		Aerolinea aerol2 = new Aerolinea("Koninklijke Luchtvaart Maatschappij", "KLM");
 				
 		Vuelo vuelo1 = new Vuelo(1234, aerol1, aero1, aero2, 100, 70, 1233131231, 1231231312);
 		
-		Usuario user1 = new Usuario("ibone2@hotmail.com", aero1, false, true);
+		Usuario user1 = new Usuario("ibone2@hotmail.com", aero2, false, true);
 		Usuario user2 = new Usuario("maite2@gmail.com", aero2, true, true);
 		Usuario user3 = new Usuario("maarten2@gmail.com", aero2, true, false);
 		
@@ -45,18 +46,27 @@ public class Main
 		
 		
 		
-		Aeropuerto arrayAeropuertos[]= {aero2};
-		Aerolinea arrayAerolineas[]= {aerol1};
-		Pasajero arrayPasajeros[]= {pas2};
+		Aeropuerto arrayAeropuertos[]= { aero1 };
+		Aerolinea arrayAerolineas[]= { aerol2 };
+		Pasajero arrayPasajeros[]= { pas1, pas3 };
+		Reserva arrayReservas[]= { res1 };
+		Usuario arrayUsuarios[]= { user1, user2, user3 };
 		
 		GestorBD gestor = new GestorBD();
 		
-		// gestor.guardarElementos(arrayPasajeros);
+//		gestor.guardarElementos(arrayAeropuertos);
+//		gestor.guardarElementos(arrayAerolineas);
+//		gestor.guardarElementos(arrayPasajeros);
+//		gestor.guardarElementos(arrayReservas);
+//		gestor.guardarElementos(arrayUsuarios);
 		
-		gestor.buscarModificarCodAeropuerto(aero1, "567");
+		
+//		gestor.buscarModificarCodAeropuerto(aero1, "567");
 		
 		// gestor.eliminarAeropuerto(aero1);
 		// gestor.eliminarAeropuerto(aero2);
+		
+		// gestor.eliminarObjeto(pas1);
 	
 		
 		gestor.cerrarBD();
