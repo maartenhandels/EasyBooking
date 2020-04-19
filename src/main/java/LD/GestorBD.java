@@ -20,6 +20,7 @@ public class GestorBD {
 
 	// Persistence Manager
 	private PersistenceManager pm = pmf.getPersistenceManager();
+	
 
 	//Transaction to group DB operations
 	private Transaction tx = null;
@@ -34,18 +35,23 @@ public class GestorBD {
 		 {
 			 
 			 System.out.println("- Guardar objetos en la BD");			
-
+			 
 			 //Obtain the current transaction
 			 tx = pm.currentTransaction();		
+			 
+			 System.out.println("Prueba1");
 
 			 //Start the transaction
 			 tx.begin();
 			 
-			 
+			 System.out.println("Prueba2");
 			
 			 for(T objeto:a) {
 				 
+				 System.out.println("Prueba3");
+				 System.out.println(objeto);
 				 pm.makePersistent(objeto);
+				 System.out.println("Prueba4");
 				 
 			 }
 	

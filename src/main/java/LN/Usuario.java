@@ -10,7 +10,7 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 
-@PersistenceCapable()
+@PersistenceCapable
 public class Usuario {
 	
 	@PrimaryKey

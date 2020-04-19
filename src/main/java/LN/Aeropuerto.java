@@ -4,7 +4,7 @@ import javax.jdo.annotations.NotPersistent;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
-@PersistenceCapable()
+@PersistenceCapable
 public class Aeropuerto {
 	
 	
