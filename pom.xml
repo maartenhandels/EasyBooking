@@ -10,6 +10,8 @@
    <properties>
        <config.files.dir>src/main/resources</config.files.dir>
        <encoding>UTF-8</encoding>
+       <server.hostname>127.0.0.1</server.hostname>
+       <server.port>8080</server.port>
    </properties>
    
     <dependencies>
