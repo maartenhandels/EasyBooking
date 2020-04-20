@@ -47,9 +47,9 @@ public class Main
 		
 		
 		
-		Aeropuerto arrayAeropuertos[]= { aero2 };
-		Aerolinea arrayAerolineas[]= { aerol2 };
-		Pasajero arrayPasajeros[]= { pas1, pas3 };
+		Aeropuerto arrayAeropuertos[]= { aero1, aero2 };
+		Aerolinea arrayAerolineas[]= { aerol1, aerol2 };
+		Pasajero arrayPasajeros[]= { pas1, pas2, pas3 };
 		Usuario arrayUsuarios[]= { user1, user2, user3 };
 		Reserva arrayReservas[]= { res2 };
 		
@@ -59,7 +59,7 @@ public class Main
 //		gestor.guardarElementos(arrayAeropuertos);
 //		gestor.guardarElementos(arrayAerolineas);
 //		gestor.guardarElementos(arrayPasajeros);
-//		gestor.guardarElementos(arrayUsuarios);
+		gestor.guardarElementos(arrayUsuarios);
 		gestor.guardarElementos(arrayReservas);
 		
 		

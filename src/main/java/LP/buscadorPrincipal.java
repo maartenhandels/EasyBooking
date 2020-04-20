@@ -34,6 +34,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JScrollPane;
@@ -323,6 +324,14 @@ public class buscadorPrincipal extends JFrame{
 	
 	public static void createListVuelos(List<Vuelo>vuelos)
 	{
+		
+//		List<Vuelo> vuelos2 = new ArrayList<Vuelo>();
+		
+//		Vuelo vuelo1 = new Vuelo();
+//		Vuelo vuelo2 = new Vuelo();
+//		
+//		vuelos2.add(vuelo1);
+//		vuelos2.add(vuelo2);
 
 		for( int i=0; i<vuelos.size(); i++)
 		{
