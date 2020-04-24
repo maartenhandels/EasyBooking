@@ -1,6 +1,10 @@
 package LN;
 
+import java.awt.List;
+import java.util.ArrayList;
+
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
@@ -11,12 +15,16 @@ public class Pasajero {
 	private String nombre;
 	private String apellido;
 	
+	@Persistent(mappedBy="pasajeros")
+	private ArrayList<Reserva> reservas;
+	
 
 	public Pasajero(String nombre, String apellido, String dni) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
+		this.reservas = null;
 	}
 
 

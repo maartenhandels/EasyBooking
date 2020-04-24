@@ -21,14 +21,15 @@ public class Reserva {
 	@Column(name="USUARIO_EMAIL")
 	private Usuario usuario;
 	
+	@Column(name="AEROLINEA_CODAEROLINEA")
 	private Aerolinea aerolinea;
 	
-	@Column(name="VUELO_CODVUELO")
+	@NotPersistent
 	private Vuelo vuelo; 
 	
 	@Persistent(table="RESERVA_PASAJEROS")
-    @Join(column="RESERVA_CODRESERVA_OID")
-    @Element(column="PASAJERO_DNI_EID")
+    @Join(column="RESERVA_CODRESERVA")
+    @Element(column="PASAJERO_DNI")
 	private List<Pasajero> pasajeros = new ArrayList <Pasajero>();
 	
 	
