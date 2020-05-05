@@ -192,6 +192,5 @@ public class InicioSesion_Registro extends JFrame{
 		lblDisfrutaDeLa = new JLabel("¡Disfruta de la experiencia completa!");
 		lblDisfrutaDeLa.setFont(new Font("Century Gothic", Font.BOLD, 25));
 		panel.add(lblDisfrutaDeLa);
-	
 	}
 }
