@@ -9,13 +9,13 @@ import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
 
-import server.LD.GestorBD;
-import server.LN.Aerolinea;
-import server.LN.Aeropuerto;
-import server.LN.Pasajero;
-import server.LN.Reserva;
-import server.LN.Usuario;
-import server.LN.Vuelo;
+import server.DAO.GestorBD;
+import server.LD.Aerolinea;
+import server.LD.Aeropuerto;
+import server.LD.Pasajero;
+import server.LD.Reserva;
+import server.LD.Usuario;
+import server.LD.Vuelo;
 
 public class Main 
 {
@@ -31,9 +31,9 @@ public class Main
 				
 		Vuelo vuelo1 = new Vuelo(1234, aerol1, aero1, aero2, 100, 70, 1233131231, 1231231312);
 		
-		Usuario user1 = new Usuario("ibone2@hotmail.com", aero2, false, true);
-		Usuario user2 = new Usuario("maite2@gmail.com", aero2, true, true);
-		Usuario user3 = new Usuario("maarten2@gmail.com", aero2, true, false);
+		Usuario user1 = new Usuario("ibone2@hotmail.com","1234", "ibone", "urquiola", "73425341L", aero2, false, true);
+		Usuario user2 = new Usuario("maite2@gmail.com","5647", "maite", "llorente", "54637218K", aero2, true, true);
+		Usuario user3 = new Usuario("maarten2@gmail.com","8765", "maarten", "handels", "76548392W", aero2, true, false);
 		
 		ArrayList<Pasajero> pasajeros = new ArrayList <Pasajero>();
 		

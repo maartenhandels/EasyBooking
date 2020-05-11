@@ -17,9 +17,9 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import server.org.eclipse.wb.swing.FocusTraversalOnArray;
 
-import server.LN.Aerolinea;
-import server.LN.Aeropuerto;
-import server.LN.Vuelo;
+import server.LD.Aerolinea;
+import server.LD.Aeropuerto;
+import server.LD.Vuelo;
 
 import java.awt.Component;
 import javax.swing.JLabel;

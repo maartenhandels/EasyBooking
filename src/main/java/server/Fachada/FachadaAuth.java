@@ -2,12 +2,17 @@ package server.Fachada;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 
 import server.AppService.AppServiceAuth;
+import server.DTO.UsuarioAssembler;
+import server.DTO.UsuarioDTO;
+import server.LD.Usuario;
 
 public class FachadaAuth extends UnicastRemoteObject implements itfFachadaAuth{
 
 	AppServiceAuth servAuth;
+	UsuarioAssembler usAssem = new UsuarioAssembler();
 	
 	protected FachadaAuth() throws RemoteException {
 		super();
@@ -44,6 +49,17 @@ public class FachadaAuth extends UnicastRemoteObject implements itfFachadaAuth{
 	public void cerrarSesion() {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	@Override
+	public List<UsuarioDTO> getUsuarios() 
+	{
+		List <Usuario> us = servAuth.getUsuarios();
+		
+		List<UsuarioDTO> usuarioDTO= usAssem.assembleTousuarioDTO(us);
+		
+		return usuarioDTO;
 	}
 	
 

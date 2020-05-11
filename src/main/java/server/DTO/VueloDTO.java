@@ -1,5 +1,12 @@
 package server.DTO;
 
-public class VueloDTO {
+import java.io.Serializable;
+
+public class VueloDTO implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 }

@@ -3,7 +3,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import client.ServiceLocator.ServiceLocator;
-import server.LN.Pasajero;
+import server.LD.Pasajero;
 
 public class Controller {
 

@@ -12,7 +12,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import client.Controller.Controller;
-import server.LN.Vuelo;
+import server.LD.Vuelo;
 
 /**
  * Clase que contiene la creacion de los paneles correspondientes a cada vuelo para que puedan aparecer 

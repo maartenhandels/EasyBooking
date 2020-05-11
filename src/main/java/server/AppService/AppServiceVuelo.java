@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import server.Gateway.Gateway;
-import server.LN.Pasajero;
+import server.LD.Pasajero;
 
 public class AppServiceVuelo {
 	

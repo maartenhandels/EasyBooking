@@ -1,5 +1,10 @@
 package server.Gateway;
 
-public interface itfGateway {
+import java.util.List;
 
+import server.DTO.UsuarioDTO;
+
+public interface itfGateway 
+{
+	public List <UsuarioDTO> getUsuarios();
 }

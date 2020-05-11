@@ -3,7 +3,7 @@ package server.Fachada;
 import java.util.ArrayList;
 import java.util.Date;
 
-import server.LN.Pasajero;
+import server.LD.Pasajero;
 
 public interface itfFachadaAero {
 

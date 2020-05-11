@@ -1,8 +1,11 @@
 package server.AppService;
 
 import java.rmi.RemoteException;
+import java.util.List;
 
+import server.DTO.UsuarioDTO;
 import server.Gateway.Gateway;
+import server.LD.Usuario;
 
 public class AppServiceAuth {
 	
@@ -18,6 +21,12 @@ public class AppServiceAuth {
 	}
 	public void cerrarSesion ()throws RemoteException
 	{
+		
+	}
+	public List <Usuario> getUsuarios()
+	{
+		gateway.getUsuarios();
+		return null;
 		
 	}
 }
