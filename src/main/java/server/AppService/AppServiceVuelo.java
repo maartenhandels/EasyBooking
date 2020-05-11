@@ -2,9 +2,12 @@ package server.AppService;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import server.Gateway.Gateway;
 import server.LD.Pasajero;
+import server.LD.Usuario;
+import server.LD.Vuelo;
 
 public class AppServiceVuelo {
 	
@@ -25,6 +28,20 @@ public class AppServiceVuelo {
 	}
 	public void eliminarReserva(String cod_reserva, String cod_pago)
 	{
+		
+	}
+	
+	public List <Usuario> getUsuarios()
+	{
+		gateway.getUsuarios();
+		return null;
+		
+	}
+	
+	public List <Vuelo> getVuelos()
+	{
+		gateway.getVuelos();
+		return null;
 		
 	}
 }

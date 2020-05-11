@@ -4,13 +4,22 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import server.AppService.AppServiceVuelo;
+import server.DTO.UsuarioAssembler;
+import server.DTO.UsuarioDTO;
+import server.DTO.VueloAssembler;
+import server.DTO.VueloDTO;
 import server.LD.Pasajero;
+import server.LD.Usuario;
+import server.LD.Vuelo;
 
 public class FachadaAero extends UnicastRemoteObject implements itfFachadaAero {
 
-	private AppServiceVuelo servVuelo;
+	AppServiceVuelo servVuelo;
+	UsuarioAssembler usAssem = new UsuarioAssembler();
+	VueloAssembler vuAssem = new VueloAssembler();
 	
 	protected FachadaAero() throws RemoteException {
 		super();
@@ -37,6 +46,29 @@ public class FachadaAero extends UnicastRemoteObject implements itfFachadaAero {
 	public void eliminarReserva(String cod_reserva, String cod_pago) 
 	{
 		servVuelo.eliminarReserva(cod_reserva, cod_pago);
+	}
+
+	@Override
+	public List<VueloDTO> getVuelos() 
+	{
+		
+		List <Vuelo> vu = servVuelo.getVuelos();
+		
+		List<VueloDTO> vueloDTO= vuAssem.assembleTovueloDTO(vu);
+			
+		return vueloDTO;
+	}
+
+	@Override
+	public List<UsuarioDTO> getUsuarios() 
+	{
+		
+		List <Usuario> us = servVuelo.getUsuarios();
+			
+		List<UsuarioDTO> usuarioDTO= usAssem.assembleTousuarioDTO(us);
+			
+		return usuarioDTO;
+		
 	}
 	
 }

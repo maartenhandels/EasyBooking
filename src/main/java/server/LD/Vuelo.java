@@ -14,6 +14,8 @@ public class Vuelo {
 	private long salida; // Esto es porque hay que usar UNIX (fecha y hora) pero no se muy bien como va
 	private long llegada; // Esto es porque hay que usar UNIX (fecha y hora) pero no se muy bien como va
 	
+	public Vuelo()
+	{}
 	
 	
 	public Vuelo(int codVuelo, Aerolinea Aerolinea, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoDestino, int asientosTotales, int asientosLibres, long salida, long llegada) 

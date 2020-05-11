@@ -14,7 +14,6 @@ public class UsuarioDTO implements Serializable{
 	private String nombre;
 	private String apellido;
 	
-	//usuarioDTO(Usuario.getEmail, Usuario.getNombre); --> Así será el constructor, con un for each vas convirtiendo, eso se hace en el assembler
 	
 	public UsuarioDTO(String email, String contrasenya, String nombre, String apellido, String dni)
 	{
@@ -27,43 +26,53 @@ public class UsuarioDTO implements Serializable{
 		
 	}
 
-	public String getEmail() {
+	public String getEmail() 
+	{
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public void setEmail(String email) 
+	{
 		this.email = email;
 	}
 
-	public String getNombre() {
+	public String getNombre() 
+	{
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
+	public void setNombre(String nombre) 
+	{
 		this.nombre = nombre;
 	}
 
-	public String getContrasenya() {
+	public String getContrasenya() 
+	{
 		return contrasenya;
 	}
 
-	public void setContrasenya(String contrasenya) {
+	public void setContrasenya(String contrasenya) 
+	{
 		this.contrasenya = contrasenya;
 	}
 
-	public String getDni() {
+	public String getDni() 
+	{
 		return dni;
 	}
 
-	public void setDni(String dni) {
+	public void setDni(String dni) 
+	{
 		this.dni = dni;
 	}
 
-	public String getApellido() {
+	public String getApellido() 
+	{
 		return apellido;
 	}
 
-	public void setApellido(String apellido) {
+	public void setApellido(String apellido) 
+	{
 		this.apellido = apellido;
 	}
 
