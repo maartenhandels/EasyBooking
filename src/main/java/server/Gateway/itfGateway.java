@@ -22,6 +22,7 @@ public interface itfGateway
 	
 	//servicio externo - autenticacion
 	public boolean log_in(String email, String password);
+	public boolean log_out(String email);
 	public String create_User (Usuario us);
 	public boolean change_password(String email, String old_password, String new_password);
 	public boolean delete_user (String email, String password);

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import server.DTO.UsuarioDTO;
 import server.Gateway.Gateway;
 import server.LD.Pasajero;
 import server.LD.Usuario;
@@ -12,6 +13,7 @@ import server.LD.Vuelo;
 public class AppServiceVuelo {
 	
 	private Gateway gateway;
+	private List<UsuarioDTO> listaUsDTO;
 	
 	public AppServiceVuelo()
 	{
@@ -33,14 +35,14 @@ public class AppServiceVuelo {
 	
 	public List <Usuario> getUsuarios()
 	{
-		gateway.getUsuarios();
+		gateway.getUsuarios();//es que aquí le estamos llamando a gateway que tiene usuarioDTO no usuario
 		return null;
 		
 	}
 	
 	public List <Vuelo> getVuelos()
 	{
-		gateway.getVuelos();
+		gateway.getVuelos();//lo mismo para vuelos 
 		return null;
 		
 	}

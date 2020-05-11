@@ -2,12 +2,16 @@ package server.Gateway;
 
 import java.util.List;
 
+import server.DTO.UsuarioAssembler;
 import server.DTO.UsuarioDTO;
 import server.DTO.VueloDTO;
 import server.LD.Usuario;
 
 public class Gateway implements itfGateway
 {
+	
+	private UsuarioAssembler listaUs;
+	private List<UsuarioDTO> listaUsDTO;
 
 	@Override
 	public List<UsuarioDTO> getUsuarios() {
@@ -65,6 +69,13 @@ public class Gateway implements itfGateway
 
 	@Override
 	public boolean delete_user(String email, String password) 
+	{
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean log_out(String email) 
 	{
 		// TODO Auto-generated method stub
 		return false;
