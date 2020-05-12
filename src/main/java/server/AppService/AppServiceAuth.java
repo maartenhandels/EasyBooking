@@ -12,12 +12,9 @@ public class AppServiceAuth {
 	
 	private Gateway gateway;
 	
-	private UsuarioAssembler listaUs;
-	private List<UsuarioDTO> listaUsDTO;
-	
 	public void registroUs(String nombre, String email,String contranenya) throws RemoteException
 	{
-		
+		gateway.registroUs(nombre, email, contranenya);
 	}
 	public void iniciarSesion (String email, String contrasenya)throws RemoteException
 	{
@@ -29,8 +26,6 @@ public class AppServiceAuth {
 	}
 	public List <Usuario> getUsuarios()
 	{
-		return listaUs.assembletoUsuario(listaUsDTO); //ya se q no es así pero creo que en algun momento hay que assemble 
-		
-		
+		return gateway.getUsuarios();
 	}
 }

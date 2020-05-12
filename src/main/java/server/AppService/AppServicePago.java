@@ -10,22 +10,18 @@ public class AppServicePago {
 
 	private Gateway gateway;
 	
-	public void realizarPago(double precio, String cod_reserva, String email) {
-		// TODO Auto-generated method stub
-		
+	public void realizarPago(double precio, String cod_reserva, String email) 
+	{
+		gateway.realizarPago(precio, cod_reserva, email);
 	}
 	
 	public List <Usuario> getUsuarios()
 	{
-		gateway.getUsuarios();
-		return null;
-		
+		return gateway.getUsuarios();	
 	}
 	
 	public List <Vuelo> getVuelos()
 	{
-		gateway.getVuelos();
-		return null;
-		
+		return gateway.getVuelos();	
 	}
 }

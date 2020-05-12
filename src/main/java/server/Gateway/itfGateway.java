@@ -1,16 +1,26 @@
 package server.Gateway;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import server.DTO.UsuarioDTO;
 import server.DTO.VueloDTO;
+import server.LD.Pasajero;
 import server.LD.Usuario;
 import server.LD.Vuelo;
 
 public interface itfGateway 
 {
-	public List <UsuarioDTO> getUsuarios();
-	public List <VueloDTO> getVuelos();
+	public List <Usuario> getUsuarios();
+	public List <Vuelo> getVuelos();
+	
+	public boolean log_out(String email);
+	public void registroUs(String nombre, String email,String contranenya);
+	public void realizarPago(double precio, String cod_reserva, String email);
+	public void buscarVuelo(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida, Date llegada);
+	public void createReserva(String aero_origen, String aero_destino, ArrayList<Pasajero> pasajeros, Date salida, Date llegada);
+	public void eliminarReserva(String cod_reserva, String cod_pago);
 	
 	//Servicio externo - aerolinea
 	//public List <Vuelo> search_flights();
@@ -22,7 +32,6 @@ public interface itfGateway
 	
 	//servicio externo - autenticacion
 	public boolean log_in(String email, String password);
-	public boolean log_out(String email);
 	public String create_User (Usuario us);
 	public boolean change_password(String email, String old_password, String new_password);
 	public boolean delete_user (String email, String password);

@@ -1,26 +1,29 @@
 package server.Gateway;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import server.DTO.UsuarioAssembler;
 import server.DTO.UsuarioDTO;
 import server.DTO.VueloDTO;
+import server.LD.Pasajero;
 import server.LD.Usuario;
+import server.LD.Vuelo;
 
 public class Gateway implements itfGateway
 {
-	
-	private UsuarioAssembler listaUs;
-	private List<UsuarioDTO> listaUsDTO;
 
 	@Override
-	public List<UsuarioDTO> getUsuarios() {
+	public List<Usuario> getUsuarios() 
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<VueloDTO> getVuelos() {
+	public List<Vuelo> getVuelos() 
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -79,6 +82,41 @@ public class Gateway implements itfGateway
 	{
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void registroUs(String nombre, String email, String contranenya) 
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void realizarPago(double precio, String cod_reserva, String email) 
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void buscarVuelo(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida, Date llegada) 
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void createReserva(String aero_origen, String aero_destino, ArrayList<Pasajero> pasajeros, Date salida, Date llegada) 
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void eliminarReserva(String cod_reserva, String cod_pago) 
+	{
+		// TODO Auto-generated method stub
+		
 	}
 
 }
