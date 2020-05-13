@@ -22,6 +22,7 @@ public class Controller {
 	}
 	public void iniciarSesion (String email, String contrasenya)
 	{
+		System.out.println("Llega al controller");
 		rsl.getServiceAuth().iniciarSesion(email, contrasenya);
 	}
 	public void buscarVuelo(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida, Date llegada)

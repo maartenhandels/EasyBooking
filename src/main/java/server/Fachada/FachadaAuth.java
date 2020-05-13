@@ -35,6 +35,7 @@ public class FachadaAuth extends UnicastRemoteObject implements itfFachadaAuth{
 	@Override
 	public void iniciarSesion(String email, String contrasenya) {
 		// TODO Auto-generated method stub
+		System.out.println("Llega a la fachada");
 		try 
 		{
 			servAuth.iniciarSesion(email, contrasenya);

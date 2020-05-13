@@ -52,6 +52,7 @@ public class Gateway implements itfGateway
 	@Override
 	public boolean log_in(String email, String password) 
 	{
+		System.out.println("Llega a la fachada");
 		// TODO Auto-generated method stub
 		return false;
 	}

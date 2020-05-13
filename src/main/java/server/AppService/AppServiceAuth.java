@@ -18,6 +18,7 @@ public class AppServiceAuth {
 	}
 	public void iniciarSesion (String email, String contrasenya)throws RemoteException
 	{
+		System.out.println("Llega al appservice");
 		gateway.log_in(email, contrasenya);
 	}
 	public void cerrarSesion (String email)throws RemoteException

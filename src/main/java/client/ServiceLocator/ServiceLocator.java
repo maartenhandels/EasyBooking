@@ -20,9 +20,9 @@ public class ServiceLocator {
 	
 	public void setService()
 	{
-		String ip= "";
-		String port = "";
-		String serviceName = "";
+		String ip= "127.0.0.1";
+		String port = "8001";
+		String serviceName = "easybooking";
 		
 		if (System.getSecurityManager() == null)
 		{
@@ -31,8 +31,8 @@ public class ServiceLocator {
 		try {
 			registry = LocateRegistry.getRegistry(((Integer.valueOf(port))));
 			String name = "//" + ip + ":" + port + "/" + serviceName;
-			this.fachadaAero = (itfFachadaAero) registry.lookup(name);
-			this.fachadaPago = (itfFachadaPago) registry.lookup(name);
+//			this.fachadaAero = (itfFachadaAero) registry.lookup(name);
+//			this.fachadaPago = (itfFachadaPago) registry.lookup(name);
 			this.fachadaAuth = (itfFachadaAuth) registry.lookup(name);
 
 		} 
@@ -51,6 +51,7 @@ public class ServiceLocator {
 	}
 	public itfFachadaAuth getServiceAuth()
 	{
+		System.out.println("Llega al servicelocator");
 		return fachadaAuth;
 	}
 }
