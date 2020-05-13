@@ -25,7 +25,7 @@ public class DAO implements itfDAO {
 	
 	
 	
-	public <T> boolean guardarElemto( T a ){
+	public <T> boolean guardarElemto(T a){
 		
 		 boolean guardado = true;
 		 
@@ -76,7 +76,7 @@ public class DAO implements itfDAO {
 		 
 	}
 	
-	public <T> boolean guardarVariosElemtos( ArrayList<T> a ){
+	public <T> boolean guardarVariosElemtos(ArrayList<T> a){
 		
 		 boolean guardado = true;
 		 
@@ -130,8 +130,173 @@ public class DAO implements itfDAO {
 		 
 	}
 	
-	public void LeerObjetos(){
+	public ArrayList<Aeropuerto> LeerAeropuertos(){
 		
+		ArrayList<Aeropuerto> aeropuertos = new ArrayList<Aeropuerto>();
+
+		try 
+		{
+					 		 
+			Extent<Aeropuerto> extent = pm.getExtent(Aeropuerto.class, true);
+				 
+			 
+			for(Aeropuerto a:extent) {
+				aeropuertos.add(a);
+			}
+			 
+			 
+		}
+		
+		catch (Exception ex) 
+		{
+			 System.err.println(" $ Error reading airports from the DB: " + ex.getMessage());
+			 ex.printStackTrace();
+		}
+		
+		finally 
+		{
+			 if (tx != null && tx.isActive()) {
+				 tx.rollback();
+			 }
+		}
+		 
+		return aeropuertos;
+	
+	}
+	
+	public ArrayList<Vuelo> LeerVuelos(){
+		
+		ArrayList<Vuelo> vuelos = new ArrayList<Vuelo>();
+
+		try 
+		{
+					 		 
+			Extent<Vuelo> extent = pm.getExtent(Vuelo.class, true);
+				 
+			 
+			for(Vuelo a:extent) {
+				vuelos.add(a);
+			}
+			 
+			 
+		}
+		
+		catch (Exception ex) 
+		{
+			 System.err.println(" $ Error reading flights from the DB: " + ex.getMessage());
+			 ex.printStackTrace();
+		}
+		
+		finally 
+		{
+			 if (tx != null && tx.isActive()) {
+				 tx.rollback();
+			 }
+		}
+		 
+		return vuelos;
+	
+	}
+	
+	public ArrayList<Usuario> LeerUsuarios(){
+		
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+
+		try 
+		{
+					 		 
+			Extent<Usuario> extent = pm.getExtent(Usuario.class, true);
+				 
+			 
+			for(Usuario a:extent) {
+				usuarios.add(a);
+			}
+			 
+			 
+		}
+		
+		catch (Exception ex) 
+		{
+			 System.err.println(" $ Error reading users from the DB: " + ex.getMessage());
+			 ex.printStackTrace();
+		}
+		
+		finally 
+		{
+			 if (tx != null && tx.isActive()) {
+				 tx.rollback();
+			 }
+		}
+		 
+		return usuarios;
+	
+	}
+	
+	public ArrayList<Pasajero> LeerPasajeros(){
+		
+		ArrayList<Pasajero> pasajeros = new ArrayList<Pasajero>();
+
+		try 
+		{
+					 		 
+			Extent<Pasajero> extent = pm.getExtent(Pasajero.class, true);
+				 
+			 
+			for(Pasajero a:extent) {
+				pasajeros.add(a);
+			}
+			 
+			 
+		}
+		
+		catch (Exception ex) 
+		{
+			 System.err.println(" $ Error reading passengers from the DB: " + ex.getMessage());
+			 ex.printStackTrace();
+		}
+		
+		finally 
+		{
+			 if (tx != null && tx.isActive()) {
+				 tx.rollback();
+			 }
+		}
+		 
+		return pasajeros;
+	
+	}
+	
+	public ArrayList<Reserva> LeerReservas(){
+		
+		ArrayList<Reserva> reservas = new ArrayList<Reserva>();
+
+		try 
+		{
+					 		 
+			Extent<Reserva> extent = pm.getExtent(Reserva.class, true);
+				 
+			 
+			for(Reserva a:extent) {
+				reservas.add(a);
+			}
+			 
+			 
+		}
+		
+		catch (Exception ex) 
+		{
+			 System.err.println(" $ Error reading passengers from the DB: " + ex.getMessage());
+			 ex.printStackTrace();
+		}
+		
+		finally 
+		{
+			 if (tx != null && tx.isActive()) {
+				 tx.rollback();
+			 }
+		}
+		 
+		return reservas;
 	
 	}
 	
