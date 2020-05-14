@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project name="EasyBooking">    
+	<property environment="env"/>
+	<property name="source.dir" location="src"/>
+   	<property name="build.dir" location="bin"/>
+	<property name="lib.dir" location="lib"/>
+	<property name="server.port" value="1099"/> 
+	<property name="server.IP" value="127.0.0.1"/> 
+	<property name="server.Name" value="HelloServer"/>
+	<property name="policy.file" location="src/main/resources/security/java.policy"/>	
+
+    <path id="full.classpath">
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
+        <pathelement location="${build.dir}"/>    	
+    </path>
+
+	<target name="run" description="Runs the Client">
+		<java classname="es.deusto.ingenieria.sd.rmi.client.Client" classpathref="full.classpath" fork="true">
+			<jvmarg value="-Djava.security.policy=${policy.file}"/>			
+        	<arg value="${server.IP}"/> 
+	 		<arg value="${server.port}"/> 
+			<arg value="${server.Name}"/> 
+        </java>
+    </target>
+</project>

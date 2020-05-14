@@ -2,7 +2,6 @@ package client.ServiceLocator;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-
 import server.Fachada.itfFachadaAero;
 import server.Fachada.itfFachadaAuth;
 import server.Fachada.itfFachadaPago;
@@ -15,7 +14,7 @@ public class ServiceLocator {
 	private Registry registry;
 	
 	
-	public ServiceLocator()
+	public ServiceLocator() 
 	{}
 	
 	public void setService()
