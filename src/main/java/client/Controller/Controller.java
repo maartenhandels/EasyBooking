@@ -3,6 +3,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import client.ServiceLocator.ServiceLocator;
+import server.LD.Aeropuerto;
 import server.LD.Pasajero;
 
 public class Controller {
@@ -28,6 +29,11 @@ public class Controller {
 	public void buscarVuelo(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida, Date llegada)
 	{
 		rsl.getServiceAero().buscarVuelo(aero_origen, aero_dest, num_pasajeros, precio, salida, llegada);
+	}
+	
+	public void nuevoUsuario(String nombre, String apellido, String email,String contranenya, String dni, Aeropuerto aero, boolean aut, boolean pago)
+	{
+		
 	}
 	/**
 	 * Este metodo deberia tener el conjunto de filtros y aplicarlos a la lista de vuelos que conseguimos con buscarVuelo. Realmente este metodo no tiene

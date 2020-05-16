@@ -7,6 +7,7 @@ import java.util.List;
 import server.AppService.AppServiceAuth;
 import server.DTO.UsuarioAssembler;
 import server.DTO.UsuarioDTO;
+import server.LD.Aeropuerto;
 import server.LD.Usuario;
 
 public class FachadaAuth extends UnicastRemoteObject implements itfFachadaAuth{
@@ -24,7 +25,7 @@ public class FachadaAuth extends UnicastRemoteObject implements itfFachadaAuth{
 		// TODO Auto-generated method stub
 		try 
 		{
-			servAuth.registroUs(nombre, email, contranenya);
+			servAuth.registroUs(nombre, email,contranenya);
 			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -61,6 +62,16 @@ public class FachadaAuth extends UnicastRemoteObject implements itfFachadaAuth{
 		List<UsuarioDTO> usuarioDTO= usAssem.assembleTousuarioDTO(us);
 		
 		return usuarioDTO;
+	}
+
+	@Override
+	public Usuario crearUsuario(String nombre, String apellido, String email, String contrasenya, String dni,
+			Aeropuerto aero, boolean aut, boolean pago) {
+		
+		Usuario user = new Usuario(nombre, apellido, email, contrasenya, dni, aero, aut, pago);
+		
+		servAuth.crearUsuario(user);
+		return user;
 	}
 	
 
