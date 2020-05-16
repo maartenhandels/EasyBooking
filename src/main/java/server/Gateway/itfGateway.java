@@ -23,7 +23,9 @@ public interface itfGateway
 	public void eliminarReserva(String cod_reserva, String cod_pago);
 	
 	//Servicio externo - aerolinea
-	//public List <Vuelo> search_flights();
+	
+	//Esto equivale a aplicar filtros
+	public List <Vuelo> search_flights(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida);
 	
 	//servicio externo - Pago
 	public String make_Payment (String email, float cant_total, String concepto);

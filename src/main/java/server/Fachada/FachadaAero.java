@@ -32,9 +32,10 @@ public class FachadaAero extends UnicastRemoteObject implements itfFachadaAero {
 		servVuelo.buscarVuelo(aero_origen, aero_dest, num_pasajeros, precio, salida, llegada);
 	}
 	@Override
-	public void aplicarFiltro(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida, Date llegada) 
+	public void aplicarFiltro(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida) 
 	{
 		//Aqui creo que tendriamos que llamar a la clase de LN que haga esta funcionalidad.
+		servVuelo.aplicarFiltros(aero_origen, aero_dest, num_pasajeros, precio, salida);
 	}
 	@Override
 	public void createReserva(String aero_origen, String aero_destino, ArrayList<Pasajero> pasajeros, Date salida, Date llegada) 

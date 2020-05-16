@@ -59,7 +59,7 @@ public class InicioSesion_Registro extends JFrame{
 	private JButton btn2;
 	private JButton button;
 
-	private Controller controller;
+	private static Controller controller;
 	
 	public InicioSesion_Registro(Controller controller) {
 		
@@ -158,14 +158,9 @@ public class InicioSesion_Registro extends JFrame{
 		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 		
-		img2 = new ImageIcon("src/main/resources/images/facebook.jpg");
-		btn1 = new JButton(img2);
-		btn1.setBounds(70, 100, 200, 88);
-		panel_2.add(btn1);
-		
 		img3 = new ImageIcon("src/main/resources/images/google.jpg");
 		btn2 = new JButton(img3);
-		btn2.setBounds(70, 200, 200, 100);
+		btn2.setBounds(70, 150, 200, 100);
 		panel_2.add(btn2);
 		
 		label = new JLabel("REGISTRO");
@@ -208,6 +203,12 @@ public class InicioSesion_Registro extends JFrame{
 		lblDisfrutaDeLa = new JLabel("¡Disfruta de la experiencia completa!");
 		lblDisfrutaDeLa.setFont(new Font("Century Gothic", Font.BOLD, 25));
 		panel.add(lblDisfrutaDeLa);
+	}
+	
+	public static void main(String args[])
+	{
+		InicioSesion_Registro bp = new InicioSesion_Registro(controller);
+		bp.setVisible(true);
 	}
 }
 

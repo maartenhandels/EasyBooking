@@ -120,4 +120,11 @@ public class Gateway implements itfGateway
 		
 	}
 
+	@Override
+	public List<Vuelo> search_flights(String aero_origen, String aero_dest, int num_pasajeros, double precio,
+			Date salida) {
+		//devolvera lista de vuelos que cumplan con los filtros que enviemos
+		return null;
+	}
+
 }

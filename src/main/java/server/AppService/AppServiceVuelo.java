@@ -18,6 +18,10 @@ public class AppServiceVuelo {
 	{
 		gateway.buscarVuelo(aero_origen, aero_dest, num_pasajeros, precio, salida, llegada);
 	}
+	public void aplicarFiltros(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida)
+	{
+		
+	}
 	public void createReserva(String aero_origen, String aero_destino, ArrayList<Pasajero> pasajeros, Date salida, Date llegada)
 	{
 		gateway.createReserva(aero_origen, aero_destino, pasajeros, salida, llegada);

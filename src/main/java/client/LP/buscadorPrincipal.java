@@ -9,6 +9,10 @@ import javax.swing.border.EmptyBorder;
 
 import client.Controller.Controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;  
+import java.util.Date; 
+
 import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 
@@ -26,6 +30,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.FlowLayout;
+
+import javax.print.attribute.standard.PrinterLocation;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 
@@ -294,17 +300,25 @@ public class buscadorPrincipal extends JFrame{
 			
 			public void actionPerformed(ActionEvent e) {
 				//Aquí tendremos que comprobar patrón de fecha bien escrito
-				//Para coger info de spinner --> int value = (Integer) spinner.getValue();
-				//Para coger info de slider --> int value = slider.getValue();
-
+				//Para coger info de spinner --> 
+				int num_pasajeros = (Integer) spinner.getValue();
+				//Para coger info de slider
+				int precio = slider.getValue();
+				String fecha = textField_3.getText();
+				SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy"); 
+				Date date1 = null;
+				try 
+				{
+					date1 = formatter1.parse(fecha);
+				} catch (ParseException e1) 
+				{
+					System.out.println("No ha sido posible formatear fecha");
+					e1.printStackTrace();
+				} 
+					controller.aplicarFiltro(textField_1.getText(), textField_2.getText(), num_pasajeros, precio, date1);
 					JOptionPane.showMessageDialog(null,"Filtros aplicados","Filtros",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
-		
-		textField = new JTextField();
-		textField.setBounds(290, 64, 580, 26);
-		contentPane.add(textField);
-		textField.setColumns(10);
 		
 		btnNewButton = new JButton("Buscar");
 		btnNewButton.setIcon(new ImageIcon("src/main/resources/images/lupa.png"));

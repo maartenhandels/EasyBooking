@@ -73,7 +73,7 @@ public class Reserva extends JFrame {
 	
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
-	private Controller controller;
+	private static Controller controller;
 	private String emailUs;
 
 	public Reserva(Controller controller, String email) {
@@ -239,9 +239,6 @@ public class Reserva extends JFrame {
 		checkbox.setBounds(25, 42, 110, 50);
 		panel_3.add(checkbox);
 		
-		checkbox_1 = new Checkbox("PayPal");
-		checkbox_1.setBounds(178, 42, 144, 50);
-		panel_3.add(checkbox_1);
 		
 		btnNewButton_1 = new JButton("Cancelar");
 		btnNewButton_1.setBounds(40, 119, 115, 29);
@@ -272,6 +269,13 @@ public class Reserva extends JFrame {
 				controller.realizarPago(precio, cod_reserva, emailUs);
 			}
 		});
+	}
+	
+	public static void main(String args[])
+	{
+		String email = "iboneurquiola@gmail.com";
+		Reserva bp = new Reserva(controller, email);
+		bp.setVisible(true);
 	}
 }
 
