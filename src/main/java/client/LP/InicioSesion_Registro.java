@@ -68,10 +68,12 @@ public class InicioSesion_Registro extends JFrame{
 	private JLabel label_email;
 	private JLabel label_contra;
 	private JLabel label_aero;
+	private JLabel lblImage4;
 
 	private ImageIcon img;
 	private ImageIcon img2;
 	private ImageIcon img3;
+	private ImageIcon img4;
 	
 	private JButton btnEntrar;
 	private JButton btn1;
@@ -81,6 +83,7 @@ public class InicioSesion_Registro extends JFrame{
 	private JComboBox comboAero;
 
 	private static Controller controller;
+	private JLabel lblAjustes;
 	
 	public InicioSesion_Registro(Controller controller) {
 		
@@ -324,9 +327,33 @@ public class InicioSesion_Registro extends JFrame{
 		panel.setBounds(0, 258, 1000, 60);
 		getContentPane().add(panel);
 		
+		img4 = new ImageIcon("src/main/resources/images/config.png");
+		panel.setLayout(null);
+		btn2 = new JButton(img4);
+		btn2.setBackground(Color.WHITE);
+		btn2.setBounds(43, 5, 52, 47);
+		panel.add(btn2);
+		
+		btn2.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Configuracion frame = new Configuracion(controller);
+				frame.setVisible(true);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			}
+		});
+		
 		lblDisfrutaDeLa = new JLabel("¡Disfruta de la experiencia completa!");
+		lblDisfrutaDeLa.setBounds(277, 5, 454, 32);
 		lblDisfrutaDeLa.setFont(new Font("Century Gothic", Font.BOLD, 25));
 		panel.add(lblDisfrutaDeLa);
+		
+		lblAjustes = new JLabel("Ajustes");
+		lblAjustes.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		lblAjustes.setBounds(97, 15, 67, 29);
+		panel.add(lblAjustes);
+		
 	}
 	
 	public static void main(String args[])

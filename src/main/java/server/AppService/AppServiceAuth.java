@@ -36,4 +36,14 @@ public class AppServiceAuth {
 		gateway.create_User(us);
 		dao.guardarElemto(us);
 	}
+	public boolean eliminarUsuario(String email, String password )
+	{
+		return gateway.delete_user(email, password);
+		//FALTA ELIMINAR DE DAO
+	}
+	public boolean cambiarContrasenya(String email, String password_antigua, String password_nueva )
+	{
+		return gateway.change_password(email, password_antigua, password_nueva);
+		//FALTA CAMBIAR EN DAO
+	}
 }

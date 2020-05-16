@@ -73,6 +73,19 @@ public class FachadaAuth extends UnicastRemoteObject implements itfFachadaAuth{
 		servAuth.crearUsuario(user);
 		return user;
 	}
+
+	@Override
+	public boolean eliminarUsuario(String email, String contrasenya) 
+	{
+		return servAuth.eliminarUsuario(email, contrasenya);
+		
+	}
 	
+	@Override
+	public boolean cambiarContrasenya(String email, String contrasenya_antigua, String contrasenya_nueva) 
+	{
+		return servAuth.cambiarContrasenya(email, contrasenya_antigua,contrasenya_nueva );
+		
+	}
 
 }

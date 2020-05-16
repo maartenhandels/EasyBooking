@@ -35,6 +35,14 @@ public class Controller {
 	{
 		
 	}
+	public boolean eliminarUsuario(String email, String contrasenya)
+	{
+		return rsl.getServiceAuth().eliminarUsuario(email, contrasenya);
+	}
+	public boolean cambiarContrasenya(String email, String contrasenya_antigua, String contrasenya_nueva)
+	{
+		return rsl.getServiceAuth().cambiarContrasenya(email, contrasenya_antigua, contrasenya_nueva);
+	}
 	/**
 	 * Este metodo deberia tener el conjunto de filtros y aplicarlos a la lista de vuelos que conseguimos con buscarVuelo. Realmente este metodo no tiene
 	 * que utilizar servicios externos, porque aplicamos los filtros sobre la lista que ya hemos recogido. Asi que no tendra que pasar mas alla del servicelocator
