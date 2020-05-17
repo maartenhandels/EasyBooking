@@ -170,7 +170,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.2.1</version>
                 <configuration>
-                    <mainClass>LN.Main</mainClass>
+                    <mainClass>client.Main.Main</mainClass>
                     <systemProperties>
                         <systemProperty>
                             <key>log4j.configuration</key>
@@ -245,12 +245,41 @@
             
         </plugins>
         
+        <pluginManagement>
+		    <plugins>
+		        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
+		        <plugin>
+		            <groupId>org.eclipse.m2e</groupId>
+		            <artifactId>lifecycle-mapping</artifactId>
+		            <version>1.0.0</version>
+		            <configuration>
+		                <lifecycleMappingMetadata>
+		                    <pluginExecutions>
+		                        <pluginExecution>
+		                            <pluginExecutionFilter>
+		                                <groupId>org.apache.maven.plugins</groupId>
+		                                <artifactId>maven-antrun-plugin</artifactId>
+		                                <versionRange>[1.7,)</versionRange>
+		                                <goals>
+		                                    <goal>run</goal>
+		                                </goals>
+		                            </pluginExecutionFilter>
+		                            <action>
+		                                <execute />
+		                            </action>
+		                        </pluginExecution>
+		                    </pluginExecutions>
+		                </lifecycleMappingMetadata>
+		            </configuration>
+		        </plugin>
+		    </plugins>
+		</pluginManagement>
+        
     </build>
     
     <profiles>
-    
         <profile>
-            <id>LN</id>
+            <id>Server</id>
             <build>
                 <plugins>
                     <plugin>
@@ -258,7 +287,7 @@
                         <artifactId>exec-maven-plugin</artifactId>
                         <version>1.2.1</version>
                         <configuration>
-                            <mainClass>LN.Main</mainClass>
+                            <mainClass>server.Main</mainClass>
                             <arguments>
                                 <argument>${server.hostname}</argument>
                                 <argument>${server.port}</argument>
@@ -270,7 +299,7 @@
         </profile>
         
         <profile>
-            <id>LP</id>
+            <id>Client</id>
             <build>
                 <plugins>
                     <plugin>
@@ -278,7 +307,7 @@
                         <artifactId>exec-maven-plugin</artifactId>
                         <version>1.2.1</version>
                         <configuration>
-                            <mainClass>LP.clsMain</mainClass>
+                            <mainClass>client.Main</mainClass>
                             <arguments>
                                 <argument>${server.hostname}</argument>
                                 <argument>${server.port}</argument>

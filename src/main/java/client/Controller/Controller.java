@@ -20,9 +20,14 @@ public class Controller {
 	}
 
 	
-	public void registroUsuario(String nombre, String apellido, String email, String dni, Aeropuerto aero)
+	public String registroUsuario(String nombre, String apellido, String email, String dni, Aeropuerto aero)
 	{
-		rsl.getServiceAuth().registroUsuario(nombre, apellido, email, dni, aero);
+		System.out.println("Entra en el Controller");
+		String contrasenya = "";
+		
+		contrasenya = rsl.getServiceAuth().registroUsuario(nombre, apellido, email, dni, aero);
+		
+		return contrasenya;
 	}
 	
 	public void iniciarSesion (String email, String contrasenya)

@@ -9,17 +9,15 @@ public class UsuarioDTO implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private String email;
-	private String contrasenya;
 	private String dni;
 	private String nombre;
 	private String apellido;
 	
 	
-	public UsuarioDTO(String email, String contrasenya, String nombre, String apellido, String dni)
+	public UsuarioDTO(String email, String nombre, String apellido, String dni)
 	{
 		super();
 		this.email = email;
-		this.contrasenya = contrasenya;
 		this.nombre = nombre;
 		this.apellido=apellido;
 		this.dni=dni;
@@ -44,16 +42,6 @@ public class UsuarioDTO implements Serializable{
 	public void setNombre(String nombre) 
 	{
 		this.nombre = nombre;
-	}
-
-	public String getContrasenya() 
-	{
-		return contrasenya;
-	}
-
-	public void setContrasenya(String contrasenya) 
-	{
-		this.contrasenya = contrasenya;
 	}
 
 	public String getDni() 

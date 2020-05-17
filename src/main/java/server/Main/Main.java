@@ -31,9 +31,9 @@ public class Main
 				
 		Vuelo vuelo1 = new Vuelo(1234, aerol1, aero1, aero2, 100, 70, 1233131231, 1231231312);
 		
-		Usuario user1 = new Usuario("ibone2@hotmail.com","1234", "ibone", "urquiola", "73425341L", aero2);
-		Usuario user2 = new Usuario("maite2@gmail.com","5647", "maite", "llorente", "54637218K", aero2);
-		Usuario user3 = new Usuario("maarten2@gmail.com","8765", "maarten", "handels", "76548392W", aero2);
+		Usuario user1 = new Usuario("ibone2@hotmail.com", "ibone", "urquiola", "73425341L", aero2);
+		Usuario user2 = new Usuario("maite2@gmail.com", "maite", "llorente", "54637218K", aero2);
+		Usuario user3 = new Usuario("maarten2@gmail.com", "maarten", "handels", "76548392W", aero2);
 		
 		ArrayList<Pasajero> pasajeros = new ArrayList <Pasajero>();
 		

@@ -22,16 +22,22 @@ public class FachadaAuth extends UnicastRemoteObject implements itfFachadaAuth {
 	}
 
 	@Override
-	public void registroUsuario(String nombre, String apellido, String email, String dni, Aeropuerto aero) {
+	public String registroUsuario(String nombre, String apellido, String email, String dni, Aeropuerto aero) {
+		
+		System.out.println("Entra en la Fachada");
+		
+		String contrasenya = "";
 		
 		try 
 		{
-			servAuth.registroUsuario(nombre, apellido, email, dni, aero);
+			contrasenya = servAuth.registroUsuario(nombre, apellido, email, dni, aero);
 			
 		} catch (RemoteException e) {
 			
 			System.err.println("No se ha podido registrar al usuario : " + e.getMessage());
 		}
+		
+		return contrasenya;
 	}
 
 	@Override

@@ -60,6 +60,7 @@ public class Gateway implements itfGateway
 	@Override
 	public String create_User_Auth (String nombre, String apellido, String email) 
 	{	
+		System.out.println("Entra en el Gateway");
 		String contrasenya = "";
 		
 		// Comunicarse con el servicio externo

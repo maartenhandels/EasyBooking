@@ -18,7 +18,6 @@ public class Usuario {
 	private String dni;
 	private String nombre;
 	private String apellido;
-	private String contrasenya;
 	
 	@Column(name="CODAEROPUERTO")
 	private Aeropuerto aeropuerto; // No se como llamarle a esto
@@ -32,26 +31,15 @@ public class Usuario {
 
 	}
 	
-	public Usuario(String email, String contrasenya, String nombre, String apellido, String dni, Aeropuerto aeropuerto)
+	public Usuario(String email, String nombre, String apellido, String dni, Aeropuerto aeropuerto)
 	{
 		super();
 		this.email = email;
-		this.contrasenya = contrasenya;
 		this.nombre = nombre;
 		this.apellido=apellido;
 		this.dni=dni;
 		this.aeropuerto = aeropuerto;
 		this.reservasUsuario = new ArrayList <Reserva>();
-	}
-
-
-	public String getContrasenya() {
-		return contrasenya;
-	}
-
-
-	public void setContrasenya(String contrasenya) {
-		this.contrasenya = contrasenya;
 	}
 
 

@@ -294,10 +294,21 @@ public class InicioSesion_Registro extends JFrame{
 					// String contrasenya = contra_reg.getPassword().toString(); La contrasenya nos la da el servicio externo
 					String email = textField_email.getText();
 					String dni = textField_dni.getText();
-					Aeropuerto aero = (Aeropuerto)comboAero.getSelectedItem();
-				
-					controller.registroUsuario(nombre, apellido, email, dni, aero);
+					String aero_nombre = (String)comboAero.getSelectedItem();
 					
+					Aeropuerto aero_seleccionado = new Aeropuerto();
+					
+					for(Aeropuerto a: aeros)
+					{
+						if(a.getNombre().equalsIgnoreCase(aero_nombre)) {
+							aero_seleccionado = a;
+							break;
+						}
+					}
+				
+					String contrasenya = controller.registroUsuario(nombre, apellido, email, dni, aero_seleccionado);
+					
+					JOptionPane.showMessageDialog(null,"Tu contraseña es: " + contrasenya, "USUARIO CREADO", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 					buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, email);
 					frameBuscador.setVisible(true);

@@ -13,8 +13,7 @@ public class UsuarioAssembler
 		List<UsuarioDTO> usuarioDTO = new ArrayList<>();
 		for (Usuario u : usuarios)
 		{
-			UsuarioDTO usDTO = new UsuarioDTO(u.getEmail(),u.getContrasenya(), u.getNombre(), 
-					u.getApellido(), u.getDni());
+			UsuarioDTO usDTO = new UsuarioDTO(u.getEmail(), u.getNombre(), u.getApellido(), u.getDni());
 			usuarioDTO.add(usDTO);
 		}
 		System.out.println("* Assembling usuarios to usuariosDTO ...");
@@ -30,7 +29,6 @@ public class UsuarioAssembler
 		{
 			Usuario us = new Usuario();
 			us.setEmail(u.getEmail());
-			us.setContrasenya(u.getContrasenya());
 			us.setNombre(u.getNombre());
 			us.setApellido(u.getApellido());
 			us.setDni(u.getDni());
