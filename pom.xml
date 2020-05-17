@@ -279,7 +279,7 @@
     
     <profiles>
         <profile>
-            <id>Server</id>
+            <id>PServer</id>
             <build>
                 <plugins>
                     <plugin>
@@ -299,7 +299,7 @@
         </profile>
         
         <profile>
-            <id>Client</id>
+            <id>PClient</id>
             <build>
                 <plugins>
                     <plugin>
