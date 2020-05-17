@@ -7,6 +7,7 @@ import server.DAO.DAO;
 import server.DTO.UsuarioAssembler;
 import server.DTO.UsuarioDTO;
 import server.Gateway.Gateway;
+import server.LD.Aeropuerto;
 import server.LD.Usuario;
 
 public class AppServiceAuth {
@@ -14,11 +15,16 @@ public class AppServiceAuth {
 	private Gateway gateway;
 	private DAO dao;
 	
-	public void registroUs(String nombre, String email,String contranenya) throws RemoteException
+	public void registroUsuario(String nombre, String apellido, String email, String dni, Aeropuerto aero) throws RemoteException
 	{
-		gateway.registroUs(nombre, email, contranenya);
+		String contrasenya = gateway.create_User_Auth(nombre, apellido, email);
+		
+		Usuario nuevo_usuario = new Usuario(email, contrasenya, nombre, apellido, dni, aero);
+		dao.guardarElemto(nuevo_usuario);
+		
 	}
-	public void iniciarSesion (String email, String contrasenya)throws RemoteException
+	
+	public void iniciarSesion (String email, String contrasenya) throws RemoteException
 	{
 		System.out.println("Llega al appservice");
 		gateway.log_in(email, contrasenya);
@@ -30,11 +36,6 @@ public class AppServiceAuth {
 	public List <Usuario> getUsuarios()
 	{
 		return gateway.getUsuarios();
-	}
-	public void crearUsuario(Usuario us)
-	{
-		gateway.create_User(us);
-		dao.guardarElemto(us);
 	}
 	public boolean eliminarUsuario(String email, String password )
 	{

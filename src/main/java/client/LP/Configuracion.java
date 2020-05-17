@@ -131,6 +131,7 @@ public class Configuracion extends JFrame{
 		textFieldEmail.setBounds(15, 93, 306, 40);
 		panel_3.add(textFieldEmail);
 		textFieldEmail.setColumns(10);
+		
 		btnCambiar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {

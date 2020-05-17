@@ -8,7 +8,10 @@ import server.LD.Pasajero;
 
 public class Controller {
 
+	
 	private ServiceLocator rsl = null;
+	
+	
 	
 	public Controller() throws RemoteException
 	{
@@ -17,28 +20,27 @@ public class Controller {
 	}
 
 	
-	public void registroUs(String nombre, String email,String contranenya)
+	public void registroUsuario(String nombre, String apellido, String email, String dni, Aeropuerto aero)
 	{
-		rsl.getServiceAuth().registroUs(nombre, email, contranenya);
+		rsl.getServiceAuth().registroUsuario(nombre, apellido, email, dni, aero);
 	}
+	
 	public void iniciarSesion (String email, String contrasenya)
 	{
 		System.out.println("Llega al controller");
 		rsl.getServiceAuth().iniciarSesion(email, contrasenya);
 	}
+	
 	public void buscarVuelo(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida, Date llegada)
 	{
 		rsl.getServiceAero().buscarVuelo(aero_origen, aero_dest, num_pasajeros, precio, salida, llegada);
 	}
 	
-	public void nuevoUsuario(String nombre, String apellido, String email,String contranenya, String dni, Aeropuerto aero, boolean aut, boolean pago)
-	{
-		
-	}
 	public boolean eliminarUsuario(String email, String contrasenya)
 	{
 		return rsl.getServiceAuth().eliminarUsuario(email, contrasenya);
 	}
+	
 	public boolean cambiarContrasenya(String email, String contrasenya_antigua, String contrasenya_nueva)
 	{
 		return rsl.getServiceAuth().cambiarContrasenya(email, contrasenya_antigua, contrasenya_nueva);

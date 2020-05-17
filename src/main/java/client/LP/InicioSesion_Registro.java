@@ -38,7 +38,7 @@ import javax.swing.JComboBox;
  */
 public class InicioSesion_Registro extends JFrame{
 
-	private JTextField textField;
+	private JTextField TxtField_Email_Login;
 	private JTextField textField_1;
 	private JTextField textField_n;
 	private JTextField textField_ape;
@@ -77,8 +77,8 @@ public class InicioSesion_Registro extends JFrame{
 	
 	private JButton btnEntrar;
 	private JButton btn1;
-	private JButton btn2;
-	private JButton button;
+	private JButton btnAjustes;
+	private JButton btnRegistrar;
 	
 	private JComboBox comboAero;
 
@@ -117,10 +117,10 @@ public class InicioSesion_Registro extends JFrame{
 		lblInicioDeSesion.setFont(new Font("Century Gothic", Font.BOLD, 25));
 		panel_3.add(lblInicioDeSesion);
 		
-		textField = new JTextField();
-		textField.setBounds(15, 130, 306, 40);
-		panel_3.add(textField);
-		textField.setColumns(10);
+		TxtField_Email_Login = new JTextField();
+		TxtField_Email_Login.setBounds(15, 130, 306, 40);
+		panel_3.add(TxtField_Email_Login);
+		TxtField_Email_Login.setColumns(10);
 		
 		lblEmail = new JLabel("Email");
 		lblEmail.setForeground(new Color(255, 255, 255));
@@ -143,24 +143,28 @@ public class InicioSesion_Registro extends JFrame{
 		btnEntrar.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		btnEntrar.setBounds(101, 354, 119, 40);
 		panel_3.add(btnEntrar);
+		
 		btnEntrar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				if(textField.getText().isEmpty() || contraField.getPassword()==null)
+				if(TxtField_Email_Login.getText().isEmpty() || contraField.getPassword()==null)
 				{
 					JOptionPane.showMessageDialog(null,"Te faltan campos de información por rellenar","INICIO SESIÓN",JOptionPane.INFORMATION_MESSAGE);
 				}
 				else
 				{
-					//Enviar a servicio externo autenticación --> Si es incorrecto decirle que se registre/revise datos
-					dispose();
-					String email = textField.getText();
+					String email = TxtField_Email_Login.getText();
 					String contra = contraField.getPassword().toString();
+					
 					controller.iniciarSesion(email, contra);
 					
-					buscadorPrincipal frame = new buscadorPrincipal(controller, email);
-					frame.setVisible(true);
-					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					//Si es incorrecto decirle que se registre/revise datos
+					
+					dispose();
+					buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, email);
+					frameBuscador.setVisible(true);
+					frameBuscador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frameBuscador.setResizable(false);
 				}
 			}
 		});
@@ -268,11 +272,12 @@ public class InicioSesion_Registro extends JFrame{
 		label.setFont(new Font("Century Gothic", Font.BOLD, 25));
 		panel_2.add(label);
 		
-		button = new JButton("Registrar");
-		button.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		button.setBounds(250, 354, 119, 40);
-		panel_2.add(button);
-		button.addActionListener(new ActionListener() {
+		btnRegistrar = new JButton("Registrar");
+		btnRegistrar.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		btnRegistrar.setBounds(250, 354, 119, 40);
+		panel_2.add(btnRegistrar);
+		
+		btnRegistrar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				if(textField_n.getText().isEmpty() || contra_reg.getPassword()==null || textField_ape.getText().isEmpty()|| textField_email.getText().isEmpty()
@@ -283,19 +288,21 @@ public class InicioSesion_Registro extends JFrame{
 				else
 				{
 					//Enviar a servicio externo autenticación --> Si es incorrecto decirle que se registre/revise datos
-					dispose();
+					
 					String nombre = textField_n.getText();
 					String apellido = textField_ape.getText();
-					String contrasenya = contra_reg.getPassword().toString();
+					// String contrasenya = contra_reg.getPassword().toString(); La contrasenya nos la da el servicio externo
 					String email = textField_email.getText();
 					String dni = textField_dni.getText();
 					Aeropuerto aero = (Aeropuerto)comboAero.getSelectedItem();
 				
-					controller.nuevoUsuario(nombre, apellido, email, contrasenya, dni, aero, true, true);
+					controller.registroUsuario(nombre, apellido, email, dni, aero);
 					
-					buscadorPrincipal frame = new buscadorPrincipal(controller, email);
-					frame.setVisible(true);
-					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dispose();
+					buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, email);
+					frameBuscador.setVisible(true);
+					frameBuscador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frameBuscador.setResizable(false);
 				}
 			}
 		});
@@ -329,18 +336,20 @@ public class InicioSesion_Registro extends JFrame{
 		
 		img4 = new ImageIcon("src/main/resources/images/config.png");
 		panel.setLayout(null);
-		btn2 = new JButton(img4);
-		btn2.setBackground(Color.WHITE);
-		btn2.setBounds(43, 5, 52, 47);
-		panel.add(btn2);
+		btnAjustes = new JButton(img4);
+		btnAjustes.setBackground(Color.WHITE);
+		btnAjustes.setBounds(43, 5, 52, 47);
+		panel.add(btnAjustes);
 		
-		btn2.addActionListener(new ActionListener() {
+		btnAjustes.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
+				
 				dispose();
-				Configuracion frame = new Configuracion(controller);
-				frame.setVisible(true);
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				Configuracion frameConfiguracion = new Configuracion(controller);
+				frameConfiguracion.setVisible(true);
+				frameConfiguracion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frameConfiguracion.setResizable(false);
 			}
 		});
 		
@@ -360,6 +369,7 @@ public class InicioSesion_Registro extends JFrame{
 	{
 		InicioSesion_Registro bp = new InicioSesion_Registro(controller);
 		bp.setVisible(true);
+		bp.setResizable(false);
 	}
 }
 

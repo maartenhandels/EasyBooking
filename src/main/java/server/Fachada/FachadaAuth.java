@@ -10,39 +10,40 @@ import server.DTO.UsuarioDTO;
 import server.LD.Aeropuerto;
 import server.LD.Usuario;
 
-public class FachadaAuth extends UnicastRemoteObject implements itfFachadaAuth{
+public class FachadaAuth extends UnicastRemoteObject implements itfFachadaAuth {
 
 	AppServiceAuth servAuth;
 	UsuarioAssembler usAssem = new UsuarioAssembler();
 	
 	protected FachadaAuth() throws RemoteException {
+		
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void registroUs(String nombre, String email, String contranenya) {
-		// TODO Auto-generated method stub
+	public void registroUsuario(String nombre, String apellido, String email, String dni, Aeropuerto aero) {
+		
 		try 
 		{
-			servAuth.registroUs(nombre, email,contranenya);
+			servAuth.registroUsuario(nombre, apellido, email, dni, aero);
 			
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
+			
 			System.err.println("No se ha podido registrar al usuario : " + e.getMessage());
 		}
 	}
 
 	@Override
 	public void iniciarSesion(String email, String contrasenya) {
-		// TODO Auto-generated method stub
+		
 		System.out.println("Llega a la fachada");
 		try 
 		{
 			servAuth.iniciarSesion(email, contrasenya);
 			
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
+			
 			System.err.println("No se ha podido inicar sesion : " + e.getMessage());
 		}
 	}
@@ -62,16 +63,6 @@ public class FachadaAuth extends UnicastRemoteObject implements itfFachadaAuth{
 		List<UsuarioDTO> usuarioDTO= usAssem.assembleTousuarioDTO(us);
 		
 		return usuarioDTO;
-	}
-
-	@Override
-	public Usuario crearUsuario(String nombre, String apellido, String email, String contrasenya, String dni,
-			Aeropuerto aero, boolean aut, boolean pago) {
-		
-		Usuario user = new Usuario(nombre, apellido, email, contrasenya, dni, aero, aut, pago);
-		
-		servAuth.crearUsuario(user);
-		return user;
 	}
 
 	@Override

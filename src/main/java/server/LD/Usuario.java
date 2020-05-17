@@ -23,19 +23,16 @@ public class Usuario {
 	@Column(name="CODAEROPUERTO")
 	private Aeropuerto aeropuerto; // No se como llamarle a esto
 	
-	private boolean metodoAutorizacion; // Habria que mirar si no es mejor con algo distinto a String
-	
-	//No lo pondria porque solo hay un metodo de pago
-	private boolean metodoPago; //true -> Paypal  false -> Tarjeta
-	
 	
 	@Persistent(mappedBy="usuario")
 	private List<Reserva> reservasUsuario; 
 	
 	public Usuario()
-	{}
+	{
+
+	}
 	
-	public Usuario(String email, String contrasenya, String nombre, String apellido, String dni, Aeropuerto aeropuerto, boolean metodoAutorizacion, boolean metodoPago)
+	public Usuario(String email, String contrasenya, String nombre, String apellido, String dni, Aeropuerto aeropuerto)
 	{
 		super();
 		this.email = email;
@@ -44,8 +41,6 @@ public class Usuario {
 		this.apellido=apellido;
 		this.dni=dni;
 		this.aeropuerto = aeropuerto;
-		this.metodoAutorizacion = metodoAutorizacion;
-		this.metodoPago = metodoPago;
 		this.reservasUsuario = new ArrayList <Reserva>();
 	}
 
@@ -110,26 +105,6 @@ public class Usuario {
 	}
 
 
-	public boolean getmetodoAutorizacion() {
-		return metodoAutorizacion;
-	}
-
-
-	public void setMetodoAutorizacion(boolean metodoAutorizacion) {
-		this.metodoAutorizacion = metodoAutorizacion;
-	}
-
-
-	public boolean getmetodoPago() {
-		return metodoPago;
-	}
-
-
-	public void setMetodoPago(boolean metodoPago) {
-		this.metodoPago = metodoPago;
-	}
-
-
 	public List<Reserva> getReservasUsuario() {
 		return reservasUsuario;
 	}
@@ -138,8 +113,5 @@ public class Usuario {
 	public void setReservasUsuario(List<Reserva> reservasUsuario) {
 		this.reservasUsuario = reservasUsuario;
 	}
-	
-	
-	
 	
 }

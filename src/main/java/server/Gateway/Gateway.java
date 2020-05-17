@@ -36,7 +36,7 @@ public class Gateway implements itfGateway
 	}
 
 	@Override
-	public String create_User(Usuario us, float divisa) 
+	public String create_User_Pago(Usuario us, float divisa) 
 	{
 		// TODO Auto-generated method stub
 		return null;
@@ -58,10 +58,15 @@ public class Gateway implements itfGateway
 	}
 
 	@Override
-	public String create_User(Usuario us) 
-	{
-		// TODO Auto-generated method stub
-		return null;
+	public String create_User_Auth (String nombre, String apellido, String email) 
+	{	
+		String contrasenya = "";
+		
+		// Comunicarse con el servicio externo
+		
+		return contrasenya;
+		
+		
 	}
 
 	@Override
@@ -83,13 +88,6 @@ public class Gateway implements itfGateway
 	{
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	@Override
-	public void registroUs(String nombre, String email, String contranenya) 
-	{
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
