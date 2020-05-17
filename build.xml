@@ -7,7 +7,7 @@
 	<property name="server.port" value="1099"/> 
 	<property name="server.IP" value="127.0.0.1"/> 
 	<property name="server.Name" value="HelloServer"/>
-	<property name="policy.file" location="src/main/resources/security/java.policy"/>	
+	<property name="java.policy" location="src/main/resources/security/java.policy"/>	
 
     <path id="full.classpath">
         <fileset dir="${lib.dir}">
@@ -17,8 +17,8 @@
     </path>
 
 	<target name="run" description="Runs the Client">
-		<java classname="es.deusto.ingenieria.sd.rmi.client.Client" classpathref="full.classpath" fork="true">
-			<jvmarg value="-Djava.security.policy=${policy.file}"/>			
+		<java classname="src.main.java.client.ServiceLocator.ServiceLocator" classpathref="full.classpath" fork="true">
+			<jvmarg value="-Djava.security.policy=${java.policy}"/>			
         	<arg value="${server.IP}"/> 
 	 		<arg value="${server.port}"/> 
 			<arg value="${server.Name}"/> 
