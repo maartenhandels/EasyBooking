@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.ws.rs.core.Response;
+
+import externalServices.Print;
+import externalServices.RestClient;
+import externalServices.RestClient_Unmarshalling;
 import server.DTO.UsuarioAssembler;
 import server.DTO.UsuarioDTO;
 import server.DTO.VueloDTO;
@@ -13,7 +18,56 @@ import server.LD.Vuelo;
 
 public class Gateway implements itfGateway
 {
+	String hostname = "192.168.6.31";
+	String port_auth = "5000";
+	String port_pay = "5001";
+	String port_airlines = "5002";
 
+	public void createConexion()
+	{
+		RestClient_Unmarshalling c1 = new RestClient_Unmarshalling(hostname, port_auth);
+
+		try {
+			c1.makeGetRequest("/");
+			c1.makeGetRequest("/Authentication/Log_in");
+			c1.makeGetRequest("/Authentication/Create_user");
+			c1.makeGetRequest("/Authentication/Change_password");
+			c1.makeGetRequest("/Authentication/Delete_user");
+			
+			// todo c1.makePostRequest("This is a client super complex message to send to
+			// server");
+		} catch (Exception e) {
+			System.out.println("Catched exception: " + e.getMessage());
+		}
+
+		
+		RestClient_Unmarshalling c2 = new RestClient_Unmarshalling(hostname, port_pay);
+
+		try {
+			c2.makeGetRequest("/");
+			c2.makeGetRequest("/Payments/Make_payment");
+			c2.makeGetRequest("/Payments/Create_user");
+			c2.makeGetRequest("/Payments/Update_currency");
+
+			// todo c2.makePostRequest("This is a client super complex message to send to
+			// server");
+	
+		} catch (Exception e) {
+			System.out.println("Catched exception: " + e.getMessage());
+		}
+
+		
+		RestClient_Unmarshalling c3 = new RestClient_Unmarshalling(hostname, port_airlines);
+
+		try {
+			c3.makeGetRequest("/");
+			c3.makeGetRequest("/Airlines/Search_Flights");
+			
+		} catch (Exception e) {
+			System.out.println("Catched exception: " + e.getMessage());
+		}
+	}
+	
 	@Override
 	public List<Usuario> getUsuarios() 
 	{
@@ -24,7 +78,23 @@ public class Gateway implements itfGateway
 	@Override
 	public List<Vuelo> getVuelos() 
 	{
-		// TODO Auto-generated method stub
+		RestClient<Vuelo> client = new RestClient<Vuelo>(args[0], args[1]);
+
+		System.out.println("-------------------------------------------------------");
+		System.out.println("Search flights Airlines Server test (GET) ");
+		System.out.println("-------------------------------------------------------");
+
+		String path = "/Airlines/Search_Flights";
+		System.out.println("Trying GET at " + path + " (Test message)");
+		System.out.println("CURL call: curl http://127.0.0.1:5000/Airlines/Search_Flights");
+
+		try {
+			client.simplePrint(client.makeGetRequest(client.createInvocationBuilder(path)));
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+			e.toString();
+		}
 		return null;
 	}
 
@@ -52,8 +122,26 @@ public class Gateway implements itfGateway
 	@Override
 	public boolean log_in(String email, String password) 
 	{
-		System.out.println("Llega al gateway");
-		// TODO Auto-generated method stub
+	    RestClient<Usuario> client = new RestClient<>(args[0], args[1]);
+	    System.out.println("-------------------------------------------------------");
+        System.out.println("Authentication Login Server test (POST)");
+        System.out.println("-------------------------------------------------------");
+
+        String path = "/Authentication/Log_in";
+        System.out.println("Trying POST at " + path + " (Log in service)");
+        System.out.println("CURL call: curl http://127.0.0.1:5000/Authentication/Log_in -d '{\"email\":\"inigo.lopezgazpio@deusto.es\", \"password\":\"XXX\" }' -X POST -H \"Content-Type: application/json\" -v");
+
+        Response response = null;
+        try {
+            response =
+                    client.makePostRequest(
+                            client.createInvocationBuilder(path) , new Usuario(email, password)
+
+            );
+        }
+        catch (Exception e) { e.printStackTrace(); e.toString(); }
+        client.simplePrint(response);
+        System.out.println("We obtain a false as the user has not been created");
 		return false;
 	}
 
