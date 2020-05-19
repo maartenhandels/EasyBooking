@@ -5,19 +5,25 @@ import java.util.List;
 
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.Element;
+import javax.jdo.annotations.NotPersistent;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import externalServices.Print;
+
 
 @PersistenceCapable
-public class Usuario {
+public class Usuario implements Print{
 	
 	@PrimaryKey
 	private String email;
 	private String dni;
 	private String nombre;
 	private String apellido;
+	
+	@NotPersistent
+	private String contrasenya;
 	
 	@Column(name="CODAEROPUERTO")
 	private Aeropuerto aeropuerto; // No se como llamarle a esto
@@ -26,11 +32,28 @@ public class Usuario {
 	@Persistent(mappedBy="usuario")
 	private List<Reserva> reservasUsuario; 
 	
-	public Usuario()
+	/**
+	 * Este constructor sirve para log_in
+	 * @param email
+	 * @param contrasenya
+	 */
+	public Usuario(String email, String contrasenya)
 	{
-
+		this.email = email;
+		this.contrasenya = contrasenya;
 	}
-	
+	/**
+	 * Este constructor sirve para create_user_auth
+	 * @param email
+	 * @param contrasenya
+	 */
+	public Usuario(String nombre, String apellido, String email)
+	{
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+	}
+
 	public Usuario(String email, String nombre, String apellido, String dni, Aeropuerto aeropuerto)
 	{
 		super();
@@ -100,6 +123,12 @@ public class Usuario {
 
 	public void setReservasUsuario(List<Reserva> reservasUsuario) {
 		this.reservasUsuario = reservasUsuario;
+	}
+
+	@Override
+	public void print() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

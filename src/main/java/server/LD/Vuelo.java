@@ -1,6 +1,8 @@
 package server.LD;
 
-public class Vuelo {
+import externalServices.Print;
+
+public class Vuelo implements Print{
 	
 	private Aerolinea aerolinea;
 	private int codVuelo; // 4 digits
@@ -93,6 +95,13 @@ public class Vuelo {
 
 	public void setLlegada(long llegada) {
 		this.llegada = llegada;
+	}
+
+
+	@Override
+	public void print() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
