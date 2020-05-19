@@ -90,7 +90,7 @@ public class Gateway implements itfGateway
         try {
             client.simplePrint(
                     client.makePostRequest(
-                            client.createInvocationBuilder(path) , new Usuario("inigo.lopezgazpio@deusto.es", 100, "Hello World Payment")
+                            client.createInvocationBuilder(path) , new Usuario(email, cant_total, concepto)
                     )
             );
         }
@@ -140,7 +140,7 @@ public class Gateway implements itfGateway
 
 		try {
 			client.simplePrint(client.makePutRequest(client.createInvocationBuilder(path),
-					new Usuario("inigo.lopezgazpio@deusto.es", 10000)));
+					new Usuario(email, divisa)));
 		} catch (Exception e) {
 			e.printStackTrace();
 			e.toString();
@@ -192,7 +192,7 @@ public class Gateway implements itfGateway
 
 		try {
 			client.simplePrint(client.makePostRequest(client.createInvocationBuilder(path),
-					new Usuario("Inigo", "Lopez-Gazpio", "test@deusto.es")));
+					new Usuario(nombre, apellido, email)));
 		} catch (Exception e) {
 			e.printStackTrace();
 			e.toString();
@@ -205,7 +205,7 @@ public class Gateway implements itfGateway
 		Response response = null;
 		try {
 			response = client.makePostRequest(client.createInvocationBuilder(path),
-					new Usuario("Inigo", "Lopez-Gazpio", "inigo.lopezgazpio@deusto.es"));
+					new Usuario(nombre, apellido, email));
 		} catch (Exception e) {
 			e.printStackTrace();
 			e.toString();
@@ -245,7 +245,7 @@ public class Gateway implements itfGateway
 
 		try {
 			client.simplePrint(client.makePutRequest(client.createInvocationBuilder(path),
-					new Usuario(null, null, "inigo.lopezgazpio@deusto.es", String.valueOf(new_password), "XXX")));
+					new Usuario(null, null, email, String.valueOf(new_password), old_password)));
 		} catch (Exception e) {
 			e.printStackTrace();
 			e.toString();
@@ -268,7 +268,7 @@ public class Gateway implements itfGateway
 
 		try {
 			client.simplePrint(client.makePutRequest(client.createInvocationBuilder(path),
-					new Usuario("inigo.lopezgazpio@deusto.es", "XXX")));
+					new Usuario(email, password)));
 		} catch (Exception e) {
 			e.printStackTrace();
 			e.toString();
