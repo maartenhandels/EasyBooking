@@ -65,6 +65,10 @@ public class Usuario implements Print{
 		this.reservasUsuario = new ArrayList <Reserva>();
 	}
 
+	public Usuario()
+	{
+		
+	}
 
 	public String getNombre() {
 		return nombre;
