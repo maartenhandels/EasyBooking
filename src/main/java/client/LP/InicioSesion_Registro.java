@@ -17,6 +17,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -156,7 +157,12 @@ public class InicioSesion_Registro extends JFrame{
 					String email = TxtField_Email_Login.getText();
 					String contra = contraField.getPassword().toString();
 					
-					controller.iniciarSesion(email, contra);
+					try {
+						controller.iniciarSesion(email, contra);
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					
 					//Si es incorrecto decirle que se registre/revise datos
 					
@@ -306,7 +312,13 @@ public class InicioSesion_Registro extends JFrame{
 						}
 					}
 				
-					String contrasenya = controller.registroUsuario(nombre, apellido, email, dni, aero_seleccionado);
+					String contrasenya = "";
+					try {
+						contrasenya = controller.registroUsuario(nombre, apellido, email, dni, aero_seleccionado);
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					
 					JOptionPane.showMessageDialog(null,"Tu contraseña es: " + contrasenya, "USUARIO CREADO", JOptionPane.INFORMATION_MESSAGE);
 					dispose();

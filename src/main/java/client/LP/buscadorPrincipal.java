@@ -43,6 +43,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -315,7 +316,12 @@ public class buscadorPrincipal extends JFrame{
 					System.out.println("No ha sido posible formatear fecha");
 					e1.printStackTrace();
 				} 
-					controller.aplicarFiltro(textField_1.getText(), textField_2.getText(), num_pasajeros, precio, date1);
+					try {
+						controller.aplicarFiltro(textField_1.getText(), textField_2.getText(), num_pasajeros, precio, date1);
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					JOptionPane.showMessageDialog(null,"Filtros aplicados","Filtros",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});

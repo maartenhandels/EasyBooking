@@ -24,7 +24,7 @@ public class Controller {
 	}
 
 	
-	public String registroUsuario(String nombre, String apellido, String email, String dni, Aeropuerto aero)
+	public String registroUsuario(String nombre, String apellido, String email, String dni, Aeropuerto aero) throws RemoteException
 	{
 		System.out.println("Entra en el Controller");
 		String contrasenya = "";
@@ -34,23 +34,23 @@ public class Controller {
 		return contrasenya;
 	}
 	
-	public void iniciarSesion (String email, String contrasenya)
+	public void iniciarSesion (String email, String contrasenya) throws RemoteException
 	{
 		System.out.println("Llega al controller");
 		rsl.getServiceAuth().iniciarSesion(email, contrasenya);
 	}
 	
-	public void buscarVuelo(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida, Date llegada)
+	public void buscarVuelo(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida, Date llegada) throws RemoteException
 	{
 		rsl.getServiceAero().buscarVuelo(aero_origen, aero_dest, num_pasajeros, precio, salida, llegada);
 	}
 	
-	public boolean eliminarUsuario(String email, String contrasenya)
+	public boolean eliminarUsuario(String email, String contrasenya) throws RemoteException
 	{
 		return rsl.getServiceAuth().eliminarUsuario(email, contrasenya);
 	}
 	
-	public boolean cambiarContrasenya(String email, String contrasenya_antigua, String contrasenya_nueva)
+	public boolean cambiarContrasenya(String email, String contrasenya_antigua, String contrasenya_nueva) throws RemoteException
 	{
 		return rsl.getServiceAuth().cambiarContrasenya(email, contrasenya_antigua, contrasenya_nueva);
 	}
@@ -63,20 +63,21 @@ public class Controller {
 	 * @param precio
 	 * @param salida
 	 * @param llegada
+	 * @throws RemoteException 
 	 */
-	public void aplicarFiltro(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida) 
+	public void aplicarFiltro(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida) throws RemoteException 
 	{
 		rsl.getServiceAero().aplicarFiltro(aero_origen, aero_dest, num_pasajeros, precio, salida);
 	}
-	public void createReserva(String aero_origen, String aero_destino, ArrayList<Pasajero> pasajeros, Date salida, Date llegada)
+	public void createReserva(String aero_origen, String aero_destino, ArrayList<Pasajero> pasajeros, Date salida, Date llegada) throws RemoteException
 	{
 		rsl.getServiceAero().createReserva(aero_origen, aero_destino, pasajeros, salida, llegada);
 	}
-	public void eliminarReserva(String cod_reserva, String cod_pago)
+	public void eliminarReserva(String cod_reserva, String cod_pago) throws RemoteException
 	{
 		rsl.getServiceAero().eliminarReserva(cod_reserva, cod_pago);
 	}
-	public void realizarPago(double precio, String cod_reserva, String email)
+	public void realizarPago(double precio, String cod_reserva, String email) throws RemoteException
 	{
 		rsl.getServicePago().realizarPago(precio, cod_reserva, email);
 	}

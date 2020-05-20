@@ -15,6 +15,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 import javax.swing.JTextField;
 
@@ -146,7 +147,12 @@ public class Configuracion extends JFrame{
 					String email = textFieldEmail.getText();
 					String contrasenya_nueva = txtFieldContNueva.getSelectedText();
 					String contrasenya_antigua = txtFieldContAnt.getSelectedText();
-					controller.cambiarContrasenya(email, contrasenya_antigua, contrasenya_nueva);
+					try {
+						controller.cambiarContrasenya(email, contrasenya_antigua, contrasenya_nueva);
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					
 					JOptionPane.showMessageDialog(null, "Contrasenya cambiada correctamente");
 				}
@@ -215,7 +221,12 @@ public class Configuracion extends JFrame{
 					dispose();
 					String email = textFieldEmail2.getText();
 					String contrasenya = txtFieldContra.getSelectedText();
-					controller.eliminarUsuario(email, contrasenya);
+					try {
+						controller.eliminarUsuario(email, contrasenya);
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					
 					JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente");
 				}

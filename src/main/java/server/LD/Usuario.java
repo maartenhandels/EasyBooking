@@ -24,6 +24,10 @@ public class Usuario implements Print{
 	
 	@NotPersistent
 	private String contrasenya;
+	private Usuario us;
+	private float divisa;
+	private float cant_total;
+	private String concepto;
 	
 	@Column(name="CODAEROPUERTO")
 	private Aeropuerto aeropuerto; // No se como llamarle a esto
@@ -33,7 +37,7 @@ public class Usuario implements Print{
 	private List<Reserva> reservasUsuario; 
 	
 	/**
-	 * Este constructor sirve para log_in
+	 * Este constructor sirve para log_in y delete_user
 	 * @param email
 	 * @param contrasenya
 	 */
@@ -63,6 +67,43 @@ public class Usuario implements Print{
 		this.dni=dni;
 		this.aeropuerto = aeropuerto;
 		this.reservasUsuario = new ArrayList <Reserva>();
+	}
+	
+	/**
+	 * Este constructor sirve para create_user_pago
+	 * @param us
+	 * @param divisa
+	 */
+	
+	public Usuario(Usuario us, float divisa)
+	{
+		this.us = us;
+		this.divisa = divisa;
+	}
+	/**
+	 * Este constructor sirve para update_currency
+	 * @param email
+	 * @param divisa
+	 */
+	
+	public Usuario(String email, float divisa)
+	{
+		this.email = email;
+		this.divisa = divisa;
+	}
+	
+	/**
+	 * Este constructor sirve para make_Payment
+	 * @param email
+	 * @param cant_total
+	 * @param concepto
+	 */
+	
+	public Usuario(String email, float cant_total, String concepto)
+	{
+		this.email = email;
+		this.cant_total = cant_total;
+		this.concepto = concepto;
 	}
 
 	public Usuario()

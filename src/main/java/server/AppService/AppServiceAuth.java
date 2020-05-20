@@ -37,11 +37,11 @@ public class AppServiceAuth {
 	}
 	public void cerrarSesion (String email)throws RemoteException
 	{
-		gateway.log_out(email);
+		
 	}
 	public List <Usuario> getUsuarios()
 	{
-		return gateway.getUsuarios();
+		return null;
 	}
 	public boolean eliminarUsuario(String email, String password )
 	{

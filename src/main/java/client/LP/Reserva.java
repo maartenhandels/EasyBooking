@@ -20,6 +20,7 @@ import java.awt.Canvas;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.awt.Checkbox;
 import java.awt.Button;
 
@@ -266,7 +267,12 @@ public class Reserva extends JFrame {
 				precio = Double.parseDouble(precioString);
 				
 				String cod_reserva = lblNewLabel_10.getText();
-				controller.realizarPago(precio, cod_reserva, emailUs);
+				try {
+					controller.realizarPago(precio, cod_reserva, emailUs);
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 	}
