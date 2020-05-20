@@ -26,7 +26,9 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.JSpinner.DefaultEditor;
 
 import client.Controller.Controller;
+import server.DTO.UsuarioDTO;
 import server.LD.Aeropuerto;
+import server.LD.Usuario;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -167,7 +169,8 @@ public class InicioSesion_Registro extends JFrame{
 					//Si es incorrecto decirle que se registre/revise datos
 					
 					dispose();
-					buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, email);
+					UsuarioDTO usuario_prueba = new UsuarioDTO("Ibone", "Urquiola", "iboneurquiola@gmail.com", "72557745R");
+					buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, usuario_prueba);
 					frameBuscador.setVisible(true);
 					frameBuscador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frameBuscador.setResizable(false);
@@ -322,7 +325,8 @@ public class InicioSesion_Registro extends JFrame{
 					
 					JOptionPane.showMessageDialog(null,"Tu contraseña es: " + contrasenya, "USUARIO CREADO", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
-					buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, email);
+					UsuarioDTO usuario_prueba = new UsuarioDTO("Ibone", "Urquiola", "iboneurquiola@gmail.com", "72557745R");
+					buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, usuario_prueba);
 					frameBuscador.setVisible(true);
 					frameBuscador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frameBuscador.setResizable(false);

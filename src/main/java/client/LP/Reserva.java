@@ -15,6 +15,8 @@ import javax.swing.JRadioButton;
 import javax.swing.border.LineBorder;
 
 import client.Controller.Controller;
+import server.DTO.UsuarioDTO;
+import server.LD.Usuario;
 
 import java.awt.Canvas;
 import java.awt.Panel;
@@ -75,12 +77,12 @@ public class Reserva extends JFrame {
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private static Controller controller;
-	private String emailUs;
+	private UsuarioDTO usuario;
 
-	public Reserva(Controller controller, String email) {
+	public Reserva(Controller controller, UsuarioDTO usuario) {
 		
 		this.controller = controller;
-		this.emailUs = email;
+		this.usuario = usuario;
 		initComponents();
 		setVisible(true);
 	}
@@ -248,7 +250,7 @@ public class Reserva extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				buscadorPrincipal frame = new buscadorPrincipal(controller, emailUs);
+				buscadorPrincipal frame = new buscadorPrincipal(controller, usuario);
 				frame.setVisible(true);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
@@ -268,7 +270,7 @@ public class Reserva extends JFrame {
 				
 				String cod_reserva = lblNewLabel_10.getText();
 				try {
-					controller.realizarPago(precio, cod_reserva, emailUs);
+					controller.realizarPago(precio, cod_reserva, usuario.getEmail());
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -279,8 +281,8 @@ public class Reserva extends JFrame {
 	
 	public static void main(String args[])
 	{
-		String email = "iboneurquiola@gmail.com";
-		Reserva bp = new Reserva(controller, email);
+		UsuarioDTO usuario_prueba = new UsuarioDTO("Ibone", "Urquiola", "iboneurquiola@gmail.com", "72557745R");
+		Reserva bp = new Reserva(controller, usuario_prueba);
 		bp.setVisible(true);
 	}
 }

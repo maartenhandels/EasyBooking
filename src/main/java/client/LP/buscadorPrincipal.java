@@ -22,9 +22,10 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import server.org.eclipse.wb.swing.FocusTraversalOnArray;
-
+import server.DTO.UsuarioDTO;
 import server.LD.Aerolinea;
 import server.LD.Aeropuerto;
+import server.LD.Usuario;
 import server.LD.Vuelo;
 
 import java.awt.Component;
@@ -115,15 +116,15 @@ public class buscadorPrincipal extends JFrame{
 	private JScrollPane scrollPane;
 	
 	private static Controller controller;
-	private String emailUs;
+	private UsuarioDTO usuario;
 	
 	/**
 	 * Create the controller
 	 */
-	public buscadorPrincipal(Controller controller, String email) {
+	public buscadorPrincipal(Controller controller, UsuarioDTO usuario) {
 		
 		this.controller = controller;
-		this.emailUs = email;
+		this.usuario = usuario;
 		initComponents();
 		setVisible(true);
 	}
@@ -175,7 +176,7 @@ public class buscadorPrincipal extends JFrame{
 		lblEasybooking.setFont(new Font("Century Gothic", Font.BOLD, 35));
 		panel.add(lblEasybooking);
 		
-		lblBooking = new JLabel("usuario");
+		lblBooking = new JLabel(usuario.getNombre());
 		lblBooking.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBooking.setBounds(800, 0, 122, 54);
 		lblBooking.setFont(new Font("Century Gothic", Font.PLAIN, 20));
@@ -396,7 +397,7 @@ public class buscadorPrincipal extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				
-				Reserva frameReserva = new Reserva(controller, emailUs);
+				Reserva frameReserva = new Reserva(controller, usuario);
 				frameReserva.setBounds(100, 100, 763, 493);
 				frameReserva.setVisible(true);
 				frameReserva.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -430,8 +431,8 @@ public class buscadorPrincipal extends JFrame{
     
 	public static void main(String args[])
 	{
-		String email = "iboneurquiola@gmail.com";
-		buscadorPrincipal bp = new buscadorPrincipal(controller, email);
+		UsuarioDTO usuario_prueba = new UsuarioDTO("iboneurquiola@gmail.com", "Ibone", "Urquiola", "72557745R");
+		buscadorPrincipal bp = new buscadorPrincipal(controller, usuario_prueba);
 		bp.setVisible(true);
 	}
 	

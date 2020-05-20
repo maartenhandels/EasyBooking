@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Image;
 
 import javax.swing.border.EmptyBorder;
@@ -71,6 +73,7 @@ public class PanelVuelos extends JPanel {
 		//add(new JLabel(Long.toString(vuelo.getSalida())), BorderLayout.CENTER);
         //add(Box.createHorizontalStrut(25));
         JButton btn_res = new JButton("Reservar");
+        btn_res.setLayout(new GridLayout(0,1,1,1));
         add(btn_res, BorderLayout.SOUTH);
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		
