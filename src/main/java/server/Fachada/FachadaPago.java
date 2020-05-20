@@ -19,9 +19,9 @@ public class FachadaPago extends UnicastRemoteObject implements itfFachadaPago{
 	UsuarioAssembler usAssem = new UsuarioAssembler();
 	VueloAssembler vuAssem = new VueloAssembler();
 	
-	protected FachadaPago() throws RemoteException {
+	public FachadaPago() throws RemoteException {
 		super();
-		servPago = new AppServicePago();
+//		servPago = new AppServicePago();
 	}
 
 	@Override

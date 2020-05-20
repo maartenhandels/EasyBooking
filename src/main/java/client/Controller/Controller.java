@@ -2,6 +2,8 @@ package client.Controller;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
+
+import client.LP.InicioSesion_Registro;
 import client.ServiceLocator.ServiceLocator;
 import server.LD.Aeropuerto;
 import server.LD.Pasajero;
@@ -17,6 +19,8 @@ public class Controller {
 	{
 		rsl = new ServiceLocator();
 		rsl.setService();
+		InicioSesion_Registro frame = new InicioSesion_Registro(this);
+		frame.setVisible(true);
 	}
 
 	

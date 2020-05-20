@@ -21,7 +21,7 @@ public class FachadaAero extends UnicastRemoteObject implements itfFachadaAero {
 	UsuarioAssembler usAssem = new UsuarioAssembler();
 	VueloAssembler vuAssem = new VueloAssembler();
 	
-	protected FachadaAero() throws RemoteException {
+	public FachadaAero() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

@@ -20,7 +20,7 @@ public class ServiceLocator {
 	public void setService()
 	{
 		String ip= "127.0.0.1";
-		String port = "8001";
+		String port = "1099";
 		String serviceName = "easybooking";
 		
 		if (System.getSecurityManager() == null)

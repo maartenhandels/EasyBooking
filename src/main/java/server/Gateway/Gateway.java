@@ -86,15 +86,15 @@ public class Gateway implements itfGateway
         String path = "/Payments/Make_payment";
         System.out.println("Trying POST at " + path );
         System.out.println("CURL call: curl http://127.0.0.1:5001/Payments/Make_payment -d '{\"email\":\"inigo.lopezgazpio@deusto.es\", \"total_amount\":\"20.5\", \"concept\":\"Hello World Payment\" }' -X POST -H \"Content-Type: application/json\" -v");
-
-        try {
-            client.simplePrint(
-                    client.makePostRequest(
-                            client.createInvocationBuilder(path) , new Usuario(email, cant_total, concepto)
-                    )
-            );
-        }
-        catch (Exception e) { e.printStackTrace(); e.toString(); }
+//
+//        try {
+//            client.simplePrint(
+//                    client.makePostRequest(
+//                            client.createInvocationBuilder(path) , new Usuario(email, cant_total, concepto)
+//                    )
+//            );
+//        }
+//        catch (Exception e) { e.printStackTrace(); e.toString(); }
 
         System.out.println("Note that we obtain a false result because the user does not exist in the Payments microservice");
 
@@ -113,14 +113,14 @@ public class Gateway implements itfGateway
         System.out.println("Trying POST at " + path );
         System.out.println("CURL call: curl http://127.0.0.1:5001/Payments/Create_user -d '{\"name\":\"Inigo\", \"last_name\":\"Lopez-Gazpio\", \"email\":\"inigo.lopezgazpio@deusto.es\", \"currency\":\"20.5\"}' -X POST -H \"Content-Type: application/json\" -v");
 
-        try {
-            client.simplePrint(
-                    client.makePostRequest(
-                            client.createInvocationBuilder(path) , new Usuario("Inigo", "Lopez-Gazpio", "inigo.lopezgazpio@deusto.es", 10000)
-                    )
-            );
-        }
-        catch (Exception e) { e.printStackTrace(); e.toString(); }
+//        try {
+//            client.simplePrint(
+//                    client.makePostRequest(
+//                            client.createInvocationBuilder(path) , new Usuario("Inigo", "Lopez-Gazpio", "inigo.lopezgazpio@deusto.es", 10000)
+//                    )
+//            );
+//        }
+//        catch (Exception e) { e.printStackTrace(); e.toString(); }
 
 		return null;
 	}
@@ -138,13 +138,13 @@ public class Gateway implements itfGateway
 		System.out.println(
 				"CURL call: curl http://127.0.0.1:5001/Payments/Update_currency -d '{\"email\":\"inigo.lopezgazpio@deusto.es\", \"currency\":\"100\"}' -X PUT -H \"Content-Type: application/json\" -v");
 
-		try {
-			client.simplePrint(client.makePutRequest(client.createInvocationBuilder(path),
-					new Usuario(email, divisa)));
-		} catch (Exception e) {
-			e.printStackTrace();
-			e.toString();
-		}
+//		try {
+//			client.simplePrint(client.makePutRequest(client.createInvocationBuilder(path),
+//					new Usuario(email, divisa)));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			e.toString();
+//		}
 		return false;
 	}
 
@@ -243,13 +243,13 @@ public class Gateway implements itfGateway
 		System.out.println(
 				"CURL call: curl http://127.0.0.1:5000/Authentication/Change_password -d '{\"email\":\"inigo.lopezgazpio@deusto.es\", \"password\":\"XXX\", \"password_new\":\"XXX\"}' -X PUT -H \"Content-Type: application/json\" -v");
 
-		try {
-			client.simplePrint(client.makePutRequest(client.createInvocationBuilder(path),
-					new Usuario(null, null, email, String.valueOf(new_password), old_password)));
-		} catch (Exception e) {
-			e.printStackTrace();
-			e.toString();
-		}
+//		try {
+//			client.simplePrint(client.makePutRequest(client.createInvocationBuilder(path),
+//					new Usuario(null, null, email, String.valueOf(new_password), old_password)));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			e.toString();
+//		}
 		return false;
 	}
 
@@ -283,7 +283,7 @@ public class Gateway implements itfGateway
 			Date salida)
 	{
 		
-		RestClient<Vuelo> client = new RestClient<Vuelo>(hostname, port_airlines);
+		RestClient<Flight_parameters> client = new RestClient<Flight_parameters>(hostname, port_airlines);
 
 		System.out.println("------------------------------------------------------");
 		System.out.println("Search flights Airlines Server test (POST) ");

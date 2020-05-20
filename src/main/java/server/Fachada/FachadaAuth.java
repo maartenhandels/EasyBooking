@@ -15,7 +15,7 @@ public class FachadaAuth extends UnicastRemoteObject implements itfFachadaAuth {
 	AppServiceAuth servAuth;
 	UsuarioAssembler usAssem = new UsuarioAssembler();
 	
-	protected FachadaAuth() throws RemoteException {
+	public FachadaAuth() throws RemoteException {
 		
 		super();
 		// TODO Auto-generated constructor stub
