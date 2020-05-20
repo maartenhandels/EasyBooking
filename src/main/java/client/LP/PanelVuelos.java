@@ -21,7 +21,7 @@ import server.LD.Vuelo;
  *
  */
 
-public class PanelVuelos extends JFrame {
+public class PanelVuelos extends JPanel {
 	
 	private JPanel contentPane;
 	private JLabel lblNewLabel;
@@ -37,37 +37,32 @@ public class PanelVuelos extends JFrame {
 	 */
 	public PanelVuelos(Vuelo vuelo, Controller controller) {
 		
-		Vuelo vuelos = new Vuelo(vuelo.getCodVuelo(), vuelo.getAerolinea(), vuelo.getAeropuertoSalida(), vuelo.getAeropuertoDestino(), 
-				vuelo.getAsientosTotales(), vuelo.getAsientosLibres(), vuelo.getSalida(), vuelo.getLlegada());
+		//Vuelo vuelos = new Vuelo(vuelo.getCodVuelo(), vuelo.getAerolinea(), vuelo.getAeropuertoSalida(), vuelo.getAeropuertoDestino(), 
+		//vuelo.getAsientosTotales(), vuelo.getAsientosLibres(), vuelo.getSalida(), vuelo.getLlegada());
 		this.controller = controller;
-		initComponents(vuelos);
+		initComponents(vuelo);
 		setVisible(true);
 
 	}
 	public void initComponents(Vuelo vuelo)
 	{
-		setTitle("Panel vuelos - EasyBooking");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Image image = new ImageIcon("src/main/resources/images/Flight_prin.png").getImage();
-		setIconImage(image);
-		setBounds(80, 10, 1067, 699);
+		//setBounds(80, 10, 745, 250);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		//setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
 		lblNewLabel = new JLabel(vuelo.getAeropuertoSalida().getNombre());
 		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 24));
-		lblNewLabel.setBounds(236, 46, 211, 20);
+		lblNewLabel.setBounds(150, 46, 211, 20);
 		add(lblNewLabel);
 		
 		lblNewLabel_1 = new JLabel(vuelo.getAeropuertoDestino().getNombre());
 		lblNewLabel_1.setFont(new Font("Century Gothic", Font.BOLD, 24));
-		lblNewLabel_1.setBounds(524, 46, 224, 20);
+		lblNewLabel_1.setBounds(324, 46, 224, 20);
 		add(lblNewLabel_1);
-		
 		
 		//Creo que deberiamos añadir a la compañia un icono en su constructor
 		lblNewLabel_2 = new JLabel("");
@@ -77,17 +72,17 @@ public class PanelVuelos extends JFrame {
 		
 		lblNewLabel_3 = new JLabel("fecha/hora salida"); //hay que hacer algo con los long
 		lblNewLabel_3.setFont(new Font("Segoe UI", Font.BOLD, 18));
-		lblNewLabel_3.setBounds(236, 117, 163, 20);
+		lblNewLabel_3.setBounds(150, 117, 163, 20);
 		add(lblNewLabel_3);
 		
 		lblNewLabel_4 = new JLabel("fecha/hora llegada");
 		lblNewLabel_4.setFont(new Font("Malgun Gothic", Font.BOLD, 18));
-		lblNewLabel_4.setBounds(524, 117, 155, 20);
+		lblNewLabel_4.setBounds(324, 117, 155, 20);
 		add(lblNewLabel_4);
 		
 		lblNewLabel_5 = new JLabel("duración h"); //Calculo restando horas
 		lblNewLabel_5.setFont(new Font("MS PGothic", Font.BOLD, 18));
-		lblNewLabel_5.setBounds(734, 82, 98, 20);
+		lblNewLabel_5.setBounds(500, 82, 98, 20);
 		add(lblNewLabel_5);
 		
 	}
