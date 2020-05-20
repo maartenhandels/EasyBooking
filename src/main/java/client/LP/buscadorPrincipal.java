@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.toedter.calendar.JDateChooser;
+
 import client.Controller.Controller;
 
 import java.text.ParseException;
@@ -34,6 +36,7 @@ import javax.swing.ImageIcon;
 import java.awt.FlowLayout;
 
 import javax.print.attribute.standard.PrinterLocation;
+import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -67,14 +70,17 @@ import javax.swing.JList;
 public class buscadorPrincipal extends JFrame{
 
 	private static final int PREF_W = 745;
-    private static final int PREF_H = 300;
+    private static final int PREF_H = 250;
 	
 	private JPanel contentPane;
 	private JPanel panel;
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JPanel panel_3;
-	private JPanel panelVuelos;
+	private JPanel panelContenedorVuelos;
+	
+	private JPanel panelClase;
+	private JPanel rowHolderPanel = new JPanel(new GridLayout(0, 1, 1, 1));
 	
 	private JLabel lblEasybooking;
 	private JLabel lblNewLabel;
@@ -93,7 +99,7 @@ public class buscadorPrincipal extends JFrame{
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTextField textField_3;
+	private JDateChooser datIda;
 	
 	private JButton btnNewButton_1;
 	private JButton button;
@@ -137,6 +143,20 @@ public class buscadorPrincipal extends JFrame{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		//PRUEBA
+		panelClase=new JPanel();
+		JPanel outerPanel = new JPanel(new BorderLayout());
+		outerPanel.add(rowHolderPanel, BorderLayout.PAGE_START);
+		JScrollPane scrollpane = new JScrollPane(outerPanel);
+		
+		scrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+       
+        panelClase.setLayout(new BorderLayout());
+        panelClase.setBounds(290, 99, 745, 473);
+        panelClase.add(scrollpane, BorderLayout.CENTER);
+        contentPane.add(panelClase);
+		
+        //FIN PRUEBA
 		panel = new JPanel();
 		panel.setBounds(5, 5, 1030, 54);
 		panel.setToolTipText("");
@@ -297,11 +317,14 @@ public class buscadorPrincipal extends JFrame{
 		lblFechaSalida.setBounds(15, 387, 222, 20);
 		panel_1.add(lblFechaSalida);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(58, 423, 146, 26);
-		panel_1.add(textField_3);
-		textField_3.setColumns(10);
-		
+		datIda = new JDateChooser();
+		datIda.setBounds(58, 423, 146, 26);
+		Date date= new Date();
+		SimpleDateFormat format= new SimpleDateFormat("dd/MM/yyyy");
+		format.format(date);
+		datIda.setDate(date);
+		panel_1.add(datIda);
+			
 		btnNewButton_2 = new JButton("Aplicar filtros");
 		btnNewButton_2.setFont(new Font("Century Gothic", Font.BOLD, 16));
 		btnNewButton_2.setBounds(37, 505, 200, 29);
@@ -309,24 +332,14 @@ public class buscadorPrincipal extends JFrame{
 		btnNewButton_2.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				//Aquí tendremos que comprobar patrón de fecha bien escrito
 				//Para coger info de spinner --> 
 				int num_pasajeros = (Integer) spinner.getValue();
 				//Para coger info de slider
 				int precio = slider.getValue();
-				String fecha = textField_3.getText();
-				SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy"); 
-				Date date1 = null;
-				try 
-				{
-					date1 = formatter1.parse(fecha);
-				} catch (ParseException e1) 
-				{
-					System.out.println("No ha sido posible formatear fecha");
-					e1.printStackTrace();
-				} 
+				Date fecha = datIda.getDate(); 
+
 					try {
-						controller.aplicarFiltro(textField_1.getText(), textField_2.getText(), num_pasajeros, precio, date1);
+						controller.aplicarFiltro(textField_1.getText(), textField_2.getText(), num_pasajeros, precio, fecha);
 					} catch (RemoteException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -343,20 +356,26 @@ public class buscadorPrincipal extends JFrame{
 		btnNewButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				dispose();
 				
 				List<Vuelo> vuelos2 = new ArrayList<Vuelo>();
 				
 				Aerolinea a1 = new Aerolinea("123", "IB");
 				Aeropuerto p1 = new Aeropuerto("p1", "BIL");
 				Aeropuerto p2 = new Aeropuerto("p2", "AMS");
+				Aeropuerto p3 = new Aeropuerto("p3", "CDG");
 				Vuelo vuelo1 = new Vuelo(0000, a1, p1, p2, 100, 45, 12, 14);
 				
 				Aerolinea a2 = new Aerolinea("123", "LUF");
 				Vuelo vuelo2 = new Vuelo(0001, a2, p2, p1, 100, 45, 12, 14);
+				Vuelo vuelo3 = new Vuelo(0002, a2, p3, p2, 100, 45, 12, 14);
+				Vuelo vuelo4 = new Vuelo(0003, a1, p1, p3, 100, 45, 12, 14);
+				Vuelo vuelo5 = new Vuelo(0004, a1, p3, p2, 100, 45, 12, 14);
 				
 				vuelos2.add(vuelo1);
 				vuelos2.add(vuelo2);
+				vuelos2.add(vuelo3);
+				vuelos2.add(vuelo4);
+				vuelos2.add(vuelo5);
 				
 				createListVuelos(vuelos2);
 			}
@@ -367,57 +386,7 @@ public class buscadorPrincipal extends JFrame{
 		panel_2.setBounds(279, 588, 756, 39);
 		contentPane.add(panel_2);
 		
-		
-		//Aqui tendremos que añadir los diferentes paneles a la lista con el metodo createListVuelos
-		//Para eso tenemos que implemetar bien la clase Vuelo
-		panel_3 = new JPanel();
-		panel_3.setBounds(290, 99, 745, 473);
-		panel_3.setLayout(new BorderLayout(0, 0));
-		//panel_3.add(new JScrollPane(listaVuelos = createListVuelos()),BorderLayout.CENTER);
-		contentPane.add(panel_3);
-		
-		panelVuelos = new JPanel();
-		scrollPane = new JScrollPane(panelVuelos);
-		panel_3.setBackground(Color.BLACK);
-		panel_3.add(scrollPane, BorderLayout.CENTER);
-		
-		scrollPane.setViewportView(panelVuelos);
-		scrollPane .getViewport().setView(panelVuelos);
-//		GridBagLayout gbl_PscrollPane = new GridBagLayout();
-//		gbl_PscrollPane.columnWidths = new int[]{0};
-//		gbl_PscrollPane.rowHeights = new int[]{0};
-//		gbl_PscrollPane.columnWeights = new double[]{Double.MIN_VALUE};
-//		gbl_PscrollPane.rowWeights = new double[]{Double.MIN_VALUE};
-		//panelVuelos.setLayout(new GridBagLayout());
-		//panelVuelos.setLayout(new BorderLayout());
-		panelVuelos.setLayout(new GridLayout(0, 1));
-		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		
-		List<Vuelo> vuelos2 = new ArrayList<Vuelo>();
-		
-		Aerolinea a1 = new Aerolinea("123", "IB");
-		Aeropuerto p1 = new Aeropuerto("p1", "BIL");
-		Aeropuerto p2 = new Aeropuerto("p2", "AMS");
-		Aeropuerto p3 = new Aeropuerto("p3", "CDG");
-		Vuelo vuelo1 = new Vuelo(0000, a1, p1, p2, 100, 45, 12, 14);
-		
-		Aerolinea a2 = new Aerolinea("123", "LUF");
-		Vuelo vuelo2 = new Vuelo(0001, a2, p2, p1, 100, 45, 12, 14);
-		Vuelo vuelo3 = new Vuelo(0002, a2, p3, p2, 100, 45, 12, 14);
-		Vuelo vuelo4 = new Vuelo(0003, a1, p1, p3, 100, 45, 12, 14);
-		Vuelo vuelo5 = new Vuelo(0004, a1, p3, p2, 100, 45, 12, 14);
-		
-		vuelos2.add(vuelo1);
-		vuelos2.add(vuelo2);
-		vuelos2.add(vuelo3);
-		vuelos2.add(vuelo4);
-		vuelos2.add(vuelo5);
-		
-		panelVuelos.repaint();
-		createListVuelos(vuelos2);
-		panelVuelos.repaint();
-		scrollPane.repaint();
-	
+
 		
 		btnRealizarReserva = new JButton("Realizar reserva");
 		btnRealizarReserva.setFont(new Font("Century Gothic", Font.BOLD, 16));
@@ -426,7 +395,6 @@ public class buscadorPrincipal extends JFrame{
 			
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				
 				
 				Reserva frameReserva = new Reserva(controller, emailUs);
 				frameReserva.setBounds(100, 100, 763, 493);
@@ -437,43 +405,19 @@ public class buscadorPrincipal extends JFrame{
 	}
 	public void createListVuelos(List<Vuelo>vuelos)
 	{
-		int x=0;
-		int  y=10;
-	
-		panelVuelos.removeAll();
+		
+		rowHolderPanel.removeAll();
 		
 		for( int i=0; i<vuelos.size(); i++)
 		{
-			System.out.println("llegaaaa");
 			PanelVuelos panelV=new PanelVuelos(vuelos.get(i), controller); 
 			panelV.setVisible(true);
-			panelV.setBounds(80, y, 745, 300);
-			//panelV.add(Box.createHorizontalStrut(300));
-			panelV.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-//			GridBagConstraints constraints = new GridBagConstraints();
-//			constraints.gridx=80;
-//			constraints.gridy = y;
-//			constraints.gridwidth = 745;
-//			constraints.gridheight = 200;
-			//GridBagConstraints gbc_lblFoto = new GridBagConstraints();
-//			gbc_lblFoto.ipadx = 1058;
-//			gbc_lblFoto.ipady = 265;
-//			gbc_lblFoto.gridx = 0;
-//			gbc_lblFoto.gridy = y;
-			panelVuelos.add(panelV);
 
-			y=y+500;
-			
-//            panelVuelos.revalidate();
-//            panelVuelos.repaint();
+            rowHolderPanel.add(panelV);
+            rowHolderPanel.revalidate();
+            rowHolderPanel.repaint();
 			
 		}
-
-		panelVuelos.revalidate();
-        panelVuelos.repaint();
-        
-//		panelVuelos.repaint();
-//		scrollPane.repaint();
 	}
 	
     public Dimension getPreferredSize() {
@@ -483,11 +427,13 @@ public class buscadorPrincipal extends JFrame{
         return new Dimension(PREF_W, PREF_H);
     }
     
+    
 	public static void main(String args[])
 	{
 		String email = "iboneurquiola@gmail.com";
 		buscadorPrincipal bp = new buscadorPrincipal(controller, email);
 		bp.setVisible(true);
 	}
+	
 	
 }
