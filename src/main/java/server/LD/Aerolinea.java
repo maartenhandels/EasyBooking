@@ -16,7 +16,7 @@ public class Aerolinea {
 	// Hay algo de unas comisiones que nose si deberian ir aqui
 	
 	
-	public Aerolinea(String nombre, String codAerolinea) 
+	public Aerolinea(String codAerolinea, String nombre) 
 	{
 		super();
 		this.nombre = nombre;

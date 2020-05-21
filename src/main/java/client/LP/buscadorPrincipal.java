@@ -125,14 +125,14 @@ public class buscadorPrincipal extends JFrame{
 		
 		this.controller = controller;
 		this.usuario = usuario;
-		initComponents();
+		initComponents(usuario);
 		setVisible(true);
 	}
 	
 	/**
 	 * Create the frame
 	 */
-	public void initComponents()
+	public void initComponents(UsuarioDTO usuario)
 	{
 		setTitle("Buscador de vuelos - EasyBooking");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -367,10 +367,10 @@ public class buscadorPrincipal extends JFrame{
 				Vuelo vuelo1 = new Vuelo(0000, a1, p1, p2, 100, 45, 12, 14);
 				
 				Aerolinea a2 = new Aerolinea("123", "LUF");
-				Vuelo vuelo2 = new Vuelo(0001, a2, p2, p1, 100, 45, 12, 14);
-				Vuelo vuelo3 = new Vuelo(0002, a2, p3, p2, 100, 45, 12, 14);
-				Vuelo vuelo4 = new Vuelo(0003, a1, p1, p3, 100, 45, 12, 14);
-				Vuelo vuelo5 = new Vuelo(0004, a1, p3, p2, 100, 45, 12, 14);
+				Vuelo vuelo2 = new Vuelo(0001, a2, p2, p1, 100, 45, 1372339860, 1372339375);
+				Vuelo vuelo3 = new Vuelo(0002, a2, p3, p2, 100, 45, 1372339860, 1372339375);
+				Vuelo vuelo4 = new Vuelo(0003, a1, p1, p3, 100, 45, 1372339860, 1372339375);
+				Vuelo vuelo5 = new Vuelo(0004, a1, p3, p2, 100, 45, 1372339860, 1372339375);
 				
 				vuelos2.add(vuelo1);
 				vuelos2.add(vuelo2);
@@ -378,7 +378,7 @@ public class buscadorPrincipal extends JFrame{
 				vuelos2.add(vuelo4);
 				vuelos2.add(vuelo5);
 				
-				createListVuelos(vuelos2);
+				createListVuelos(vuelos2, usuario);
 			}
 		});
 		
@@ -397,21 +397,21 @@ public class buscadorPrincipal extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				
-				Reserva frameReserva = new Reserva(controller, usuario);
-				frameReserva.setBounds(100, 100, 763, 493);
-				frameReserva.setVisible(true);
-				frameReserva.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//				Reserva frameReserva = new Reserva(controller, usuario);
+//				frameReserva.setBounds(100, 100, 763, 493);
+//				frameReserva.setVisible(true);
+//				frameReserva.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 		});
 	}
-	public void createListVuelos(List<Vuelo>vuelos)
+	public void createListVuelos(List<Vuelo>vuelos, UsuarioDTO usuario)
 	{
 		
 		rowHolderPanel.removeAll();
 		
 		for( int i=0; i<vuelos.size(); i++)
 		{
-			PanelVuelos panelV=new PanelVuelos(vuelos.get(i), controller); 
+			PanelVuelos panelV=new PanelVuelos(vuelos.get(i), usuario, controller); 
 			panelV.setVisible(true);
 
             rowHolderPanel.add(panelV);

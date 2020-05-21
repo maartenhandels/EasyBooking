@@ -17,6 +17,7 @@ import javax.swing.border.LineBorder;
 import client.Controller.Controller;
 import server.DTO.UsuarioDTO;
 import server.LD.Usuario;
+import server.LD.Vuelo;
 
 import java.awt.Canvas;
 import java.awt.Panel;
@@ -78,17 +79,19 @@ public class Reserva extends JFrame {
 	private JButton btnNewButton_1;
 	private static Controller controller;
 	private UsuarioDTO usuario;
+	private Vuelo vuelo;
 
-	public Reserva(Controller controller, UsuarioDTO usuario) {
+	public Reserva(Controller controller, UsuarioDTO usuario, Vuelo vuelo) {
 		
 		this.controller = controller;
 		this.usuario = usuario;
-		initComponents();
+		this.vuelo=vuelo;
+		initComponents(vuelo);
 		setVisible(true);
 	}
 		
 	
-	public void initComponents()
+	public void initComponents(Vuelo vuelo)
 	{
 		setTitle("Realizar reserva - EasyBooking");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -108,11 +111,11 @@ public class Reserva extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		lblNewLabel = new JLabel("AMS");
+		lblNewLabel = new JLabel(vuelo.getAeropuertoDestino().getNombre());
 		lblNewLabel.setBounds(375, 85, 69, 20);
 		panel.add(lblNewLabel);
 		
-		lblNewLabel_1 = new JLabel("BIO");
+		lblNewLabel_1 = new JLabel(vuelo.getAeropuertoSalida().getNombre());
 		lblNewLabel_1.setBounds(174, 85, 69, 20);
 		panel.add(lblNewLabel_1);
 		
@@ -277,13 +280,6 @@ public class Reserva extends JFrame {
 				}
 			}
 		});
-	}
-	
-	public static void main(String args[])
-	{
-		UsuarioDTO usuario_prueba = new UsuarioDTO("Ibone", "Urquiola", "iboneurquiola@gmail.com", "72557745R");
-		Reserva bp = new Reserva(controller, usuario_prueba);
-		bp.setVisible(true);
 	}
 }
 
