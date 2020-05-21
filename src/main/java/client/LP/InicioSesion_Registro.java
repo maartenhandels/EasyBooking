@@ -20,6 +20,8 @@ import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
@@ -149,31 +151,41 @@ public class InicioSesion_Registro extends JFrame{
 		
 		btnEntrar.addActionListener(new ActionListener() {
 			
-			public void actionPerformed(ActionEvent e) {
-				if(TxtField_Email_Login.getText().isEmpty() || contraField.getPassword()==null)
+			public void actionPerformed(ActionEvent e) 
+			{
+				if(TxtField_Email_Login.getText().isEmpty() || contraField.getPassword()==null || ValidarMail("info@miDominio.com") != true)
 				{
 					JOptionPane.showMessageDialog(null,"Te faltan campos de información por rellenar","INICIO SESIÓN",JOptionPane.INFORMATION_MESSAGE);
 				}
 				else
 				{
-					String email = TxtField_Email_Login.getText();
-					String contra = contraField.getPassword().toString();
-					
-					try {
-						controller.iniciarSesion(email, contra);
-					} catch (RemoteException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+					if (ValidarMail(TxtField_Email_Login.getText()) == true) 
+					{
+						String email = TxtField_Email_Login.getText();
+						String contra = contraField.getPassword().toString();
+						
+						try 
+						{
+							controller.iniciarSesion(email, contra);
+						} catch (RemoteException e1) 
+						{
+							e1.printStackTrace();
+						}
+						
+						//Si es incorrecto decirle que se registre/revise datos
+						
+						dispose();
+						UsuarioDTO usuario_prueba = new UsuarioDTO("Ibone", "Urquiola", "iboneurquiola@gmail.com", "72557745R");
+						buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, usuario_prueba);
+						frameBuscador.setVisible(true);
+						frameBuscador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						frameBuscador.setResizable(false);
+			        } 
+					else
+					{
+						JOptionPane.showMessageDialog(null,"Email no válido","INICIO SESIÓN",JOptionPane.INFORMATION_MESSAGE);
+
 					}
-					
-					//Si es incorrecto decirle que se registre/revise datos
-					
-					dispose();
-					UsuarioDTO usuario_prueba = new UsuarioDTO("Ibone", "Urquiola", "iboneurquiola@gmail.com", "72557745R");
-					buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, usuario_prueba);
-					frameBuscador.setVisible(true);
-					frameBuscador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					frameBuscador.setResizable(false);
 				}
 			}
 		});
@@ -294,42 +306,54 @@ public class InicioSesion_Registro extends JFrame{
 				{
 					JOptionPane.showMessageDialog(null,"Te faltan campos de información por rellenar","INICIO SESIÓN",JOptionPane.INFORMATION_MESSAGE);
 				}
+				else if(textField_dni.getText().length()!=9)
+				{
+					JOptionPane.showMessageDialog(null,"DNI no válido","INICIO SESIÓN",JOptionPane.INFORMATION_MESSAGE);
+				}
 				else
 				{
-					//Enviar a servicio externo autenticación --> Si es incorrecto decirle que se registre/revise datos
-					
-					String nombre = textField_n.getText();
-					String apellido = textField_ape.getText();
-					// String contrasenya = contra_reg.getPassword().toString(); La contrasenya nos la da el servicio externo
-					String email = textField_email.getText();
-					String dni = textField_dni.getText();
-					String aero_nombre = (String)comboAero.getSelectedItem();
-					
-					Aeropuerto aero_seleccionado = new Aeropuerto();
-					
-					for(Aeropuerto a: aeros)
+					if (ValidarMail(TxtField_Email_Login.getText()) == true )
 					{
-						if(a.getNombre().equalsIgnoreCase(aero_nombre)) {
-							aero_seleccionado = a;
-							break;
+						//Enviar a servicio externo autenticación --> Si es incorrecto decirle que se registre/revise datos
+						
+						String nombre = textField_n.getText();
+						String apellido = textField_ape.getText();
+						// String contrasenya = contra_reg.getPassword().toString(); La contrasenya nos la da el servicio externo
+						String email = textField_email.getText();
+						String dni = textField_dni.getText();
+						String aero_nombre = (String)comboAero.getSelectedItem();
+						
+						Aeropuerto aero_seleccionado = new Aeropuerto();
+						
+						for(Aeropuerto a: aeros)
+						{
+							if(a.getNombre().equalsIgnoreCase(aero_nombre)) {
+								aero_seleccionado = a;
+								break;
+							}
 						}
+					
+						String contrasenya = "";
+						try {
+							contrasenya = controller.registroUsuario(nombre, apellido, email, dni, aero_seleccionado);
+						} catch (RemoteException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						JOptionPane.showMessageDialog(null,"Tu contraseña es: " + contrasenya, "USUARIO CREADO", JOptionPane.INFORMATION_MESSAGE);
+						dispose();
+						UsuarioDTO usuario_prueba = new UsuarioDTO("Ibone", "Urquiola", "iboneurquiola@gmail.com", "72557745R");
+						buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, usuario_prueba);
+						frameBuscador.setVisible(true);
+						frameBuscador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						frameBuscador.setResizable(false);
 					}
-				
-					String contrasenya = "";
-					try {
-						contrasenya = controller.registroUsuario(nombre, apellido, email, dni, aero_seleccionado);
-					} catch (RemoteException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+					else
+					{
+						JOptionPane.showMessageDialog(null,"Email no válido","INICIO SESIÓN",JOptionPane.INFORMATION_MESSAGE);
 					}
 					
-					JOptionPane.showMessageDialog(null,"Tu contraseña es: " + contrasenya, "USUARIO CREADO", JOptionPane.INFORMATION_MESSAGE);
-					dispose();
-					UsuarioDTO usuario_prueba = new UsuarioDTO("Ibone", "Urquiola", "iboneurquiola@gmail.com", "72557745R");
-					buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, usuario_prueba);
-					frameBuscador.setVisible(true);
-					frameBuscador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					frameBuscador.setResizable(false);
 				}
 			}
 		});
@@ -392,6 +416,15 @@ public class InicioSesion_Registro extends JFrame{
 		
 	}
 	
+	 public static boolean ValidarMail(String email) 
+	 {
+	        // Patron para validar el email
+	        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+	 
+	        Matcher mather = pattern.matcher(email);
+	        return mather.find();
+	}
+	 
 	public static void main(String args[])
 	{
 		InicioSesion_Registro bp = new InicioSesion_Registro(controller);
