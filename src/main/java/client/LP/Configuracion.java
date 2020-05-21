@@ -16,6 +16,8 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JTextField;
 
@@ -142,19 +144,27 @@ public class Configuracion extends JFrame{
 				}
 				else
 				{
-					//Enviar a servicio externo autenticación --> Si es incorrecto decirle que se registre/revise datos
-					dispose();
-					String email = textFieldEmail.getText();
-					String contrasenya_nueva = txtFieldContNueva.getSelectedText();
-					String contrasenya_antigua = txtFieldContAnt.getSelectedText();
-					try {
-						controller.cambiarContrasenya(email, contrasenya_antigua, contrasenya_nueva);
-					} catch (RemoteException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+					if (ValidarMail(textFieldEmail.getText()) == true )
+					{
+						//Enviar a servicio externo autenticación --> Si es incorrecto decirle que se registre/revise datos
+						dispose();
+						String email = textFieldEmail.getText();
+						String contrasenya_nueva = txtFieldContNueva.getSelectedText();
+						String contrasenya_antigua = txtFieldContAnt.getSelectedText();
+						try {
+							controller.cambiarContrasenya(email, contrasenya_antigua, contrasenya_nueva);
+						} catch (RemoteException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						JOptionPane.showMessageDialog(null, "Contrasenya cambiada correctamente");
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null,"Email no válido","INICIO SESIÓN",JOptionPane.INFORMATION_MESSAGE);
 					}
 					
-					JOptionPane.showMessageDialog(null, "Contrasenya cambiada correctamente");
 				}
 			}
 		});
@@ -212,25 +222,32 @@ public class Configuracion extends JFrame{
 		btnEliminar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				if(textFieldEmail.getText().isEmpty() || txtFieldContNueva.getPassword()==null || txtFieldContAnt.getPassword() == null)
+				if(textFieldEmail2.getText().isEmpty() || txtFieldContra.getPassword()==null)
 				{
 					JOptionPane.showMessageDialog(null,"Te faltan campos de información por rellenar","CONFIGURACION",JOptionPane.INFORMATION_MESSAGE);
 				}
 				else
 				{
-					dispose();
-					String email = textFieldEmail2.getText();
-					String contrasenya = txtFieldContra.getSelectedText();
-					try {
-						controller.eliminarUsuario(email, contrasenya);
-					} catch (RemoteException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+					if (ValidarMail(textFieldEmail2.getText()) == true )
+					{
+						dispose();
+						String email = textFieldEmail2.getText();
+						String contrasenya = txtFieldContra.getSelectedText();
+						try {
+							controller.eliminarUsuario(email, contrasenya);
+						} catch (RemoteException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente");
 					}
-					
-					JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente");
-				}
-				
+					else
+					{
+						JOptionPane.showMessageDialog(null,"Email no válido","INICIO SESIÓN",JOptionPane.INFORMATION_MESSAGE);
+
+					}	
+				}	
 			}
 		});
 		
@@ -263,6 +280,15 @@ public class Configuracion extends JFrame{
 		lblConfig = new JLabel("Ajustes");
 		lblConfig.setFont(new Font("Century Gothic", Font.BOLD, 30));
 		panel.add(lblConfig);
+	}
+
+	public static boolean ValidarMail(String email) {
+		// Patron para validar el email
+		Pattern pattern = Pattern
+				.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
+		Matcher mather = pattern.matcher(email);
+		return mather.find();
 	}
 	
 	public static void main(String args[])
