@@ -272,6 +272,48 @@
 
 		</plugins>
 	</build>
+	
+	<profiles>
+		<profile>
+			<id>pruebaBuscadorVuelos</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.2.1</version>
+						<configuration>
+							<mainClass>client.LP.buscadorPrincipal</mainClass>
+							<arguments>
+								<argument>${server.hostname}</argument>
+								<argument>${server.post}</argument>
+							</arguments>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		
+		<profile>
+			<id>pruebaLPInicio</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.2.1</version>
+						<configuration>
+							<mainClass>client.LP.InicioSesion_Registro</mainClass>
+							<arguments>
+								<argument>${server.hostname}</argument>
+								<argument>${server.post}</argument>
+							</arguments>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 
 </project>

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project name="EasyBooking">
+<project basedir="." name="EasyBooking">
 	<property environment="env"/>
 	<property name="source.dir" location="src/main/java" />
 	<property name="build.dir" location="target/classes" />
-	<property name="lib.dir" location="target" />
+	<property name="maven.source.dir" location="/usr/local/Cellar/maven/3.6.3_1/libexec"/>
+	<!--<property name="lib.dir" location="target" />-->
 	<property name="server.port" value="1099" />
 	<property name="server.IP" value="127.0.0.1" />
 	<property name="server.Name" value="HelloServer" />
@@ -11,12 +12,21 @@
 	<property name="java.policyServer" location="src/main/resources/securityServer/java.policy" />
 
 
-	<path id="full.classpath">
+	<!--<path id="full.classpath">
 		<fileset dir="${lib.dir}">
 			<include name="**/*.jar"/>
 		</fileset>
 		<pathelement location="${build.dir}"/>
-	</path>
+	</path>-->
+	
+	<path id="classpath">
+	        <fileset dir="${maven.source.dir}">
+	      <include name="**/*.jar"/>
+	      <exclude name="**/5.2.3/**/*.jar" />
+	      <exclude name="**/5.2.1/**/*.jar" />
+	    </fileset>
+	        <pathelement location="${build.dir}"/>
+	  </path>
 
 	
 	<target name="runClient" description="Runs the Client">
@@ -29,7 +39,7 @@
 	</target>
 	
 	<target name="runServer" description="Runs the Server">
-		<java classname="server.Main.Main" classpathref="full.classpath" fork="true">
+		<java classname="server.Main.Main" classpathref="classpath" fork="true">
 			<jvmarg value="-Djava.rmi.server.codebase=file:${build.dir}"/>
 			<jvmarg value="-Djava.security.policy=${java.policyServer}"/>
 			<arg value="${server.IP}"/>
