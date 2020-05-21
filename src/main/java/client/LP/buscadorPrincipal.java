@@ -23,6 +23,7 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import server.org.eclipse.wb.swing.FocusTraversalOnArray;
 import server.DTO.UsuarioDTO;
+import server.DTO.VueloDTO;
 import server.LD.Aerolinea;
 import server.LD.Aeropuerto;
 import server.LD.Usuario;
@@ -358,25 +359,35 @@ public class buscadorPrincipal extends JFrame{
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				List<Vuelo> vuelos2 = new ArrayList<Vuelo>();
+				List<VueloDTO> vuelos2 = new ArrayList<VueloDTO>();
 				
-				Aerolinea a1 = new Aerolinea("123", "IB");
+				Aerolinea a1 = new Aerolinea("124", "IBERIA");
 				Aeropuerto p1 = new Aeropuerto("p1", "BIL");
 				Aeropuerto p2 = new Aeropuerto("p2", "AMS");
 				Aeropuerto p3 = new Aeropuerto("p3", "CDG");
-				Vuelo vuelo1 = new Vuelo(0000, a1, p1, p2, 100, 45, 12, 14);
+				VueloDTO vuelo1 = new VueloDTO( a1, p1, p2, 100,1372339860, 1372339375, 234.75);
 				
-				Aerolinea a2 = new Aerolinea("123", "LUF");
-				Vuelo vuelo2 = new Vuelo(0001, a2, p2, p1, 100, 45, 1372339860, 1372339375);
-				Vuelo vuelo3 = new Vuelo(0002, a2, p3, p2, 100, 45, 1372339860, 1372339375);
-				Vuelo vuelo4 = new Vuelo(0003, a1, p1, p3, 100, 45, 1372339860, 1372339375);
-				Vuelo vuelo5 = new Vuelo(0004, a1, p3, p2, 100, 45, 1372339860, 1372339375);
+				Aerolinea a2 = new Aerolinea("123", "LUFTHANSA");
+				Aerolinea a3 = new Aerolinea("134", "KLM");
+				Aerolinea a5 = new Aerolinea("123", "RYANAIR");
+				Aerolinea a6 = new Aerolinea("123", "AIR FRANCE");
+				Aerolinea a8 = new Aerolinea("123", "VUELING");
+				VueloDTO vuelo2 = new VueloDTO(a2, p2, p1, 100, 1372339860, 1372339375, 120.32);
+				VueloDTO vuelo3 = new VueloDTO(a3, p3, p2, 100, 1372339860, 1372339375, 47.38);
+				VueloDTO vuelo4 = new VueloDTO(a2, p1, p3, 100, 1372339860, 1372339375, 143.00);
+				VueloDTO vuelo5 = new VueloDTO(a6, p3, p2, 100,1372339860, 1372339375, 97.50);
+				VueloDTO vuelo6 = new VueloDTO(a5, p2, p1, 100,1372339860, 1372339375, 107.50);
+				VueloDTO vuelo7 = new VueloDTO(a1, p3, p2, 100,1372339860, 1372339375, 43.90);
+				VueloDTO vuelo8 = new VueloDTO(a8, p3, p1, 100,1372339860, 1372339375, 217.20);
 				
 				vuelos2.add(vuelo1);
 				vuelos2.add(vuelo2);
 				vuelos2.add(vuelo3);
 				vuelos2.add(vuelo4);
 				vuelos2.add(vuelo5);
+				vuelos2.add(vuelo6);
+				vuelos2.add(vuelo7);
+				vuelos2.add(vuelo8);
 				
 				createListVuelos(vuelos2, usuario);
 			}
@@ -388,7 +399,7 @@ public class buscadorPrincipal extends JFrame{
 		contentPane.add(panel_2);
 		
 	}
-	public void createListVuelos(List<Vuelo>vuelos, UsuarioDTO usuario)
+	public void createListVuelos(List<VueloDTO>vuelos, UsuarioDTO usuario)
 	{
 		
 		rowHolderPanel.removeAll();

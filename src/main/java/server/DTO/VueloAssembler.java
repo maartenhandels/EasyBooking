@@ -15,7 +15,7 @@ public class VueloAssembler
 		for (Vuelo u : vuelos)
 		{
 			VueloDTO vuDTO= new VueloDTO(u.getAerolinea(), u.getAeropuertoSalida(), 
-					u.getAeropuertoDestino(), u.getAsientosLibres(), u.getSalida(), u.getLlegada());
+					u.getAeropuertoDestino(), u.getAsientosLibres(), u.getSalida(), u.getLlegada(), u.getPrecio());
 			
 			vueloDTO.add(vuDTO);
 		}
@@ -38,6 +38,7 @@ public class VueloAssembler
 			vu.setAsientosLibres(u.getAsientosLibres());
 			vu.setSalida(u.getSalida());
 			vu.setLlegada(u.getLlegada());
+			vu.setPrecio(u.getPrecio());
 			
 			vuelos.add(vu);
 			

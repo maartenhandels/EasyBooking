@@ -7,6 +7,8 @@ public class Vuelo implements Print{
 	private Aerolinea aerolinea;
 	private int codVuelo; // 4 digits
 	
+	private double precio;
+	
 	private Aeropuerto aeropuertoSalida;
 	private Aeropuerto aeropuertoDestino;
 	
@@ -20,7 +22,7 @@ public class Vuelo implements Print{
 	{}
 	
 	
-	public Vuelo(int codVuelo, Aerolinea Aerolinea, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoDestino, int asientosTotales, int asientosLibres, long salida, long llegada) 
+	public Vuelo(int codVuelo, Aerolinea Aerolinea, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoDestino, int asientosTotales, int asientosLibres, long salida, long llegada, double precio) 
 	{
 		super();
 		this.codVuelo = codVuelo;
@@ -31,7 +33,20 @@ public class Vuelo implements Print{
 		this.asientosLibres = asientosLibres;
 		this.salida = salida;
 		this.llegada = llegada;
+		this.precio=precio;
 	}
+
+	public double getPrecio() 
+	{
+		return precio;
+	}
+
+
+	public void setPrecio(double precio) 
+	{
+		this.precio = precio;
+	}
+
 
 	public int getCodVuelo() {
 		return codVuelo;

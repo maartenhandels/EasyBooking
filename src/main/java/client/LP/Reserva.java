@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Color;
@@ -16,6 +18,7 @@ import javax.swing.border.LineBorder;
 
 import client.Controller.Controller;
 import server.DTO.UsuarioDTO;
+import server.DTO.VueloDTO;
 import server.LD.Usuario;
 import server.LD.Vuelo;
 
@@ -24,6 +27,9 @@ import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.util.Date;
 import java.awt.Checkbox;
 import java.awt.Button;
 
@@ -79,9 +85,9 @@ public class Reserva extends JFrame {
 	private JButton btnNewButton_1;
 	private static Controller controller;
 	private UsuarioDTO usuario;
-	private Vuelo vuelo;
+	private VueloDTO vuelo;
 
-	public Reserva(Controller controller, UsuarioDTO usuario, Vuelo vuelo) {
+	public Reserva(Controller controller, UsuarioDTO usuario, VueloDTO vuelo) {
 		
 		this.controller = controller;
 		this.usuario = usuario;
@@ -91,7 +97,7 @@ public class Reserva extends JFrame {
 	}
 		
 	
-	public void initComponents(Vuelo vuelo)
+	public void initComponents(VueloDTO vuelo)
 	{
 		setTitle("Realizar reserva - EasyBooking");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -119,24 +125,80 @@ public class Reserva extends JFrame {
 		lblNewLabel_1.setBounds(174, 85, 69, 20);
 		panel.add(lblNewLabel_1);
 		
-		lblNewLabel_2 = new JLabel("11:50 - 13:55");
+		//Aqui hay que llamar a un metodo que haga esto: (pero no se bien dnd tiene q estar)
+		long salidaHora = vuelo.getSalida();
+        Date datesalidaHora = new Date(salidaHora*1000L);
+        SimpleDateFormat jdfSalidahora = new SimpleDateFormat("HH:mm");
+        String fecha_salHora = jdfSalidahora.format(datesalidaHora);
+        
+        long llegadaHora = vuelo.getLlegada();
+        Date datellegadaHora = new Date(llegadaHora*1000L);
+        SimpleDateFormat jdfllegadaHora = new SimpleDateFormat("HH:mm");
+        String fecha_llegHora = jdfllegadaHora.format(datellegadaHora);
+        
+        Date diff = new Date(datellegadaHora.getTime() - datesalidaHora.getTime());
+        SimpleDateFormat jdfDuracion = new SimpleDateFormat("HH:mm");
+        String duracion = jdfDuracion.format(diff);
+		//Hasta aqui yo creo
+        
+		lblNewLabel_2 = new JLabel("  " + fecha_salHora + "-" + fecha_llegHora);
 		lblNewLabel_2.setFont(new Font("Century Gothic", Font.BOLD, 50));
 		lblNewLabel_2.setBounds(118, 19, 407, 56);
 		panel.add(lblNewLabel_2);
 		
-		lblNewLabel_3 = new JLabel("2h 05 min");
+		lblNewLabel_3 = new JLabel(duracion + "h");
 		lblNewLabel_3.setBounds(540, 51, 92, 20);
 		panel.add(lblNewLabel_3);
 		
-		lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setIcon(new ImageIcon ("src/main/resources/images/Iberia.png"));
-		lblNewLabel_4.setBounds(15, 19, 88, 71);
-		panel.add(lblNewLabel_4);
+		if(vuelo.getAerolinea().getNombre().toUpperCase()=="IBERIA")
+		{
+			lblNewLabel_4 = new JLabel("");
+			lblNewLabel_4.setIcon(new ImageIcon ("src/main/resources/images/Iberia.png"));
+			lblNewLabel_4.setBounds(15, 19, 88, 71);
+			panel.add(lblNewLabel_4);
+		}
+		else if(vuelo.getAerolinea().getNombre().toUpperCase()=="LUFTHANSA")
+		{
+			JLabel lblLuf = new JLabel("");
+			lblLuf.setIcon(new ImageIcon ("src/main/resources/images/lufthansa.jpg"));
+			lblLuf.setBounds(15, 19, 88, 71);
+			panel.add(lblLuf);
+		}
+		else if(vuelo.getAerolinea().getNombre().toUpperCase()=="VUELING")
+		{
+			JLabel vueling = new JLabel("");
+			vueling.setIcon(new ImageIcon ("src/main/resources/images/vueling.jpg"));
+			panel.add(vueling);
+		}
+		else if(vuelo.getAerolinea().getNombre().toUpperCase()=="KLM")
+		{
+			JLabel klm = new JLabel("");
+			klm.setIcon(new ImageIcon ("src/main/resources/images/klm.png"));
+			panel.add(klm);
+		}
+		else if(vuelo.getAerolinea().getNombre().toUpperCase()=="RYANAIR")
+		{
+			JLabel ryanair = new JLabel("");
+			ryanair.setIcon(new ImageIcon ("src/main/resources/images/Ryanair.jpg"));
+			panel.add(ryanair);
+		}
+		else 
+		{
+			JLabel lblOtros = new JLabel("");
+			lblOtros.setIcon(new ImageIcon ("src/main/resources/images/vuelo.png"));
+			lblOtros.setBounds(15, 19, 88, 71);
+			panel.add(lblOtros);
+		}
 		
-		lblNewLabel_1_1 = new JLabel("Mie. 9 Sep");
-		lblNewLabel_1_1.setFont(new Font("Century Gothic", Font.BOLD, 16));
-		lblNewLabel_1_1.setBounds(250, 85, 92, 20);
-		panel.add(lblNewLabel_1_1);
+		
+		long salidaFecha = vuelo.getSalida();
+        Date datesalida = new Date(salidaFecha*1000L);
+        SimpleDateFormat jdfSalida = new SimpleDateFormat("EEE, d MMM ");
+        String fecha_sal = jdfSalida.format(datesalida);
+        JLabel fechaSalida = new JLabel(fecha_sal);
+        fechaSalida.setFont(new Font("Century Gothic", Font.BOLD, 16));
+        fechaSalida.setBounds(250, 85, 92, 20);
+        panel.add(fechaSalida);
 		
 		panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 139, 139), 3));
@@ -212,11 +274,16 @@ public class Reserva extends JFrame {
 		canvas_1_1_1.setBounds(158, 114, 81, 4);
 		panel_2.add(canvas_1_1_1);
 		
-		lblNewLabel_7 = new JLabel("259,45 €");
+		lblNewLabel_7 = new JLabel(Double.toString(vuelo.getPrecio())+"€");
 		lblNewLabel_7.setBounds(163, 16, 69, 20);
 		panel_2.add(lblNewLabel_7);
 		
-		lblNewLabel_8 = new JLabel("25,05 €");
+		//Aqui hay que llamar a un metodo que haga esto: (pero no se bien dnd tiene q estar)
+		double precioIva = vuelo.getPrecio() * 0.21;
+		String strDouble = String.format("%.2f", precioIva);
+		
+		
+		lblNewLabel_8 = new JLabel(strDouble+"€");
 		lblNewLabel_8.setBounds(163, 48, 69, 20);
 		panel_2.add(lblNewLabel_8);
 		
@@ -224,7 +291,11 @@ public class Reserva extends JFrame {
 		lblNewLabel_9.setBounds(168, 84, 69, 20);
 		panel_2.add(lblNewLabel_9);
 		
-		lblNewLabel_10 = new JLabel("285,40 €");
+		//Aqui hay que llamar a un metodo que haga esto: (pero no se bien dnd tiene q estar)
+		double precioTotal = vuelo.getPrecio()+precioIva;
+		String strDouble2 = String.format("%.2f", precioTotal);
+		
+		lblNewLabel_10 = new JLabel(strDouble2+"€");
 		lblNewLabel_10.setFont(new Font("Century Gothic", Font.BOLD, 20));
 		lblNewLabel_10.setBounds(158, 138, 98, 20);
 		panel_2.add(lblNewLabel_10);
@@ -274,6 +345,7 @@ public class Reserva extends JFrame {
 				String cod_reserva = lblNewLabel_10.getText();
 				try {
 					controller.realizarPago(precio, cod_reserva, usuario.getEmail());
+					JOptionPane.showMessageDialog(null,"Pago y reserva realizados","Pago",JOptionPane.INFORMATION_MESSAGE);
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
