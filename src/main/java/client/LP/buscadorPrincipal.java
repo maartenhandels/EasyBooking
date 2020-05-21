@@ -387,22 +387,6 @@ public class buscadorPrincipal extends JFrame{
 		panel_2.setBounds(279, 588, 756, 39);
 		contentPane.add(panel_2);
 		
-
-		
-		btnRealizarReserva = new JButton("Realizar reserva");
-		btnRealizarReserva.setFont(new Font("Century Gothic", Font.BOLD, 16));
-		panel_2.add(btnRealizarReserva);
-		btnRealizarReserva.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				
-//				Reserva frameReserva = new Reserva(controller, usuario);
-//				frameReserva.setBounds(100, 100, 763, 493);
-//				frameReserva.setVisible(true);
-//				frameReserva.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			}
-		});
 	}
 	public void createListVuelos(List<Vuelo>vuelos, UsuarioDTO usuario)
 	{
