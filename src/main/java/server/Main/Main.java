@@ -20,9 +20,6 @@ public class Main
 	public static void main(String [] args) throws RemoteException 
 	{
 
-		
-		
-		
 		String ip= args[0];
 		System.out.println("La IP es: " + ip);
 		
@@ -53,6 +50,7 @@ public class Main
 			
 			System.out.println("El name es: " + name + "\n");
 			
+			//System.setProperty("java.rmi.server.hostname",ip);
 			
 			System.out.println("Llega aqui 03: \n");
 			

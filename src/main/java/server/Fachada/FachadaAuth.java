@@ -12,12 +12,17 @@ import server.LD.Usuario;
 
 public class FachadaAuth extends UnicastRemoteObject implements itfFachadaAuth {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	AppServiceAuth servAuth;
 	UsuarioAssembler usAssem = new UsuarioAssembler();
 	
 	public FachadaAuth() throws RemoteException {
 		
 		super();
+		System.out.println("llega al constructor de la fachada");
 		// TODO Auto-generated constructor stub
 	}
 
