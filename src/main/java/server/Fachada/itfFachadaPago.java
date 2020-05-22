@@ -7,7 +7,7 @@ import java.util.List;
 import server.DTO.UsuarioDTO;
 import server.DTO.VueloDTO;
 
-public interface itfFachadaPago extends Remote{
+public interface itfFachadaPago extends Remote {
 
 	public List <UsuarioDTO> getUsuarios() throws RemoteException;
 	public List<VueloDTO> getVuelos() throws RemoteException;

@@ -21,7 +21,7 @@ public class ServiceLocator {
 	{
 		String ip= "127.0.0.1";
 		String port = "1099";
-		String serviceName = "easybooking";
+		String serviceName = "Easybooking";
 		
 		if (System.getSecurityManager() == null)
 		{
