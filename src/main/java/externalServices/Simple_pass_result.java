@@ -12,10 +12,12 @@ public class Simple_pass_result implements Print
 
     public Simple_pass_result(String content) throws ParseException {
 
+    	System.out.println("Entra en el parseo");
         // We need to parse the input as data is coming from python
         this.parser = new JSONParser();
         JSONObject json = (JSONObject) parser.parse(content);
         this.content = (String) json.get("Password");
+        System.out.println("La contra es: " + this.content);
     }
 
     public String getContent()

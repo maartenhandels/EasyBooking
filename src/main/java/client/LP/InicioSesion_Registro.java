@@ -101,18 +101,18 @@ public class InicioSesion_Registro extends JFrame{
 	{
 		setTitle("Inicio de Sesión/Registro - EasyBooking");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 493);
+		setBounds(100, 100, 900, 450);
 		Image image = new ImageIcon("src/main/resources/images/Flight_prin.png").getImage();
 		setIconImage(image);
 		getContentPane().setBackground(new Color(255, 255, 255));
-		setSize(1020, 800);
+		setSize(1020, 750);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
 		panel_3 = new JPanel();
 		panel_3.setBackground(new Color(95, 158, 160));
-		panel_3.setBounds(15, 318, 336, 410);
+		panel_3.setBounds(15, 318, 336, 380);
 		getContentPane().add(panel_3);
 		panel_3.setLayout(null);
 		
@@ -146,7 +146,7 @@ public class InicioSesion_Registro extends JFrame{
 		
 		btnEntrar = new JButton("Entrar");
 		btnEntrar.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		btnEntrar.setBounds(101, 354, 119, 40);
+		btnEntrar.setBounds(101, 330, 119, 40);
 		panel_3.add(btnEntrar);
 		
 		btnEntrar.addActionListener(new ActionListener() {
@@ -203,7 +203,7 @@ public class InicioSesion_Registro extends JFrame{
 		
 		panel_2 = new JPanel();
 		panel_2.setBackground(new Color(95, 158, 160));
-		panel_2.setBounds(377, 318, 600, 410);
+		panel_2.setBounds(377, 318, 600, 380);
 		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -247,19 +247,9 @@ public class InicioSesion_Registro extends JFrame{
 		textField_dni.setBounds(300, 180, 270, 30);
 		panel_2.add(textField_dni);
 		
-		label_contra = new JLabel("Contrasenya");
-		label_contra.setForeground(new Color(255, 255, 255));
-		label_contra.setBounds(10, 240, 200, 30);
-		label_contra.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		panel_2.add(label_contra);
-		
-		contra_reg = new JPasswordField();
-		contra_reg.setBounds(10, 270, 270, 30);
-		panel_2.add(contra_reg);
-		
 		label_aero = new JLabel("Aeropuerto Predeterminado");
 		label_aero.setForeground(new Color(255, 255, 255));
-		label_aero.setBounds(300, 240, 500, 30);
+		label_aero.setBounds(155, 240, 500, 30);
 		label_aero.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		panel_2.add(label_aero);
 		
@@ -283,7 +273,7 @@ public class InicioSesion_Registro extends JFrame{
 		
 		comboAero = new JComboBox(aero_n.toArray());
 		comboAero.setFont(new Font("Century Gothic", Font.PLAIN, 18));
-		comboAero.setBounds(300, 270, 270, 30);
+		comboAero.setBounds(155, 270, 270, 30);
 		panel_2.add(comboAero);
 		
 		
@@ -295,13 +285,13 @@ public class InicioSesion_Registro extends JFrame{
 		
 		btnRegistrar = new JButton("Registrar");
 		btnRegistrar.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		btnRegistrar.setBounds(250, 354, 119, 40);
+		btnRegistrar.setBounds(250, 330, 119, 40);
 		panel_2.add(btnRegistrar);
 		
 		btnRegistrar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				if(textField_n.getText().isEmpty() || contra_reg.getPassword()==null || textField_ape.getText().isEmpty()|| textField_email.getText().isEmpty()
+				if(textField_n.getText().isEmpty() || textField_ape.getText().isEmpty()|| textField_email.getText().isEmpty()
 						|| textField_dni.getText().isEmpty())
 				{
 					JOptionPane.showMessageDialog(null,"Te faltan campos de información por rellenar","INICIO SESIÓN",JOptionPane.INFORMATION_MESSAGE);
@@ -318,17 +308,18 @@ public class InicioSesion_Registro extends JFrame{
 						
 						String nombre = textField_n.getText();
 						String apellido = textField_ape.getText();
-						// String contrasenya = contra_reg.getPassword().toString(); La contrasenya nos la da el servicio externo
 						String email = textField_email.getText();
 						String dni = textField_dni.getText();
+						System.out.println("LLega aquii dni\n");
 						String aero_nombre = (String)comboAero.getSelectedItem();
 						
-						System.out.println("Correo validado");
+						System.out.println("LLega aquii\n");
 						
 						Aeropuerto aero_seleccionado = new Aeropuerto();
 						
 						for(Aeropuerto a: aeros)
 						{
+							System.out.println("entro al for\n");
 							if(a.getNombre().equalsIgnoreCase(aero_nombre)) 
 							{
 								aero_seleccionado = a;
@@ -337,15 +328,17 @@ public class InicioSesion_Registro extends JFrame{
 							}
 						}
 					
+						System.out.println("salgo del for\n");
 						String contrasenya = "";
 						try {
-//							contrasenya = controller.registroUsuario(nombre, apellido, email, dni, aero_seleccionado);
+							System.out.println("voy al controller\n");
 							contrasenya = controller.registroUsuario(nombre, apellido, email);
-						} catch (RemoteException e1) {
-							// TODO Auto-generated catch block
+						} catch (RemoteException e1)
+						{
+						
 							e1.printStackTrace();
 						}
-						JOptionPane.showMessageDialog(null,"Tu contraseña es: " + contrasenya.toString(), "USUARIO CREADO", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null,"Tu contraseña es: " + contrasenya.toString() + " ¡NO LA OLVIDE!", "USUARIO CREADO", JOptionPane.INFORMATION_MESSAGE);
 						dispose();
 						UsuarioDTO usuario_prueba = new UsuarioDTO("Ibone", "Urquiola", "iboneurquiola@gmail.com", "72557745R");
 						buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, usuario_prueba);

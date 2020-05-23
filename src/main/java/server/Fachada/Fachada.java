@@ -23,9 +23,9 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private AppServiceAuth servAuth;
-	private AppServicePago servPago;
-	private AppServiceVuelo servVuelo;
+	private AppServiceAuth servAuth = new AppServiceAuth();
+	private AppServicePago servPago = new AppServicePago();
+	private AppServiceVuelo servVuelo = new AppServiceVuelo();
 	
 	private UsuarioAssembler usAssem = new UsuarioAssembler();
 	private VueloAssembler vuAssem = new VueloAssembler();
@@ -48,16 +48,17 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 //	public String registroUsuario(String nombre, String apellido, String email, String dni, Aeropuerto aero) 
 	public String registroUsuario(String nombre, String apellido, String email) {
 		
-		System.out.println("Entra en la Fachada");
+		System.out.println("Entra en registroUsuario de la fachada");
 		
 		String contrasenya = "";
 		
 		try 
 		{
-//			contrasenya = servAuth.registroUsuario(nombre, apellido, email, dni, aero);
+			System.out.println("Entro en el try de registro");
 			contrasenya = servAuth.registroUsuario(nombre, apellido, email);
 			
-		} catch (RemoteException e) {
+		} catch (RemoteException e) 
+		{
 			
 			System.err.println("No se ha podido registrar al usuario : " + e.getMessage());
 		}
@@ -109,9 +110,6 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	}
 	
 	
-	
-	
-	
 	// PARTE FACHADA PAGO
 	
 	@Override
@@ -138,8 +136,6 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 			
 		return vueloDTO;
 	}
-	
-	
 	
 	
 	

@@ -9,7 +9,9 @@ import javax.ws.rs.core.Response;
 
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import org.json.simple.JSONObject;
 import externalServices.Print;
 import externalServices.RestClient;
 import externalServices.RestClient_Unmarshalling;
@@ -160,18 +162,34 @@ public class Gateway implements itfGateway
         System.out.println("Trying POST at " + path + " (Log in service)");
         System.out.println("CURL call: curl http://127.0.0.1:5000/Authentication/Log_in -d '{\"email\":\"inigo.lopezgazpio@deusto.es\", \"password\":\"XXX\" }' -X POST -H \"Content-Type: application/json\" -v");
 
+        String responseString = null;
         Response response = null;
+        boolean operation_result = true;
+        
         try {
             response =
                     client.makePostRequest(
-                            client.createInvocationBuilder(path) , new Usuario(email, password)
+                            client.createInvocationBuilder(path) , new Usuario(email, password));
+                      //   ).readEntity(String.class);
+                            
+            responseString =
+                            client.makePostRequest(
+                                    client.createInvocationBuilder(path) , new Usuario(email, password)
+                               ).readEntity(String.class);
+                        
 
-            );
+                    JSONParser myParser = new JSONParser();
+                    JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
+                    operation_result = (boolean) myJsonObject.get("Result");
+
         }
         catch (Exception e) { e.printStackTrace(); e.toString(); }
         client.simplePrint(response);
-        System.out.println("We obtain a false as the user has not been created");
-		return false;
+        System.out.println("We obtain a false if the user has not been created");
+        System.out.println("But the response is..." + operation_result);
+        
+        
+		return operation_result;
 	}
 
 	@Override
@@ -190,13 +208,6 @@ public class Gateway implements itfGateway
 		System.out.println(
 				"CURL call: curl http://127.0.0.1:5000/Authentication/Create_user -d '{\"name\":\"Inigo\", \"last_name\":\"Lopez-Gazpio\", \"email\":\"inigo.lopezgazpio@deusto.es\"}' -X POST -H \"Content-Type: application/json\" -v");
 
-		try {
-			client.simplePrint(client.makePostRequest(client.createInvocationBuilder(path),
-					new Usuario(nombre, apellido, email)));
-		} catch (Exception e) {
-			e.printStackTrace();
-			e.toString();
-		}
 
 		System.out.println(
 				"We obtain the password in the response of the reply, to get this value we will need to parse the result (Marshalling)");
@@ -210,6 +221,7 @@ public class Gateway implements itfGateway
 			e.printStackTrace();
 			e.toString();
 		}
+		System.out.println("Pasa el trycatch");
 
 		String reply = response.readEntity(String.class);
 
@@ -223,7 +235,9 @@ public class Gateway implements itfGateway
 
 		result_class_password.print();
 
-		long password = result_class_password.getContentNumber();
+		contrasenya = Long.toString(result_class_password.getContentNumber());
+		
+		System.out.println("La contrasenya devuelta por auth es: " + contrasenya);
 		
 		return contrasenya;
 		
@@ -292,7 +306,7 @@ public class Gateway implements itfGateway
 		String path = "/Airlines/Search_Flights";
 		System.out.println("Trying POST at " + path + " (Search All Flights message)");
 		System.out.println(
-				"CURL call: curl http://127.0.0.1:5000/Airlines/Search_Flights -d '{ }' -X POST -H \"Content-Type: application/json\" -v");
+				"CURL call: curl http://127.0.0.1:5002/Airlines/Search_Flights -d '{ }' -X POST -H \"Content-Type: application/json\" -v");
 
 		Response response = null;
 		try {

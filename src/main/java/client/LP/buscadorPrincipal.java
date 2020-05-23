@@ -22,6 +22,7 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import server.org.eclipse.wb.swing.FocusTraversalOnArray;
+import server.DAO.DAO;
 import server.DTO.UsuarioDTO;
 import server.DTO.VueloDTO;
 import server.LD.Aerolinea;
@@ -426,10 +427,14 @@ public class buscadorPrincipal extends JFrame{
     
 	public static void main(String args[])
 	{
-		UsuarioDTO usuario_prueba = new UsuarioDTO("iboneurquiola@gmail.com", "Ibone", "Urquiola", "72557745R");
-		buscadorPrincipal bp = new buscadorPrincipal(controller, usuario_prueba);
-		bp.setVisible(true);
+		Usuario us = new Usuario("lau", "llorente", "lau@gmail.com");
+		DAO dao = new DAO();
+		dao.guardarElemto(us);
+//		UsuarioDTO usuario_prueba = new UsuarioDTO("iboneurquiola@gmail.com", "Ibone", "Urquiola", "72557745R");
+//		buscadorPrincipal bp = new buscadorPrincipal(controller, usuario_prueba);
+//		bp.setVisible(true);
 	}
 	
 	
 }
+;

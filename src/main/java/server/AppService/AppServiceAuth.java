@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import server.DAO.DAO;
+import server.DAO.itfDAO;
 import server.DTO.UsuarioAssembler;
 import server.DTO.UsuarioDTO;
 import server.Gateway.Gateway;
@@ -12,29 +13,32 @@ import server.LD.Usuario;
 
 public class AppServiceAuth {
 	
-	private Gateway gateway;
+	private Gateway gateway = new Gateway();
 	private DAO dao;
 	
 //	public String registroUsuario(String nombre, String apellido, String email, String dni, Aeropuerto aero) throws RemoteException
 	public String registroUsuario(String nombre, String apellido, String email) throws RemoteException
 	{
-		System.out.println("Entra en el AppService");
+		System.out.println("Entra en el AppService - registro");
 		
 		String contrasenya = gateway.create_User_Auth(nombre, apellido, email);
 		
 		System.out.println("Pasa la llamada del gateway");
 		
-//		Usuario nuevo_usuario = new Usuario(email, nombre, apellido, dni, aero);
+//		Usuario nuevo_usuario = new Usuario(email, nombre, apellido);
 //		dao.guardarElemto(nuevo_usuario);
+	
 		
 		return contrasenya;
 		
 	}
 	
-	public void iniciarSesion (String email, String contrasenya) throws RemoteException
+	public boolean iniciarSesion (String email, String contrasenya) throws RemoteException
 	{
 		System.out.println("Llega al appservice");
-		gateway.log_in(email, contrasenya);
+		boolean iniSesCorrecto = gateway.log_in(email, contrasenya);
+		return iniSesCorrecto;
+		
 	}
 	public void cerrarSesion (String email)throws RemoteException
 	{
