@@ -166,6 +166,9 @@ public class Gateway implements itfGateway
         Response response = null;
         boolean operation_result = true;
         
+        System.out.println("El email que se va a mandar es: " + email);
+        System.out.println("El password que se va a mandar es: " + password);
+        
         try {
             response =
                     client.makePostRequest(

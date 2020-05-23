@@ -20,7 +20,7 @@ public interface itfFachada extends Remote{
 	public String registroUsuario(String nombre, String apellido, String email) throws RemoteException;
 	public boolean cambiarContrasenya(String email, String contrasenya_antigua, String contrasenya_nueva)throws RemoteException;
 	public boolean eliminarUsuario(String email, String contrasenya)throws RemoteException;
-	public void iniciarSesion (String email, String contrasenya)throws RemoteException;
+	public boolean iniciarSesion (String email, String contrasenya)throws RemoteException;
 	public void cerrarSesion ()throws RemoteException;
 	
 	// Parte Fachada Pago

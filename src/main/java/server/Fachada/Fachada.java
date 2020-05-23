@@ -67,17 +67,21 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	}
 
 	@Override
-	public void iniciarSesion(String email, String contrasenya) {
+	public boolean iniciarSesion(String email, String contrasenya) {
+		
+		boolean inicioSesion = false; 
 		
 		System.out.println("Llega a la fachada de inicio sesion");
 		try 
 		{
-			servAuth.iniciarSesion(email, contrasenya);
+			inicioSesion = servAuth.iniciarSesion(email, contrasenya);
 			
 		} catch (RemoteException e) {
 			
 			System.err.println("No se ha podido inicar sesion : " + e.getMessage());
 		}
+		
+		return inicioSesion;
 	}
 
 	@Override

@@ -38,10 +38,13 @@ public class Controller {
 		return contrasenya;
 	}
 	
-	public void iniciarSesion (String email, String contrasenya) throws RemoteException
+	public boolean iniciarSesion (String email, String contrasenya) throws RemoteException
 	{
+		
 		System.out.println("Llega al controller de Iniciar Sesion");
-		fachada.iniciarSesion(email, contrasenya);
+		boolean inicioSesion = fachada.iniciarSesion(email, contrasenya);
+		
+		return inicioSesion;
 	}
 	
 	public void buscarVuelo(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida, Date llegada) throws RemoteException

@@ -164,22 +164,31 @@ public class InicioSesion_Registro extends JFrame{
 						String email = TxtField_Email_Login.getText();
 						String contra = contraField.getPassword().toString();
 						
+						System.out.println("La contraseña en LP es: " + contra);
+						
+						boolean iniciSesion = false;
+						
 						try 
 						{
-							controller.iniciarSesion(email, contra);
+							iniciSesion = controller.iniciarSesion(email, contra);
 						} catch (RemoteException e1) 
 						{
 							e1.printStackTrace();
 						}
 						
 						//Si es incorrecto decirle que se registre/revise datos
+						if(iniciSesion == true) {
+							dispose();
+							UsuarioDTO usuario_prueba = new UsuarioDTO("Ibone", "Urquiola", "iboneurquiola@gmail.com", "72557745R");
+							buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, usuario_prueba);
+							frameBuscador.setVisible(true);
+							frameBuscador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+							frameBuscador.setResizable(false);
+							
+						}else {
+							JOptionPane.showMessageDialog(null,"Los datos introducidos no son correctos","INICIO SESIÓN",JOptionPane.INFORMATION_MESSAGE);
+						}
 						
-						dispose();
-						UsuarioDTO usuario_prueba = new UsuarioDTO("Ibone", "Urquiola", "iboneurquiola@gmail.com", "72557745R");
-						buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, usuario_prueba);
-						frameBuscador.setVisible(true);
-						frameBuscador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-						frameBuscador.setResizable(false);
 			        } 
 					else
 					{
