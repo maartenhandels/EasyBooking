@@ -6,8 +6,7 @@ import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
 public class Aeropuerto {
-	
-	
+
 	@PrimaryKey
 	private String codAeropuerto; // 3 Alphanumeric Characters- Ex: BIO
 	
@@ -28,6 +27,7 @@ public class Aeropuerto {
 
 	public String getNombre() {
 		return nombre;
+		
 	}
 
 

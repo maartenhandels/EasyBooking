@@ -15,7 +15,8 @@ public class AppServiceAuth {
 	private Gateway gateway;
 	private DAO dao;
 	
-	public String registroUsuario(String nombre, String apellido, String email, String dni, Aeropuerto aero) throws RemoteException
+//	public String registroUsuario(String nombre, String apellido, String email, String dni, Aeropuerto aero) throws RemoteException
+	public String registroUsuario(String nombre, String apellido, String email) throws RemoteException
 	{
 		System.out.println("Entra en el AppService");
 		
@@ -23,8 +24,8 @@ public class AppServiceAuth {
 		
 		System.out.println("Pasa la llamada del gateway");
 		
-		Usuario nuevo_usuario = new Usuario(email, nombre, apellido, dni, aero);
-		dao.guardarElemto(nuevo_usuario);
+//		Usuario nuevo_usuario = new Usuario(email, nombre, apellido, dni, aero);
+//		dao.guardarElemto(nuevo_usuario);
 		
 		return contrasenya;
 		

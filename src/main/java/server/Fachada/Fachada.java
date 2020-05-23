@@ -45,7 +45,8 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	// PARTE FACHADA AUTH
 
 	@Override
-	public String registroUsuario(String nombre, String apellido, String email, String dni, Aeropuerto aero) {
+//	public String registroUsuario(String nombre, String apellido, String email, String dni, Aeropuerto aero) 
+	public String registroUsuario(String nombre, String apellido, String email) {
 		
 		System.out.println("Entra en la Fachada");
 		
@@ -53,7 +54,8 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 		
 		try 
 		{
-			contrasenya = servAuth.registroUsuario(nombre, apellido, email, dni, aero);
+//			contrasenya = servAuth.registroUsuario(nombre, apellido, email, dni, aero);
+			contrasenya = servAuth.registroUsuario(nombre, apellido, email);
 			
 		} catch (RemoteException e) {
 			

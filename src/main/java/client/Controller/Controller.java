@@ -28,12 +28,14 @@ public class Controller {
 	}
 
 	
-	public String registroUsuario(String nombre, String apellido, String email, String dni, Aeropuerto aero) throws RemoteException
+//	public String registroUsuario(String nombre, String apellido, String email, String dni, Aeropuerto aero) throws RemoteException
+	public String registroUsuario(String nombre, String apellido, String email) throws RemoteException
 	{
 		System.out.println("Entra en el Controller");
 		String contrasenya = "";
 		
-		contrasenya = fachada.registroUsuario(nombre, apellido, email, dni, aero);
+//		contrasenya = fachada.registroUsuario(nombre, apellido, email, dni, aero);
+		contrasenya = fachada.registroUsuario(nombre, apellido, email);
 		
 		return contrasenya;
 	}

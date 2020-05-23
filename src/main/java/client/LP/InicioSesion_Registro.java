@@ -312,7 +312,7 @@ public class InicioSesion_Registro extends JFrame{
 				}
 				else
 				{
-					if (ValidarMail(TxtField_Email_Login.getText()) == true )
+					if (ValidarMail(textField_email.getText()) == true )
 					{
 						//Enviar a servicio externo autenticación --> Si es incorrecto decirle que se registre/revise datos
 						
@@ -323,25 +323,29 @@ public class InicioSesion_Registro extends JFrame{
 						String dni = textField_dni.getText();
 						String aero_nombre = (String)comboAero.getSelectedItem();
 						
+						System.out.println("Correo validado");
+						
 						Aeropuerto aero_seleccionado = new Aeropuerto();
 						
 						for(Aeropuerto a: aeros)
 						{
-							if(a.getNombre().equalsIgnoreCase(aero_nombre)) {
+							if(a.getNombre().equalsIgnoreCase(aero_nombre)) 
+							{
 								aero_seleccionado = a;
+								System.out.println("Aeropuerto Seleccionado: " +aero_seleccionado.getNombre());
 								break;
 							}
 						}
 					
 						String contrasenya = "";
 						try {
-							contrasenya = controller.registroUsuario(nombre, apellido, email, dni, aero_seleccionado);
+//							contrasenya = controller.registroUsuario(nombre, apellido, email, dni, aero_seleccionado);
+							contrasenya = controller.registroUsuario(nombre, apellido, email);
 						} catch (RemoteException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						
-						JOptionPane.showMessageDialog(null,"Tu contraseña es: " + contrasenya, "USUARIO CREADO", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null,"Tu contraseña es: " + contrasenya.toString(), "USUARIO CREADO", JOptionPane.INFORMATION_MESSAGE);
 						dispose();
 						UsuarioDTO usuario_prueba = new UsuarioDTO("Ibone", "Urquiola", "iboneurquiola@gmail.com", "72557745R");
 						buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, usuario_prueba);
