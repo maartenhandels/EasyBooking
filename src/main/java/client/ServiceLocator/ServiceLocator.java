@@ -29,14 +29,17 @@ public class ServiceLocator {
 		}
 		try {
 			registry = LocateRegistry.getRegistry(((Integer.valueOf(port))));
+
 			String name = "//" + ip + ":" + port + "/" + serviceName;
+			System.out.println("El name es: " + name + "\n");
+			
 //			this.fachadaAero = (itfFachadaAero) registry.lookup(name);
 //			this.fachadaPago = (itfFachadaPago) registry.lookup(name);
 			this.fachadaAuth = (itfFachadaAuth) registry.lookup(name);
 
 		} 
 		catch (Exception e) {
-			System.err.println("- Exception running the client: " + e.getMessage() );
+			System.err.println("- Exception running the client (in SetServiceLocator): \n" + e.getMessage() );
 			e.printStackTrace();
 		} 
 	}

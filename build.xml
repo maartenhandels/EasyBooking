@@ -3,8 +3,8 @@
 	<property environment="env"/>
 	<property name="source.dir" location="src/main/java" />
 	<property name="build.dir" location="target/classes" />
-	<property name="maven.source.dir" location="C:\Users\Alumno\.m2"/>
-	<!--property name="maven.source.dir" location="/Users/admin/.m2/repository"/>-->
+	<!--<property name="maven.source.dir" location="C:\Users\Alumno\.m2"/>-->
+	<property name="maven.source.dir" location="/Users/admin/.m2/repository"/>
 	<!--<property name="lib.dir" location="target" />-->
 	<property name="server.port" value="1099" />
 	<property name="server.IP" value="127.0.0.1" />

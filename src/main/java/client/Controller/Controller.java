@@ -36,7 +36,7 @@ public class Controller {
 	
 	public void iniciarSesion (String email, String contrasenya) throws RemoteException
 	{
-		System.out.println("Llega al controller");
+		System.out.println("Llega al controller de iniciar sesion");
 		rsl.getServiceAuth().iniciarSesion(email, contrasenya);
 	}
 	

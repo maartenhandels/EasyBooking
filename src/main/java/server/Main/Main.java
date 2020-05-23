@@ -12,7 +12,7 @@ import server.Fachada.itfFachadaPago;
 
 public class Main 
 {
-	private static Registry registry;
+	// private static Registry registry;
 	private static itfFachadaAuth fachadaAuth;
 	private static itfFachadaPago fachadaPago;
 	private static itfFachadaAero fachadaAero;
@@ -20,7 +20,7 @@ public class Main
 	public static void main(String [] args) throws RemoteException 
 	{
 
-		String ip= args[0];
+		String ip = args[0];
 		System.out.println("La IP es: " + ip);
 		
 		String port = args[1];
@@ -32,8 +32,8 @@ public class Main
 		
 		
 		fachadaAuth = new FachadaAuth();
-		// fachadaPago = new FachadaPago();
-		// fachadaAero = new FachadaAero();
+//		fachadaPago = new FachadaPago();
+//		fachadaAero = new FachadaAero();
 		
 		System.out.println("Llega aqui 01: \n");
 	
@@ -43,21 +43,18 @@ public class Main
 		}
 		try {
 			
-			System.out.println("Llega aqui 02: \n");
+			System.out.println("Llega aqui 02: " + port + "\n");
 			
-			registry = LocateRegistry.getRegistry(((Integer.valueOf(port))));
+			Registry registry = LocateRegistry.createRegistry(((Integer.valueOf(port))));
 			String name = "//" + ip + ":" + port + "/" + serviceName;
 			
 			System.out.println("El name es: " + name + "\n");
 			
-			//System.setProperty("java.rmi.server.hostname",ip);
-			
-			System.out.println("Llega aqui 03: \n");
 			
 			System.out.println("Llega aqui 04: \n");
 			registry.rebind(name, fachadaAuth);
 			
-			System.out.println("Llega aqui 05: \n");
+//			System.out.println("Llega aqui 05: \n");
 //			registry.rebind(name, fachadaPago);
 //			
 //			System.out.println("Llega aqui 3: \n");
