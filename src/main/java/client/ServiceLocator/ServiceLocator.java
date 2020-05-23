@@ -2,40 +2,40 @@ package client.ServiceLocator;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import server.Fachada.itfFachadaAero;
-import server.Fachada.itfFachadaAuth;
-import server.Fachada.itfFachadaPago;
+
+import server.Fachada.itfFachada;
 
 public class ServiceLocator {
 
-	private itfFachadaAero fachadaAero;
-	private itfFachadaPago fachadaPago;
-	private itfFachadaAuth fachadaAuth;
+	private itfFachada fachada;
 	private Registry registry;
 	
 	
 	public ServiceLocator() 
 	{}
 	
-	public void setService()
+	public void setService(String [] args)
 	{
-		String ip= "127.0.0.1";
-		String port = "1099";
-		String serviceName = "Easybooking";
+		
+		
+		String ip = args[0];
+		System.out.println("La IP del SetService es: " + ip);
+		String port = args[1];
+		System.out.println("El port del SetService es: " + port);
+		String serviceName = args[2];
+		System.out.println("El serviceName del SetService es: " + serviceName);
 		
 		if (System.getSecurityManager() == null)
 		{
 			System.setSecurityManager(new SecurityManager());
 		}
 		try {
+			
 			registry = LocateRegistry.getRegistry(((Integer.valueOf(port))));
 
 			String name = "//" + ip + ":" + port + "/" + serviceName;
-			System.out.println("El name es: " + name + "\n");
 			
-//			this.fachadaAero = (itfFachadaAero) registry.lookup(name);
-//			this.fachadaPago = (itfFachadaPago) registry.lookup(name);
-			this.fachadaAuth = (itfFachadaAuth) registry.lookup(name);
+			this.fachada = (itfFachada) registry.lookup(name);
 
 		} 
 		catch (Exception e) {
@@ -43,17 +43,9 @@ public class ServiceLocator {
 			e.printStackTrace();
 		} 
 	}
-	public itfFachadaAero getServiceAero()
-	{
-		return fachadaAero;
-	}
-	public itfFachadaPago getServicePago()
-	{
-		return fachadaPago;
-	}
-	public itfFachadaAuth getServiceAuth()
+	public itfFachada getService()
 	{
 		System.out.println("Llega al servicelocator");
-		return fachadaAuth;
+		return fachada;
 	}
 }
