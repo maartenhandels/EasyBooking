@@ -40,9 +40,10 @@ public class Controller {
 	
 	public boolean iniciarSesion (String email, String contrasenya) throws RemoteException
 	{
+		boolean inicioSesion = false;
 		
 		System.out.println("Llega al controller de Iniciar Sesion");
-		boolean inicioSesion = fachada.iniciarSesion(email, contrasenya);
+		inicioSesion = fachada.iniciarSesion(email, contrasenya);
 		
 		return inicioSesion;
 	}

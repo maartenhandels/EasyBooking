@@ -160,7 +160,7 @@ public class Gateway implements itfGateway
 
         String path = "/Authentication/Log_in";
         System.out.println("Trying POST at " + path + " (Log in service)");
-        System.out.println("CURL call: curl http://127.0.0.1:5000/Authentication/Log_in -d '{\"email\":\"inigo.lopezgazpio@deusto.es\", \"password\":\"XXX\" }' -X POST -H \"Content-Type: application/json\" -v");
+        // System.out.println("CURL call: curl http://127.0.0.1:5000/Authentication/Log_in -d '{\"email\":\"inigo.lopezgazpio@deusto.es\", \"password\":\"XXX\" }' -X POST -H \"Content-Type: application/json\" -v");
 
         String responseString = null;
         Response response = null;
@@ -169,10 +169,12 @@ public class Gateway implements itfGateway
         System.out.println("El email que se va a mandar es: " + email);
         System.out.println("El password que se va a mandar es: " + password);
         
+        
+        
         try {
             response =
                     client.makePostRequest(
-                            client.createInvocationBuilder(path) , new Usuario(email, password));
+                            client.createInvocationBuilder(path), new Usuario(email, password));
                       //   ).readEntity(String.class);
                             
             responseString =
@@ -217,6 +219,7 @@ public class Gateway implements itfGateway
 
 		Simple_pass_result result_class_password = null;
 		Response response = null;
+		
 		try {
 			response = client.makePostRequest(client.createInvocationBuilder(path),
 					new Usuario(nombre, apellido, email));
