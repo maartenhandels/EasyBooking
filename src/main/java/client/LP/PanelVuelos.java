@@ -37,13 +37,19 @@ import server.LD.Vuelo;
 
 public class PanelVuelos extends JPanel {
 	
-	private JPanel contentPane;
+	private JPanel panel_north;
+	private JPanel panelPrecio;
+	private JPanel panel_medio;
+	private JPanel panelBoton;
+	
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
-	private JLabel lblNewLabel_3;
-	private JLabel lblNewLabel_4;
-	private JLabel lblNewLabel_5;
+	private JLabel klm;
+	private JLabel ryanair;
+	private JLabel lblNewLabel_flecha;
+	private JLabel vueling;
+	private JLabel aeroDest;
 	
 	private Controller controller;
 	private UsuarioDTO usuario;
@@ -78,19 +84,19 @@ public class PanelVuelos extends JPanel {
 		}
 		else if(vuelo.getAerolinea().getNombre().toUpperCase()=="VUELING")
 		{
-			JLabel vueling = new JLabel("");
+			vueling = new JLabel("");
 			vueling.setIcon(new ImageIcon ("src/main/resources/images/vueling.jpg"));
 			fotosPanel.add(vueling);
 		}
 		else if(vuelo.getAerolinea().getNombre().toUpperCase()=="KLM")
 		{
-			JLabel klm = new JLabel("");
+			klm = new JLabel("");
 			klm.setIcon(new ImageIcon ("src/main/resources/images/klm.png"));
 			fotosPanel.add(klm);
 		}
 		else if(vuelo.getAerolinea().getNombre().toUpperCase()=="RYANAIR")
 		{
-			JLabel ryanair = new JLabel("");
+			ryanair = new JLabel("");
 			ryanair.setIcon(new ImageIcon ("src/main/resources/images/Ryanair.jpg"));
 			fotosPanel.add(ryanair);
 		}
@@ -101,25 +107,25 @@ public class PanelVuelos extends JPanel {
 			fotosPanel.add(lblNewLabel);
 		}
 		
-		JPanel panel_north = new JPanel();
+		panel_north = new JPanel();
 		JLabel aeroSalida = new JLabel(vuelo.getAeropuertoSalida().getNombre());
 		aeroSalida.setFont(new Font("Century Gothic", Font.BOLD, 23));
 		panel_north.add(aeroSalida);
 		
-		JLabel lblNewLabel_flecha = new JLabel("");
+		lblNewLabel_flecha = new JLabel("");
 		lblNewLabel_flecha.setIcon(new ImageIcon ("src/main/resources/images/flecha.png"));
 		panel_north.add(lblNewLabel_flecha);
 		
-		JLabel aeroDest = new JLabel(vuelo.getAeropuertoDestino().getNombre());
+		aeroDest = new JLabel(vuelo.getAeropuertoDestino().getNombre());
 		aeroDest.setFont(new Font("Century Gothic", Font.BOLD, 23));
 		panel_north.add(aeroDest);
 		
-		JPanel panelPrecio = new JPanel();
+		panelPrecio = new JPanel();
 		JLabel precio = new JLabel(Double.toString(vuelo.getPrecio())+"€");
 		precio.setFont(new Font("Century Gothic", Font.BOLD, 23));
 		panelPrecio.add(precio);
         
-        JPanel panel_medio = new JPanel();
+        panel_medio = new JPanel();
         long salida = vuelo.getSalida();
         Date date = new Date(salida*1000L);
         SimpleDateFormat jdf = new SimpleDateFormat("dd-MM-yyyy HH:mm z");
@@ -143,7 +149,7 @@ public class PanelVuelos extends JPanel {
         add(panel_medio, BorderLayout.CENTER);
         add(panelPrecio, BorderLayout.EAST);
 
-        JPanel panelBoton = new JPanel();
+        panelBoton = new JPanel();
         JButton btn_res = new JButton("Reservar");
         btn_res.setLayout(new GridLayout(0,1,1,1));
         panelBoton.add(btn_res);

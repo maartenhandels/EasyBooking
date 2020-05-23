@@ -139,10 +139,14 @@ public class InicioSesion_Registro extends JFrame{
 		label_1.setBounds(15, 207, 142, 31);
 		panel_3.add(label_1);
 		
-		contraField = new JPasswordField();
-		contraField.setColumns(10);
-		contraField.setBounds(15, 254, 306, 40);
-		panel_3.add(contraField);
+//		contraField = new JPasswordField();
+//		contraField.setColumns(10);
+//		contraField.setBounds(15, 254, 306, 40);
+//		panel_3.add(contraField);
+		
+		JTextField contras = new JTextField();
+		contras.setBounds(15, 254, 306, 40);
+		panel_3.add(contras);
 		
 		btnEntrar = new JButton("Entrar");
 		btnEntrar.setFont(new Font("Century Gothic", Font.BOLD, 18));
@@ -153,7 +157,8 @@ public class InicioSesion_Registro extends JFrame{
 			
 			public void actionPerformed(ActionEvent e) 
 			{
-				if(TxtField_Email_Login.getText().isEmpty() || contraField.getPassword()==null || ValidarMail("info@miDominio.com") != true)
+				//para comprobar field de contra contraField.getPassword()==null
+				if(TxtField_Email_Login.getText().isEmpty() || contras.getText().isEmpty()|| ValidarMail("info@miDominio.com") != true)
 				{
 					JOptionPane.showMessageDialog(null,"Te faltan campos de información por rellenar","INICIO SESIÓN",JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -162,7 +167,8 @@ public class InicioSesion_Registro extends JFrame{
 					if (ValidarMail(TxtField_Email_Login.getText()) == true) 
 					{
 						String email = TxtField_Email_Login.getText();
-						String contra = contraField.getPassword().toString();
+						//String contra = contraField.getPassword().toString();
+						String contra = contras.getText();
 						
 						System.out.println("La contraseña en LP es: " + contra);
 						
