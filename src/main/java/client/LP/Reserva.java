@@ -274,16 +274,16 @@ public class Reserva extends JFrame {
 		canvas_1_1_1.setBounds(158, 114, 81, 4);
 		panel_2.add(canvas_1_1_1);
 		
-		lblNewLabel_7 = new JLabel(Double.toString(vuelo.getPrecio())+"€");
+		lblNewLabel_7 = new JLabel(Float.toString(vuelo.getPrecio())+"€");
 		lblNewLabel_7.setBounds(163, 16, 69, 20);
 		panel_2.add(lblNewLabel_7);
 		
 		//Aqui hay que llamar a un metodo que haga esto: (pero no se bien dnd tiene q estar)
-		double precioIva = vuelo.getPrecio() * 0.21;
-		String strDouble = String.format("%.2f", precioIva);
+		float precioIva =  (float) (vuelo.getPrecio() * 0.21);
+		String strFloat = String.format("%.2f", precioIva);
 		
 		
-		lblNewLabel_8 = new JLabel(strDouble+"€");
+		lblNewLabel_8 = new JLabel(strFloat+"€");
 		lblNewLabel_8.setBounds(163, 48, 69, 20);
 		panel_2.add(lblNewLabel_8);
 		
@@ -292,10 +292,10 @@ public class Reserva extends JFrame {
 		panel_2.add(lblNewLabel_9);
 		
 		//Aqui hay que llamar a un metodo que haga esto: (pero no se bien dnd tiene q estar)
-		double precioTotal = vuelo.getPrecio()+precioIva;
-		String strDouble2 = String.format("%.2f", precioTotal);
+		float precioTotal = vuelo.getPrecio()+precioIva;
+		String strFloat2 = String.format("%.2f", precioTotal);
 		
-		lblNewLabel_10 = new JLabel(strDouble2+"€");
+		lblNewLabel_10 = new JLabel(strFloat2+"€");
 		lblNewLabel_10.setFont(new Font("Century Gothic", Font.BOLD, 20));
 		lblNewLabel_10.setBounds(158, 138, 98, 20);
 		panel_2.add(lblNewLabel_10);
@@ -336,20 +336,13 @@ public class Reserva extends JFrame {
 		panel_3.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				String precioString = lblNewLabel_10.getText();
-				double precio;
-				precio = Double.parseDouble(precioString);
+			public void actionPerformed(ActionEvent e) 
+			{
 				
-				String cod_reserva = lblNewLabel_10.getText();
-				try {
-					controller.realizarPago(precio, cod_reserva, usuario.getEmail());
-					JOptionPane.showMessageDialog(null,"Pago y reserva realizados","Pago",JOptionPane.INFORMATION_MESSAGE);
-				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				dispose();
+				Pago frame = new Pago(controller, vuelo);
+				frame.setVisible(true);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 		});
 	}

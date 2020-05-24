@@ -27,7 +27,9 @@ public interface itfFachada extends Remote{
 	// Parte Fachada Pago
 	public List <UsuarioDTO> getUsuariosPago() throws RemoteException;
 	public List<VueloDTO> getVuelosPago() throws RemoteException;
-	public void realizarPago(double precio, String cod_reserva, String email) throws RemoteException;
+	public String realizarPago(String email, float cant_total, String concepto) throws RemoteException;
+	public void actualizarSaldo(String email, float divisa) throws RemoteException;
+	public String create_User_Pago (Usuario us, float divisa) throws RemoteException;
 	
 	// Parte Fachada Aero
 	public ArrayList <Vuelo> search_all_flights () throws RemoteException;

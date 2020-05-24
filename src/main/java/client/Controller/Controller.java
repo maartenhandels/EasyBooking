@@ -9,6 +9,7 @@ import server.DTO.VueloDTO;
 import server.Fachada.itfFachada;
 import server.LD.Aeropuerto;
 import server.LD.Pasajero;
+import server.LD.Usuario;
 import server.LD.Vuelo;
 
 public class Controller {
@@ -113,11 +114,19 @@ public class Controller {
 		fachada.eliminarReserva(cod_reserva, cod_pago);
 	}
 	
-	public void realizarPago(double precio, String cod_reserva, String email) throws RemoteException
+	public String  realizarPago(String email, float cant_total, String concepto) throws RemoteException
 	{
-		fachada.realizarPago(precio, cod_reserva, email);
+		return fachada.realizarPago(email, cant_total, concepto);
 	}
 	
+	public void actualizarSaldo(String email, float divisa)throws RemoteException
+	{
+		fachada.actualizarSaldo(email, divisa);
+	}
+	public String create_User_Pago (Usuario us, float divisa)throws RemoteException
+	{
+		return fachada.create_User_Pago(us, divisa);
+	}
 	public void cerrarSesion ()
 	{
 

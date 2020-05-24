@@ -117,9 +117,10 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	// PARTE FACHADA PAGO
 	
 	@Override
-	public void realizarPago(double precio, String cod_reserva, String email) throws RemoteException {
-		// TODO Auto-generated method stub
-		servPago.realizarPago(precio, cod_reserva, email);
+	public String realizarPago(String email, float cant_total, String concepto) throws RemoteException 
+	{
+
+		return servPago.realizarPago(email, cant_total, concepto);
 	}
 
 	@Override
@@ -139,6 +140,20 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 		ArrayList<VueloDTO> vueloDTO= vuAssem.assembleTovueloDTO(vu);
 			
 		return vueloDTO;
+	}
+	
+	@Override
+	public void actualizarSaldo(String email, float divisa) throws RemoteException 
+	{
+		servPago.actualizarSaldo(email, divisa);
+		
+	}
+	
+	@Override
+	public String create_User_Pago(Usuario us, float divisa) throws RemoteException 
+	{
+
+		return servPago.create_User_Pago(us, divisa);
 	}
 	
 	
@@ -195,5 +210,7 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 		return usuarioDTO;
 		
 	}
+
+
 
 }

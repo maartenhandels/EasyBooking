@@ -12,7 +12,7 @@ public class Vuelo implements Print, Serializable{
 	private Aerolinea aerolinea;
 	private String codVuelo; // 4 digits
 	
-	private double precio;
+	private float precio;
 	
 	private Aeropuerto aeropuertoSalida;
 	private Aeropuerto aeropuertoDestino;
@@ -27,7 +27,7 @@ public class Vuelo implements Print, Serializable{
 	{}
 	
 	
-	public Vuelo(String codVuelo, Aerolinea Aerolinea, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoDestino, long asientosTotales, long asientosLibres, long salida, long llegada, double precio) 
+	public Vuelo(String codVuelo, Aerolinea Aerolinea, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoDestino, long asientosTotales, long asientosLibres, long salida, long llegada, float precio) 
 	{
 		super();
 		this.codVuelo = codVuelo;
@@ -41,13 +41,13 @@ public class Vuelo implements Print, Serializable{
 		this.precio=precio;
 	}
 
-	public double getPrecio() 
+	public float getPrecio() 
 	{
 		return precio;
 	}
 
 
-	public void setPrecio(double precio) 
+	public void setPrecio(float precio) 
 	{
 		this.precio = precio;
 	}
