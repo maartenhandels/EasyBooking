@@ -55,7 +55,6 @@ public class Controller {
 		ArrayList<Vuelo> vuelos = new ArrayList<Vuelo>();
 		
 		
-		
 		try {
 			vuelos = fachada.getVuelosAero();
 		} catch (RemoteException e) {
@@ -63,6 +62,8 @@ public class Controller {
 			e.printStackTrace();
 		}
 		
+		System.out.println("El aeropuerto de salida del primer vuelo en LP es: "+ 
+				vuelos.get(0).getAeropuertoDestino().getNombre());
 			
 		
 		

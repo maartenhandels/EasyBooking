@@ -412,6 +412,7 @@ public class Gateway implements itfGateway
 			
 		}
 		
+		System.out.println("El tamaño del array 'vuelos' es: " + vuelos.size());
 		
 		return vuelos;
 		

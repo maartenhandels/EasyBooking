@@ -1,8 +1,13 @@
 package server.LD;
 
+import java.io.Serializable;
+
 import externalServices.Print;
 
-public class Vuelo implements Print{
+public class Vuelo implements Print, Serializable{
+	
+	
+	private static final long serialVersionUID = 1L;
 	
 	private Aerolinea aerolinea;
 	private String codVuelo; // 4 digits
