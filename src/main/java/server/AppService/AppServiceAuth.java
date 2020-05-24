@@ -34,7 +34,7 @@ public class AppServiceAuth {
 	
 	public boolean iniciarSesion (String email, String contrasenya) throws RemoteException
 	{
-		System.out.println("Llega al appservice");
+		System.out.println("Entra AppService - Inicio Sesion");
 		boolean iniSesCorrecto = gateway.log_in(email, contrasenya);
 		return iniSesCorrecto;
 		

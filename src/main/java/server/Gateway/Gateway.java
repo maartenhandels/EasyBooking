@@ -160,7 +160,7 @@ public class Gateway implements itfGateway
 
         String path = "/Authentication/Log_in";
         System.out.println("Trying POST at " + path + " (Log in service)");
-        // System.out.println("CURL call: curl http://127.0.0.1:5000/Authentication/Log_in -d '{\"email\":\"inigo.lopezgazpio@deusto.es\", \"password\":\"XXX\" }' -X POST -H \"Content-Type: application/json\" -v");
+        System.out.println("CURL call: curl http://127.0.0.1:5000/Authentication/Log_in -d '{\"email\":\"inigo.lopezgazpio@deusto.es\", \"password\":\"XXX\" }' -X POST -H \"Content-Type: application/json\" -v");
 
         String responseString = null;
         Response response = null;
@@ -172,6 +172,7 @@ public class Gateway implements itfGateway
         
         
         try {
+        	System.out.println("Entra en el trycatch");
             response =
                     client.makePostRequest(
                             client.createInvocationBuilder(path), new Usuario(email, password));
@@ -186,6 +187,7 @@ public class Gateway implements itfGateway
                     JSONParser myParser = new JSONParser();
                     JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
                     operation_result = (boolean) myJsonObject.get("Result");
+                    System.out.println(operation_result);
 
         }
         catch (Exception e) { e.printStackTrace(); e.toString(); }

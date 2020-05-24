@@ -90,6 +90,8 @@ public class InicioSesion_Registro extends JFrame{
 	private static Controller controller;
 	private JLabel lblAjustes;
 	
+	private UsuarioDTO usActual;
+	
 	public InicioSesion_Registro(Controller controller) {
 		
 		this.controller = controller;
@@ -158,7 +160,7 @@ public class InicioSesion_Registro extends JFrame{
 			public void actionPerformed(ActionEvent e) 
 			{
 				//para comprobar field de contra contraField.getPassword()==null
-				if(TxtField_Email_Login.getText().isEmpty() || contras.getText().isEmpty()|| ValidarMail("info@miDominio.com") != true)
+				if(TxtField_Email_Login.getText().isEmpty() || contras.getText().isEmpty())
 				{
 					JOptionPane.showMessageDialog(null,"Te faltan campos de información por rellenar","INICIO SESIÓN",JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -170,7 +172,7 @@ public class InicioSesion_Registro extends JFrame{
 						//String contra = contraField.getPassword().toString();
 						String contra = contras.getText();
 						
-						System.out.println("La contraseña en LP es: " + contra);
+						System.out.println("La contrasenya en LP es: " + contra);
 						
 						boolean iniciSesion = false;
 						
@@ -321,6 +323,8 @@ public class InicioSesion_Registro extends JFrame{
 					{
 						//Enviar a servicio externo autenticación --> Si es incorrecto decirle que se registre/revise datos
 						
+						//CREO QUE PETA SI SE METE UN CORREO QUE YA SE HAYA REGISTRADO 
+						
 						String nombre = textField_n.getText();
 						String apellido = textField_ape.getText();
 						String email = textField_email.getText();
@@ -356,6 +360,7 @@ public class InicioSesion_Registro extends JFrame{
 						JOptionPane.showMessageDialog(null,"Tu contraseña es: " + contrasenya.toString() + " ¡NO LA OLVIDE!", "USUARIO CREADO", JOptionPane.INFORMATION_MESSAGE);
 						dispose();
 						UsuarioDTO usuario_prueba = new UsuarioDTO("Ibone", "Urquiola", "iboneurquiola@gmail.com", "72557745R");
+//						usActual = new UsuarioDTO(nombre, apellido, email, dni);
 						buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, usuario_prueba);
 						frameBuscador.setVisible(true);
 						frameBuscador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
