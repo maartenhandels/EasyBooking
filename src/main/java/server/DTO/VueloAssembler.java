@@ -9,9 +9,9 @@ import server.LD.Vuelo;
 public class VueloAssembler 
 {
 	
-	public List <VueloDTO> assembleTovueloDTO(List<Vuelo> vuelos)
+	public ArrayList <VueloDTO> assembleTovueloDTO(ArrayList<Vuelo> vuelos)
 	{
-		List<VueloDTO> vueloDTO = new ArrayList<>();
+		ArrayList<VueloDTO> vueloDTO = new ArrayList<>();
 		for (Vuelo u : vuelos)
 		{
 			VueloDTO vuDTO= new VueloDTO(u.getAerolinea(), u.getAeropuertoSalida(), 
@@ -25,9 +25,9 @@ public class VueloAssembler
 		
 	}
 	
-	public List <Vuelo> assembletoVuelo(List<VueloDTO> vueloDTO)
+	public ArrayList <Vuelo> assembletoVuelo(ArrayList<VueloDTO> vueloDTO)
 	{
-		List<Vuelo> vuelos = new ArrayList<>();
+		ArrayList<Vuelo> vuelos = new ArrayList<>();
 		for (VueloDTO u : vueloDTO)
 		{
 			Vuelo vu = new Vuelo();

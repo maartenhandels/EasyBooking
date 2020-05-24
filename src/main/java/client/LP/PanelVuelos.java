@@ -56,7 +56,7 @@ public class PanelVuelos extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public PanelVuelos(VueloDTO vuelo, UsuarioDTO usuario, Controller controller)
+	public PanelVuelos(Vuelo vuelo, UsuarioDTO usuario, Controller controller)
 	{
 		
 		this.controller = controller;
@@ -64,7 +64,7 @@ public class PanelVuelos extends JPanel {
 		initComponents(vuelo, usuario);
 		setVisible(true);
 	}
-	public void initComponents(VueloDTO vuelo, UsuarioDTO usuario)
+	public void initComponents(Vuelo vuelo, UsuarioDTO usuario)
 	{
 		setLayout(new BorderLayout());
 		

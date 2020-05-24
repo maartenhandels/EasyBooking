@@ -107,9 +107,9 @@ public class buscadorPrincipal extends JFrame{
 	private JButton btnNewButton_1;
 	private JButton button;
 	private JButton btnNewButton_2;
-	private JButton btnNewButton;
+	private JButton btnBuscar;
 	private JButton btnRealizarReserva;
-	private JButton btn2;
+	private JButton btnLogout;
 	
 	private JSlider slider;
 	private JSpinner spinner;
@@ -125,7 +125,7 @@ public class buscadorPrincipal extends JFrame{
 	 */
 	public buscadorPrincipal(Controller controller, UsuarioDTO usuario) {
 		
-		this.controller = controller;
+		buscadorPrincipal.controller = controller;
 		this.usuario = usuario;
 		initComponents(usuario);
 		setVisible(true);
@@ -193,10 +193,10 @@ public class buscadorPrincipal extends JFrame{
 		panel.add(lblNewLabel);
 		
 		img3 = new ImageIcon("src/main/resources/images/salir.png");
-		btn2 = new JButton(img3);
-		btn2.setBounds(980, 8, 40, 40);
-		panel.add(btn2);
-		btn2.addActionListener(new ActionListener() {
+		btnLogout = new JButton(img3);
+		btnLogout.setBounds(980, 8, 40, 40);
+		panel.add(btnLogout);
+		btnLogout.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -351,46 +351,56 @@ public class buscadorPrincipal extends JFrame{
 			}
 		});
 		
-		btnNewButton = new JButton("Buscar");
-		btnNewButton.setIcon(new ImageIcon("src/main/resources/images/lupa.png"));
-		btnNewButton.setFont(new Font("Century Gothic", Font.BOLD, 16));
-		btnNewButton.setBounds(879, 63, 156, 27);
-		contentPane.add(btnNewButton);
-		btnNewButton.addActionListener(new ActionListener() {
+		btnBuscar = new JButton("Buscar");
+		btnBuscar.setIcon(new ImageIcon("src/main/resources/images/lupa.png"));
+		btnBuscar.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		btnBuscar.setBounds(879, 63, 156, 27);
+		contentPane.add(btnBuscar);
+		btnBuscar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				List<VueloDTO> vuelos2 = new ArrayList<VueloDTO>();
+				System.out.println("Me dispongo a hacer la llamada...");
+				// ArrayList<VueloDTO> allFlights =  controller.getAllFlights();
+				ArrayList<Vuelo> allFlights =  controller.getAllFlights();
+				System.out.println("La llamada se ha realizado");
+				System.out.println("El aeropuerto de salida del primer vuelo en LP es: "+ 
+						allFlights.get(0).getAeropuertoDestino().getNombre());
 				
-				Aerolinea a1 = new Aerolinea("124", "IBERIA");
-				Aeropuerto p1 = new Aeropuerto("p1", "BIL");
-				Aeropuerto p2 = new Aeropuerto("p2", "AMS");
-				Aeropuerto p3 = new Aeropuerto("p3", "CDG");
-				VueloDTO vuelo1 = new VueloDTO( a1, p1, p2, 100,1372339860, 1372339375, 234.75);
 				
-				Aerolinea a2 = new Aerolinea("123", "LUFTHANSA");
-				Aerolinea a3 = new Aerolinea("134", "KLM");
-				Aerolinea a5 = new Aerolinea("123", "RYANAIR");
-				Aerolinea a6 = new Aerolinea("123", "AIR FRANCE");
-				Aerolinea a8 = new Aerolinea("123", "VUELING");
-				VueloDTO vuelo2 = new VueloDTO(a2, p2, p1, 100, 1372339860, 1372339375, 120.32);
-				VueloDTO vuelo3 = new VueloDTO(a3, p3, p2, 100, 1372339860, 1372339375, 47.38);
-				VueloDTO vuelo4 = new VueloDTO(a2, p1, p3, 100, 1372339860, 1372339375, 143.00);
-				VueloDTO vuelo5 = new VueloDTO(a6, p3, p2, 100,1372339860, 1372339375, 97.50);
-				VueloDTO vuelo6 = new VueloDTO(a5, p2, p1, 100,1372339860, 1372339375, 107.50);
-				VueloDTO vuelo7 = new VueloDTO(a1, p3, p2, 100,1372339860, 1372339375, 43.90);
-				VueloDTO vuelo8 = new VueloDTO(a8, p3, p1, 100,1372339860, 1372339375, 217.20);
+//				List<VueloDTO> vuelos2 = new ArrayList<VueloDTO>();
+//				
+//				System.out.println("La Aerolinea del primer vuelo es: " + allFlights.get(0).getAerolinea());
+//				
+//				Aerolinea a1 = new Aerolinea("124", "IBERIA");
+//				Aeropuerto p1 = new Aeropuerto("p1", "BIL");
+//				Aeropuerto p2 = new Aeropuerto("p2", "AMS");
+//				Aeropuerto p3 = new Aeropuerto("p3", "CDG");
+//				VueloDTO vuelo1 = new VueloDTO( a1, p1, p2, 100,1372339860, 1372339375, 234.75);
+//				
+//				Aerolinea a2 = new Aerolinea("123", "LUFTHANSA");
+//				Aerolinea a3 = new Aerolinea("134", "KLM");
+//				Aerolinea a5 = new Aerolinea("123", "RYANAIR");
+//				Aerolinea a6 = new Aerolinea("123", "AIR FRANCE");
+//				Aerolinea a8 = new Aerolinea("123", "VUELING");
+//				VueloDTO vuelo2 = new VueloDTO(a2, p2, p1, 100, 1372339860, 1372339375, 120.32);
+//				VueloDTO vuelo3 = new VueloDTO(a3, p3, p2, 100, 1372339860, 1372339375, 47.38);
+//				VueloDTO vuelo4 = new VueloDTO(a2, p1, p3, 100, 1372339860, 1372339375, 143.00);
+//				VueloDTO vuelo5 = new VueloDTO(a6, p3, p2, 100,1372339860, 1372339375, 97.50);
+//				VueloDTO vuelo6 = new VueloDTO(a5, p2, p1, 100,1372339860, 1372339375, 107.50);
+//				VueloDTO vuelo7 = new VueloDTO(a1, p3, p2, 100,1372339860, 1372339375, 43.90);
+//				VueloDTO vuelo8 = new VueloDTO(a8, p3, p1, 100,1372339860, 1372339375, 217.20);
+//				
+//				vuelos2.add(vuelo1);
+//				vuelos2.add(vuelo2);
+//				vuelos2.add(vuelo3);
+//				vuelos2.add(vuelo4);
+//				vuelos2.add(vuelo5);
+//				vuelos2.add(vuelo6);
+//				vuelos2.add(vuelo7);
+//				vuelos2.add(vuelo8);
 				
-				vuelos2.add(vuelo1);
-				vuelos2.add(vuelo2);
-				vuelos2.add(vuelo3);
-				vuelos2.add(vuelo4);
-				vuelos2.add(vuelo5);
-				vuelos2.add(vuelo6);
-				vuelos2.add(vuelo7);
-				vuelos2.add(vuelo8);
-				
-				createListVuelos(vuelos2, usuario);
+				createListVuelos(allFlights, usuario);
 			}
 		});
 		
@@ -400,14 +410,14 @@ public class buscadorPrincipal extends JFrame{
 		contentPane.add(panel_2);
 		
 	}
-	public void createListVuelos(List<VueloDTO>vuelos, UsuarioDTO usuario)
+	public void createListVuelos(ArrayList<Vuelo>vuelos, UsuarioDTO usuario)
 	{
 		
 		rowHolderPanel.removeAll();
 		
-		for( int i=0; i<vuelos.size(); i++)
+		for( Vuelo v:vuelos)
 		{
-			PanelVuelos panelV=new PanelVuelos(vuelos.get(i), usuario, controller); 
+			PanelVuelos panelV=new PanelVuelos(v, usuario, controller); 
 			panelV.setVisible(true);
 
             rowHolderPanel.add(panelV);

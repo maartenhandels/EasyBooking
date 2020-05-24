@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.annotations.Column;
-import javax.jdo.annotations.Element;
 import javax.jdo.annotations.NotPersistent;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -15,7 +14,7 @@ import externalServices.Print;
 
 @PersistenceCapable
 public class Usuario implements Print{
-	
+    
 	@PrimaryKey
 	private String email;
 	private String dni;
@@ -23,7 +22,7 @@ public class Usuario implements Print{
 	private String apellido;
 	
 	@NotPersistent
-	private String contrasenya;
+	private String password;
 	private Usuario us;
 	private float divisa;
 	private float cant_total;
@@ -39,13 +38,12 @@ public class Usuario implements Print{
 	/**
 	 * Este constructor sirve para log_in y delete_user
 	 * @param email
-	 * @param contrasenya
-	 */
-	public Usuario(String email, String contrasenya)
-	{
-		this.email = email;
-		this.contrasenya = contrasenya;
-	}
+	 * @param password
+	 */	
+	 public Usuario (String email, String password) {
+	        this.email = email;
+	        this.password = password;
+	    }
 	/**
 	 * Este constructor sirve para create_user_auth
 	 * @param email
@@ -149,6 +147,15 @@ public class Usuario implements Print{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 
 	public Aeropuerto getAeropuerto() {
@@ -169,10 +176,17 @@ public class Usuario implements Print{
 	public void setReservasUsuario(List<Reserva> reservasUsuario) {
 		this.reservasUsuario = reservasUsuario;
 	}
-
+	
+	
 	@Override
 	public void print() {
-		// TODO Auto-generated method stub
+		System.out.println(
+                "Printing Usuario" + "\n" +
+                "Name: " + getNombre() + "\n" +
+                "Last name: " + getApellido() + "\n" +
+                "email: " + getEmail() + "\n" +
+                "password: " + getPassword() + "\n"
+        );
 		
 	}
 	

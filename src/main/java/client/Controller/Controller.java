@@ -5,9 +5,11 @@ import java.util.Date;
 
 import client.LP.InicioSesion_Registro;
 import client.ServiceLocator.ServiceLocator;
+import server.DTO.VueloDTO;
 import server.Fachada.itfFachada;
 import server.LD.Aeropuerto;
 import server.LD.Pasajero;
+import server.LD.Vuelo;
 
 public class Controller {
 
@@ -30,7 +32,6 @@ public class Controller {
 	
 	public String registroUsuario(String nombre, String apellido, String email) throws RemoteException
 	{
-		System.out.println("Entra en el Controller");
 		String contrasenya = "";
 
 		contrasenya = fachada.registroUsuario(nombre, apellido, email);
@@ -38,14 +39,36 @@ public class Controller {
 		return contrasenya;
 	}
 	
-	public boolean iniciarSesion (String email, String contrasenya) throws RemoteException
+	public boolean iniciarSesion (String email, String password) throws RemoteException
 	{
 		boolean inicioSesion = false;
 		
 		System.out.println("Llega al controller de Iniciar Sesion");
-		inicioSesion = fachada.iniciarSesion(email, contrasenya);
+		inicioSesion = fachada.iniciarSesion(email, password);
 		
 		return inicioSesion;
+	}
+	
+	public ArrayList<Vuelo> getAllFlights(){
+		
+		System.out.println("Entro en el controler de buscar vuelos...");
+		ArrayList<Vuelo> vuelos = new ArrayList<Vuelo>();
+		
+		
+		
+		try {
+			vuelos = fachada.getVuelosAero();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+			
+		
+		
+		System.out.println("Voy a salir del controler de buscar vuelos...");
+		
+		return vuelos;
 	}
 	
 	public void buscarVuelo(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida, Date llegada) throws RemoteException

@@ -1,5 +1,6 @@
 package server.AppService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import server.Gateway.Gateway;
@@ -20,7 +21,7 @@ public class AppServicePago {
 		return null;
 	}
 	
-	public List <Vuelo> getVuelos()
+	public ArrayList <Vuelo> getVuelos()
 	{
 		return null;
 	}

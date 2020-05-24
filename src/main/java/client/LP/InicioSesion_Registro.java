@@ -94,7 +94,7 @@ public class InicioSesion_Registro extends JFrame{
 	
 	public InicioSesion_Registro(Controller controller) {
 		
-		this.controller = controller;
+		InicioSesion_Registro.controller = controller;
 		initComponents();
 //		setVisible(true);
 	}

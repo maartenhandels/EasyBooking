@@ -45,7 +45,6 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	// PARTE FACHADA AUTH
 
 	@Override
-//	public String registroUsuario(String nombre, String apellido, String email, String dni, Aeropuerto aero) 
 	public String registroUsuario(String nombre, String apellido, String email) {
 		
 		System.out.println("Entra en registroUsuario de la fachada");
@@ -132,11 +131,11 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	}
 
 	@Override
-	public List<VueloDTO> getVuelosPago() throws RemoteException
+	public ArrayList<VueloDTO> getVuelosPago() throws RemoteException
 	{
 		
-		List <Vuelo> vu = servPago.getVuelos();
-		List<VueloDTO> vueloDTO= vuAssem.assembleTovueloDTO(vu);
+		ArrayList <Vuelo> vu = servPago.getVuelos();
+		ArrayList<VueloDTO> vueloDTO= vuAssem.assembleTovueloDTO(vu);
 			
 		return vueloDTO;
 	}
@@ -171,17 +170,22 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	}
 
 	@Override
-	public List<VueloDTO> getVuelosAero() 
+	public ArrayList<Vuelo> getVuelosAero() 
 	{
+		System.out.println("Entro en la Fachada de buscar vuelos...");
+		ArrayList <Vuelo> vuelos = servVuelo.getVuelos();
 		
-		List <Vuelo> vu = servVuelo.getVuelos();
-		List<VueloDTO> vueloDTO= vuAssem.assembleTovueloDTO(vu);
+		System.out.println("El aeropuerto destino del primer vuelo en la fachada es: " + vuelos.get(0).getAeropuertoDestino().getNombre());
+		
+		// ArrayList<VueloDTO> vueloDTO= vuAssem.assembleTovueloDTO(vuelos);
+		
+		System.out.println("Voy a salir de la Fachada de buscar vuelos...");
 			
-		return vueloDTO;
+		return vuelos;
 	}
 
 	@Override
-	public List<UsuarioDTO> getUsuariosAero() 
+	public List<UsuarioDTO> getUsuariosAero()
 	{
 		
 		List <Usuario> us = servVuelo.getUsuarios();

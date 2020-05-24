@@ -1,5 +1,7 @@
 package server.Gateway;
 
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,6 +23,8 @@ import externalServices.Flight_JSON;
 import server.DTO.UsuarioAssembler;
 import server.DTO.UsuarioDTO;
 import server.DTO.VueloDTO;
+import server.LD.Aerolinea;
+import server.LD.Aeropuerto;
 import server.LD.Pasajero;
 import server.LD.Usuario;
 import server.LD.Vuelo;
@@ -76,6 +80,9 @@ public class Gateway implements itfGateway
 			System.out.println("Catched exception: " + e.getMessage());
 		}
 	}
+	
+	
+	// EXTERNAL SERVICE: PAYMENT
 	
 	@Override
 	public String make_Payment(String email, float cant_total, String concepto) 
@@ -149,6 +156,10 @@ public class Gateway implements itfGateway
 		}
 		return false;
 	}
+	
+	
+	
+	// EXTERNAL SERVICE: AUTHENTICATION
 
 	@Override
 	public boolean log_in(String email, String password) 
@@ -160,11 +171,10 @@ public class Gateway implements itfGateway
 
         String path = "/Authentication/Log_in";
         System.out.println("Trying POST at " + path + " (Log in service)");
-        System.out.println("CURL call: curl http://127.0.0.1:5000/Authentication/Log_in -d '{\"email\":\"inigo.lopezgazpio@deusto.es\", \"password\":\"XXX\" }' -X POST -H \"Content-Type: application/json\" -v");
 
         String responseString = null;
-        Response response = null;
-        boolean operation_result = true;
+//        Response response = null;
+        boolean login = false;
         
         System.out.println("El email que se va a mandar es: " + email);
         System.out.println("El password que se va a mandar es: " + password);
@@ -172,11 +182,11 @@ public class Gateway implements itfGateway
         
         
         try {
-        	System.out.println("Entra en el trycatch");
-            response =
-                    client.makePostRequest(
-                            client.createInvocationBuilder(path), new Usuario(email, password));
-                      //   ).readEntity(String.class);
+        	System.out.println("Entra en el trycatch inicio Sesion del Gateway \n");
+        	
+//            response =
+//                    client.makePostRequest(
+//                            client.createInvocationBuilder(path), new Usuario(email, password));
                             
             responseString =
                             client.makePostRequest(
@@ -186,17 +196,17 @@ public class Gateway implements itfGateway
 
                     JSONParser myParser = new JSONParser();
                     JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
-                    operation_result = (boolean) myJsonObject.get("Result");
-                    System.out.println(operation_result);
+                    login = (boolean) myJsonObject.get("Result");
+                    System.out.println(login);
 
         }
         catch (Exception e) { e.printStackTrace(); e.toString(); }
-        client.simplePrint(response);
-        System.out.println("We obtain a false if the user has not been created");
-        System.out.println("But the response is..." + operation_result);
+//        client.simplePrint(response);
+        
+        System.out.println("The response of login is..." + login);
         
         
-		return operation_result;
+		return login;
 	}
 
 	@Override
@@ -299,7 +309,113 @@ public class Gateway implements itfGateway
 	}
 
 	
+	
+	// EXTERNAL SERVICE: AIRLINE
+	public ArrayList <Vuelo> search_all_flights(){
+		
+		ArrayList<Vuelo> vuelos = new ArrayList<Vuelo>();
+		
+		RestClient<Flight_parameters> client = new RestClient<Flight_parameters>(hostname, port_airlines);
 
+		System.out.println("------------------------------------------------------");
+		System.out.println("Search flights Airlines Server test (POST) ");
+		System.out.println("------------------------------------------------------");
+
+		String path = "/Airlines/Search_Flights";
+		System.out.println("Trying POST at " + path + " (Search All Flights message)");
+		
+		Response response = null;
+		try {
+			response = client.makePostRequest(client.createInvocationBuilder(path), new Flight_parameters());
+		} catch (Exception e) {
+			e.printStackTrace();
+			e.toString();
+		}
+
+		// JSON SIMPLE PARSER STUFF...
+		ArrayList<Flight_JSON> myFlightArray = new ArrayList<Flight_JSON>();
+		try {
+			String json_string = response.readEntity(String.class);
+			JSONParser myParser = new JSONParser();
+			JSONArray flightsArray = (JSONArray) myParser.parse(json_string);
+
+			// Lambda expression to print array
+			flightsArray.stream().forEach(element -> System.out.println(element));
+
+			// Lambda expression to map JSONObjects inside JSONArray to flight objects
+			myFlightArray = (ArrayList) flightsArray.stream().map(element -> new Flight_JSON(element)).collect(Collectors.toList());
+
+			System.out.println("Number of flights collected:");
+			System.out.println(myFlightArray.size());
+
+			System.out.println("Print some flight as string");
+			myFlightArray.get(0).print();
+
+			System.out.println("Print some random flight parameters");
+			System.out.println(myFlightArray.get(0).getAirportArrivalCity());
+			System.out.println(myFlightArray.get(0).getAirportArrivalCode());
+			System.out.println(myFlightArray.get(0).getAirportDepartureCity());
+			System.out.println(myFlightArray.get(0).getAirportDepartureCode());
+			System.out.println(myFlightArray.get(0).getCode());
+			System.out.println(myFlightArray.get(0).getDepartureDate());
+			System.out.println(myFlightArray.get(0).getDepartureDate(true));
+			System.out.println(myFlightArray.get(0).getDepartureDate(false));
+			System.out.println(myFlightArray.get(0).getFreeSeats());
+			System.out.println(myFlightArray.get(0).getTotalSeats());
+			System.out.println(myFlightArray.get(0).getPrice());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			e.toString();
+		}
+		
+		for(int i=0; i < myFlightArray.size(); i++) {
+			
+			Vuelo vuelo_aux = new Vuelo();
+			
+			vuelo_aux.setAeropuertoDestino(new Aeropuerto(myFlightArray.get(i).getAirportArrivalCode(),
+					myFlightArray.get(i).getAirportArrivalCity()));
+			
+			System.out.println("El aeropuerto destino en el gateway es: " + vuelo_aux.getAeropuertoDestino().getNombre());
+			
+			vuelo_aux.setAeropuertoSalida(new Aeropuerto(myFlightArray.get(i).getAirportDepartureCode(),
+					myFlightArray.get(i).getAirportDepartureCity()));
+			
+			System.out.println("El aeropuerto salida en el gateway es: " + vuelo_aux.getAeropuertoSalida().getNombre());
+			
+			vuelo_aux.setCodVuelo(myFlightArray.get(i).getCode());
+			
+			System.out.println("El codigo vuelo en el gateway es: " + vuelo_aux.getCodVuelo());
+			
+			ZoneId zoneId = ZoneId.systemDefault();
+			
+			long milliseconds = 0;
+		    milliseconds = myFlightArray.get(i).getDepartureDate(true).atZone(zoneId).toEpochSecond();
+			
+		    System.out.println("La fecha en long es: " + milliseconds);
+			vuelo_aux.setSalida(milliseconds);
+			
+			vuelo_aux.setAsientosLibres(myFlightArray.get(i).getFreeSeats());
+			System.out.println("Los asientos libres en el gateway son: " + vuelo_aux.getAsientosLibres());
+			
+			vuelo_aux.setAsientosTotales(myFlightArray.get(i).getTotalSeats());
+			System.out.println("Los asientos totales en el gateway son: " + vuelo_aux.getAsientosTotales());
+			
+			vuelo_aux.setPrecio(myFlightArray.get(i).getPrice());
+			
+			vuelo_aux.setAerolinea(new Aerolinea("123", "KLM"));
+			
+			vuelo_aux.setLlegada(0);
+			
+			vuelos.add(vuelo_aux);
+			
+			
+		}
+		
+		
+		return vuelos;
+		
+	}
 	@Override
 	public List<Vuelo> search_flights(String aero_origen, String aero_dest, int num_pasajeros, double precio,
 			Date salida)

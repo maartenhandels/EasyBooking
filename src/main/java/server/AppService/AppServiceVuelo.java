@@ -12,7 +12,7 @@ import server.LD.Vuelo;
 
 public class AppServiceVuelo {
 	
-	private Gateway gateway;
+	private Gateway gateway = new Gateway();
 	
 	public void buscarVuelo(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida, Date llegada) //sobran atributos no?
 	{
@@ -36,9 +36,17 @@ public class AppServiceVuelo {
 		return null;
 	}
 	
-	public List <Vuelo> getVuelos()
+	public ArrayList <Vuelo> getVuelos()
 	{
-		return null;
+		
+		System.out.println("Entro en el AppService de buscar vuelos...");
+		ArrayList <Vuelo> vuelos = new ArrayList<Vuelo>();
+		
+		vuelos = gateway.search_all_flights();
+		
+		System.out.println("Voy a salir del AppService de buscar vuelos...");
+		
+		return vuelos;
 		
 		
 	}

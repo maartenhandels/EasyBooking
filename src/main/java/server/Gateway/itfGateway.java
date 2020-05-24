@@ -13,6 +13,7 @@ import server.LD.Vuelo;
 public interface itfGateway 
 {	
 	//Esto equivale a aplicar filtros
+	public ArrayList <Vuelo> search_all_flights ();
 	public List <Vuelo> search_flights (String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida);
 	
 	// Servicio externo - Pago

@@ -5,15 +5,15 @@ import externalServices.Print;
 public class Vuelo implements Print{
 	
 	private Aerolinea aerolinea;
-	private int codVuelo; // 4 digits
+	private String codVuelo; // 4 digits
 	
 	private double precio;
 	
 	private Aeropuerto aeropuertoSalida;
 	private Aeropuerto aeropuertoDestino;
 	
-	private int asientosTotales;
-	private int asientosLibres;
+	private long asientosTotales;
+	private long asientosLibres;
 	
 	private long salida; // Esto es porque hay que usar UNIX (fecha y hora) pero no se muy bien como va
 	private long llegada; // Esto es porque hay que usar UNIX (fecha y hora) pero no se muy bien como va
@@ -22,7 +22,7 @@ public class Vuelo implements Print{
 	{}
 	
 	
-	public Vuelo(int codVuelo, Aerolinea Aerolinea, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoDestino, int asientosTotales, int asientosLibres, long salida, long llegada, double precio) 
+	public Vuelo(String codVuelo, Aerolinea Aerolinea, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoDestino, long asientosTotales, long asientosLibres, long salida, long llegada, double precio) 
 	{
 		super();
 		this.codVuelo = codVuelo;
@@ -48,11 +48,11 @@ public class Vuelo implements Print{
 	}
 
 
-	public int getCodVuelo() {
+	public String getCodVuelo() {
 		return codVuelo;
 	}
 
-	public void setCodVuelo(int codVuelo) {
+	public void setCodVuelo(String codVuelo) {
 		this.codVuelo = codVuelo;
 	}
 
@@ -80,19 +80,19 @@ public class Vuelo implements Print{
 		this.aeropuertoDestino = aeropuertoDestino;
 	}
 
-	public int getAsientosTotales() {
+	public long getAsientosTotales() {
 		return asientosTotales;
 	}
 
-	public void setAsientosTotales(int asientosTotales) {
+	public void setAsientosTotales(long asientosTotales) {
 		this.asientosTotales = asientosTotales;
 	}
 
-	public int getAsientosLibres() {
+	public long getAsientosLibres() {
 		return asientosLibres;
 	}
 
-	public void setAsientosLibres(int asientosLibres) {
+	public void setAsientosLibres(long asientosLibres) {
 		this.asientosLibres = asientosLibres;
 	}
 
