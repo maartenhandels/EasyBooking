@@ -146,13 +146,15 @@ public class Configuracion extends JFrame{
 				{
 					if (ValidarMail(textFieldEmail.getText()) == true )
 					{
+						char[] contra = txtFieldContAnt.getPassword();
+						System.out.println("La contrasenya en LP es: " + contra.toString());
 						//Enviar a servicio externo autenticación --> Si es incorrecto decirle que se registre/revise datos
 						dispose();
 						String email = textFieldEmail.getText();
-						String contrasenya_nueva = txtFieldContNueva.getSelectedText();
-						String contrasenya_antigua = txtFieldContAnt.getSelectedText();
+						String new_password = txtFieldContNueva.getSelectedText();
+						String old_password = txtFieldContAnt.getSelectedText();
 						try {
-							controller.cambiarContrasenya(email, contrasenya_antigua, contrasenya_nueva);
+							controller.change_password(email, old_password, new_password);
 						} catch (RemoteException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();

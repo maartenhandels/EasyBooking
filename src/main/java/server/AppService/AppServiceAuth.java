@@ -52,9 +52,10 @@ public class AppServiceAuth {
 		return gateway.delete_user(email, password);
 		//FALTA ELIMINAR DE DAO
 	}
-	public boolean cambiarContrasenya(String email, String password_antigua, String password_nueva )
+	public boolean change_password (String email, String old_password, String new_password)
 	{
-		return gateway.change_password(email, password_antigua, password_nueva);
+		System.out.println("Entra AppService - Change password");
+		return gateway.change_password(email, old_password, new_password);
 		//FALTA CAMBIAR EN DAO
 	}
 }

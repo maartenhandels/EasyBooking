@@ -49,31 +49,20 @@ public class Controller {
 		return inicioSesion;
 	}
 	
-	public ArrayList<Vuelo> getAllFlights(){
+	public ArrayList<Vuelo> getAllFlights() throws RemoteException{
 		
 		System.out.println("Entro en el controler de buscar vuelos...");
-		ArrayList<Vuelo> vuelos = new ArrayList<Vuelo>();
-		
-		
-		
-		try {
-			vuelos = fachada.getVuelosAero();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-			
-		
+
+		ArrayList<Vuelo> vuelos = fachada.search_all_flights();
 		
 		System.out.println("Voy a salir del controler de buscar vuelos...");
 		
 		return vuelos;
 	}
 	
-	public void buscarVuelo(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida, Date llegada) throws RemoteException
+	public void search_flights(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida) throws RemoteException
 	{
-		fachada.buscarVuelo(aero_origen, aero_dest, num_pasajeros, precio, salida, llegada);
+		fachada.search_flights(aero_origen, aero_dest, num_pasajeros, precio, salida);
 	}
 	
 	public boolean eliminarUsuario(String email, String contrasenya) throws RemoteException
@@ -81,9 +70,10 @@ public class Controller {
 		return fachada.eliminarUsuario(email, contrasenya);
 	}
 	
-	public boolean cambiarContrasenya(String email, String contrasenya_antigua, String contrasenya_nueva) throws RemoteException
+	public boolean change_password (String email, String old_password, String new_password) throws RemoteException
 	{
-		return fachada.cambiarContrasenya(email, contrasenya_antigua, contrasenya_nueva);
+		System.out.println("Entro en el controller de change password");
+		return fachada.change_password(email, old_password, new_password);
 	}
 	/**
 	 * Este metodo deberia tener el conjunto de filtros y aplicarlos a la lista de vuelos que conseguimos con buscarVuelo. Realmente este metodo no tiene

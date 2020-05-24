@@ -14,7 +14,7 @@ public class AppServiceVuelo {
 	
 	private Gateway gateway = new Gateway();
 	
-	public void buscarVuelo(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida, Date llegada) //sobran atributos no?
+	public void search_flights (String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida) 
 	{
 		gateway.search_flights(aero_origen, aero_dest, num_pasajeros, precio, salida);
 	}
@@ -36,13 +36,11 @@ public class AppServiceVuelo {
 		return null;
 	}
 	
-	public ArrayList <Vuelo> getVuelos()
+	public ArrayList <Vuelo> search_all_flights ()
 	{
 		
 		System.out.println("Entro en el AppService de buscar vuelos...");
-		ArrayList <Vuelo> vuelos = new ArrayList<Vuelo>();
-		
-		vuelos = gateway.search_all_flights();
+		ArrayList <Vuelo> vuelos = gateway.search_all_flights();
 		
 		System.out.println("Voy a salir del AppService de buscar vuelos...");
 		

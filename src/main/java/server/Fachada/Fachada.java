@@ -106,9 +106,10 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	}
 	
 	@Override
-	public boolean cambiarContrasenya(String email, String contrasenya_antigua, String contrasenya_nueva) 
+	public boolean change_password (String email, String old_password, String new_password) 
 	{
-		return servAuth.cambiarContrasenya(email, contrasenya_antigua,contrasenya_nueva );
+		System.out.println("Llega a la fachada de change password");
+		return servAuth.change_password(email, old_password,new_password );
 		
 	}
 	
@@ -145,9 +146,9 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	// PARTE FACHADA AERO
 	
 	@Override
-	public void buscarVuelo(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida, Date llegada) 
+	public void search_flights(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida) 
 	{
-		servVuelo.buscarVuelo(aero_origen, aero_dest, num_pasajeros, precio, salida, llegada);
+		servVuelo.search_flights(aero_origen, aero_dest, num_pasajeros, precio, salida);
 	}
 	
 	@Override
@@ -170,10 +171,10 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	}
 
 	@Override
-	public ArrayList<Vuelo> getVuelosAero() 
+	public ArrayList<Vuelo> search_all_flights () 
 	{
 		System.out.println("Entro en la Fachada de buscar vuelos...");
-		ArrayList <Vuelo> vuelos = servVuelo.getVuelos();
+		ArrayList <Vuelo> vuelos = servVuelo.search_all_flights ();
 		
 		System.out.println("El aeropuerto destino del primer vuelo en la fachada es: " + vuelos.get(0).getAeropuertoDestino().getNombre());
 		

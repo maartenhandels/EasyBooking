@@ -362,7 +362,13 @@ public class buscadorPrincipal extends JFrame{
 				
 				System.out.println("Me dispongo a hacer la llamada...");
 				// ArrayList<VueloDTO> allFlights =  controller.getAllFlights();
-				ArrayList<Vuelo> allFlights =  controller.getAllFlights();
+				ArrayList<Vuelo> allFlights = new ArrayList<Vuelo>();
+				try {
+					allFlights = controller.getAllFlights();
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				System.out.println("La llamada se ha realizado");
 				System.out.println("El aeropuerto de salida del primer vuelo en LP es: "+ 
 						allFlights.get(0).getAeropuertoDestino().getNombre());
