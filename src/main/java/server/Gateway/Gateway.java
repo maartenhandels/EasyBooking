@@ -233,6 +233,7 @@ public class Gateway implements itfGateway
 		Response response = null;
 		
 		try {
+			System.out.println("Entra en el trycatch cambiar contrasenya del Gateway \n");
 			response = client.makePostRequest(client.createInvocationBuilder(path),
 					new Usuario(nombre, apellido, email));
 		} catch (Exception e) {
@@ -265,6 +266,7 @@ public class Gateway implements itfGateway
 	@Override
 	public boolean change_password(String email, String old_password, String new_password) 
 	{
+		String responseString = null;
 		RestClient<Usuario> client = new RestClient<>(hostname, port_auth);
 		System.out.println("--------------------------------------------------------");
 		System.out.println("Authentication Change Password Server test (POST)");
@@ -272,17 +274,23 @@ public class Gateway implements itfGateway
 
 		String path = "/Authentication/Change_password";
 		System.out.println("Trying POST at " + path + " (Change_password resource)");
-		System.out.println(
-				"CURL call: curl http://127.0.0.1:5000/Authentication/Change_password -d '{\"email\":\"inigo.lopezgazpio@deusto.es\", \"password\":\"XXX\", \"password_new\":\"XXX\"}' -X PUT -H \"Content-Type: application/json\" -v");
+		boolean change = false;
+		
+//		System.out.println(
+//				"CURL call: curl http://127.0.0.1:5000/Authentication/Change_password -d '{\"email\":\"inigo.lopezgazpio@deusto.es\", \"password\":\"XXX\", \"password_new\":\"XXX\"}' -X PUT -H \"Content-Type: application/json\" -v");
 
 		try {
-			client.simplePrint(client.makePutRequest(client.createInvocationBuilder(path),
-					new Usuario(email, String.valueOf(new_password), old_password))); //creo que está usando el consturctor de create_user_auth que es también string,string,string
+			responseString = client.makePutRequest(client.createInvocationBuilder(path),
+					new Usuario(email, String.valueOf(new_password), old_password)).readEntity(String.class); 
+			JSONParser myParser = new JSONParser();
+            JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
+            change = (boolean) myJsonObject.get("Result");
+            System.out.println(change);
 		} catch (Exception e) {
 			e.printStackTrace();
 			e.toString();
 		}
-		return false;
+		return change;
 	}
 
 	@Override
