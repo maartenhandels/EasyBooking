@@ -56,7 +56,7 @@ public class Controller {
 		
 		
 		try {
-			vuelos = fachada.getVuelosAero();
+			vuelos = fachada.search_all_flights();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
