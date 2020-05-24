@@ -296,24 +296,36 @@ public class Gateway implements itfGateway
 	@Override
 	public boolean delete_user(String email, String password) 
 	{
+		String responseString = null;
 		RestClient<Usuario> client = new RestClient<>(hostname, port_auth);
 		System.out.println("--------------------------------------------------------");
 		System.out.println("Authentication Delete_user Server test (POST)");
 		System.out.println("--------------------------------------------------------");
+		
+		System.out.println("El email que se va a eliminar es: " + email);
+        System.out.println("El password que se va a eliminar es: " + password);
 
 		String path = "/Authentication/Delete_user";
 		System.out.println("Trying POST at " + path + " (delete user resource)");
 		System.out.println(
 				"CURL call: curl http://127.0.0.1:5000/Authentication/Delete_user -d '{\"email\":\"inigo.lopezgazpio@deusto.es\", \"password\":\"XXX\" }' -X DELETE -H \"Content-Type: application/json\" -v");
 
+		boolean delete = false;
+		
 		try {
-			client.simplePrint(client.makePutRequest(client.createInvocationBuilder(path),
-					new Usuario(email, password)));
+			responseString = client.makePutRequest(client.createInvocationBuilder(path),
+					new Usuario(email, password)).readEntity(String.class);
+			
+			JSONParser myParser = new JSONParser();
+            JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
+            delete = (boolean) myJsonObject.get("Result");
+            System.out.println(delete);
+            
 		} catch (Exception e) {
 			e.printStackTrace();
 			e.toString();
 		}
-		return false;
+		return delete;
 	}
 
 	

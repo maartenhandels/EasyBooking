@@ -216,15 +216,15 @@ public class Configuracion extends JFrame{
 		lblContra.setBounds(18, 196, 238, 31);
 		panel_2.add(lblContra);
 		
-		txtFieldContra = new JPasswordField();
-		txtFieldContra.setColumns(10);
-		txtFieldContra.setBounds(18, 229, 306, 40);
-		panel_2.add(txtFieldContra);
+		JTextField txtFieldCont = new JTextField();
+		//txtFieldContra.setColumns(10);
+		txtFieldCont.setBounds(18, 229, 306, 40);
+		panel_2.add(txtFieldCont);
 		
 		btnEliminar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				if(textFieldEmail2.getText().isEmpty() || txtFieldContra.getPassword()==null)
+				if(textFieldEmail2.getText().isEmpty() || txtFieldCont.getText().isEmpty())
 				{
 					JOptionPane.showMessageDialog(null,"Te faltan campos de información por rellenar","CONFIGURACION",JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -234,15 +234,17 @@ public class Configuracion extends JFrame{
 					{
 						dispose();
 						String email = textFieldEmail2.getText();
-						String contrasenya = txtFieldContra.getSelectedText();
+						String password = txtFieldCont.getText();
 						try {
-							controller.eliminarUsuario(email, contrasenya);
+							controller.eliminarUsuario(email, password);
 						} catch (RemoteException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 						
 						JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente");
+						InicioSesion_Registro reg = new InicioSesion_Registro(controller);
+						reg.setVisible(true);
 					}
 					else
 					{

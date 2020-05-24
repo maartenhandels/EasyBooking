@@ -77,9 +77,9 @@ public class Controller {
 		fachada.search_flights(aero_origen, aero_dest, num_pasajeros, precio, salida);
 	}
 	
-	public boolean eliminarUsuario(String email, String contrasenya) throws RemoteException
+	public boolean eliminarUsuario(String email, String password) throws RemoteException
 	{
-		return fachada.eliminarUsuario(email, contrasenya);
+		return fachada.eliminarUsuario(email, password);
 	}
 	
 	public boolean change_password (String email, String old_password, String new_password) throws RemoteException

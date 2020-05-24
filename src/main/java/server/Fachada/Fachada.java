@@ -99,9 +99,9 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	}
 
 	@Override
-	public boolean eliminarUsuario(String email, String contrasenya) 
+	public boolean eliminarUsuario(String email, String password) 
 	{
-		return servAuth.eliminarUsuario(email, contrasenya);
+		return servAuth.eliminarUsuario(email, password);
 		
 	}
 	
