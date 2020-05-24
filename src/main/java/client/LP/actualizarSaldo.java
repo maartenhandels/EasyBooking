@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import client.Controller.Controller;
-import server.LD.Vuelo;
+import server.DTO.VueloDTO;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -37,12 +37,12 @@ public class actualizarSaldo extends JFrame {
 	private JButton btnActualizar;
 
 	private static Controller controller;
-	private Vuelo vuelo;
+	private VueloDTO vuelo;
 	
 	/**
 	 * Create the frame.
 	 */
-	public actualizarSaldo(Controller controller, Vuelo vuelo) 
+	public actualizarSaldo(Controller controller, VueloDTO vuelo) 
 	{
 		actualizarSaldo.controller = controller;
 		this.vuelo= vuelo;
@@ -50,7 +50,7 @@ public class actualizarSaldo extends JFrame {
 		setVisible(true);
 	}
 	
-	public void init_componentes(Vuelo vuelo)
+	public void init_componentes(VueloDTO vuelo)
 	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 454, 345);

@@ -141,14 +141,9 @@ public class InicioSesion_Registro extends JFrame{
 		label_1.setBounds(15, 207, 142, 31);
 		panel_3.add(label_1);
 		
-//		contraField = new JPasswordField();
-//		contraField.setColumns(10);
-//		contraField.setBounds(15, 254, 306, 40);
-//		panel_3.add(contraField);
-		
-		JTextField contras = new JTextField();
-		contras.setBounds(15, 254, 306, 40);
-		panel_3.add(contras);
+		contraField = new JPasswordField();
+		contraField.setBounds(15, 254, 306, 40);
+		panel_3.add(contraField);
 		
 		btnEntrar = new JButton("Entrar");
 		btnEntrar.setFont(new Font("Century Gothic", Font.BOLD, 18));
@@ -160,7 +155,7 @@ public class InicioSesion_Registro extends JFrame{
 			public void actionPerformed(ActionEvent e) 
 			{
 				//para comprobar field de contra contraField.getPassword()==null
-				if(TxtField_Email_Login.getText().isEmpty() || contras.getText().isEmpty())
+				if(TxtField_Email_Login.getText().isEmpty() || String.valueOf(contraField.getPassword()).isEmpty())
 				{
 					JOptionPane.showMessageDialog(null,"Te faltan campos de información por rellenar","INICIO SESIÓN",JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -170,7 +165,9 @@ public class InicioSesion_Registro extends JFrame{
 					{
 						String email = TxtField_Email_Login.getText();
 						//String contra = contraField.getPassword().toString();
-						String contra = contras.getText();
+						String contra = String.valueOf(contraField.getPassword());
+						
+						System.out.println("La contraseña del passwordField es: "+ contra);
 						
 						System.out.println("La contrasenya en LP es: " + contra);
 						

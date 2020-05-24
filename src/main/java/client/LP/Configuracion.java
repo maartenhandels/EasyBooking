@@ -138,7 +138,7 @@ public class Configuracion extends JFrame{
 		btnCambiar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				if(textFieldEmail.getText().isEmpty() || txtFieldContNueva.getPassword()==null || txtFieldContAnt.getPassword() == null)
+				if(textFieldEmail.getText().isEmpty() || String.valueOf(txtFieldContNueva).isEmpty() || String.valueOf(txtFieldContAnt).isEmpty())
 				{
 					JOptionPane.showMessageDialog(null,"Te faltan campos de información por rellenar","CONFIGURACION",JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -146,13 +146,14 @@ public class Configuracion extends JFrame{
 				{
 					if (ValidarMail(textFieldEmail.getText()) == true )
 					{
-						char[] contra = txtFieldContAnt.getPassword();
-						System.out.println("La contrasenya en LP es: " + contra.toString());
+						String contra = String.valueOf(txtFieldContAnt);
+						System.out.println("La contrasenya en LP es: " + contra);
+						
 						//Enviar a servicio externo autenticación --> Si es incorrecto decirle que se registre/revise datos
 						dispose();
 						String email = textFieldEmail.getText();
-						String new_password = txtFieldContNueva.getSelectedText();
-						String old_password = txtFieldContAnt.getSelectedText();
+						String new_password = String.valueOf(txtFieldContNueva);
+						String old_password = String.valueOf(txtFieldContAnt);
 						try {
 							controller.change_password(email, old_password, new_password);
 						} catch (RemoteException e1) {
@@ -216,15 +217,15 @@ public class Configuracion extends JFrame{
 		lblContra.setBounds(18, 196, 238, 31);
 		panel_2.add(lblContra);
 		
-		JTextField txtFieldCont = new JTextField();
+		JPasswordField passwordField = new JPasswordField();
 		//txtFieldContra.setColumns(10);
-		txtFieldCont.setBounds(18, 229, 306, 40);
-		panel_2.add(txtFieldCont);
+		passwordField.setBounds(18, 229, 306, 40);
+		panel_2.add(passwordField);
 		
 		btnEliminar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				if(textFieldEmail2.getText().isEmpty() || txtFieldCont.getText().isEmpty())
+				if(textFieldEmail2.getText().isEmpty() || String.valueOf(passwordField).isEmpty())
 				{
 					JOptionPane.showMessageDialog(null,"Te faltan campos de información por rellenar","CONFIGURACION",JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -234,7 +235,7 @@ public class Configuracion extends JFrame{
 					{
 						dispose();
 						String email = textFieldEmail2.getText();
-						String password = txtFieldCont.getText();
+						String password = String.valueOf(passwordField);
 						try {
 							controller.eliminarUsuario(email, password);
 						} catch (RemoteException e1) {

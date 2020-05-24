@@ -14,9 +14,11 @@ public class AppServiceVuelo {
 	
 	private Gateway gateway = new Gateway();
 	
-	public void search_flights (String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida) 
+	public ArrayList<Vuelo> search_flights_with_filter (String aero_origen, String aero_dest) 
 	{
-		gateway.search_flights(aero_origen, aero_dest, num_pasajeros, precio, salida);
+		ArrayList<Vuelo> vuelos = gateway.search_flights_with_filter(aero_origen, aero_dest);
+		
+		return vuelos;
 	}
 	public void aplicarFiltros(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida)
 	{

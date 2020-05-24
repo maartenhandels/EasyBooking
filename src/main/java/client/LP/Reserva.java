@@ -85,9 +85,9 @@ public class Reserva extends JFrame {
 	private JButton btnNewButton_1;
 	private static Controller controller;
 	private UsuarioDTO usuario;
-	private Vuelo vuelo;
+	private VueloDTO vuelo;
 
-	public Reserva(Controller controller, UsuarioDTO usuario, Vuelo vuelo) {
+	public Reserva(Controller controller, UsuarioDTO usuario, VueloDTO vuelo) {
 		
 		this.controller = controller;
 		this.usuario = usuario;
@@ -97,7 +97,7 @@ public class Reserva extends JFrame {
 	}
 		
 	
-	public void initComponents(Vuelo vuelo)
+	public void initComponents(VueloDTO vuelo)
 	{
 		setTitle("Realizar reserva - EasyBooking");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

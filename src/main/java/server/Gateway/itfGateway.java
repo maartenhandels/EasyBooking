@@ -14,7 +14,7 @@ public interface itfGateway
 {	
 	//Esto equivale a aplicar filtros
 	public ArrayList <Vuelo> search_all_flights ();
-	public List <Vuelo> search_flights (String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida);
+	public List <Vuelo> search_flights_with_filter (String aero_origen, String aero_dest);
 	
 	// Servicio externo - Pago
 	public String make_Payment (String email, float cant_total, String concepto);

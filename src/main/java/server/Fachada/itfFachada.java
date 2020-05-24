@@ -32,9 +32,9 @@ public interface itfFachada extends Remote{
 	public String create_User_Pago (Usuario us, float divisa) throws RemoteException;
 	
 	// Parte Fachada Aero
-	public ArrayList <Vuelo> search_all_flights () throws RemoteException;
+	public ArrayList <VueloDTO> search_all_flights () throws RemoteException;
 	public List <UsuarioDTO> getUsuariosAero() throws RemoteException;
-	public void search_flights(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida)throws RemoteException;
+	public ArrayList<VueloDTO> search_flights_with_filter(String aero_origen, String aero_dest)throws RemoteException;
 	public void aplicarFiltro(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida)throws RemoteException;
 	public void createReserva(String aero_origen, String aero_destino, ArrayList<Pasajero> pasajeros, Date salida, Date llegada)throws RemoteException;
 	public void eliminarReserva(String cod_reserva, String cod_pago)throws RemoteException;

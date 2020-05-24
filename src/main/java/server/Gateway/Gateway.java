@@ -438,9 +438,10 @@ public class Gateway implements itfGateway
 		
 	}
 	@Override
-	public List<Vuelo> search_flights(String aero_origen, String aero_dest, int num_pasajeros, double precio,
-			Date salida)
+	public ArrayList<Vuelo> search_flights_with_filter(String aero_origen, String aero_dest)
 	{
+		
+		ArrayList<Vuelo> vuelos = new ArrayList<Vuelo>();
 		
 		RestClient<Flight_parameters> client = new RestClient<Flight_parameters>(hostname, port_airlines);
 
@@ -450,19 +451,17 @@ public class Gateway implements itfGateway
 
 		String path = "/Airlines/Search_Flights";
 		System.out.println("Trying POST at " + path + " (Search All Flights message)");
-		System.out.println(
-				"CURL call: curl http://127.0.0.1:5002/Airlines/Search_Flights -d '{ }' -X POST -H \"Content-Type: application/json\" -v");
-
+		
 		Response response = null;
 		try {
-			response = client.makePostRequest(client.createInvocationBuilder(path), new Flight_parameters());
+			response = client.makePostRequest(client.createInvocationBuilder(path), new Flight_parameters(aero_origen, aero_dest));
 		} catch (Exception e) {
 			e.printStackTrace();
 			e.toString();
 		}
 
 		// JSON SIMPLE PARSER STUFF...
-		List<Flight_JSON> myFlightArray;
+		ArrayList<Flight_JSON> myFlightArray = new ArrayList<Flight_JSON>();
 		try {
 			String json_string = response.readEntity(String.class);
 			JSONParser myParser = new JSONParser();
@@ -472,8 +471,7 @@ public class Gateway implements itfGateway
 			flightsArray.stream().forEach(element -> System.out.println(element));
 
 			// Lambda expression to map JSONObjects inside JSONArray to flight objects
-			myFlightArray = (List) flightsArray.stream().map(element -> new Flight_JSON(element))
-					.collect(Collectors.toList());
+			myFlightArray = (ArrayList) flightsArray.stream().map(element -> new Flight_JSON(element)).collect(Collectors.toList());
 
 			System.out.println("Number of flights collected:");
 			System.out.println(myFlightArray.size());
@@ -498,7 +496,52 @@ public class Gateway implements itfGateway
 			e.printStackTrace();
 			e.toString();
 		}
-
-		return null;
+		
+		for(int i=0; i < myFlightArray.size(); i++) {
+			
+			Vuelo vuelo_aux = new Vuelo();
+			
+			vuelo_aux.setAeropuertoDestino(new Aeropuerto(myFlightArray.get(i).getAirportArrivalCode(),
+					myFlightArray.get(i).getAirportArrivalCity()));
+			
+			System.out.println("El aeropuerto destino en el gateway es: " + vuelo_aux.getAeropuertoDestino().getNombre());
+			
+			vuelo_aux.setAeropuertoSalida(new Aeropuerto(myFlightArray.get(i).getAirportDepartureCode(),
+					myFlightArray.get(i).getAirportDepartureCity()));
+			
+			System.out.println("El aeropuerto salida en el gateway es: " + vuelo_aux.getAeropuertoSalida().getNombre());
+			
+			vuelo_aux.setCodVuelo(myFlightArray.get(i).getCode());
+			
+			System.out.println("El codigo vuelo en el gateway es: " + vuelo_aux.getCodVuelo());
+			
+			ZoneId zoneId = ZoneId.systemDefault();
+			
+			long milliseconds = 0;
+		    milliseconds = myFlightArray.get(i).getDepartureDate(true).atZone(zoneId).toEpochSecond();
+			
+		    System.out.println("La fecha en long es: " + milliseconds);
+			vuelo_aux.setSalida(milliseconds);
+			
+			vuelo_aux.setAsientosLibres(myFlightArray.get(i).getFreeSeats());
+			System.out.println("Los asientos libres en el gateway son: " + vuelo_aux.getAsientosLibres());
+			
+			vuelo_aux.setAsientosTotales(myFlightArray.get(i).getTotalSeats());
+			System.out.println("Los asientos totales en el gateway son: " + vuelo_aux.getAsientosTotales());
+			
+			vuelo_aux.setPrecio(myFlightArray.get(i).getPrice());
+			
+			vuelo_aux.setAerolinea(new Aerolinea("123", "KLM"));
+			
+			vuelo_aux.setLlegada(0);
+			
+			vuelos.add(vuelo_aux);
+			
+			
+		}
+		
+		System.out.println("El tamaño del array 'vuelos' es: " + vuelos.size());
+		
+		return vuelos;
 	}
 }

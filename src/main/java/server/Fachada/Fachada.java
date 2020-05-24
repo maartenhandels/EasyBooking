@@ -161,9 +161,13 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	// PARTE FACHADA AERO
 	
 	@Override
-	public void search_flights(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida) 
+	public ArrayList<VueloDTO> search_flights_with_filter (String aero_origen, String aero_dest) 
 	{
-		servVuelo.search_flights(aero_origen, aero_dest, num_pasajeros, precio, salida);
+		ArrayList<Vuelo> vuelos = servVuelo.search_flights_with_filter(aero_origen, aero_dest);
+		ArrayList<VueloDTO> vuelosDTO= vuAssem.assembleTovueloDTO(vuelos);
+		
+		return vuelosDTO;
+		
 	}
 	
 	@Override
@@ -186,18 +190,18 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	}
 
 	@Override
-	public ArrayList<Vuelo> search_all_flights () 
+	public ArrayList<VueloDTO> search_all_flights () 
 	{
 		System.out.println("Entro en la Fachada de buscar vuelos...");
 		ArrayList <Vuelo> vuelos = servVuelo.search_all_flights ();
 		
 		System.out.println("El aeropuerto destino del primer vuelo en la fachada es: " + vuelos.get(0).getAeropuertoDestino().getNombre());
 		
-		// ArrayList<VueloDTO> vueloDTO= vuAssem.assembleTovueloDTO(vuelos);
+		ArrayList<VueloDTO> vuelosDTO= vuAssem.assembleTovueloDTO(vuelos);
 		
 		System.out.println("Voy a salir de la Fachada de buscar vuelos...");
 			
-		return vuelos;
+		return vuelosDTO;
 	}
 
 	@Override

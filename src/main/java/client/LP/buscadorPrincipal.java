@@ -100,13 +100,13 @@ public class buscadorPrincipal extends JFrame{
 	private JLabel lblNewLabel_2;
 	
 	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField textField_Origen;
+	private JTextField textField_Destino;
 	private JDateChooser datIda;
 	
 	private JButton btnNewButton_1;
 	private JButton button;
-	private JButton btnNewButton_2;
+	private JButton btnAplicarFiltros;
 	private JButton btnBuscar;
 	private JButton btnRealizarReserva;
 	private JButton btnLogout;
@@ -228,10 +228,10 @@ public class buscadorPrincipal extends JFrame{
 		lblAeropuertoOrigen.setBounds(10, 66, 142, 20);
 		panel_1.add(lblAeropuertoOrigen);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(15, 87, 183, 26);
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
+		textField_Origen = new JTextField();
+		textField_Origen.setBounds(15, 87, 183, 26);
+		panel_1.add(textField_Origen);
+		textField_Origen.setColumns(10);
 		
 		btnNewButton_1 = new JButton("");
 		btnNewButton_1.setIcon(new ImageIcon("src/main/resources/images/lupa.png"));
@@ -241,7 +241,7 @@ public class buscadorPrincipal extends JFrame{
 			
 			public void actionPerformed(ActionEvent e) {
 				//Aquí tendremos que aplicar un filtro para que solamente salgan vuelos con ese origen
-				if(textField_1.getText().isEmpty())
+				if(textField_Origen.getText().isEmpty())
 				{
 					JOptionPane.showMessageDialog(null,"No has seleccionado el origen del vuelo","Origen vuelo",JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -257,10 +257,10 @@ public class buscadorPrincipal extends JFrame{
 		lblAeropuertoDestino.setBounds(10, 126, 194, 20);
 		panel_1.add(lblAeropuertoDestino);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(15, 150, 183, 26);
-		panel_1.add(textField_2);
+		textField_Destino = new JTextField();
+		textField_Destino.setColumns(10);
+		textField_Destino.setBounds(15, 150, 183, 26);
+		panel_1.add(textField_Destino);
 		
 		button = new JButton("");
 		button.setIcon(new ImageIcon("src/main/resources/images/lupa.png"));
@@ -270,7 +270,7 @@ public class buscadorPrincipal extends JFrame{
 			
 			public void actionPerformed(ActionEvent e) {
 				//Aquí tendremos que aplicar un filtro para que solamente salgan vuelos con ese origen
-				if(textField_2.getText().isEmpty())
+				if(textField_Destino.getText().isEmpty())
 				{
 					JOptionPane.showMessageDialog(null,"No has seleccionado el destino del vuelo","Destino vuelo",JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -328,26 +328,34 @@ public class buscadorPrincipal extends JFrame{
 		datIda.setDate(date);
 		panel_1.add(datIda);
 			
-		btnNewButton_2 = new JButton("Aplicar filtros");
-		btnNewButton_2.setFont(new Font("Century Gothic", Font.BOLD, 16));
-		btnNewButton_2.setBounds(37, 505, 200, 29);
-		panel_1.add(btnNewButton_2);
-		btnNewButton_2.addActionListener(new ActionListener() {
+		btnAplicarFiltros = new JButton("Aplicar filtros");
+		btnAplicarFiltros.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		btnAplicarFiltros.setBounds(37, 505, 200, 29);
+		panel_1.add(btnAplicarFiltros);
+		btnAplicarFiltros.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				//Para coger info de spinner --> 
-				int num_pasajeros = (Integer) spinner.getValue();
-				//Para coger info de slider
-				int precio = slider.getValue();
-				Date fecha = datIda.getDate(); 
+				
+				
+				ArrayList<VueloDTO> vuelos = new ArrayList<VueloDTO>();
+			
+				// Para coger info de spinner --> 
+				// int num_pasajeros = (Integer) spinner.getValue();
+				// Para coger info de slider
+				// int precio = slider.getValue();
+				// Date fecha = datIda.getDate(); 
 
-					try {
-						controller.aplicarFiltro(textField_1.getText(), textField_2.getText(), num_pasajeros, precio, fecha);
-					} catch (RemoteException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					JOptionPane.showMessageDialog(null,"Filtros aplicados","Filtros",JOptionPane.INFORMATION_MESSAGE);
+				try {
+					// controller.aplicarFiltro(textField_1.getText(), textField_2.getText(), num_pasajeros, precio, fecha);
+					vuelos = controller.search_flights_with_filter(textField_Origen.getText(), textField_Destino.getText());
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				createListVuelos(vuelos, usuario);
+				
+				JOptionPane.showMessageDialog(null,"Filtros aplicados","Filtros",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		
@@ -362,7 +370,7 @@ public class buscadorPrincipal extends JFrame{
 				
 				System.out.println("Me dispongo a hacer la llamada...");
 				// ArrayList<VueloDTO> allFlights =  controller.getAllFlights();
-				ArrayList<Vuelo> allFlights = new ArrayList<Vuelo>();
+				ArrayList<VueloDTO> allFlights = new ArrayList<VueloDTO>();
 				try {
 					allFlights = controller.getAllFlights();
 				} catch (RemoteException e1) {
@@ -416,12 +424,12 @@ public class buscadorPrincipal extends JFrame{
 		contentPane.add(panel_2);
 		
 	}
-	public void createListVuelos(ArrayList<Vuelo>vuelos, UsuarioDTO usuario)
+	public void createListVuelos(ArrayList<VueloDTO>vuelos, UsuarioDTO usuario)
 	{
 		
 		rowHolderPanel.removeAll();
 		
-		for( Vuelo v:vuelos)
+		for( VueloDTO v:vuelos)
 		{
 			PanelVuelos panelV=new PanelVuelos(v, usuario, controller); 
 			panelV.setVisible(true);

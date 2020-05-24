@@ -9,8 +9,8 @@ import javax.swing.border.EmptyBorder;
 
 import client.Controller.Controller;
 import server.DTO.UsuarioDTO;
+import server.DTO.VueloDTO;
 import server.LD.Usuario;
-import server.LD.Vuelo;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -58,12 +58,12 @@ public class Pago extends JFrame {
 	private JButton btnRealizarPago;
 	
 	private static Controller controller;
-	private Vuelo vuelo;
+	private VueloDTO vuelo;
 	
 	/**
 	 * Create the frame.
 	 */
-	public Pago(Controller controller, Vuelo vuelo) 
+	public Pago(Controller controller, VueloDTO vuelo) 
 	{
 		Pago.controller = controller;
 		this.vuelo= vuelo;
@@ -71,7 +71,7 @@ public class Pago extends JFrame {
 		setVisible(true);
 	}
 	
-		public void init_componentes(Vuelo vuelo)
+		public void init_componentes(VueloDTO vuelo)
 		{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 658, 602);

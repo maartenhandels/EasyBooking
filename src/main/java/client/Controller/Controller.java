@@ -50,10 +50,10 @@ public class Controller {
 		return inicioSesion;
 	}
 	
-	public ArrayList<Vuelo> getAllFlights() throws RemoteException{
+	public ArrayList<VueloDTO> getAllFlights() throws RemoteException{
 		
 		System.out.println("Entro en el controler de buscar vuelos...");
-		ArrayList<Vuelo> vuelos = new ArrayList<Vuelo>();
+		ArrayList<VueloDTO> vuelos = new ArrayList<VueloDTO>();
 		
 		
 		try {
@@ -73,9 +73,11 @@ public class Controller {
 		return vuelos;
 	}
 	
-	public void search_flights(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida) throws RemoteException
+	public ArrayList<VueloDTO> search_flights_with_filter(String aero_origen, String aero_dest) throws RemoteException
 	{
-		fachada.search_flights(aero_origen, aero_dest, num_pasajeros, precio, salida);
+		ArrayList<VueloDTO> vuelos = fachada.search_flights_with_filter(aero_origen, aero_dest);
+		
+		return vuelos;
 	}
 	
 	public boolean eliminarUsuario(String email, String password) throws RemoteException
