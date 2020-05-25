@@ -249,7 +249,7 @@ public class Gateway implements itfGateway
 		Response response = null;
 		
 		try {
-			System.out.println("Entra en el trycatch cambiar contrasenya del Gateway \n");
+			System.out.println("Entra en el trycatch crearUsuario del Gateway \n");
 			response = client.makePostRequest(client.createInvocationBuilder(path),
 					new Usuario(nombre, apellido, email));
 		} catch (Exception e) {
