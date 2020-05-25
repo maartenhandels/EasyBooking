@@ -88,6 +88,8 @@ public class Gateway implements itfGateway
 	public String make_Payment(String email, float cant_total, String concepto) 
 	{
 		RestClient<Usuario> client = new RestClient<>(hostname, port_pay);
+		String idOperacion = "";
+		
 		System.out.println("-------------------------------------------------------");
         System.out.println("Make payment Server test (POST)");
         System.out.println("-------------------------------------------------------");
@@ -96,45 +98,80 @@ public class Gateway implements itfGateway
         System.out.println("Trying POST at " + path );
         System.out.println("CURL call: curl http://127.0.0.1:5001/Payments/Make_payment -d '{\"email\":\"inigo.lopezgazpio@deusto.es\", \"total_amount\":\"20.5\", \"concept\":\"Hello World Payment\" }' -X POST -H \"Content-Type: application/json\" -v");
 
-        try {
-            client.simplePrint(
+        System.out.println("El email que envio es: " + email);
+        System.out.println("La cant total que voy a pagar: " + cant_total);
+        System.out.println("el concepto es: " + concepto);
+        
+        Response response = null;
+        Simple_pass_result result_class_id = null;
+        
+        try 
+        {
+           response=
                     client.makePostRequest(
-                            client.createInvocationBuilder(path) , new Usuario(email, cant_total, concepto)
-                    )
-            );
+                            client.createInvocationBuilder(path) , 
+                            new Usuario(email, cant_total, concepto));
         }
-        catch (Exception e) { e.printStackTrace(); e.toString(); }
+        catch (Exception e) 
+        { 
+        	e.printStackTrace(); 
+        	e.toString(); 
+        }
 
-        System.out.println("Note that we obtain a false result because the user does not exist in the Payments microservice");
-
-		return null;
+        String reply = response.readEntity(String.class);
+        
+        try
+        {
+        	result_class_id = new Simple_pass_result(reply);
+        }
+        catch (Exception e) 
+        { 
+        	e.printStackTrace(); 
+        	e.toString(); 
+        }
+        
+        result_class_id.print();
+        
+        idOperacion = Long.toString(result_class_id.getContentNumber());
+        
+        System.out.println("el id devuelto es: " + idOperacion);
+        
+		return idOperacion;
 	}
 
 	@Override
 	public boolean create_User_Pago(Usuario us, float divisa) 
 	{
+		String responseString = null;
 		RestClient<Usuario> client = new RestClient<>(hostname, port_pay);
 		System.out.println("-------------------------------------------------------");
         System.out.println("Create_user Server test (POST)");
         System.out.println("-------------------------------------------------------");
 
         String path = "/Payments/Create_user";
-        System.out.println("Trying POST at " + path );
-        System.out.println("CURL call: curl http://127.0.0.1:5001/Payments/Create_user -d '{\"name\":\"Inigo\", \"last_name\":\"Lopez-Gazpio\", \"email\":\"inigo.lopezgazpio@deusto.es\", \"currency\":\"20.5\"}' -X POST -H \"Content-Type: application/json\" -v");
+        System.out.println("El nombre del usuario es: " + us.getNombre());
+        System.out.println("El apellido del usuario es: " + us.getApellido());
+        System.out.println("El email del usuario es: " + us.getEmail());
+        System.out.println("El saldo del usuario es: " + divisa);
+//        System.out.println("Trying POST at " + path );
+//        System.out.println("CURL call: curl http://127.0.0.1:5001/Payments/Create_user -d '{\"name\":\"Inigo\", \"last_name\":\"Lopez-Gazpio\", \"email\":\"inigo.lopezgazpio@deusto.es\", \"currency\":\"20.5\"}' -X POST -H \"Content-Type: application/json\" -v");
         
-		String responseString = null;
 		boolean create = false;
         
         try {
            responseString = client.makePostRequest(
                             client.createInvocationBuilder(path) , new Usuario(us,divisa)).readEntity(String.class);
-           
+         
            JSONParser myParser = new JSONParser();
            JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
            create = (boolean) myJsonObject.get("Result");
            System.out.println(create);
         }
-        catch (Exception e) { e.printStackTrace(); e.toString(); }
+        catch (Exception e) 
+        { 
+        	e.printStackTrace(); 
+        	e.toString(); 
+        }
 
 		return create;
 	}

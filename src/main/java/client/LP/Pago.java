@@ -144,18 +144,24 @@ public class Pago extends JFrame {
 						//tendremos que comprobar que es un numero
 						float divisa = Float.parseFloat(div);
 						
+						boolean verificar=false;
+						
 						try 
 						{
-							controller.create_User_Pago(us, divisa);
+							verificar = controller.create_User_Pago(us, divisa);
 						} catch (RemoteException e1) 
 						{
 							System.out.println("No se puede crear usuario pago");
 							e1.printStackTrace();
 						}
-//						dispose();
-//						Pago frame = new Pago(controller);
-//						frame.setVisible(true);
-//						frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						
+						if(verificar == true)
+						{
+							dispose();
+							Pago frame = new Pago(controller, vuelo);
+							frame.setVisible(true);
+							frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						}
 					}
 					else
 					{
