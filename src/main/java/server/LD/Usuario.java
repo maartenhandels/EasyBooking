@@ -24,8 +24,7 @@ public class Usuario implements Print, Serializable{
 	
 	@NotPersistent
 	private String password;
-	private Usuario us;
-	private float divisa;
+	private double currency;
 	private float cant_total;
 	private String concepto;
 	
@@ -69,17 +68,6 @@ public class Usuario implements Print, Serializable{
 	}
 	
 	/**
-	 * Este constructor sirve para create_user_pago
-	 * @param us
-	 * @param divisa
-	 */
-	
-	public Usuario(Usuario us, float divisa)
-	{
-		this.us = us;
-		this.divisa = divisa;
-	}
-	/**
 	 * Este constructor sirve para update_currency
 	 * @param email
 	 * @param divisa
@@ -88,7 +76,7 @@ public class Usuario implements Print, Serializable{
 	public Usuario(String email, float divisa)
 	{
 		this.email = email;
-		this.divisa = divisa;
+		this.currency = divisa;
 	}
 	
 	/**
@@ -179,6 +167,33 @@ public class Usuario implements Print, Serializable{
 	}
 	
 	
+	
+	public double getDivisa() 
+	{
+		return currency;
+	}
+	
+	public void setDivisa(double currency) 
+	{
+		this.currency = currency;
+	}
+	
+	public float getCant_total() 
+	{
+		return cant_total;
+	}
+	
+	public void setCant_total(float cant_total) {
+		this.cant_total = cant_total;
+	}
+	
+	public String getConcepto() {
+		return concepto;
+	}
+	
+	public void setConcepto(String concepto) {
+		this.concepto = concepto;
+	}
 	@Override
 	public void print() {
 		System.out.println(

@@ -157,6 +157,7 @@ public class Pago extends JFrame {
 						
 						if(verificar == true)
 						{
+							JOptionPane.showMessageDialog(null,"Usuario creado con exito, ya puede realizar el pago de la reserva","Usuario Pago",JOptionPane.INFORMATION_MESSAGE);
 							dispose();
 							Pago frame = new Pago(controller, vuelo);
 							frame.setVisible(true);

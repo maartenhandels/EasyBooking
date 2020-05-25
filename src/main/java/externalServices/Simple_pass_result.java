@@ -17,7 +17,7 @@ public class Simple_pass_result implements Print
         this.parser = new JSONParser();
         JSONObject json = (JSONObject) parser.parse(content);
         this.content = (String) json.get("Password");
-        System.out.println("La contra es: " + this.content);
+        System.out.println("El codigo es: " + this.content);
     }
 
     public String getContent()

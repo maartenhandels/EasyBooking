@@ -102,15 +102,29 @@ public class Gateway implements itfGateway
         System.out.println("La cant total que voy a pagar: " + cant_total);
         System.out.println("el concepto es: " + concepto);
         
-        Response response = null;
+        String idOP2 = "";
+        //Response response = null;
+        String responseString = null;
         Simple_pass_result result_class_id = null;
         
         try 
         {
-           response=
-                    client.makePostRequest(
-                            client.createInvocationBuilder(path) , 
-                            new Usuario(email, cant_total, concepto));
+//           response=
+//                    client.makePostRequest(
+//                            client.createInvocationBuilder(path) , 
+//                            new Usuario(email, cant_total, concepto));
+           
+           
+           responseString =
+                   client.makePostRequest(
+                           client.createInvocationBuilder(path) , new Usuario(email, cant_total, concepto)
+                      ).readEntity(String.class);
+               
+
+           JSONParser myParser = new JSONParser();
+           JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
+           idOP2 = (String) myJsonObject.get("Result");
+           System.out.println(idOP2);
         }
         catch (Exception e) 
         { 
@@ -118,30 +132,33 @@ public class Gateway implements itfGateway
         	e.toString(); 
         }
 
-        String reply = response.readEntity(String.class);
+//        String reply = response.readEntity(String.class);
+//        
+//        System.out.println(reply);
         
-        try
-        {
-        	result_class_id = new Simple_pass_result(reply);
-        }
-        catch (Exception e) 
-        { 
-        	e.printStackTrace(); 
-        	e.toString(); 
-        }
+//        try
+//        {
+//        	result_class_id = new Simple_pass_result(reply);
+//        }
+//        catch (Exception e) 
+//        { 
+//        	e.printStackTrace(); 
+//        	e.toString(); 
+//        }
         
-        result_class_id.print();
+       System.out.println(responseString); 
         
-        idOperacion = Long.toString(result_class_id.getContentNumber());
+        //idOperacion= result_class_id.getContent();
         
-        System.out.println("el id devuelto es: " + idOperacion);
+        System.out.println("el id devuelto es: " + idOP2);
         
-		return idOperacion;
+		return idOP2;
 	}
 
 	@Override
 	public boolean create_User_Pago(Usuario us, float divisa) 
 	{
+		us.setDivisa(divisa);
 		String responseString = null;
 		RestClient<Usuario> client = new RestClient<>(hostname, port_pay);
 		System.out.println("-------------------------------------------------------");
@@ -160,7 +177,7 @@ public class Gateway implements itfGateway
         
         try {
            responseString = client.makePostRequest(
-                            client.createInvocationBuilder(path) , new Usuario(us,divisa)).readEntity(String.class);
+                            client.createInvocationBuilder(path) , us).readEntity(String.class);
          
            JSONParser myParser = new JSONParser();
            JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
@@ -179,7 +196,7 @@ public class Gateway implements itfGateway
 	@Override
 	public boolean update_currency(String email, float divisa) 
 	{
-		System.out.println("Entro en el gatewat de change password");
+		System.out.println("Entro en el gateway de change password");
 
 		RestClient<Usuario> client = new RestClient<>(hostname, port_pay);
 		System.out.println("-------------------------------------------------------");
@@ -192,18 +209,19 @@ public class Gateway implements itfGateway
 		String responseString = null;
 		boolean update = false;
 		
-		System.out.println("El email que se va a mandar es: " + email);
-        System.out.println("La divisa que se va a mandar es: " + divisa);
+		Usuario usuario1 = new Usuario(email, divisa);
+		System.out.println("El email que se va a mandar es: " + usuario1.getEmail());
+        System.out.println("La divisa que se va a mandar es: " + usuario1.getDivisa());
       
 		try {
 			responseString =
 					client.makePutRequest(client.createInvocationBuilder(path),
-					new Usuario(email, divisa)).readEntity(String.class);
+					usuario1).readEntity(String.class);
 			
 			 JSONParser myParser = new JSONParser();
              JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
              update = (boolean) myJsonObject.get("Result");
-             System.out.println(update);
+             System.out.println("El resultado es: " + update);
              
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -306,6 +324,7 @@ public class Gateway implements itfGateway
 		}
 
 		result_class_password.print();
+		
 
 		contrasenya = Long.toString(result_class_password.getContentNumber());
 		
