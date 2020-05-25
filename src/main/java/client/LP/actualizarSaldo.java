@@ -71,22 +71,22 @@ public class actualizarSaldo extends JFrame {
 		panel.add(lblActualizarSaldoCuenta);
 		
 		lblEmail = new JLabel("Email");
-		lblEmail.setBounds(15, 57, 69, 20);
-		lblEmail.setFont(new Font("Century Gothic", Font.PLAIN, 18));
+		lblEmail.setBounds(15, 57, 92, 20);
+		lblEmail.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		contentPane.add(lblEmail);
 		
 		textField = new JTextField();
-		textField.setBounds(53, 93, 328, 26);
+		textField.setBounds(15, 90, 328, 26);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		lblNuevaCantidad = new JLabel("Nueva cantidad");
-		lblNuevaCantidad.setBounds(15, 144, 141, 20);
-		lblNuevaCantidad.setFont(new Font("Century Gothic", Font.PLAIN, 18));
+		lblNuevaCantidad.setBounds(15, 144, 191, 20);
+		lblNuevaCantidad.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		contentPane.add(lblNuevaCantidad);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(53, 185, 328, 26);
+		textField_1.setBounds(15, 184, 328, 26);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
@@ -109,12 +109,14 @@ public class actualizarSaldo extends JFrame {
 						String email = textField.getText();
 						String div = textField_1.getText();
 						
+						System.out.println("El email que manda es: " + email);
+						
 						//tendremos que comprobar que es un numero
 						float divisa = Float.parseFloat(div);
 						
 						try 
 						{
-							controller.actualizarSaldo(email, divisa);
+							controller.update_currency(email, divisa);
 						} catch (RemoteException e1) 
 						{
 							System.out.println("Datos actualizar saldo incorrectos");

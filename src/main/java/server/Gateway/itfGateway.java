@@ -18,7 +18,7 @@ public interface itfGateway
 	
 	// Servicio externo - Pago
 	public String make_Payment (String email, float cant_total, String concepto);
-	public String create_User_Pago (Usuario us, float divisa);
+	public boolean create_User_Pago (Usuario us, float divisa);
 	public boolean update_currency (String email, float divisa);
 	
 	// Servicio externo - Autenticacion

@@ -111,7 +111,7 @@ public class Gateway implements itfGateway
 	}
 
 	@Override
-	public String create_User_Pago(Usuario us, float divisa) 
+	public boolean create_User_Pago(Usuario us, float divisa) 
 	{
 		RestClient<Usuario> client = new RestClient<>(hostname, port_pay);
 		System.out.println("-------------------------------------------------------");
@@ -121,22 +121,29 @@ public class Gateway implements itfGateway
         String path = "/Payments/Create_user";
         System.out.println("Trying POST at " + path );
         System.out.println("CURL call: curl http://127.0.0.1:5001/Payments/Create_user -d '{\"name\":\"Inigo\", \"last_name\":\"Lopez-Gazpio\", \"email\":\"inigo.lopezgazpio@deusto.es\", \"currency\":\"20.5\"}' -X POST -H \"Content-Type: application/json\" -v");
-
+        
+		String responseString = null;
+		boolean create = false;
+        
         try {
-            client.simplePrint(
-                    client.makePostRequest(
-                            client.createInvocationBuilder(path) , new Usuario(us,divisa)
-                    )
-            );
+           responseString = client.makePostRequest(
+                            client.createInvocationBuilder(path) , new Usuario(us,divisa)).readEntity(String.class);
+           
+           JSONParser myParser = new JSONParser();
+           JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
+           create = (boolean) myJsonObject.get("Result");
+           System.out.println(create);
         }
         catch (Exception e) { e.printStackTrace(); e.toString(); }
 
-		return null;
+		return create;
 	}
 
 	@Override
 	public boolean update_currency(String email, float divisa) 
 	{
+		System.out.println("Entro en el gatewat de change password");
+
 		RestClient<Usuario> client = new RestClient<>(hostname, port_pay);
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Update currency Server test (POST)");
@@ -144,20 +151,29 @@ public class Gateway implements itfGateway
 
 		String path = "/Payments/Update_currency";
 		System.out.println("Trying POST at " + path);
-		System.out.println(
-				"CURL call: curl http://127.0.0.1:5001/Payments/Update_currency -d '{\"email\":\"inigo.lopezgazpio@deusto.es\", \"currency\":\"100\"}' -X PUT -H \"Content-Type: application/json\" -v");
 
+		String responseString = null;
+		boolean update = false;
+		
+		System.out.println("El email que se va a mandar es: " + email);
+        System.out.println("La divisa que se va a mandar es: " + divisa);
+      
 		try {
-			client.simplePrint(client.makePutRequest(client.createInvocationBuilder(path),
-					new Usuario(email, divisa)));
+			responseString =
+					client.makePutRequest(client.createInvocationBuilder(path),
+					new Usuario(email, divisa)).readEntity(String.class);
+			
+			 JSONParser myParser = new JSONParser();
+             JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
+             update = (boolean) myJsonObject.get("Result");
+             System.out.println(update);
+             
 		} catch (Exception e) {
 			e.printStackTrace();
 			e.toString();
 		}
-		return false;
+		return update;
 	}
-	
-	
 	
 	// EXTERNAL SERVICE: AUTHENTICATION
 
@@ -271,17 +287,21 @@ public class Gateway implements itfGateway
 		System.out.println("--------------------------------------------------------");
 		System.out.println("Authentication Change Password Server test (POST)");
 		System.out.println("--------------------------------------------------------");
+		
+		System.out.println("La contrasenya que se va a cambiar es de: " + email);
+        System.out.println("El password que se va a cambiar es: " + old_password);
+        System.out.println("El nuevo password es: " + new_password);
 
 		String path = "/Authentication/Change_password";
 		System.out.println("Trying POST at " + path + " (Change_password resource)");
 		boolean change = false;
 		
-//		System.out.println(
-//				"CURL call: curl http://127.0.0.1:5000/Authentication/Change_password -d '{\"email\":\"inigo.lopezgazpio@deusto.es\", \"password\":\"XXX\", \"password_new\":\"XXX\"}' -X PUT -H \"Content-Type: application/json\" -v");
+		System.out.println(
+				"CURL call: curl http://127.0.0.1:5000/Authentication/Change_password -d '{\"email\":\"inigo.lopezgazpio@deusto.es\", \"password\":\"XXX\", \"password_new\":\"XXX\"}' -X PUT -H \"Content-Type: application/json\" -v");
 
 		try {
 			responseString = client.makePutRequest(client.createInvocationBuilder(path),
-					new Usuario(email, String.valueOf(new_password), old_password)).readEntity(String.class); 
+					new Usuario(email, new_password)).readEntity(String.class); 
 			JSONParser myParser = new JSONParser();
             JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
             change = (boolean) myJsonObject.get("Result");

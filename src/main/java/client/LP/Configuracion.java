@@ -153,6 +153,7 @@ public class Configuracion extends JFrame{
 						String email = textFieldEmail.getText();
 						String new_password = String.valueOf(txtFieldContNueva);
 						String old_password = String.valueOf(txtFieldContAnt);
+						System.out.println("La contrasenya nueva en LP es: " + new_password);
 						try {
 							controller.change_password(email, old_password, new_password);
 						} catch (RemoteException e1) {
@@ -283,7 +284,7 @@ public class Configuracion extends JFrame{
 		panel.setBounds(0, 258, 728, 60);
 		getContentPane().add(panel);
 		
-		lblConfig = new JLabel("Ajustes");
+		lblConfig = new JLabel("- Ajustes -");
 		lblConfig.setFont(new Font("Century Gothic", Font.BOLD, 30));
 		panel.add(lblConfig);
 	}

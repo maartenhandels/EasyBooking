@@ -1,5 +1,6 @@
 package server.LD;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
-public class Reserva {
+public class Reserva implements Serializable{
 
 	@PrimaryKey
 	private String codReserva; // Habría que generar de alguna manera un numero random

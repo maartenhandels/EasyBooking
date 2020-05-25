@@ -1,5 +1,6 @@
 package server.LD;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import externalServices.Print;
 
 
 @PersistenceCapable
-public class Usuario implements Print{
+public class Usuario implements Print, Serializable{
     
 	@PrimaryKey
 	private String email;

@@ -121,11 +121,12 @@ public class Controller {
 		return fachada.realizarPago(email, cant_total, concepto);
 	}
 	
-	public void actualizarSaldo(String email, float divisa)throws RemoteException
+	public boolean update_currency(String email, float divisa)throws RemoteException
 	{
-		fachada.actualizarSaldo(email, divisa);
+		System.out.println("Entro en el controller de update_currency");
+		return fachada.update_currency(email, divisa);
 	}
-	public String create_User_Pago (Usuario us, float divisa)throws RemoteException
+	public boolean create_User_Pago (Usuario us, float divisa)throws RemoteException
 	{
 		return fachada.create_User_Pago(us, divisa);
 	}
