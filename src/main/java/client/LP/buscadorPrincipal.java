@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -55,6 +59,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.swing.JScrollPane;
@@ -298,21 +303,31 @@ public class buscadorPrincipal extends JFrame{
 		lblRangoDePrecio.setBounds(10, 277, 204, 20);
 		panel_1.add(lblRangoDePrecio);
 		
-		slider = new JSlider();
+		slider = new JSlider(50, 1000, 1000);
 		slider.setToolTipText("");
-		slider.setMinimum(25);
-		slider.setMaximum(500);
+//		slider.setMinimum(50);
+//		slider.setMaximum(1000);
 		slider.setBounds(37, 333, 200, 26);
 		panel_1.add(slider);
 		
-		label_1 = new JLabel("25");
+		label_1 = new JLabel("De: 50 ");
 		label_1.setFont(new Font("Century Gothic", Font.PLAIN, 15));
-		label_1.setBounds(37, 313, 25, 20);
+		label_1.setBounds(37, 313, 100, 20);
 		panel_1.add(label_1);
 		
-		label_2 = new JLabel("500");
+		slider.addChangeListener(new ChangeListener() {
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				label_2.setText("A: " + String.valueOf(slider.getValue()));
+				
+			}
+			
+		});
+		
+		label_2 = new JLabel("A: 1000");
 		label_2.setFont(new Font("Century Gothic", Font.PLAIN, 15));
-		label_2.setBounds(217, 313, 38, 20);
+		label_2.setBounds(170, 313, 100, 20);
 		panel_1.add(label_2);
 		
 		lblFechaSalida = new JLabel("Fecha salida (dd/mm/aaaa)");
@@ -345,16 +360,63 @@ public class buscadorPrincipal extends JFrame{
 				
 				ArrayList<VueloDTO> vuelos = new ArrayList<VueloDTO>();
 				
+				boolean filtroOrigen = false; 
+				boolean filtroDestino = false;
+				boolean filtroAsientos = false;
+				boolean filtroFecha = false;
+				boolean filtroPrecio = false;
 				
-				if(textField_Origen.getText().isEmpty() == false && textField_Destino.getText().isEmpty() == false) 
+				if(textField_Origen.getText().isEmpty() == false) {
+					filtroOrigen = true;
+				}
+				
+				if(textField_Destino.getText().isEmpty() == false) {
+					filtroDestino = true;
+				}
+				
+				if((Integer) spinner.getValue() > 1) {
+					filtroAsientos = true;
+				}
+				
+				Date today = Calendar.getInstance().getTime();
+				if(datIda.getDate().after(today)) {
+					filtroFecha = true;
+				}
+				
+				if(slider.getValue() < 1000) {
+					filtroPrecio = true;
+				}
+				
+				
+				if(filtroOrigen && filtroDestino) 
 				{
-					try {
-						vuelos = controller.search_flights_with_filter_1(textField_Origen.getText(), textField_Destino.getText());
-					} catch (RemoteException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+					if(filtroAsientos)
+					{
+						if(filtroPrecio)
+						{
+							if(filtroFecha) {
+								// Llamada a filtros con origen, destino, precio y fecha
+							}else {
+								// Llamada a filtros con origen, destino y precio
+							}
+						}else {
+							// Llamada a filtros con origen destino y asientos
+						}
+						
+					}else {
+						
+						// Llamada a filtros con origen y destino
+						try {
+							vuelos = controller.search_flights_with_filter_1(textField_Origen.getText(), textField_Destino.getText());
+						} catch (RemoteException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					}
+					
 				}else {
+					
+					// Llamada sin filtros
 					try {
 						vuelos = controller.getAllFlights();
 					} catch (RemoteException e1) {
