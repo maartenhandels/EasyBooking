@@ -33,8 +33,6 @@ import javax.swing.JButton;
  */
 public class Configuracion extends JFrame{
 	private JTextField textField_1;
-	private JPasswordField txtFieldContNueva;
-	
 	private JPanel panel;
 	private JPanel panel_1;
 	private JPanel panel_2;
@@ -60,6 +58,7 @@ public class Configuracion extends JFrame{
 
 	private static Controller controller;
 	private JPasswordField txtFieldContAnt;
+	private JPasswordField txtFieldContNueva;
 	private JLabel lblEmail1;
 	private JTextField textFieldEmail;
 	private JTextField textFieldEmail2;
@@ -162,6 +161,8 @@ public class Configuracion extends JFrame{
 						}
 						
 						JOptionPane.showMessageDialog(null, "Contrasenya cambiada correctamente");
+						InicioSesion_Registro reg = new InicioSesion_Registro(controller);
+						reg.setVisible(true);
 					}
 					else
 					{
