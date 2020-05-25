@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import externalServices.Flight_parameters;
 import server.DTO.UsuarioDTO;
 import server.Gateway.Gateway;
 import server.LD.Pasajero;
@@ -14,9 +15,9 @@ public class AppServiceVuelo {
 	
 	private Gateway gateway = new Gateway();
 	
-	public ArrayList<Vuelo> search_flights_with_filter (String aero_origen, String aero_dest) 
+	public ArrayList<Vuelo> search_flights_with_filter (Flight_parameters parametros) 
 	{
-		ArrayList<Vuelo> vuelos = gateway.search_flights_with_filter(aero_origen, aero_dest);
+		ArrayList<Vuelo> vuelos = gateway.search_flights_with_filter(parametros);
 		
 		return vuelos;
 	}

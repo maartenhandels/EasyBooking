@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import externalServices.Flight_parameters;
 import server.DTO.UsuarioDTO;
 import server.DTO.VueloDTO;
 import server.LD.Pasajero;
@@ -14,7 +15,7 @@ public interface itfGateway
 {	
 	//Esto equivale a aplicar filtros
 	public ArrayList <Vuelo> search_all_flights ();
-	public List <Vuelo> search_flights_with_filter (String aero_origen, String aero_dest);
+	public List <Vuelo> search_flights_with_filter (Flight_parameters parametros);
 	
 	// Servicio externo - Pago
 	public String make_Payment (String email, float cant_total, String concepto);

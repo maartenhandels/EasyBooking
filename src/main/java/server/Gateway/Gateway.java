@@ -458,7 +458,7 @@ public class Gateway implements itfGateway
 		
 	}
 	@Override
-	public ArrayList<Vuelo> search_flights_with_filter(String aero_origen, String aero_dest)
+	public ArrayList<Vuelo> search_flights_with_filter(Flight_parameters parametros)
 	{
 		
 		ArrayList<Vuelo> vuelos = new ArrayList<Vuelo>();
@@ -474,7 +474,7 @@ public class Gateway implements itfGateway
 		
 		Response response = null;
 		try {
-			response = client.makePostRequest(client.createInvocationBuilder(path), new Flight_parameters(aero_origen, aero_dest));
+			response = client.makePostRequest(client.createInvocationBuilder(path), parametros);
 		} catch (Exception e) {
 			e.printStackTrace();
 			e.toString();

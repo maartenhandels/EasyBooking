@@ -336,21 +336,31 @@ public class buscadorPrincipal extends JFrame{
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				
-				ArrayList<VueloDTO> vuelos = new ArrayList<VueloDTO>();
-			
 				// Para coger info de spinner --> 
 				// int num_pasajeros = (Integer) spinner.getValue();
 				// Para coger info de slider
 				// int precio = slider.getValue();
-				// Date fecha = datIda.getDate(); 
-
-				try {
-					// controller.aplicarFiltro(textField_1.getText(), textField_2.getText(), num_pasajeros, precio, fecha);
-					vuelos = controller.search_flights_with_filter(textField_Origen.getText(), textField_Destino.getText());
-				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				// Date fecha = datIda.getDate();
+				
+				
+				ArrayList<VueloDTO> vuelos = new ArrayList<VueloDTO>();
+				
+				
+				if(textField_Origen.getText().isEmpty() == false && textField_Destino.getText().isEmpty() == false) 
+				{
+					try {
+						vuelos = controller.search_flights_with_filter_1(textField_Origen.getText(), textField_Destino.getText());
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}else {
+					try {
+						vuelos = controller.getAllFlights();
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 				
 				createListVuelos(vuelos, usuario);

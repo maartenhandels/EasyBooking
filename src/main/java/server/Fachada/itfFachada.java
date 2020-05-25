@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import externalServices.Flight_parameters;
 import server.DTO.UsuarioDTO;
 import server.DTO.VueloDTO;
 import server.LD.Aeropuerto;
@@ -34,7 +35,7 @@ public interface itfFachada extends Remote{
 	// Parte Fachada Aero
 	public ArrayList <VueloDTO> search_all_flights () throws RemoteException;
 	public List <UsuarioDTO> getUsuariosAero() throws RemoteException;
-	public ArrayList<VueloDTO> search_flights_with_filter(String aero_origen, String aero_dest)throws RemoteException;
+	public ArrayList<VueloDTO> search_flights_with_filter_1(String origen, String destino)throws RemoteException;
 	public void aplicarFiltro(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida)throws RemoteException;
 	public void createReserva(String aero_origen, String aero_destino, ArrayList<Pasajero> pasajeros, Date salida, Date llegada)throws RemoteException;
 	public void eliminarReserva(String cod_reserva, String cod_pago)throws RemoteException;

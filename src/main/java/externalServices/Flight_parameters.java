@@ -1,10 +1,15 @@
 package externalServices;
 
+import java.io.Serializable;
+
 import externalServices.Print;
 
-public class Flight_parameters implements Print
+public class Flight_parameters implements Print, Serializable
 {
-    private String airport_departure_name;
+	
+	private static final long serialVersionUID = 1L;
+	
+	private String airport_departure_name;
     private String airport_arrival_name;
     private int free_seats;
     private double price;

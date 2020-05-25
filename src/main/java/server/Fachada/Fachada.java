@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import externalServices.Flight_parameters;
 import server.AppService.AppServiceAuth;
 import server.AppService.AppServicePago;
 import server.AppService.AppServiceVuelo;
@@ -162,9 +163,11 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	// PARTE FACHADA AERO
 	
 	@Override
-	public ArrayList<VueloDTO> search_flights_with_filter (String aero_origen, String aero_dest) 
+	public ArrayList<VueloDTO> search_flights_with_filter_1 (String origen, String destino) 
 	{
-		ArrayList<Vuelo> vuelos = servVuelo.search_flights_with_filter(aero_origen, aero_dest);
+		Flight_parameters parametros= new Flight_parameters(origen, destino);
+		
+		ArrayList<Vuelo> vuelos = servVuelo.search_flights_with_filter(parametros);
 		ArrayList<VueloDTO> vuelosDTO= vuAssem.assembleTovueloDTO(vuelos);
 		
 		return vuelosDTO;
