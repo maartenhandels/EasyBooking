@@ -137,6 +137,9 @@ public class Configuracion extends JFrame{
 		btnCambiar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
+				
+				System.out.println("En el campo de contraseña nueva sale: " + String.valueOf(txtFieldContNueva.getPassword()));
+				System.out.println("En el campo de contraseña vieja sale: " + String.valueOf(txtFieldContAnt.getPassword()));
 				if(textFieldEmail.getText().isEmpty() || String.valueOf(txtFieldContNueva).isEmpty() || String.valueOf(txtFieldContAnt).isEmpty())
 				{
 					JOptionPane.showMessageDialog(null,"Te faltan campos de información por rellenar","CONFIGURACION",JOptionPane.INFORMATION_MESSAGE);
@@ -145,15 +148,17 @@ public class Configuracion extends JFrame{
 				{
 					if (ValidarMail(textFieldEmail.getText()) == true )
 					{
-						String contra = String.valueOf(txtFieldContAnt);
+						String contra = String.valueOf(txtFieldContAnt.getPassword());
 						System.out.println("La contrasenya en LP es: " + contra);
 						
 						//Enviar a servicio externo autenticación --> Si es incorrecto decirle que se registre/revise datos
-						dispose();
+						
 						String email = textFieldEmail.getText();
-						String new_password = String.valueOf(txtFieldContNueva);
-						String old_password = String.valueOf(txtFieldContAnt);
+						String new_password = String.valueOf(txtFieldContNueva.getPassword());
+						String old_password = String.valueOf(txtFieldContAnt.getPassword());
 						System.out.println("La contrasenya nueva en LP es: " + new_password);
+						System.out.println("La contrasenya vieja en LP es: " + old_password);
+						
 						try {
 							controller.change_password(email, old_password, new_password);
 						} catch (RemoteException e1) {
@@ -162,6 +167,7 @@ public class Configuracion extends JFrame{
 						}
 						
 						JOptionPane.showMessageDialog(null, "Contrasenya cambiada correctamente");
+						dispose();
 						InicioSesion_Registro reg = new InicioSesion_Registro(controller);
 						reg.setVisible(true);
 					}
