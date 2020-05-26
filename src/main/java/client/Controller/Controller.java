@@ -148,14 +148,14 @@ public class Controller {
 		return fachada.realizarPago(email, cant_total, concepto);
 	}
 	
-	public boolean update_currency(String email, float divisa)throws RemoteException
+	public boolean update_currency(String email, float currency)throws RemoteException
 	{
 		System.out.println("Entro en el controller de update_currency");
-		return fachada.update_currency(email, divisa);
+		return fachada.update_currency(email, currency);
 	}
-	public boolean create_User_Pago (Usuario us, float divisa)throws RemoteException
+	public boolean create_User_Pago (Usuario us, float currency)throws RemoteException
 	{
-		return fachada.create_User_Pago(us, divisa);
+		return fachada.create_User_Pago(us, currency);
 	}
 	public void cerrarSesion ()
 	{

@@ -144,18 +144,18 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	}
 	
 	@Override
-	public boolean update_currency(String email, float divisa)  throws RemoteException 
+	public boolean update_currency(String email, float currency)  throws RemoteException 
 	{
 		System.out.println("Entro en la fachada de change password");
-		return servPago.update_currency(email, divisa);
+		return servPago.update_currency(email, currency);
 		
 	}
 	
 	@Override
-	public boolean create_User_Pago(Usuario us, float divisa) throws RemoteException 
+	public boolean create_User_Pago(Usuario us, float currency) throws RemoteException 
 	{
 
-		return servPago.create_User_Pago(us, divisa);
+		return servPago.create_User_Pago(us, currency);
 	}
 	
 	

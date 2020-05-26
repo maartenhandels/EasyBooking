@@ -118,7 +118,7 @@ public class Pago extends JFrame {
 		panel_1.add(lblCrearCuenta);
 		
 		btnCrear = new JButton("Crear");
-		btnCrear.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		btnCrear.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnCrear.setBounds(90, 420, 115, 29);
 		panel_1.add(btnCrear);
 		btnCrear.addActionListener(new ActionListener() {
@@ -176,7 +176,7 @@ public class Pago extends JFrame {
 		lblNombre = new JLabel("Nombre");
 		lblNombre.setForeground(Color.WHITE);
 		lblNombre.setBounds(15, 52, 155, 20);
-		lblNombre.setFont(new Font("Century Gothic", Font.BOLD, 22));
+		lblNombre.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		panel_1.add(lblNombre);
 		
 		textField_Nombre = new JTextField();
@@ -187,7 +187,7 @@ public class Pago extends JFrame {
 		lblApellido = new JLabel("Apellido");
 		lblApellido.setForeground(Color.WHITE);
 		lblApellido.setBounds(15, 140, 136, 20);
-		lblApellido.setFont(new Font("Century Gothic", Font.BOLD, 22));
+		lblApellido.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		panel_1.add(lblApellido);
 		
 		textField_Ape = new JTextField();
@@ -198,7 +198,7 @@ public class Pago extends JFrame {
 		lblEmail = new JLabel("Email");
 		lblEmail.setForeground(Color.WHITE);
 		lblEmail.setBounds(15, 229, 136, 20);
-		lblEmail.setFont(new Font("Century Gothic", Font.BOLD, 22));
+		lblEmail.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		panel_1.add(lblEmail);
 		
 		textField_Email = new JTextField();
@@ -209,7 +209,7 @@ public class Pago extends JFrame {
 		lblSaldoInicialCuenta = new JLabel("Saldo inicial cuenta");
 		lblSaldoInicialCuenta.setForeground(Color.WHITE);
 		lblSaldoInicialCuenta.setBounds(15, 321, 250, 20);
-		lblSaldoInicialCuenta.setFont(new Font("Century Gothic", Font.BOLD, 22));
+		lblSaldoInicialCuenta.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		panel_1.add(lblSaldoInicialCuenta);
 		
 		textField_Saldo_Ini = new JTextField();
@@ -231,16 +231,16 @@ public class Pago extends JFrame {
 		lblNewLabel.setBounds(40, 0, 210, 48);
 		panel_2.add(lblNewLabel);
 		
-		lblCantidadAPagar = new JLabel("Cantidad a pagar");
+		lblCantidadAPagar = new JLabel("Cantidad");
 		lblCantidadAPagar.setForeground(Color.WHITE);
 		lblCantidadAPagar.setBounds(15, 51, 212, 26);
-		lblCantidadAPagar.setFont(new Font("Century Gothic", Font.BOLD, 22));
+		lblCantidadAPagar.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		panel_2.add(lblCantidadAPagar);
 		
 		lblEmail_1 = new JLabel("Email");
 		lblEmail_1.setForeground(Color.WHITE);
 		lblEmail_1.setBounds(15, 229, 69, 20);
-		lblEmail_1.setFont(new Font("Century Gothic", Font.BOLD, 22));
+		lblEmail_1.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		panel_2.add(lblEmail_1);
 		
 		textField_Email_Pago = new JTextField();
@@ -249,7 +249,7 @@ public class Pago extends JFrame {
 		textField_Email_Pago.setColumns(10);
 		
 		btnRealizarPago = new JButton("Realizar Pago");
-		btnRealizarPago.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		btnRealizarPago.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnRealizarPago.setBounds(66, 423, 172, 29);
 		panel_2.add(btnRealizarPago);
 		btnRealizarPago.addActionListener(new ActionListener() {
@@ -301,13 +301,13 @@ public class Pago extends JFrame {
 		panel_3.setLayout(null);
 		
 		lblAquiSaldrPrecio = new JLabel(Float.toString(vuelo.getPrecio()) + "€");
-		lblAquiSaldrPrecio.setBounds(63, 54, 128, 20);
+		lblAquiSaldrPrecio.setBounds(93, 50, 117, 20);
 		lblAquiSaldrPrecio.setFont(new Font("Century Gothic", Font.BOLD, 26));
 		panel_3.add(lblAquiSaldrPrecio);
 		
 		lblConcepto = new JLabel("Concepto");
 		lblConcepto.setForeground(Color.WHITE);
-		lblConcepto.setFont(new Font("Century Gothic", Font.BOLD, 22));
+		lblConcepto.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblConcepto.setBounds(15, 323, 137, 20);
 		lblAquiSaldrPrecio.setFont(new Font("Century Gothic", Font.PLAIN, 18));
 		panel_2.add(lblConcepto);

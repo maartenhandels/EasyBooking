@@ -24,7 +24,7 @@ public class Usuario implements Print, Serializable{
 	
 	@NotPersistent
 	private String password;
-	private double currency;
+	private float currency;
 	private float cant_total;
 	private String concepto;
 	
@@ -168,12 +168,12 @@ public class Usuario implements Print, Serializable{
 	
 	
 	
-	public double getDivisa() 
+	public float getDivisa() 
 	{
 		return currency;
 	}
 	
-	public void setDivisa(double currency) 
+	public void setDivisa(float currency) 
 	{
 		this.currency = currency;
 	}

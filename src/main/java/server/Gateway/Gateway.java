@@ -85,7 +85,7 @@ public class Gateway implements itfGateway
 	// EXTERNAL SERVICE: PAYMENT
 	
 	@Override
-	public String make_Payment(String email, float cant_total, String concepto) 
+	public String make_Payment(String email, float total_amount, String concept) 
 	{
 		RestClient<Usuario> client = new RestClient<>(hostname, port_pay);
 		String idOperacion = "";
@@ -99,8 +99,8 @@ public class Gateway implements itfGateway
         System.out.println("CURL call: curl http://127.0.0.1:5001/Payments/Make_payment -d '{\"email\":\"inigo.lopezgazpio@deusto.es\", \"total_amount\":\"20.5\", \"concept\":\"Hello World Payment\" }' -X POST -H \"Content-Type: application/json\" -v");
 
         System.out.println("El email que envio es: " + email);
-        System.out.println("La cant total que voy a pagar: " + cant_total);
-        System.out.println("el concepto es: " + concepto);
+        System.out.println("La cant total que voy a pagar: " + total_amount);
+        System.out.println("el concepto es: " + concept);
         
         String idOP2 = "";
         //Response response = null;
@@ -117,13 +117,13 @@ public class Gateway implements itfGateway
            
            responseString =
                    client.makePostRequest(
-                           client.createInvocationBuilder(path) , new Usuario(email, cant_total, concepto)
+                           client.createInvocationBuilder(path) , new Usuario(email, total_amount, concept)
                       ).readEntity(String.class);
                
 
            JSONParser myParser = new JSONParser();
            JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
-           idOP2 = (String) myJsonObject.get("Result");
+           idOP2 =  (String)myJsonObject.get("Result");
            System.out.println(idOP2);
         }
         catch (Exception e) 
@@ -135,7 +135,7 @@ public class Gateway implements itfGateway
 //        String reply = response.readEntity(String.class);
 //        
 //        System.out.println(reply);
-        
+//        
 //        try
 //        {
 //        	result_class_id = new Simple_pass_result(reply);
@@ -145,10 +145,10 @@ public class Gateway implements itfGateway
 //        	e.printStackTrace(); 
 //        	e.toString(); 
 //        }
-        
-       System.out.println(responseString); 
-        
-        //idOperacion= result_class_id.getContent();
+//        
+//       System.out.println(responseString); 
+//        
+//        idOperacion= result_class_id.getContent();
         
         System.out.println("el id devuelto es: " + idOP2);
         
@@ -156,9 +156,9 @@ public class Gateway implements itfGateway
 	}
 
 	@Override
-	public boolean create_User_Pago(Usuario us, float divisa) 
+	public boolean create_User_Pago(Usuario us, float currency) 
 	{
-		us.setDivisa(divisa);
+		us.setDivisa(currency);
 		String responseString = null;
 		RestClient<Usuario> client = new RestClient<>(hostname, port_pay);
 		System.out.println("-------------------------------------------------------");
@@ -169,7 +169,7 @@ public class Gateway implements itfGateway
         System.out.println("El nombre del usuario es: " + us.getNombre());
         System.out.println("El apellido del usuario es: " + us.getApellido());
         System.out.println("El email del usuario es: " + us.getEmail());
-        System.out.println("El saldo del usuario es: " + divisa);
+        System.out.println("El saldo del usuario es: " + currency);
 //        System.out.println("Trying POST at " + path );
 //        System.out.println("CURL call: curl http://127.0.0.1:5001/Payments/Create_user -d '{\"name\":\"Inigo\", \"last_name\":\"Lopez-Gazpio\", \"email\":\"inigo.lopezgazpio@deusto.es\", \"currency\":\"20.5\"}' -X POST -H \"Content-Type: application/json\" -v");
         
@@ -194,9 +194,10 @@ public class Gateway implements itfGateway
 	}
 
 	@Override
-	public boolean update_currency(String email, float divisa) 
+	public boolean update_currency(String email, float currency) 
 	{
-		System.out.println("Entro en el gateway de change password");
+
+		System.out.println("Entro en el gateway de update_currency ");
 
 		RestClient<Usuario> client = new RestClient<>(hostname, port_pay);
 		System.out.println("-------------------------------------------------------");
@@ -207,17 +208,31 @@ public class Gateway implements itfGateway
 		System.out.println("Trying POST at " + path);
 
 		String responseString = null;
+		
+		Response response;
+		
 		boolean update = false;
 		
-		Usuario usuario1 = new Usuario(email, divisa);
-		System.out.println("El email que se va a mandar es: " + usuario1.getEmail());
-        System.out.println("La divisa que se va a mandar es: " + usuario1.getDivisa());
+		
+//		Usuario usuario1 = new Usuario(email, currency);
+//		System.out.println("El email que se va a mandar es: " + usuario1.getEmail());
+//        System.out.println("La divisa que se va a mandar es: " + usuario1.getDivisa());
+		
+		System.out.println("El email que se va a mandar es: " + email);
+		System.out.println("La divisa que se va a mandar es: " + currency);
+		
       
 		try {
 			responseString =
 					client.makePutRequest(client.createInvocationBuilder(path),
-					usuario1).readEntity(String.class);
-			
+							new Usuario(email, currency)
+							).readEntity(String.class);
+//			response =
+//					
+//					client.makePutRequest(client.createInvocationBuilder(path),
+//							new Usuario(email, currency)
+//							);
+		
 			 JSONParser myParser = new JSONParser();
              JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
              update = (boolean) myJsonObject.get("Result");

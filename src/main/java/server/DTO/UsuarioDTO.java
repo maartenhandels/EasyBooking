@@ -12,6 +12,7 @@ public class UsuarioDTO implements Serializable{
 	private String dni;
 	private String nombre;
 	private String apellido;
+	private float currency;
 	
 	
 	public UsuarioDTO(String email, String nombre, String apellido, String dni)
@@ -63,5 +64,16 @@ public class UsuarioDTO implements Serializable{
 	{
 		this.apellido = apellido;
 	}
+
+	public float getCurrency() 
+	{
+		return currency;
+	}
+
+	public void setCurrency(float currency) 
+	{
+		this.currency = currency;
+	}
+	
 
 }

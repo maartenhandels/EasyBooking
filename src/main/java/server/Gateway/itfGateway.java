@@ -18,9 +18,9 @@ public interface itfGateway
 	public List <Vuelo> search_flights_with_filter (Flight_parameters parametros);
 	
 	// Servicio externo - Pago
-	public String make_Payment (String email, float cant_total, String concepto);
-	public boolean create_User_Pago (Usuario us, float divisa);
-	public boolean update_currency (String email, float divisa);
+	public String make_Payment (String email, float total_amount, String concept);
+	public boolean create_User_Pago (Usuario us, float currency);
+	public boolean update_currency (String email, float currency);
 	
 	// Servicio externo - Autenticacion
 	public boolean log_in (String email, String password);

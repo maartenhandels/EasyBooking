@@ -28,14 +28,14 @@ public class AppServicePago {
 		return null;
 	}
 	
-	public boolean update_currency(String email, float divisa) 
+	public boolean update_currency(String email, float currency) 
 	{
 		System.out.println("Entro en el appService de change password");
-		return gateway.update_currency(email, divisa);
+		return gateway.update_currency(email, currency);
 	}
 	
-	public boolean create_User_Pago (Usuario us, float divisa)
+	public boolean create_User_Pago (Usuario us, float currency)
 	{
-		return gateway.create_User_Pago(us, divisa);
+		return gateway.create_User_Pago(us, currency);
 	}
 }
