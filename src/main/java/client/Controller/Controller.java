@@ -82,14 +82,30 @@ public class Controller {
 		return vuelos;
 	}
 	
-//	public ArrayList<VueloDTO> search_flights_with_filter_2(String origen, String destino) throws RemoteException
-//	{
-//		
-//		// System.out.println("El aeropuerto de llegada de los filtros en el controller es: " + parametros.getAirport_arrival_name());
-//		// ArrayList<VueloDTO> vuelos = fachada.search_flights_with_filter_2(origen, destino);
-//		
-//		return vuelos;
-//	}
+	public ArrayList<VueloDTO> search_flights_with_filter_2(String origen, String destino, int asientos) throws RemoteException
+	{
+		
+		// System.out.println("El aeropuerto de llegada de los filtros en el controller es: " + parametros.getAirport_arrival_name());
+		ArrayList<VueloDTO> vuelos = fachada.search_flights_with_filter_2(origen, destino, asientos);
+		
+		return vuelos;
+	}
+	
+	public ArrayList<VueloDTO> search_flights_with_filter_3(String origen, String destino, int asientos, double precio) throws RemoteException
+	{
+		
+		 ArrayList<VueloDTO> vuelos = fachada.search_flights_with_filter_3(origen, destino, asientos, precio);
+		
+		return vuelos;
+	}
+	
+	public ArrayList<VueloDTO> search_flights_with_filter_4(String origen, String destino, int asientos, double precio, Date fecha) throws RemoteException
+	{
+		
+		 ArrayList<VueloDTO> vuelos = fachada.search_flights_with_filter_4(origen, destino, asientos, precio, fecha);
+		
+		return vuelos;
+	}
 	
 	public boolean eliminarUsuario(String email, String password) throws RemoteException
 	{

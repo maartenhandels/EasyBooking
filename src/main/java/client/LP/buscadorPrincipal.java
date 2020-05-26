@@ -366,6 +366,10 @@ public class buscadorPrincipal extends JFrame{
 				boolean filtroFecha = false;
 				boolean filtroPrecio = false;
 				
+				int num_pasajeros = 0;
+				double precio = 0;
+				Date fecha = datIda.getDate();
+				
 				if(textField_Origen.getText().isEmpty() == false) {
 					filtroOrigen = true;
 				}
@@ -376,15 +380,19 @@ public class buscadorPrincipal extends JFrame{
 				
 				if((Integer) spinner.getValue() > 1) {
 					filtroAsientos = true;
+					num_pasajeros = (Integer) spinner.getValue();
 				}
 				
 				Date today = Calendar.getInstance().getTime();
 				if(datIda.getDate().after(today)) {
 					filtroFecha = true;
+					
+					
 				}
 				
 				if(slider.getValue() < 1000) {
 					filtroPrecio = true;
+					precio = slider.getValue();
 				}
 				
 				
@@ -396,11 +404,32 @@ public class buscadorPrincipal extends JFrame{
 						{
 							if(filtroFecha) {
 								// Llamada a filtros con origen, destino, precio y fecha
+								try {
+									vuelos = controller.search_flights_with_filter_4(textField_Origen.getText(), textField_Destino.getText(),
+											num_pasajeros, precio, fecha);
+								} catch (RemoteException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
 							}else {
 								// Llamada a filtros con origen, destino y precio
+								try {
+									vuelos = controller.search_flights_with_filter_3(textField_Origen.getText(), textField_Destino.getText(),
+											num_pasajeros, precio);
+								} catch (RemoteException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
 							}
 						}else {
 							// Llamada a filtros con origen destino y asientos
+							try {
+								vuelos = controller.search_flights_with_filter_2(textField_Origen.getText(), textField_Destino.getText(),
+										num_pasajeros);
+							} catch (RemoteException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 						}
 						
 					}else {

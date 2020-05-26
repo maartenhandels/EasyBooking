@@ -175,6 +175,45 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	}
 	
 	@Override
+	public ArrayList<VueloDTO> search_flights_with_filter_2 (String origen, String destino, int asientos) 
+	{
+		Flight_parameters parametros= new Flight_parameters(origen, destino, asientos);
+		
+		ArrayList<Vuelo> vuelos = servVuelo.search_flights_with_filter(parametros);
+		ArrayList<VueloDTO> vuelosDTO= vuAssem.assembleTovueloDTO(vuelos);
+		
+		return vuelosDTO;
+		
+	}
+	
+	@Override
+	public ArrayList<VueloDTO> search_flights_with_filter_3 (String origen, String destino, int asientos, double precio) 
+	{
+		Flight_parameters parametros= new Flight_parameters(origen, destino, asientos, precio);
+		
+		ArrayList<Vuelo> vuelos = servVuelo.search_flights_with_filter(parametros);
+		ArrayList<VueloDTO> vuelosDTO= vuAssem.assembleTovueloDTO(vuelos);
+		
+		return vuelosDTO;
+		
+	}
+	
+	@Override
+	public ArrayList<VueloDTO> search_flights_with_filter_4 (String origen, String destino, int asientos, double precio, Date fecha) 
+	{
+		
+		String fecha_String = fecha.toString();
+		
+		Flight_parameters parametros= new Flight_parameters(origen, destino, asientos, precio, fecha_String);
+		
+		ArrayList<Vuelo> vuelos = servVuelo.search_flights_with_filter(parametros);
+		ArrayList<VueloDTO> vuelosDTO= vuAssem.assembleTovueloDTO(vuelos);
+		
+		return vuelosDTO;
+		
+	}
+	
+	@Override
 	public void aplicarFiltro(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida) 
 	{
 		//Aqui creo que tendriamos que llamar a la clase de LN que haga esta funcionalidad.
