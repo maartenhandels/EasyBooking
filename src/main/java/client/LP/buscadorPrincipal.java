@@ -219,7 +219,7 @@ public class buscadorPrincipal extends JFrame{
 		panel_1.setLayout(null);
 		
 		label = new JLabel("Filtros de busqueda");
-		label.setBounds(0, 16, 204, 27);
+		label.setBounds(37, 16, 204, 27);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Century Gothic", Font.BOLD, 20));
 		panel_1.add(label);
@@ -231,7 +231,7 @@ public class buscadorPrincipal extends JFrame{
 		
 		lblAeropuertoOrigen = new JLabel("Aeropuerto Origen");
 		lblAeropuertoOrigen.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		lblAeropuertoOrigen.setBounds(10, 66, 142, 20);
+		lblAeropuertoOrigen.setBounds(15, 56, 227, 20);
 		panel_1.add(lblAeropuertoOrigen);
 		
 		textField_Origen = new JTextField();
@@ -260,7 +260,7 @@ public class buscadorPrincipal extends JFrame{
 		
 		lblAeropuertoDestino = new JLabel("Aeropuerto Destino");
 		lblAeropuertoDestino.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		lblAeropuertoDestino.setBounds(10, 126, 194, 20);
+		lblAeropuertoDestino.setBounds(15, 117, 194, 20);
 		panel_1.add(lblAeropuertoDestino);
 		
 		textField_Destino = new JTextField();
@@ -289,7 +289,7 @@ public class buscadorPrincipal extends JFrame{
 		
 		lblNPasajeros = new JLabel("Nº Pasajeros");
 		lblNPasajeros.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		lblNPasajeros.setBounds(10, 223, 104, 20);
+		lblNPasajeros.setBounds(73, 214, 104, 20);
 		panel_1.add(lblNPasajeros);
 		
 		spinner = new JSpinner();
@@ -301,14 +301,14 @@ public class buscadorPrincipal extends JFrame{
 		
 		lblRangoDePrecio = new JLabel("Rango de precios (€)");
 		lblRangoDePrecio.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		lblRangoDePrecio.setBounds(10, 277, 204, 20);
+		lblRangoDePrecio.setBounds(15, 279, 204, 20);
 		panel_1.add(lblRangoDePrecio);
 		
 		slider = new JSlider(50, 1000, 1000);
 		slider.setToolTipText("");
 //		slider.setMinimum(50);
 //		slider.setMaximum(1000);
-		slider.setBounds(37, 333, 200, 26);
+		slider.setBounds(37, 337, 200, 26);
 		panel_1.add(slider);
 		
 		label_1 = new JLabel("De: 50 ");
@@ -333,7 +333,7 @@ public class buscadorPrincipal extends JFrame{
 		
 		lblFechaSalida = new JLabel("Fecha salida (dd/mm/aaaa)");
 		lblFechaSalida.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		lblFechaSalida.setBounds(15, 387, 222, 20);
+		lblFechaSalida.setBounds(15, 387, 242, 20);
 		panel_1.add(lblFechaSalida);
 		
 		datIda = new JDateChooser();

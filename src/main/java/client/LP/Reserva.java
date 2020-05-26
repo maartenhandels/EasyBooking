@@ -224,7 +224,7 @@ public class Reserva extends JFrame {
 		comboBox.addItem("4 pers.");
 		comboBox.addItem("5 pers.");
 		panel_1.add(comboBox);
-		
+				
 		rdbtnNewRadioButton = new JRadioButton("Turista");
 		rdbtnNewRadioButton.setBounds(269, 40, 109, 29);
 		panel_1.add(rdbtnNewRadioButton);
@@ -273,7 +273,7 @@ public class Reserva extends JFrame {
 		canvas_1_1_1.setBackground(Color.GRAY);
 		canvas_1_1_1.setBounds(158, 114, 81, 4);
 		panel_2.add(canvas_1_1_1);
-		
+				
 		lblNewLabel_7 = new JLabel(Float.toString(vuelo.getPrecio())+"€");
 		lblNewLabel_7.setBounds(163, 16, 69, 20);
 		panel_2.add(lblNewLabel_7);
@@ -318,15 +318,16 @@ public class Reserva extends JFrame {
 		
 		
 		btnNewButton_1 = new JButton("Cancelar");
-		btnNewButton_1.setBounds(40, 119, 115, 29);
+		btnNewButton_1.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		btnNewButton_1.setBounds(40, 108, 120, 40);
 		panel_3.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				buscadorPrincipal frame = new buscadorPrincipal(controller, usuario);
-				frame.setVisible(true);
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//				buscadorPrincipal frame = new buscadorPrincipal(controller, usuario);
+//				frame.setVisible(true);
+//				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 		});
 		

@@ -14,7 +14,7 @@ import server.LD.Usuario;
 public class AppServiceAuth {
 	
 	private Gateway gateway = new Gateway();
-	private DAO dao = new DAO();
+	private DAO dao;
 	
 	public String registroUsuario(String nombre, String apellido, String email) throws RemoteException
 	{
