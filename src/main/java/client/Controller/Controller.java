@@ -73,6 +73,15 @@ public class Controller {
 		return vuelos;
 	}
 	
+	public ArrayList<VueloDTO> search_flights_with_filter_0(String origen) throws RemoteException
+	{
+		
+		// System.out.println("El aeropuerto de llegada de los filtros en el controller es: " + parametros.getAirport_arrival_name());
+		ArrayList<VueloDTO> vuelos = fachada.search_flights_with_filter_0(origen);
+		
+		return vuelos;
+	}
+	
 	public ArrayList<VueloDTO> search_flights_with_filter_1(String origen, String destino) throws RemoteException
 	{
 		
@@ -99,7 +108,7 @@ public class Controller {
 		return vuelos;
 	}
 	
-	public ArrayList<VueloDTO> search_flights_with_filter_4(String origen, String destino, int asientos, double precio, Date fecha) throws RemoteException
+	public ArrayList<VueloDTO> search_flights_with_filter_4(String origen, String destino, int asientos, double precio, String fecha) throws RemoteException
 	{
 		
 		 ArrayList<VueloDTO> vuelos = fachada.search_flights_with_filter_4(origen, destino, asientos, precio, fecha);

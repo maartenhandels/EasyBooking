@@ -3,8 +3,8 @@
 	<property environment="env"/>
 	<property name="source.dir" location="src/main/java" />
 	<property name="build.dir" location="target/classes" />
-	<property name="maven.source.dir" location="C:\Users\Alumno\.m2"/>
-	<!--<property name="maven.source.dir" location="/Users/admin/.m2/repository"/>-->
+	<!--<property name="maven.source.dir" location="C:\Users\Alumno\.m2"/>-->
+	<property name="maven.source.dir" location="/Users/admin/.m2/repository"/>
 	<!--<property name="lib.dir" location="target" />-->
 	<property name="server.port" value="1099" />
 	<property name="server.IP" value="127.0.0.1" />
@@ -21,7 +21,7 @@
 		<pathelement location="${build.dir}"/>
 	</path>-->
 	
-	<path id="classpath">
+	<path id="full.classpath">
 	        <fileset dir="${maven.source.dir}">
 	      <include name="**/*.jar"/>
 	      <exclude name="**/5.2.3/**/*.jar" />
@@ -32,7 +32,7 @@
 
 	
 	<target name="runClient" description="Runs the Client">
-		<java classname="client.Main.Main" classpathref="classpath" fork="true">
+		<java classname="client.Main.Main" classpathref="full.classpath" fork="true">
 			<jvmarg value="-Djava.security.policy=${java.policyClient}"/>
 			<arg value="${server.IP}"/>
 			<arg value="${server.port}"/>
@@ -41,7 +41,7 @@
 	</target>
 	
 	<target name="runServer" description="Runs the Server">
-		<java classname="server.Main.Main" classpathref="classpath" fork="true">
+		<java classname="server.Main.Main" classpathref="full.classpath" fork="true">
 			<jvmarg value="-Djava.rmi.server.codebase=file:${build.dir}"/>
 			<jvmarg value="-Djava.security.policy=${java.policyServer}"/>
 			<jvmarg value="-Dlog4j.configuration=${log4j.repositorio}"/>

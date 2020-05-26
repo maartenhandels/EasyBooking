@@ -15,6 +15,7 @@ import com.toedter.calendar.JDateChooser;
 
 import client.Controller.Controller;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;  
 import java.util.Date; 
@@ -293,7 +294,7 @@ public class buscadorPrincipal extends JFrame{
 		
 		spinner = new JSpinner();
 		spinner.setFont(new Font("Century Gothic", Font.PLAIN, 20));
-		spinner.setModel(new SpinnerNumberModel(1, 1, 5, 1));
+		spinner.setModel(new SpinnerNumberModel(1, 1, 100, 1));
 		spinner.setBounds(204, 204, 47, 38);
 		((DefaultEditor)spinner.getEditor()).getTextField().setEditable(false);
 		panel_1.add(spinner);
@@ -369,6 +370,7 @@ public class buscadorPrincipal extends JFrame{
 				int num_pasajeros = 0;
 				double precio = 0;
 				Date fecha = datIda.getDate();
+				String fecha_string = "";
 				
 				if(textField_Origen.getText().isEmpty() == false) {
 					filtroOrigen = true;
@@ -385,7 +387,13 @@ public class buscadorPrincipal extends JFrame{
 				
 				Date today = Calendar.getInstance().getTime();
 				if(datIda.getDate().after(today)) {
-					filtroFecha = true;
+					
+					System.out.println("Se ha puesto filtroFecha a true");
+					
+					DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");  // dd-M-yyyy hh:mm:ss" 2020/06/14 15:00:00
+	                fecha_string = dateFormat.format(fecha); 
+					
+	                filtroFecha = true;
 					
 					
 				}
@@ -403,10 +411,11 @@ public class buscadorPrincipal extends JFrame{
 						if(filtroPrecio)
 						{
 							if(filtroFecha) {
-								// Llamada a filtros con origen, destino, precio y fecha
+								// Llamada a filtros con origen, destino, asientos, precio y fecha
 								try {
+									System.out.println("Ha hecho la llamada con filtro de origen, destino, asientos, precio y fecha: ");
 									vuelos = controller.search_flights_with_filter_4(textField_Origen.getText(), textField_Destino.getText(),
-											num_pasajeros, precio, fecha);
+											num_pasajeros, precio, fecha_string);
 								} catch (RemoteException e1) {
 									// TODO Auto-generated catch block
 									e1.printStackTrace();
@@ -414,6 +423,7 @@ public class buscadorPrincipal extends JFrame{
 							}else {
 								// Llamada a filtros con origen, destino y precio
 								try {
+									System.out.println("Ha hecho la llamada con filtro de origen, destino, asientos y precio: ");
 									vuelos = controller.search_flights_with_filter_3(textField_Origen.getText(), textField_Destino.getText(),
 											num_pasajeros, precio);
 								} catch (RemoteException e1) {
@@ -424,6 +434,7 @@ public class buscadorPrincipal extends JFrame{
 						}else {
 							// Llamada a filtros con origen destino y asientos
 							try {
+								System.out.println("Ha hecho la llamada con filtro de origen, destino y asientos: ");
 								vuelos = controller.search_flights_with_filter_2(textField_Origen.getText(), textField_Destino.getText(),
 										num_pasajeros);
 							} catch (RemoteException e1) {
@@ -433,20 +444,31 @@ public class buscadorPrincipal extends JFrame{
 						}
 						
 					}else {
-						
-						// Llamada a filtros con origen y destino
-						try {
-							vuelos = controller.search_flights_with_filter_1(textField_Origen.getText(), textField_Destino.getText());
-						} catch (RemoteException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
+						if(filtroOrigen) {
+							try {
+								vuelos = controller.search_flights_with_filter_0(textField_Origen.getText());
+							} catch (RemoteException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}else {
+							// Llamada a filtros con origen y destino
+							try {
+								System.out.println("Ha hecho la llamada con filtro de origen y destino: ");
+								vuelos = controller.search_flights_with_filter_1(textField_Origen.getText(), textField_Destino.getText());
+							} catch (RemoteException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 						}
+						
 					}
 					
 				}else {
 					
 					// Llamada sin filtros
 					try {
+						System.out.println("Ha hecho la llamada sin filtro: ");
 						vuelos = controller.getAllFlights();
 					} catch (RemoteException e1) {
 						// TODO Auto-generated catch block

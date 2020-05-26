@@ -14,7 +14,7 @@ import server.LD.Usuario;
 public class AppServiceAuth {
 	
 	private Gateway gateway = new Gateway();
-	private DAO dao;
+	private DAO dao = new DAO();
 	
 	public String registroUsuario(String nombre, String apellido, String email) throws RemoteException
 	{
@@ -24,8 +24,8 @@ public class AppServiceAuth {
 		
 		System.out.println("Pasa la llamada del gateway");
 		
-//		Usuario nuevo_usuario = new Usuario(email, nombre, apellido);
-//		dao.guardarElemto(nuevo_usuario);
+		Usuario nuevo_usuario = new Usuario(email, nombre, apellido);
+		dao.guardarElemto(nuevo_usuario);
 	
 		
 		return contrasenya;

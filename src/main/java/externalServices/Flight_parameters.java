@@ -17,6 +17,10 @@ public class Flight_parameters implements Print, Serializable
 
     public Flight_parameters() {
     }
+    
+    public Flight_parameters(String airport_departure_name) {
+        this.airport_departure_name = airport_departure_name;
+    }
 
     public Flight_parameters(String airport_departure_name, String airport_arrival_name) {
         this.airport_departure_name = airport_departure_name;

@@ -531,7 +531,7 @@ public class Gateway implements itfGateway
 	@Override
 	public ArrayList<Vuelo> search_flights_with_filter(Flight_parameters parametros)
 	{
-		
+		// parametros.setDeparture_date("2020/06/14 15:00:00");
 		ArrayList<Vuelo> vuelos = new ArrayList<Vuelo>();
 		
 		RestClient<Flight_parameters> client = new RestClient<Flight_parameters>(hostname, port_airlines);
@@ -611,6 +611,7 @@ public class Gateway implements itfGateway
 			long milliseconds = 0;
 		    milliseconds = myFlightArray.get(i).getDepartureDate(true).atZone(zoneId).toEpochSecond();
 			
+		    System.out.println("La fecha en LocalDateTime es: " + myFlightArray.get(i).getDepartureDate());
 		    System.out.println("La fecha en long es: " + milliseconds);
 			vuelo_aux.setSalida(milliseconds);
 			

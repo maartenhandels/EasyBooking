@@ -3,7 +3,12 @@ package server.DAO;
 
 import java.util.ArrayList;
 
-import javax.jdo.*;
+// import javax.jdo.*;
+import javax.jdo.Extent;
+import javax.jdo.JDOHelper;
+import javax.jdo.PersistenceManager;
+import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Transaction;
 
 import server.LD.Reserva;
 import server.LD.Aerolinea;
@@ -15,14 +20,18 @@ import server.LD.Vuelo;
 public class DAO implements itfDAO {
 	
 	// Load Persistence Manager Factory - referencing the Persistence Unit defined in persistence.xml
-	private PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+	private PersistenceManagerFactory pmf;
 
 	// Persistence Manager
-	private PersistenceManager pm = pmf.getPersistenceManager();
+	private PersistenceManager pm;
 
 	//Transaction to group DB operations
-	private Transaction tx = null;
+	private Transaction tx;
 	
+	public DAO(){
+		this.pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+		this.pm = pmf.getPersistenceManager();
+	}
 	
 	
 	public <T> boolean guardarElemto(T a){
