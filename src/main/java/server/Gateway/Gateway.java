@@ -119,7 +119,8 @@ public class Gateway implements itfGateway
                    client.makePostRequest(
                            client.createInvocationBuilder(path) , new Usuario(email, total_amount, concept)
                       ).readEntity(String.class);
-               
+           
+           System.out.println("El id antes del parseo es: " + responseString);
 
            JSONParser myParser = new JSONParser();
            JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
