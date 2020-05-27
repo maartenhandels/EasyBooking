@@ -104,7 +104,7 @@ public class Gateway implements itfGateway
         
         String idOP2 = "";
         //Response response = null;
-        String responseString = null;
+        String responseString = "";
         Simple_pass_result result_class_id = null;
         
         try 
@@ -123,7 +123,7 @@ public class Gateway implements itfGateway
 
            JSONParser myParser = new JSONParser();
            JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
-           idOP2 =  (String)myJsonObject.get("Result");
+           idOP2 =  (String) myJsonObject.get("Result");
            System.out.println(idOP2);
         }
         catch (Exception e) 

@@ -283,9 +283,9 @@ public class Pago extends JFrame {
 						JOptionPane.showMessageDialog(null,"Pago realizado con éxito. El id de su pago es:  " + id_pago , "USUARIO CREADO", JOptionPane.INFORMATION_MESSAGE);
 						dispose();
 						UsuarioDTO usuario_prueba = new UsuarioDTO("Ibone", "Urquiola", "iboneurquiola@gmail.com", "72557745R");
-						buscadorPrincipal frame = new buscadorPrincipal(controller, usuario_prueba);
-						frame.setVisible(true);
-						frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//						buscadorPrincipal frame = new buscadorPrincipal(controller, usuario_prueba);
+//						frame.setVisible(true);
+//						frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					}
 					else
 					{

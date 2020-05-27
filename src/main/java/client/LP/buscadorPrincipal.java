@@ -219,7 +219,7 @@ public class buscadorPrincipal extends JFrame{
 		panel_1.setLayout(null);
 		
 		label = new JLabel("Filtros de busqueda");
-		label.setBounds(37, 16, 204, 27);
+		label.setBounds(14, 16, 205, 27);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Century Gothic", Font.BOLD, 20));
 		panel_1.add(label);
