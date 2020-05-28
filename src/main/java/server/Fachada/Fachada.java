@@ -118,10 +118,10 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	// PARTE FACHADA PAGO
 	
 	@Override
-	public String realizarPago(String email, float cant_total, String concepto) throws RemoteException 
+	public String make_Payment(String email, float total_amount, String concept) throws RemoteException 
 	{
 
-		return servPago.realizarPago(email, cant_total, concepto);
+		return servPago.make_Payment(email, total_amount, concept);
 	}
 
 	@Override
@@ -146,7 +146,7 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	@Override
 	public boolean update_currency(String email, float currency)  throws RemoteException 
 	{
-		System.out.println("Entro en la fachada de change password");
+		System.out.println("Entro en la fachada de update currency");
 		return servPago.update_currency(email, currency);
 		
 	}

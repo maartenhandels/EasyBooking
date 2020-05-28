@@ -74,7 +74,9 @@ public class Pago extends JFrame {
 		public void init_componentes(VueloDTO vuelo)
 		{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 658, 602);
+//		setBounds(100, 100, 658, 602);
+		setSize(658,602);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -82,19 +84,20 @@ public class Pago extends JFrame {
 		
 		panel = new JPanel();
 		panel.setBackground(new Color(95, 158, 160));
-		panel.setBounds(0, 0, 636, 49);
+		panel.setBounds(0, 0, 640, 49);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		lblServicioPagos = new JLabel("- SERVICIO PAGOS -");
-		lblServicioPagos.setBounds(123, 8, 296, 40);
+		lblServicioPagos.setBounds(133, 8, 296, 40);
 		lblServicioPagos.setFont(new Font("Century Gothic", Font.BOLD, 30));
 		panel.add(lblServicioPagos);
 		
 		btnActualizarSaldo = new JButton("Actualizar Saldo");
-		btnActualizarSaldo.setBounds(458, 8, 163, 29);
+		btnActualizarSaldo.setBounds(475, 9, 153, 29);
 		btnActualizarSaldo.setFont(new Font("Century Gothic", Font.BOLD, 15));
 		panel.add(btnActualizarSaldo);
+		
 		btnActualizarSaldo.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -102,6 +105,18 @@ public class Pago extends JFrame {
 				actualizarSaldo frame = new actualizarSaldo(controller, vuelo);
 				frame.setVisible(true);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			}
+		});
+		
+		JButton btnAtrs = new JButton("Atrás");
+		btnAtrs.setFont(new Font("Century Gothic", Font.BOLD, 13));
+		btnAtrs.setBounds(12, 11, 75, 25);
+		panel.add(btnAtrs);
+		
+		btnAtrs.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				dispose();
 			}
 		});
 		
@@ -221,7 +236,7 @@ public class Pago extends JFrame {
 		
 		panel_2 = new JPanel();
 		panel_2.setBackground(new Color(95, 158, 160));
-		panel_2.setBounds(327, 65, 294, 465);
+		panel_2.setBounds(334, 65, 294, 465);
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -274,7 +289,7 @@ public class Pago extends JFrame {
 						
 						try 
 						{
-							id_pago = controller.realizarPago( email, cant_total, concepto);
+							id_pago = controller.make_Payment( email, cant_total, concepto);
 						} catch (RemoteException e1) 
 						{
 							System.out.println("No se puede realizar pago");

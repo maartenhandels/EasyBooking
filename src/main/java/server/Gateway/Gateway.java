@@ -88,7 +88,7 @@ public class Gateway implements itfGateway
 	public String make_Payment(String email, float total_amount, String concept) 
 	{
 		RestClient<Usuario> client = new RestClient<>(hostname, port_pay);
-		String idOperacion = "";
+//		String idOperacion = "";
 		
 		System.out.println("-------------------------------------------------------");
         System.out.println("Make payment Server test (POST)");
@@ -102,10 +102,10 @@ public class Gateway implements itfGateway
         System.out.println("La cant total que voy a pagar: " + total_amount);
         System.out.println("el concepto es: " + concept);
         
-        String idOP2 = "";
+        String idOP2 = null;
         //Response response = null;
-        String responseString = "";
-        Simple_pass_result result_class_id = null;
+        String responseString = null;
+//        Simple_pass_result result_class_id = null;
         
         try 
         {
@@ -113,8 +113,6 @@ public class Gateway implements itfGateway
 //                    client.makePostRequest(
 //                            client.createInvocationBuilder(path) , 
 //                            new Usuario(email, cant_total, concepto));
-           
-           
            responseString =
                    client.makePostRequest(
                            client.createInvocationBuilder(path) , new Usuario(email, total_amount, concept)
@@ -197,9 +195,9 @@ public class Gateway implements itfGateway
 	@Override
 	public boolean update_currency(String email, float currency) 
 	{
-
+		
 		System.out.println("Entro en el gateway de update_currency ");
-
+		String responseString = null;
 		RestClient<Usuario> client = new RestClient<>(hostname, port_pay);
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Update currency Server test (POST)");
@@ -208,12 +206,9 @@ public class Gateway implements itfGateway
 		String path = "/Payments/Update_currency";
 		System.out.println("Trying POST at " + path);
 
-		String responseString = null;
-		
-		Response response;
+//		Response response;
 		
 		boolean update = false;
-		
 		
 //		Usuario usuario1 = new Usuario(email, currency);
 //		System.out.println("El email que se va a mandar es: " + usuario1.getEmail());
@@ -225,15 +220,14 @@ public class Gateway implements itfGateway
       
 		try {
 			responseString =
-					client.makePutRequest(client.createInvocationBuilder(path),
-							new Usuario(email, currency)
-							).readEntity(String.class);
+					client.makePutRequest(client.createInvocationBuilder(path),new Usuario(email, currency)).readEntity(String.class);
 //			response =
 //					
 //					client.makePutRequest(client.createInvocationBuilder(path),
 //							new Usuario(email, currency)
 //							);
-		
+			System.out.println("Antes del parseo: " + responseString);
+			
 			 JSONParser myParser = new JSONParser();
              JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
              update = (boolean) myJsonObject.get("Result");

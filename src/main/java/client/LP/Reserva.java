@@ -101,7 +101,9 @@ public class Reserva extends JFrame {
 	{
 		setTitle("Realizar reserva - EasyBooking");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 763, 493);
+//		setBounds(100, 100, 763, 493);
+		setSize(763,493);
+		setLocationRelativeTo(null);
 		Image image = new ImageIcon("src/main/resources/images/Flight_prin.png").getImage();
 		setIconImage(image);
 		contentPane = new JPanel();

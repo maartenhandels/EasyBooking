@@ -11,11 +11,11 @@ import server.LD.Vuelo;
 public class AppServicePago {
 
 	private Gateway gateway = new Gateway();
-	private DAO dao;
+//	private DAO dao = new DAO();
 	
-	public String realizarPago(String email, float cant_total, String concepto) 
+	public String make_Payment(String email, float total_amount, String concept) 
 	{
-		return gateway.make_Payment(email, cant_total, concepto);
+		return gateway.make_Payment(email, total_amount, concept);
 	}
 	
 	public List <Usuario> getUsuarios()
@@ -30,7 +30,7 @@ public class AppServicePago {
 	
 	public boolean update_currency(String email, float currency) 
 	{
-		System.out.println("Entro en el appService de change password");
+		System.out.println("Entro en el appService de update currency");
 		return gateway.update_currency(email, currency);
 	}
 	

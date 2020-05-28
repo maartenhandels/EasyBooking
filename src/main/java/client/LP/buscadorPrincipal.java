@@ -146,7 +146,9 @@ public class buscadorPrincipal extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Image image = new ImageIcon("src/main/resources/images/Flight_prin.png").getImage();
 		setIconImage(image);
-		setBounds(80, 10, 1067, 699);
+//		setBounds(80, 10, 1067, 699);
+		setSize(1067,699);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

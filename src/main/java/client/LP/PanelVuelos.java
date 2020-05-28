@@ -160,7 +160,7 @@ public class PanelVuelos extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 	
 				Reserva frameReserva = new Reserva(controller, usuario, vuelo);
-				frameReserva.setBounds(100, 100, 763, 493);
+//				frameReserva.setBounds(100, 100, 763, 493);
 				frameReserva.setVisible(true);
 				frameReserva.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 	

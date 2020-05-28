@@ -75,7 +75,9 @@ public class Configuracion extends JFrame{
 	{
 		setTitle("Inicio de Sesión/Registro - EasyBooking");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 763, 493);
+//		setBounds(100, 100, 763, 493);
+		setSize(763,492);
+		setLocationRelativeTo(null);
 		Image image = new ImageIcon("src/main/resources/images/Flight_prin.png").getImage();
 		setIconImage(image);
 		getContentPane().setBackground(new Color(255, 255, 255));
