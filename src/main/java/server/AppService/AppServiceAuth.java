@@ -25,8 +25,8 @@ public class AppServiceAuth {
 		// String contrasenya = "HOLA";
 		System.out.println("Pasa la llamada del gateway");
 		
-//		Usuario nuevo_usuario = new Usuario(email, nombre, apellido);
-//		dao.guardarElemto(nuevo_usuario);
+		Usuario nuevo_usuario = new Usuario(email, nombre, apellido);
+		dao.guardarElemto(nuevo_usuario);
 	
 		
 		return contrasenya;
@@ -40,15 +40,18 @@ public class AppServiceAuth {
 		
 		Usuario usuario;
 		
+		
 		// DEBERIAMOS BUSCAR EN LA BASE DE DATOS EL USUARIO
 		// DE MOMENTO CREAREMOS UN USUARIO CADA VEZ QUE SE LE LLAME
 		if(iniSesCorrecto) {
+//			usuario = new Usuario(email, password);
+//			String nombre = dao.buscarNombreUsuario(usuario);
 			usuario = new Usuario("Manolo", "Lama", "manololama@gmail.com");
 		}else {
 			usuario = null;
 		}
 		
-		
+		//return nombre;
 		return usuario;
 		
 	}
@@ -62,13 +65,18 @@ public class AppServiceAuth {
 	}
 	public boolean eliminarUsuario(String email, String password )
 	{
+//		Usuario userBorrar;
+//		
+//		userBorrar =  new Usuario(email, password);
+//		
+//		dao.eliminarObjeto(userBorrar);
+		
 		return gateway.delete_user(email, password);
-		//FALTA ELIMINAR DE DAO
+		
+		
 	}
 	public boolean change_password (String email, String old_password, String new_password)
 	{
-		System.out.println("Entra AppService - Change password");
 		return gateway.change_password(email, old_password, new_password);
-		//FALTA CAMBIAR EN DAO
 	}
 }

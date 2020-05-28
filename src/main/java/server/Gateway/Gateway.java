@@ -48,8 +48,6 @@ public class Gateway implements itfGateway
 			c1.makeGetRequest("/Authentication/Change_password");
 			c1.makeGetRequest("/Authentication/Delete_user");
 			
-			// todo c1.makePostRequest("This is a client super complex message to send to
-			// server");
 		} catch (Exception e) {
 			System.out.println("Catched exception: " + e.getMessage());
 		}
@@ -63,9 +61,6 @@ public class Gateway implements itfGateway
 			c2.makeGetRequest("/Payments/Create_user");
 			c2.makeGetRequest("/Payments/Update_currency");
 
-			// todo c2.makePostRequest("This is a client super complex message to send to
-			// server");
-	
 		} catch (Exception e) {
 			System.out.println("Catched exception: " + e.getMessage());
 		}
@@ -89,7 +84,6 @@ public class Gateway implements itfGateway
 	public String make_Payment(Usuario_Pago usuario_pago) 
 	{
 		RestClient<Usuario_Pago> client = new RestClient<>(hostname, port_pay);
-//		String idOperacion = "";
 		
 		System.out.println("-------------------------------------------------------");
         System.out.println("Make payment Server test (POST)");
@@ -104,9 +98,7 @@ public class Gateway implements itfGateway
         System.out.println("El concepto es: " + usuario_pago.getConcept());
         
         String idOP2 = null;
-        //Response response = null;
         String responseString = null;
-//        Simple_pass_result result_class_id = null;
         
         try 
         {
@@ -149,8 +141,6 @@ public class Gateway implements itfGateway
         System.out.println("El apellido del usuario es: " + us.getLastname());
         System.out.println("El email del usuario es: " + us.getEmail());
         System.out.println("El saldo del usuario es: " + us.getCurrency());
-//        System.out.println("Trying POST at " + path );
-//        System.out.println("CURL call: curl http://127.0.0.1:5001/Payments/Create_user -d '{\"name\":\"Inigo\", \"last_name\":\"Lopez-Gazpio\", \"email\":\"inigo.lopezgazpio@deusto.es\", \"currency\":\"20.5\"}' -X POST -H \"Content-Type: application/json\" -v");
         
 		boolean create = false;
         
@@ -231,7 +221,7 @@ public class Gateway implements itfGateway
         System.out.println("Trying POST at " + path + " (Log in service)");
 
         String responseString = null;
-//        Response response = null;
+
         boolean login = false;
         
         System.out.println("El email que se va a mandar es: " + email);
@@ -242,9 +232,6 @@ public class Gateway implements itfGateway
         try {
         	System.out.println("Entra en el trycatch inicio Sesion del Gateway \n");
         	
-//            response =
-//                    client.makePostRequest(
-//                            client.createInvocationBuilder(path), new Usuario(email, password));
                             
             responseString =
                             client.makePostRequest(
@@ -258,8 +245,12 @@ public class Gateway implements itfGateway
                     System.out.println(login);
 
         }
-        catch (Exception e) { e.printStackTrace(); e.toString(); }
-//        client.simplePrint(response);
+        catch (Exception e) 
+        { 
+        	e.printStackTrace(); 
+        	e.toString(); 
+        }
+
         
         System.out.println("The response of login is..." + login);
         
@@ -302,10 +293,10 @@ public class Gateway implements itfGateway
 
 		String reply = response.readEntity(String.class);
 
-		// Create a JSONObject to parse the respond inside the Simple_pass_result
 		try {
 			result_class_password = new Simple_pass_result(reply);
-		} catch (Exception e) {
+		} catch (Exception e) 
+		{
 			e.printStackTrace();
 			e.toString();
 		}
@@ -337,14 +328,14 @@ public class Gateway implements itfGateway
 
 		String path = "/Authentication/Change_password";
 		System.out.println("Trying POST at " + path + " (Change_password resource)");
+		
 		boolean change = false;
 		
-		System.out.println(
-				"CURL call: curl http://127.0.0.1:5000/Authentication/Change_password -d '{\"email\":\"inigo.lopezgazpio@deusto.es\", \"password\":\"XXX\", \"password_new\":\"XXX\"}' -X PUT -H \"Content-Type: application/json\" -v");
-
+		
+		
 		try {
 			responseString = client.makePutRequest(client.createInvocationBuilder(path),
-					new Usuario(email, new_password)).readEntity(String.class); 
+					new Usuario(null, null, email, old_password, new_password)).readEntity(String.class); 
 			JSONParser myParser = new JSONParser();
             JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
             change = (boolean) myJsonObject.get("Result");
@@ -384,7 +375,8 @@ public class Gateway implements itfGateway
             delete = (boolean) myJsonObject.get("Result");
             System.out.println(delete);
             
-		} catch (Exception e) {
+		} catch (Exception e) 
+		{
 			e.printStackTrace();
 			e.toString();
 		}

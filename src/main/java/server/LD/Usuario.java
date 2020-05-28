@@ -24,9 +24,8 @@ public class Usuario implements Print, Serializable{
 	
 	@NotPersistent
 	private String password;
-	private float currency;
-	private float cant_total;
-	private String concepto;
+	@NotPersistent
+	private String password_new;
 	
 	@Column(name="CODAEROPUERTO")
 	private Aeropuerto aeropuerto; // No se como llamarle a esto
@@ -67,31 +66,14 @@ public class Usuario implements Print, Serializable{
 		this.reservasUsuario = new ArrayList <Reserva>();
 	}
 	
-	/**
-	 * Este constructor sirve para update_currency
-	 * @param email
-	 * @param divisa
-	 */
-	
-	public Usuario(String email, float divisa)
-	{
-		this.email = email;
-		this.currency = divisa;
-	}
-	
-	/**
-	 * Este constructor sirve para make_Payment
-	 * @param email
-	 * @param cant_total
-	 * @param concepto
-	 */
-	
-	public Usuario(String email, float cant_total, String concepto)
-	{
-		this.email = email;
-		this.cant_total = cant_total;
-		this.concepto = concepto;
-	}
+    public Usuario(String name, String last_name, String email, String password, String password_new)
+    {
+        this.nombre = name;
+        this.apellido = last_name;
+        this.email = email;
+        this.password = password;
+        this.password_new = password_new;
+    }
 
 	public Usuario()
 	{
@@ -165,34 +147,15 @@ public class Usuario implements Print, Serializable{
 	public void setReservasUsuario(List<Reserva> reservasUsuario) {
 		this.reservasUsuario = reservasUsuario;
 	}
+
 	
-	
-	
-	public float getDivisa() 
+	public String getPassword_new() 
 	{
-		return currency;
+		return password_new;
 	}
-	
-	public void setDivisa(float currency) 
+	public void setPassword_new(String password_new)
 	{
-		this.currency = currency;
-	}
-	
-	public float getCant_total() 
-	{
-		return cant_total;
-	}
-	
-	public void setCant_total(float cant_total) {
-		this.cant_total = cant_total;
-	}
-	
-	public String getConcepto() {
-		return concepto;
-	}
-	
-	public void setConcepto(String concepto) {
-		this.concepto = concepto;
+		this.password_new = password_new;
 	}
 	@Override
 	public void print() {

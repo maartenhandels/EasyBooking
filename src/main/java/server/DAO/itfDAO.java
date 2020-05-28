@@ -21,6 +21,8 @@ public interface itfDAO {
 	public ArrayList<Pasajero> LeerPasajeros();
 	public ArrayList<Reserva> LeerReservas();
 	
+	public String buscarNombreUsuario(Usuario user);
+	
 	public void cerrarBD();
 	
 

@@ -12,7 +12,6 @@ import server.LD.Vuelo;
 public class AppServicePago {
 
 	private Gateway gateway = new Gateway();
-//	private DAO dao = new DAO();
 	
 	public String make_Payment(Usuario_Pago usuario_pago) 
 	{

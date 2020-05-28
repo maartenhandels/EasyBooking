@@ -2,12 +2,14 @@ package server.DAO;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 // import javax.jdo.*;
 import javax.jdo.Extent;
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Query;
 import javax.jdo.Transaction;
 
 import server.LD.Reserva;
@@ -423,7 +425,64 @@ public class DAO implements itfDAO {
 		
 	}
 	
-	
+	public String buscarNombreUsuario(Usuario user)
+	{
+		String nombre="";
+		
+		try
+		{
+			System.out.println("Consultando el nombre del usuario enviado..");			
+
+			//Get the Persistence Manager
+			pm = pmf.getPersistenceManager();
+
+			//Obtain the current transaction
+			tx = pm.currentTransaction();		
+
+			//Start the transaction
+			tx.begin();
+
+			Query<Usuario> query = pm.newQuery(Usuario.class);
+			//query.setFilter("nombre == ");
+			
+			@SuppressWarnings("unchecked")
+			List<Usuario> usuarios = (List<Usuario>) query.execute();
+
+			//End the transaction
+			tx.commit();
+			
+			
+			for (Usuario usuario : usuarios) 
+			{
+				if(usuario.getEmail()==user.getEmail())
+				{
+					nombre= usuario.getNombre();
+					System.out.println(" El nombre conseguido es -> " + user.getNombre());
+					break;
+				}
+			}
+		}
+
+		catch (Exception ex) 
+		{
+			System.err.println(" $ Error retrieving user name using a 'Query': " + ex.getMessage());
+		}
+
+		finally 
+		{
+			if (tx != null && tx.isActive()) 
+			{
+				tx.rollback();
+			}
+			
+			if (pm != null && !pm.isClosed()) {
+				pm.close();
+			}
+		}
+		return nombre;
+
+		
+	}
 	
 	public void cerrarBD() {
 		

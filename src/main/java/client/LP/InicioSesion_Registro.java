@@ -186,7 +186,6 @@ public class InicioSesion_Registro extends JFrame{
 						//Si es incorrecto decirle que se registre/revise datos
 						if(usuario != null) {
 							dispose();
-							UsuarioDTO usuario_prueba = new UsuarioDTO("Ibone", "Urquiola", "iboneurquiola@gmail.com", "72557745R");
 							buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, usuario);
 							frameBuscador.setVisible(true);
 							frameBuscador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -331,6 +330,8 @@ public class InicioSesion_Registro extends JFrame{
 						System.out.println("LLega aquii dni\n");
 						String aero_nombre = (String)comboAero.getSelectedItem();
 						
+						UsuarioDTO user = new UsuarioDTO(nombre, apellido, email, dni);
+						
 						System.out.println("LLega aquii\n");
 						
 						Aeropuerto aero_seleccionado = new Aeropuerto();
@@ -358,9 +359,7 @@ public class InicioSesion_Registro extends JFrame{
 						}
 						JOptionPane.showMessageDialog(null,"Tu contraseña es: " + contrasenya.toString() + " ¡NO LA OLVIDE!", "USUARIO CREADO", JOptionPane.INFORMATION_MESSAGE);
 						dispose();
-						UsuarioDTO usuario_prueba = new UsuarioDTO("Ibone", "Urquiola", "iboneurquiola@gmail.com", "72557745R");
-//						usActual = new UsuarioDTO(nombre, apellido, email, dni);
-						buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, usuario_prueba);
+						buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, user);
 						frameBuscador.setVisible(true);
 						frameBuscador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 						frameBuscador.setResizable(false);
