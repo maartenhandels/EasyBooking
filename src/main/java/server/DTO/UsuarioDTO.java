@@ -14,7 +14,9 @@ public class UsuarioDTO implements Serializable{
 	private String apellido;
 	private float currency;
 	
-	
+	public UsuarioDTO() {
+		
+	}
 	public UsuarioDTO(String email, String nombre, String apellido, String dni)
 	{
 		super();

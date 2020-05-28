@@ -22,15 +22,15 @@ public interface itfFachada extends Remote{
 	public String registroUsuario(String nombre, String apellido, String email) throws RemoteException;
 	public boolean change_password (String email, String old_password, String new_password)throws RemoteException;
 	public boolean eliminarUsuario(String email, String password)throws RemoteException;
-	public boolean iniciarSesion (String email, String password)throws RemoteException;
+	public UsuarioDTO iniciarSesion (String email, String password)throws RemoteException;
 	public void cerrarSesion ()throws RemoteException;
 	
 	// Parte Fachada Pago
 	public List <UsuarioDTO> getUsuariosPago() throws RemoteException;
 	public List<VueloDTO> getVuelosPago() throws RemoteException;
-	public String make_Payment(String email, float total_amount, String concept) throws RemoteException;
+	public String make_Payment(String email, double total_amount, String concept) throws RemoteException;
 	public boolean update_currency(String email, float currency) throws RemoteException;
-	public boolean create_User_Pago (Usuario us, float currency) throws RemoteException;
+	public boolean create_User_Pago (String name, String lastname, String email, float currency) throws RemoteException;
 	
 	// Parte Fachada Aero
 	public ArrayList <VueloDTO> search_all_flights () throws RemoteException;

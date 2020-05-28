@@ -152,7 +152,7 @@ public class Pago extends JFrame {
 						String name = textField_Nombre.getText();
 						String username = textField_Ape.getText();
 						
-						Usuario us = new Usuario(name, username, email);
+						// Usuario us = new Usuario(name, username, email);
 						
 						String div = textField_Saldo_Ini.getText();
 						
@@ -163,7 +163,7 @@ public class Pago extends JFrame {
 						
 						try 
 						{
-							verificar = controller.create_User_Pago(us, divisa);
+							verificar = controller.create_User_Pago(name, username, email, divisa);
 						} catch (RemoteException e1) 
 						{
 							System.out.println("No se puede crear usuario pago");
@@ -177,6 +177,8 @@ public class Pago extends JFrame {
 							Pago frame = new Pago(controller, vuelo);
 							frame.setVisible(true);
 							frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						} else if(verificar == false) {
+							JOptionPane.showMessageDialog(null,"Ha surgido algun problema al crear su cuenta","Usuario Pago",JOptionPane.INFORMATION_MESSAGE);
 						}
 					}
 					else
@@ -282,21 +284,27 @@ public class Pago extends JFrame {
 						String email = textField_Email_Pago.getText();
 						String concepto = textField_Concepto.getText();
 					
-						Float cant_total = vuelo.getPrecio();
+						double total_amount = vuelo.getPrecio();
 						
 						String id_pago="";
 						
 						
 						try 
 						{
-							id_pago = controller.make_Payment( email, cant_total, concepto);
+							id_pago = controller.make_Payment(email, total_amount, concepto);
 						} catch (RemoteException e1) 
 						{
 							System.out.println("No se puede realizar pago");
 							e1.printStackTrace();
 						}
-						JOptionPane.showMessageDialog(null,"Pago realizado con éxito. El id de su pago es:  " + id_pago , "USUARIO CREADO", JOptionPane.INFORMATION_MESSAGE);
-						dispose();
+						if(id_pago != null) {
+							JOptionPane.showMessageDialog(null,"Pago realizado con éxito. El id de su pago es:  \n" + id_pago , "USUARIO CREADO", JOptionPane.INFORMATION_MESSAGE);
+							dispose();
+						} else {
+							JOptionPane.showMessageDialog(null,"El email no esta asociado a una cuenta con saldo suficiente  "  , "USUARIO CREADO", JOptionPane.INFORMATION_MESSAGE);
+							
+						}
+						
 						UsuarioDTO usuario_prueba = new UsuarioDTO("Ibone", "Urquiola", "iboneurquiola@gmail.com", "72557745R");
 //						buscadorPrincipal frame = new buscadorPrincipal(controller, usuario_prueba);
 //						frame.setVisible(true);

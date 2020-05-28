@@ -173,21 +173,21 @@ public class InicioSesion_Registro extends JFrame{
 						
 						System.out.println("La contrasenya en LP es: " + contra);
 						
-						boolean iniciSesion = false;
+						UsuarioDTO usuario = null;
 						
 						try 
 						{
-							iniciSesion = controller.iniciarSesion(email, contra);
+							usuario = controller.iniciarSesion(email, contra);
 						} catch (RemoteException e1) 
 						{
 							e1.printStackTrace();
 						}
 						
 						//Si es incorrecto decirle que se registre/revise datos
-						if(iniciSesion == true) {
+						if(usuario != null) {
 							dispose();
 							UsuarioDTO usuario_prueba = new UsuarioDTO("Ibone", "Urquiola", "iboneurquiola@gmail.com", "72557745R");
-							buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, usuario_prueba);
+							buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, usuario);
 							frameBuscador.setVisible(true);
 							frameBuscador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 							frameBuscador.setResizable(false);

@@ -22,21 +22,34 @@ public class AppServiceAuth {
 		
 		String contrasenya = gateway.create_User_Auth(nombre, apellido, email);
 		
+		// String contrasenya = "HOLA";
 		System.out.println("Pasa la llamada del gateway");
 		
-		Usuario nuevo_usuario = new Usuario(email, nombre, apellido);
-		dao.guardarElemto(nuevo_usuario);
+//		Usuario nuevo_usuario = new Usuario(email, nombre, apellido);
+//		dao.guardarElemto(nuevo_usuario);
 	
 		
 		return contrasenya;
 		
 	}
 	
-	public boolean iniciarSesion (String email, String password) throws RemoteException
+	public Usuario iniciarSesion (String email, String password) throws RemoteException
 	{
 		System.out.println("Entra AppService - Inicio Sesion");
 		boolean iniSesCorrecto = gateway.log_in(email, password);
-		return iniSesCorrecto;
+		
+		Usuario usuario;
+		
+		// DEBERIAMOS BUSCAR EN LA BASE DE DATOS EL USUARIO
+		// DE MOMENTO CREAREMOS UN USUARIO CADA VEZ QUE SE LE LLAME
+		if(iniSesCorrecto) {
+			usuario = new Usuario("Manolo", "Lama", "manololama@gmail.com");
+		}else {
+			usuario = null;
+		}
+		
+		
+		return usuario;
 		
 	}
 	public void cerrarSesion (String email)throws RemoteException

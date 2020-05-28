@@ -8,7 +8,20 @@ import server.LD.Usuario;
 
 public class UsuarioAssembler 
 {
-	public List <UsuarioDTO> assembleTousuarioDTO(List<Usuario> usuarios)
+	
+	public UsuarioDTO assembleTousuarioDTO_Objeto(Usuario usuario)
+	{
+		
+		UsuarioDTO usDTO = new UsuarioDTO(usuario.getEmail(), usuario.getNombre(),
+				usuario.getApellido(), usuario.getDni());
+		
+		System.out.println("* Assembling usuarios to usuariosDTO ...");
+		
+		return usDTO;
+		
+	}
+	
+	public List <UsuarioDTO> assembleTousuarioDTO_Lista(List<Usuario> usuarios)
 	{
 		List<UsuarioDTO> usuarioDTO = new ArrayList<>();
 		for (Usuario u : usuarios)

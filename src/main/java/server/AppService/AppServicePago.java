@@ -6,6 +6,7 @@ import java.util.List;
 import server.DAO.DAO;
 import server.Gateway.Gateway;
 import server.LD.Usuario;
+import server.LD.Usuario_Pago;
 import server.LD.Vuelo;
 
 public class AppServicePago {
@@ -13,9 +14,9 @@ public class AppServicePago {
 	private Gateway gateway = new Gateway();
 //	private DAO dao = new DAO();
 	
-	public String make_Payment(String email, float total_amount, String concept) 
+	public String make_Payment(Usuario_Pago usuario_pago) 
 	{
-		return gateway.make_Payment(email, total_amount, concept);
+		return gateway.make_Payment(usuario_pago);
 	}
 	
 	public List <Usuario> getUsuarios()
@@ -28,14 +29,14 @@ public class AppServicePago {
 		return null;
 	}
 	
-	public boolean update_currency(String email, float currency) 
+	public boolean update_currency(Usuario_Pago usuario_pago) 
 	{
 		System.out.println("Entro en el appService de update currency");
-		return gateway.update_currency(email, currency);
+		return gateway.update_currency(usuario_pago);
 	}
 	
-	public boolean create_User_Pago (Usuario us, float currency)
+	public boolean create_User_Pago (Usuario_Pago us)
 	{
-		return gateway.create_User_Pago(us, currency);
+		return gateway.create_User_Pago(us);
 	}
 }

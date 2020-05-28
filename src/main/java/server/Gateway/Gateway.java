@@ -27,6 +27,7 @@ import server.LD.Aerolinea;
 import server.LD.Aeropuerto;
 import server.LD.Pasajero;
 import server.LD.Usuario;
+import server.LD.Usuario_Pago;
 import server.LD.Vuelo;
 
 public class Gateway implements itfGateway
@@ -85,9 +86,9 @@ public class Gateway implements itfGateway
 	// EXTERNAL SERVICE: PAYMENT
 	
 	@Override
-	public String make_Payment(String email, float total_amount, String concept) 
+	public String make_Payment(Usuario_Pago usuario_pago) 
 	{
-		RestClient<Usuario> client = new RestClient<>(hostname, port_pay);
+		RestClient<Usuario_Pago> client = new RestClient<>(hostname, port_pay);
 //		String idOperacion = "";
 		
 		System.out.println("-------------------------------------------------------");
@@ -98,9 +99,9 @@ public class Gateway implements itfGateway
         System.out.println("Trying POST at " + path );
         System.out.println("CURL call: curl http://127.0.0.1:5001/Payments/Make_payment -d '{\"email\":\"inigo.lopezgazpio@deusto.es\", \"total_amount\":\"20.5\", \"concept\":\"Hello World Payment\" }' -X POST -H \"Content-Type: application/json\" -v");
 
-        System.out.println("El email que envio es: " + email);
-        System.out.println("La cant total que voy a pagar: " + total_amount);
-        System.out.println("el concepto es: " + concept);
+        System.out.println("El email que envio es: " + usuario_pago.getEmail());
+        System.out.println("La cant. total que voy a pagar: " + usuario_pago.getTotal_amount());
+        System.out.println("El concepto es: " + usuario_pago.getConcept());
         
         String idOP2 = null;
         //Response response = null;
@@ -109,13 +110,9 @@ public class Gateway implements itfGateway
         
         try 
         {
-//           response=
-//                    client.makePostRequest(
-//                            client.createInvocationBuilder(path) , 
-//                            new Usuario(email, cant_total, concepto));
            responseString =
                    client.makePostRequest(
-                           client.createInvocationBuilder(path) , new Usuario(email, total_amount, concept)
+                           client.createInvocationBuilder(path) , usuario_pago
                       ).readEntity(String.class);
            
            System.out.println("El id antes del parseo es: " + responseString);
@@ -130,24 +127,8 @@ public class Gateway implements itfGateway
         	e.printStackTrace(); 
         	e.toString(); 
         }
-
-//        String reply = response.readEntity(String.class);
-//        
-//        System.out.println(reply);
-//        
-//        try
-//        {
-//        	result_class_id = new Simple_pass_result(reply);
-//        }
-//        catch (Exception e) 
-//        { 
-//        	e.printStackTrace(); 
-//        	e.toString(); 
-//        }
-//        
-//       System.out.println(responseString); 
-//        
-//        idOperacion= result_class_id.getContent();
+        
+        System.out.println(responseString);
         
         System.out.println("el id devuelto es: " + idOP2);
         
@@ -155,20 +136,19 @@ public class Gateway implements itfGateway
 	}
 
 	@Override
-	public boolean create_User_Pago(Usuario us, float currency) 
+	public boolean create_User_Pago(Usuario_Pago us) 
 	{
-		us.setDivisa(currency);
 		String responseString = null;
-		RestClient<Usuario> client = new RestClient<>(hostname, port_pay);
+		RestClient<Usuario_Pago> client = new RestClient<>(hostname, port_pay);
 		System.out.println("-------------------------------------------------------");
         System.out.println("Create_user Server test (POST)");
         System.out.println("-------------------------------------------------------");
 
         String path = "/Payments/Create_user";
-        System.out.println("El nombre del usuario es: " + us.getNombre());
-        System.out.println("El apellido del usuario es: " + us.getApellido());
+        System.out.println("El nombre del usuario es: " + us.getName());
+        System.out.println("El apellido del usuario es: " + us.getLastname());
         System.out.println("El email del usuario es: " + us.getEmail());
-        System.out.println("El saldo del usuario es: " + currency);
+        System.out.println("El saldo del usuario es: " + us.getCurrency());
 //        System.out.println("Trying POST at " + path );
 //        System.out.println("CURL call: curl http://127.0.0.1:5001/Payments/Create_user -d '{\"name\":\"Inigo\", \"last_name\":\"Lopez-Gazpio\", \"email\":\"inigo.lopezgazpio@deusto.es\", \"currency\":\"20.5\"}' -X POST -H \"Content-Type: application/json\" -v");
         
@@ -188,44 +168,38 @@ public class Gateway implements itfGateway
         	e.printStackTrace(); 
         	e.toString(); 
         }
+        
+        System.out.println(responseString);
 
 		return create;
 	}
 
 	@Override
-	public boolean update_currency(String email, float currency) 
+	public boolean update_currency(Usuario_Pago usuario_pago) 
 	{
 		
 		System.out.println("Entro en el gateway de update_currency ");
 		String responseString = null;
-		RestClient<Usuario> client = new RestClient<>(hostname, port_pay);
+		RestClient<Usuario_Pago> client = new RestClient<>(hostname, port_pay);
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Update currency Server test (POST)");
 		System.out.println("-------------------------------------------------------");
 
 		String path = "/Payments/Update_currency";
 		System.out.println("Trying POST at " + path);
-
-//		Response response;
 		
 		boolean update = false;
 		
-//		Usuario usuario1 = new Usuario(email, currency);
-//		System.out.println("El email que se va a mandar es: " + usuario1.getEmail());
-//        System.out.println("La divisa que se va a mandar es: " + usuario1.getDivisa());
 		
-		System.out.println("El email que se va a mandar es: " + email);
-		System.out.println("La divisa que se va a mandar es: " + currency);
+		System.out.println("El email que se va a mandar es: " + usuario_pago.getEmail());
+		System.out.println("La divisa que se va a mandar es: " + usuario_pago.getCurrency());
 		
       
 		try {
 			responseString =
-					client.makePutRequest(client.createInvocationBuilder(path),new Usuario(email, currency)).readEntity(String.class);
-//			response =
-//					
-//					client.makePutRequest(client.createInvocationBuilder(path),
-//							new Usuario(email, currency)
-//							);
+					client.makePutRequest(client.createInvocationBuilder(path),usuario_pago
+							).readEntity(String.class);
+
 			System.out.println("Antes del parseo: " + responseString);
 			
 			 JSONParser myParser = new JSONParser();
@@ -237,6 +211,9 @@ public class Gateway implements itfGateway
 			e.printStackTrace();
 			e.toString();
 		}
+		
+		System.out.println(responseString);
+		
 		return update;
 	}
 	
@@ -561,22 +538,26 @@ public class Gateway implements itfGateway
 
 			System.out.println("Number of flights collected:");
 			System.out.println(myFlightArray.size());
+			
+			if(myFlightArray.size()>0) {
+				
+				System.out.println("Print some flight as string");
+				myFlightArray.get(0).print();
 
-			System.out.println("Print some flight as string");
-			myFlightArray.get(0).print();
-
-			System.out.println("Print some random flight parameters");
-			System.out.println(myFlightArray.get(0).getAirportArrivalCity());
-			System.out.println(myFlightArray.get(0).getAirportArrivalCode());
-			System.out.println(myFlightArray.get(0).getAirportDepartureCity());
-			System.out.println(myFlightArray.get(0).getAirportDepartureCode());
-			System.out.println(myFlightArray.get(0).getCode());
-			System.out.println(myFlightArray.get(0).getDepartureDate());
-			System.out.println(myFlightArray.get(0).getDepartureDate(true));
-			System.out.println(myFlightArray.get(0).getDepartureDate(false));
-			System.out.println(myFlightArray.get(0).getFreeSeats());
-			System.out.println(myFlightArray.get(0).getTotalSeats());
-			System.out.println(myFlightArray.get(0).getPrice());
+				System.out.println("Print some random flight parameters");
+				System.out.println(myFlightArray.get(0).getAirportArrivalCity());
+				System.out.println(myFlightArray.get(0).getAirportArrivalCode());
+				System.out.println(myFlightArray.get(0).getAirportDepartureCity());
+				System.out.println(myFlightArray.get(0).getAirportDepartureCode());
+				System.out.println(myFlightArray.get(0).getCode());
+				System.out.println(myFlightArray.get(0).getDepartureDate());
+				System.out.println(myFlightArray.get(0).getDepartureDate(true));
+				System.out.println(myFlightArray.get(0).getDepartureDate(false));
+				System.out.println(myFlightArray.get(0).getFreeSeats());
+				System.out.println(myFlightArray.get(0).getTotalSeats());
+				System.out.println(myFlightArray.get(0).getPrice());
+			}
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();

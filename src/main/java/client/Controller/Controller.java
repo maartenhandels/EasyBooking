@@ -5,6 +5,7 @@ import java.util.Date;
 
 import client.LP.InicioSesion_Registro;
 import client.ServiceLocator.ServiceLocator;
+import server.DTO.UsuarioDTO;
 import server.DTO.VueloDTO;
 import server.Fachada.itfFachada;
 import server.LD.Aeropuerto;
@@ -40,14 +41,15 @@ public class Controller {
 		return contrasenya;
 	}
 	
-	public boolean iniciarSesion (String email, String password) throws RemoteException
+	public UsuarioDTO iniciarSesion (String email, String password) throws RemoteException
 	{
 		boolean inicioSesion = false;
+		UsuarioDTO usuario = null;
 		
 		System.out.println("Llega al controller de Iniciar Sesion");
-		inicioSesion = fachada.iniciarSesion(email, password);
+		usuario = fachada.iniciarSesion(email, password);
 		
-		return inicioSesion;
+		return usuario;
 	}
 	
 	public ArrayList<VueloDTO> getAllFlights() throws RemoteException{
@@ -152,7 +154,7 @@ public class Controller {
 		fachada.eliminarReserva(cod_reserva, cod_pago);
 	}
 	
-	public String  make_Payment(String email, float total_amount, String concept) throws RemoteException
+	public String  make_Payment(String email, double total_amount, String concept) throws RemoteException
 	{
 		return fachada.make_Payment(email, total_amount, concept);
 	}
@@ -162,9 +164,9 @@ public class Controller {
 		System.out.println("Entro en el controller de update_currency");
 		return fachada.update_currency(email, currency);
 	}
-	public boolean create_User_Pago (Usuario us, float currency)throws RemoteException
+	public boolean create_User_Pago (String name, String lastname, String email, float currency)throws RemoteException
 	{
-		return fachada.create_User_Pago(us, currency);
+		return fachada.create_User_Pago(name, lastname, email, currency);
 	}
 	public void cerrarSesion ()
 	{

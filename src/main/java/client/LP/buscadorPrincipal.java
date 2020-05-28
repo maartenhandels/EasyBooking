@@ -10,6 +10,8 @@ import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -110,8 +112,8 @@ public class buscadorPrincipal extends JFrame{
 	private JTextField textField_Destino;
 	private JDateChooser datIda;
 	
-	private JButton btnNewButton_1;
-	private JButton button;
+	private JButton btnLupaOrigen;
+	private JButton btnLupaDestino;
 	private JButton btnAplicarFiltros;
 	private JButton btnBuscar;
 	private JButton btnRealizarReserva;
@@ -237,27 +239,57 @@ public class buscadorPrincipal extends JFrame{
 		panel_1.add(lblAeropuertoOrigen);
 		
 		textField_Origen = new JTextField();
-		textField_Origen.setBounds(15, 87, 183, 26);
+		textField_Origen.setBounds(15, 87, 250, 26);
 		panel_1.add(textField_Origen);
 		textField_Origen.setColumns(10);
 		
-		btnNewButton_1 = new JButton("");
-		btnNewButton_1.setIcon(new ImageIcon("src/main/resources/images/lupa.png"));
-		btnNewButton_1.setBounds(204, 86, 51, 27);
-		panel_1.add(btnNewButton_1);
-		btnNewButton_1.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				//Aquí tendremos que aplicar un filtro para que solamente salgan vuelos con ese origen
-				if(textField_Origen.getText().isEmpty())
-				{
-					JOptionPane.showMessageDialog(null,"No has seleccionado el origen del vuelo","Origen vuelo",JOptionPane.INFORMATION_MESSAGE);
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(null,"No hay vuelos corresponientes a ese origen en el sistema","Origen vuelo",JOptionPane.INFORMATION_MESSAGE);
-				}
-			}
+		textField_Origen.getDocument().addDocumentListener(new DocumentListener() {
+			  public void changedUpdate(DocumentEvent e) {
+				  
+				  System.out.println("Ha entrado en el document listener update");
+				  
+			  }
+			  public void removeUpdate(DocumentEvent e) {
+				  if(textField_Origen.getText().isEmpty()== true || textField_Destino.getText().isEmpty()== true) 
+					{
+						System.out.println("He entrado en el if de textfields remove");
+						
+						lblNPasajeros.setVisible(false);
+						spinner.setVisible(false);
+						
+						lblRangoDePrecio.setVisible(false);
+						slider.setVisible(false);
+						
+						lblFechaSalida.setVisible(false);
+						datIda.setVisible(false);
+						
+						label_2.setVisible(false);
+						label_1.setVisible(false);
+						
+						btnAplicarFiltros.setText("Buscar sin Filtros");
+					}
+			  }
+			  public void insertUpdate(DocumentEvent e) {
+				  System.out.println("Ha entrado en el document listener insert");
+				  if(textField_Origen.getText().isEmpty()== false && textField_Destino.getText().isEmpty()== false) 
+					{
+						System.out.println("He entrado en el if de textfields");
+						
+						lblNPasajeros.setVisible(true);
+						spinner.setVisible(true);
+						
+						lblRangoDePrecio.setVisible(true);
+						slider.setVisible(true);
+						
+						lblFechaSalida.setVisible(true);
+						datIda.setVisible(true);
+						
+						label_2.setVisible(true);
+						label_1.setVisible(true);
+						
+						btnAplicarFiltros.setText("Buscar con Filtros");
+					}
+			  }
 		});
 		
 		lblAeropuertoDestino = new JLabel("Aeropuerto Destino");
@@ -267,31 +299,64 @@ public class buscadorPrincipal extends JFrame{
 		
 		textField_Destino = new JTextField();
 		textField_Destino.setColumns(10);
-		textField_Destino.setBounds(15, 150, 183, 26);
+		textField_Destino.setBounds(15, 150, 250, 26);
 		panel_1.add(textField_Destino);
 		
-		button = new JButton("");
-		button.setIcon(new ImageIcon("src/main/resources/images/lupa.png"));
-		button.setBounds(204, 149, 51, 27);
-		panel_1.add(button);
-		button.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				//Aquí tendremos que aplicar un filtro para que solamente salgan vuelos con ese origen
-				if(textField_Destino.getText().isEmpty())
-				{
-					JOptionPane.showMessageDialog(null,"No has seleccionado el destino del vuelo","Destino vuelo",JOptionPane.INFORMATION_MESSAGE);
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(null,"No hay vuelos corresponientes a ese destino en el sistema","Destino vuelo",JOptionPane.INFORMATION_MESSAGE);
-				}
-			}
+		
+		textField_Destino.getDocument().addDocumentListener(new DocumentListener() {
+			  public void changedUpdate(DocumentEvent e) {
+				  
+				  System.out.println("Ha entrado en el document listener update");
+				  
+			  }
+			  public void removeUpdate(DocumentEvent e) {
+				  if(textField_Origen.getText().isEmpty()== true || textField_Destino.getText().isEmpty()== true) 
+					{
+						System.out.println("He entrado en el if de textfields remove");
+						
+						lblNPasajeros.setVisible(false);
+						spinner.setVisible(false);
+						
+						lblRangoDePrecio.setVisible(false);
+						slider.setVisible(false);
+						
+						lblFechaSalida.setVisible(false);
+						datIda.setVisible(false);
+						
+						label_2.setVisible(false);
+						label_1.setVisible(false);
+						
+						btnAplicarFiltros.setText("Buscar sin Filtros");
+					}
+			  }
+			  public void insertUpdate(DocumentEvent e) {
+				  System.out.println("Ha entrado en el document listener insert");
+				  if(textField_Origen.getText().isEmpty()== false && textField_Destino.getText().isEmpty()== false) 
+					{
+						System.out.println("He entrado en el if de textfields insert");
+						
+						lblNPasajeros.setVisible(true);
+						spinner.setVisible(true);
+						
+						lblRangoDePrecio.setVisible(true);
+						slider.setVisible(true);
+						
+						lblFechaSalida.setVisible(true);
+						datIda.setVisible(true);
+						
+						label_2.setVisible(true);
+						label_1.setVisible(true);
+						
+						btnAplicarFiltros.setText("Buscar con Filtros");
+						
+					}
+			  }
 		});
 		
 		lblNPasajeros = new JLabel("Nº Pasajeros");
 		lblNPasajeros.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		lblNPasajeros.setBounds(73, 214, 104, 20);
+		lblNPasajeros.setVisible(false);
 		panel_1.add(lblNPasajeros);
 		
 		spinner = new JSpinner();
@@ -299,23 +364,25 @@ public class buscadorPrincipal extends JFrame{
 		spinner.setModel(new SpinnerNumberModel(1, 1, 100, 1));
 		spinner.setBounds(204, 204, 47, 38);
 		((DefaultEditor)spinner.getEditor()).getTextField().setEditable(false);
+		spinner.setVisible(false);
 		panel_1.add(spinner);
 		
 		lblRangoDePrecio = new JLabel("Rango de precios (€)");
 		lblRangoDePrecio.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		lblRangoDePrecio.setBounds(15, 279, 204, 20);
+		lblRangoDePrecio.setVisible(false);
 		panel_1.add(lblRangoDePrecio);
 		
 		slider = new JSlider(50, 1000, 1000);
 		slider.setToolTipText("");
-//		slider.setMinimum(50);
-//		slider.setMaximum(1000);
 		slider.setBounds(37, 337, 200, 26);
+		slider.setVisible(false);
 		panel_1.add(slider);
 		
 		label_1 = new JLabel("De: 50 ");
 		label_1.setFont(new Font("Century Gothic", Font.PLAIN, 15));
 		label_1.setBounds(37, 313, 100, 20);
+		label_1.setVisible(false);
 		panel_1.add(label_1);
 		
 		slider.addChangeListener(new ChangeListener() {
@@ -331,11 +398,13 @@ public class buscadorPrincipal extends JFrame{
 		label_2 = new JLabel("A: 1000");
 		label_2.setFont(new Font("Century Gothic", Font.PLAIN, 15));
 		label_2.setBounds(170, 313, 100, 20);
+		label_2.setVisible(false);
 		panel_1.add(label_2);
 		
 		lblFechaSalida = new JLabel("Fecha salida (dd/mm/aaaa)");
 		lblFechaSalida.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		lblFechaSalida.setBounds(15, 387, 242, 20);
+		lblFechaSalida.setVisible(false);
 		panel_1.add(lblFechaSalida);
 		
 		datIda = new JDateChooser();
@@ -344,21 +413,16 @@ public class buscadorPrincipal extends JFrame{
 		SimpleDateFormat format= new SimpleDateFormat("dd/MM/yyyy");
 		format.format(date);
 		datIda.setDate(date);
+		datIda.setVisible(false);
 		panel_1.add(datIda);
 			
-		btnAplicarFiltros = new JButton("Aplicar filtros");
+		btnAplicarFiltros = new JButton("Buscar");
 		btnAplicarFiltros.setFont(new Font("Century Gothic", Font.BOLD, 16));
 		btnAplicarFiltros.setBounds(37, 505, 200, 29);
 		panel_1.add(btnAplicarFiltros);
 		btnAplicarFiltros.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				
-				// Para coger info de spinner --> 
-				// int num_pasajeros = (Integer) spinner.getValue();
-				// Para coger info de slider
-				// int precio = slider.getValue();
-				// Date fecha = datIda.getDate();
 				
 				
 				ArrayList<VueloDTO> vuelos = new ArrayList<VueloDTO>();
@@ -373,6 +437,7 @@ public class buscadorPrincipal extends JFrame{
 				double precio = 0;
 				Date fecha = datIda.getDate();
 				String fecha_string = "";
+				Date today = Calendar.getInstance().getTime();
 				
 				if(textField_Origen.getText().isEmpty() == false) {
 					filtroOrigen = true;
@@ -384,164 +449,113 @@ public class buscadorPrincipal extends JFrame{
 				
 				if((Integer) spinner.getValue() > 1) {
 					filtroAsientos = true;
-					num_pasajeros = (Integer) spinner.getValue();
-				}
-				
-				Date today = Calendar.getInstance().getTime();
-				if(datIda.getDate().after(today)) {
-					
-					System.out.println("Se ha puesto filtroFecha a true");
-					
-					DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");  // dd-M-yyyy hh:mm:ss" 2020/06/14 15:00:00
-	                fecha_string = dateFormat.format(fecha); 
-					
-	                filtroFecha = true;
-					
-					
 				}
 				
 				if(slider.getValue() < 1000) {
 					filtroPrecio = true;
-					precio = slider.getValue();
 				}
+				
+				if(datIda.getDate().after(today)) {
+					System.out.println("Se ha puesto filtroFecha a true");
+	                filtroFecha = true;
+				}
+				
+				
 				
 				
 				if(filtroOrigen && filtroDestino) 
 				{
-					if(filtroAsientos)
+					num_pasajeros = (Integer) spinner.getValue();
+					precio = slider.getValue();
+					DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");  // dd-M-yyyy hh:mm:ss" 2020/06/14 15:00:00
+	                fecha_string = dateFormat.format(fecha); 
+	                
+					
+					if(filtroFecha)
 					{
-						if(filtroPrecio)
-						{
-							if(filtroFecha) {
-								// Llamada a filtros con origen, destino, asientos, precio y fecha
-								try {
-									System.out.println("Ha hecho la llamada con filtro de origen, destino, asientos, precio y fecha: ");
-									vuelos = controller.search_flights_with_filter_4(textField_Origen.getText(), textField_Destino.getText(),
-											num_pasajeros, precio, fecha_string);
-								} catch (RemoteException e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								}
-							}else {
-								// Llamada a filtros con origen, destino y precio
-								try {
-									System.out.println("Ha hecho la llamada con filtro de origen, destino, asientos y precio: ");
-									vuelos = controller.search_flights_with_filter_3(textField_Origen.getText(), textField_Destino.getText(),
-											num_pasajeros, precio);
-								} catch (RemoteException e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								}
-							}
-						}else {
-							// Llamada a filtros con origen destino y asientos
-							try {
-								System.out.println("Ha hecho la llamada con filtro de origen, destino y asientos: ");
-								vuelos = controller.search_flights_with_filter_2(textField_Origen.getText(), textField_Destino.getText(),
-										num_pasajeros);
-							} catch (RemoteException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
+						try {
+							System.out.println("Ha hecho la llamada con filtro de origen, destino, asientos, precio y fecha: ");
+							vuelos = controller.search_flights_with_filter_4(textField_Origen.getText(), textField_Destino.getText(),
+									num_pasajeros, precio, fecha_string);
+							
+						} catch (RemoteException e1) {
+
+							e1.printStackTrace();
 						}
-						
+					}else if(filtroPrecio && !filtroFecha) {
+						try {
+							System.out.println("Ha hecho la llamada con filtro de origen, destino, asientos y precio: ");
+							vuelos = controller.search_flights_with_filter_3(textField_Origen.getText(), textField_Destino.getText(),
+									num_pasajeros, precio);
+							
+						} catch (RemoteException e1) {
+
+							e1.printStackTrace();
+						}
+					}else if(filtroAsientos && !filtroFecha && !filtroPrecio) {
+						try {
+							System.out.println("Ha hecho la llamada con filtro de origen, destino y asientos: ");
+							vuelos = controller.search_flights_with_filter_2(textField_Origen.getText(), textField_Destino.getText(),
+									num_pasajeros);
+						} catch (RemoteException e1) {
+
+							e1.printStackTrace();
+						}
 					}else {
-						if(filtroOrigen) {
-							try {
-								vuelos = controller.search_flights_with_filter_0(textField_Origen.getText());
-							} catch (RemoteException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
-						}else {
-							// Llamada a filtros con origen y destino
-							try {
-								System.out.println("Ha hecho la llamada con filtro de origen y destino: ");
-								vuelos = controller.search_flights_with_filter_1(textField_Origen.getText(), textField_Destino.getText());
-							} catch (RemoteException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
+						try {
+							System.out.println("Ha hecho la llamada con filtro de origen y destino: ");
+							vuelos = controller.search_flights_with_filter_1(textField_Origen.getText(), textField_Destino.getText());
+						} catch (RemoteException e1) {
+							
+							e1.printStackTrace();
 						}
-						
 					}
+					
 					
 				}else {
 					
 					// Llamada sin filtros
 					try {
-						System.out.println("Ha hecho la llamada sin filtro: ");
+						System.out.println("Ha hecho la llamada sin filtros: ");
 						vuelos = controller.getAllFlights();
 					} catch (RemoteException e1) {
-						// TODO Auto-generated catch block
+
 						e1.printStackTrace();
 					}
 				}
 				
+				System.out.println("El tamaño de vuelos antes de la llamada a createList es: " + vuelos.size());
 				createListVuelos(vuelos, usuario);
 				
 				JOptionPane.showMessageDialog(null,"Filtros aplicados","Filtros",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		
-		btnBuscar = new JButton("Buscar");
-		btnBuscar.setIcon(new ImageIcon("src/main/resources/images/lupa.png"));
-		btnBuscar.setFont(new Font("Century Gothic", Font.BOLD, 16));
-		btnBuscar.setBounds(879, 63, 156, 27);
-		contentPane.add(btnBuscar);
-		btnBuscar.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				System.out.println("Me dispongo a hacer la llamada...");
-				// ArrayList<VueloDTO> allFlights =  controller.getAllFlights();
-				ArrayList<VueloDTO> allFlights = new ArrayList<VueloDTO>();
-				try {
-					allFlights = controller.getAllFlights();
-				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				System.out.println("La llamada se ha realizado");
-				System.out.println("El aeropuerto de salida del primer vuelo en LP es: "+ 
-						allFlights.get(0).getAeropuertoDestino().getNombre());
-				
-				
-//				List<VueloDTO> vuelos2 = new ArrayList<VueloDTO>();
+//		btnBuscar = new JButton("Buscar");
+//		btnBuscar.setIcon(new ImageIcon("src/main/resources/images/lupa.png"));
+//		btnBuscar.setFont(new Font("Century Gothic", Font.BOLD, 16));
+//		btnBuscar.setBounds(879, 63, 156, 27);
+//		contentPane.add(btnBuscar);
+//		btnBuscar.addActionListener(new ActionListener() {
+//			
+//			public void actionPerformed(ActionEvent e) {
 //				
-//				System.out.println("La Aerolinea del primer vuelo es: " + allFlights.get(0).getAerolinea());
+//				System.out.println("Me dispongo a hacer la llamada...");
+//				// ArrayList<VueloDTO> allFlights =  controller.getAllFlights();
+//				ArrayList<VueloDTO> allFlights = new ArrayList<VueloDTO>();
+//				try {
+//					allFlights = controller.getAllFlights();
+//				} catch (RemoteException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+//				System.out.println("La llamada se ha realizado");
+//				System.out.println("El aeropuerto de salida del primer vuelo en LP es: "+ 
+//						allFlights.get(0).getAeropuertoDestino().getNombre());
 //				
-//				Aerolinea a1 = new Aerolinea("124", "IBERIA");
-//				Aeropuerto p1 = new Aeropuerto("p1", "BIL");
-//				Aeropuerto p2 = new Aeropuerto("p2", "AMS");
-//				Aeropuerto p3 = new Aeropuerto("p3", "CDG");
-//				VueloDTO vuelo1 = new VueloDTO( a1, p1, p2, 100,1372339860, 1372339375, 234.75);
-//				
-//				Aerolinea a2 = new Aerolinea("123", "LUFTHANSA");
-//				Aerolinea a3 = new Aerolinea("134", "KLM");
-//				Aerolinea a5 = new Aerolinea("123", "RYANAIR");
-//				Aerolinea a6 = new Aerolinea("123", "AIR FRANCE");
-//				Aerolinea a8 = new Aerolinea("123", "VUELING");
-//				VueloDTO vuelo2 = new VueloDTO(a2, p2, p1, 100, 1372339860, 1372339375, 120.32);
-//				VueloDTO vuelo3 = new VueloDTO(a3, p3, p2, 100, 1372339860, 1372339375, 47.38);
-//				VueloDTO vuelo4 = new VueloDTO(a2, p1, p3, 100, 1372339860, 1372339375, 143.00);
-//				VueloDTO vuelo5 = new VueloDTO(a6, p3, p2, 100,1372339860, 1372339375, 97.50);
-//				VueloDTO vuelo6 = new VueloDTO(a5, p2, p1, 100,1372339860, 1372339375, 107.50);
-//				VueloDTO vuelo7 = new VueloDTO(a1, p3, p2, 100,1372339860, 1372339375, 43.90);
-//				VueloDTO vuelo8 = new VueloDTO(a8, p3, p1, 100,1372339860, 1372339375, 217.20);
-//				
-//				vuelos2.add(vuelo1);
-//				vuelos2.add(vuelo2);
-//				vuelos2.add(vuelo3);
-//				vuelos2.add(vuelo4);
-//				vuelos2.add(vuelo5);
-//				vuelos2.add(vuelo6);
-//				vuelos2.add(vuelo7);
-//				vuelos2.add(vuelo8);
-				
-				createListVuelos(allFlights, usuario);
-			}
-		});
+//				createListVuelos(allFlights, usuario);
+//			}
+//		});
 		
 		panel_2 = new JPanel();
 		panel_2.setBackground(new Color(95, 158, 160));
@@ -552,9 +566,12 @@ public class buscadorPrincipal extends JFrame{
 	public void createListVuelos(ArrayList<VueloDTO>vuelos, UsuarioDTO usuario)
 	{
 		
+		System.out.println("Entra en el createListVuelos");
 		rowHolderPanel.removeAll();
+		rowHolderPanel.revalidate();
+        rowHolderPanel.repaint();
 		
-		for( VueloDTO v:vuelos)
+		for(VueloDTO v:vuelos)
 		{
 			PanelVuelos panelV=new PanelVuelos(v, usuario, controller); 
 			panelV.setVisible(true);

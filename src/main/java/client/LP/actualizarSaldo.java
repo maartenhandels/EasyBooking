@@ -114,16 +114,18 @@ public class actualizarSaldo extends JFrame {
 						System.out.println("El email que manda es: " + email);
 						
 						//tendremos que comprobar que es un numero
-						float divisa = Float.parseFloat(div);
+						float currency = Float.parseFloat(div);
 						
 						try 
 						{
-							controller.update_currency(email, divisa);
+							controller.update_currency(email, currency);
 						} catch (RemoteException e1) 
 						{
 							System.out.println("Datos actualizar saldo incorrectos");
 							e1.printStackTrace();
 						}
+						
+						JOptionPane.showMessageDialog(null,"Saldo actualizado correctamente","Actualizar saldo",JOptionPane.INFORMATION_MESSAGE);
 						dispose();
 						Pago frame = new Pago(controller, vuelo);
 						frame.setVisible(true);

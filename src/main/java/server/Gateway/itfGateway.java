@@ -9,6 +9,7 @@ import server.DTO.UsuarioDTO;
 import server.DTO.VueloDTO;
 import server.LD.Pasajero;
 import server.LD.Usuario;
+import server.LD.Usuario_Pago;
 import server.LD.Vuelo;
 
 public interface itfGateway 
@@ -18,9 +19,9 @@ public interface itfGateway
 	public List <Vuelo> search_flights_with_filter (Flight_parameters parametros);
 	
 	// Servicio externo - Pago
-	public String make_Payment (String email, float total_amount, String concept);
-	public boolean create_User_Pago (Usuario us, float currency);
-	public boolean update_currency (String email, float currency);
+	public String make_Payment (Usuario_Pago usuario_pago);
+	public boolean create_User_Pago (Usuario_Pago us);
+	public boolean update_currency (Usuario_Pago usuario_pago);
 	
 	// Servicio externo - Autenticacion
 	public boolean log_in (String email, String password);
