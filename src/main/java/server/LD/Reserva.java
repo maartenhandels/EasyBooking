@@ -62,6 +62,12 @@ public class Reserva implements Serializable{
 		
 	}
 
+	public Reserva(String cod_reserva, String cod_pago) 
+	{
+		this.codPago = cod_pago;
+		this.codReserva = cod_reserva;
+	}
+
 	public String getCodReserva() {
 		return codReserva;
 	}

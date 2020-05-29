@@ -5,15 +5,18 @@ import java.util.Date;
 import java.util.List;
 
 import externalServices.Flight_parameters;
+import server.DAO.DAO;
 import server.DTO.UsuarioDTO;
 import server.Gateway.Gateway;
 import server.LD.Pasajero;
+import server.LD.Reserva;
 import server.LD.Usuario;
 import server.LD.Vuelo;
 
 public class AppServiceVuelo {
 	
 	private Gateway gateway = new Gateway();
+	private DAO dao = new DAO();
 	
 	public ArrayList<Vuelo> search_flights_with_filter (Flight_parameters parametros) 
 	{
@@ -25,13 +28,19 @@ public class AppServiceVuelo {
 	{
 		
 	}
-	public void createReserva(String aero_origen, String aero_destino, ArrayList<Pasajero> pasajeros, Date salida, Date llegada)
-	{
+	public void createReserva(String cod_reserva, String cod_pago)
+	{	
+		cod_reserva = String.valueOf(Math.random()*6);	
+		cod_pago = String.valueOf(Math.random()*6+6);
+		
+		Reserva reserva = new Reserva(cod_reserva, cod_pago);	
+		dao.guardarElemto(reserva);
 		
 	}
 	public void eliminarReserva(String cod_reserva, String cod_pago)
 	{
-		
+		Reserva reserva = new Reserva(cod_reserva, cod_pago);	
+		dao.eliminarObjeto(reserva);
 	}
 	
 	public List <Usuario> getUsuarios()

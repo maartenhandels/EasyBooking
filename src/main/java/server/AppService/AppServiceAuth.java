@@ -1,6 +1,7 @@
 package server.AppService;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 import server.DAO.DAO;
@@ -14,7 +15,7 @@ import server.LD.Usuario;
 public class AppServiceAuth {
 	
 	private Gateway gateway = new Gateway();
-	private DAO dao;
+	private DAO dao = new DAO();
 	
 	public String registroUsuario(String nombre, String apellido, String email) throws RemoteException
 	{
@@ -40,11 +41,26 @@ public class AppServiceAuth {
 		
 		Usuario usuario;
 		
+		//ESTO HE HECHO PERO NOSE SI HABRA QUE HACER ALGUNA BUSQUEDA ASI 
+//		ArrayList<Usuario> lista = dao.LeerUsuarios();
+//		Usuario usuario = null;
 		
+//		for(int i=0; i<lista.size(); i++)
+//		{
+//			if(usuario.getEmail().equals(lista.get(i).getEmail()))
+//			{
+//				usuario = new Usuario(email, password);
+//			}
+//			else
+//			{
+//				System.out.println("Este usuario no es correcto");
+//				usuario = null;
+//			}
+//		}
 		// DEBERIAMOS BUSCAR EN LA BASE DE DATOS EL USUARIO
 		// DE MOMENTO CREAREMOS UN USUARIO CADA VEZ QUE SE LE LLAME
 		if(iniSesCorrecto) {
-//			usuario = new Usuario(email, password);
+			usuario = new Usuario(email, password);
 //			String nombre = dao.buscarNombreUsuario(usuario);
 			usuario = new Usuario("Manolo", "Lama", "manololama@gmail.com");
 		}else {
@@ -65,14 +81,11 @@ public class AppServiceAuth {
 	}
 	public boolean eliminarUsuario(String email, String password )
 	{
-//		Usuario userBorrar;
-//		
-//		userBorrar =  new Usuario(email, password);
-//		
-//		dao.eliminarObjeto(userBorrar);
+		Usuario userBorrar =  new Usuario(email, password);
+		
+		dao.eliminarObjeto(userBorrar);
 		
 		return gateway.delete_user(email, password);
-		
 		
 	}
 	public boolean change_password (String email, String old_password, String new_password)

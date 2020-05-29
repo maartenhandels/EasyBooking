@@ -144,9 +144,9 @@ public class Controller {
 		fachada.aplicarFiltro(aero_origen, aero_dest, num_pasajeros, precio, salida);
 	}
 	
-	public void createReserva(String aero_origen, String aero_destino, ArrayList<Pasajero> pasajeros, Date salida, Date llegada) throws RemoteException
+	public void createReserva (String cod_reserva, String cod_pago)throws RemoteException
 	{
-		fachada.createReserva(aero_origen, aero_destino, pasajeros, salida, llegada);
+		fachada.createReserva(cod_reserva, cod_pago);
 	}
 	
 	public void eliminarReserva(String cod_reserva, String cod_pago) throws RemoteException

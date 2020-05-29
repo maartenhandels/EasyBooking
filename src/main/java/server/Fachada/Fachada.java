@@ -275,9 +275,9 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	}
 	
 	@Override
-	public void createReserva(String aero_origen, String aero_destino, ArrayList<Pasajero> pasajeros, Date salida, Date llegada) 
+	public void createReserva (String cod_reserva, String cod_pago)
 	{
-		servVuelo.createReserva(aero_origen, aero_destino, pasajeros, salida, llegada);
+		servVuelo.createReserva(cod_reserva, cod_pago);
 	}
 
 	@Override

@@ -38,14 +38,16 @@ public class actualizarSaldo extends JFrame {
 
 	private static Controller controller;
 	private VueloDTO vuelo;
+	private String precio;
 	
 	/**
 	 * Create the frame.
 	 */
-	public actualizarSaldo(Controller controller, VueloDTO vuelo) 
+	public actualizarSaldo(Controller controller, VueloDTO vuelo, String precio) 
 	{
 		actualizarSaldo.controller = controller;
 		this.vuelo= vuelo;
+		this.precio = precio;
 		init_componentes(vuelo);
 		setVisible(true);
 	}
@@ -127,7 +129,7 @@ public class actualizarSaldo extends JFrame {
 						
 						JOptionPane.showMessageDialog(null,"Saldo actualizado correctamente","Actualizar saldo",JOptionPane.INFORMATION_MESSAGE);
 						dispose();
-						Pago frame = new Pago(controller, vuelo);
+						Pago frame = new Pago(controller, vuelo, precio);
 						frame.setVisible(true);
 						frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					}

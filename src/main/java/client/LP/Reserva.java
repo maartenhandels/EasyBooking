@@ -70,6 +70,8 @@ public class Reserva extends JFrame {
 	private JLabel lblNewLabel_5_1_1_1_1;
 	
 	private JComboBox<String> comboBox;
+	private String strFloat2;
+	private String precio;
 	
 	private JRadioButton rdbtnNewRadioButton;
 	private JRadioButton rdbtnNewRadioButton_1;
@@ -226,6 +228,8 @@ public class Reserva extends JFrame {
 		comboBox.addItem("4 pers.");
 		comboBox.addItem("5 pers.");
 		panel_1.add(comboBox);
+		
+		
 				
 		rdbtnNewRadioButton = new JRadioButton("Turista");
 		rdbtnNewRadioButton.setBounds(269, 40, 109, 29);
@@ -275,6 +279,48 @@ public class Reserva extends JFrame {
 		canvas_1_1_1.setBackground(Color.GRAY);
 		canvas_1_1_1.setBounds(158, 114, 81, 4);
 		panel_2.add(canvas_1_1_1);
+		
+//		comboBox.addActionListener(new ActionListener() {
+//			
+//			public void actionPerformed(ActionEvent e) 
+//			{
+//				System.out.println("El num pasajeros: " + Integer.parseInt(comboBox.getSelectedItem().toString()));
+//
+//				precio = Float.toString(vuelo.getPrecio()*Integer.parseInt(comboBox.getSelectedItem().toString()));
+//				
+//				lblNewLabel_7 = new JLabel( precio+"€");
+//				lblNewLabel_7.setBounds(163, 16, 69, 20);
+//				panel_2.add(lblNewLabel_7);
+//				
+//				System.out.println("El precio es: " + precio);
+//				float precio2 = Float.parseFloat(precio);
+//				System.out.println("El precio en float es: " + precio2);
+//				float precioIva = (float) (Float.parseFloat(precio) * 0.21);
+//				String strFloat = String.format("%.2f", precioIva);
+//				
+//				System.out.println("IVA es "+strFloat);
+//				
+//				float precioTotal = Float.parseFloat(precio)+precioIva;
+//				System.out.println("El precio total float es: " + precioTotal);
+//				strFloat2 = String.format("%.2f", precioTotal);
+//				
+//				System.out.println("El precio total es: " + strFloat2);
+//				
+//				lblNewLabel_8 = new JLabel(strFloat+"€");
+//				lblNewLabel_8.setBounds(163, 48, 69, 20);
+//				panel_2.add(lblNewLabel_8);
+//				
+//				lblNewLabel_9 = new JLabel("0,00€");
+//				lblNewLabel_9.setBounds(163, 84, 69, 20);
+//				panel_2.add(lblNewLabel_9);
+//				
+//				lblNewLabel_10 = new JLabel(strFloat2 +"€");
+//				lblNewLabel_10.setFont(new Font("Century Gothic", Font.BOLD, 20));
+//				lblNewLabel_10.setBounds(163, 138, 98, 20);
+//				panel_2.add(lblNewLabel_10);
+//				
+//			}
+//			});
 				
 		lblNewLabel_7 = new JLabel(Float.toString(vuelo.getPrecio())+"€");
 		lblNewLabel_7.setBounds(163, 16, 69, 20);
@@ -343,7 +389,7 @@ public class Reserva extends JFrame {
 			{
 				
 				dispose();
-				Pago frame = new Pago(controller, vuelo);
+				Pago frame = new Pago(controller, vuelo, strFloat2);
 				frame.setVisible(true);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}

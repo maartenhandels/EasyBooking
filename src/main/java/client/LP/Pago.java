@@ -10,7 +10,7 @@ import javax.swing.border.EmptyBorder;
 import client.Controller.Controller;
 import server.DTO.UsuarioDTO;
 import server.DTO.VueloDTO;
-import server.LD.Usuario;
+//import server.LD.Usuario;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -60,13 +60,16 @@ public class Pago extends JFrame {
 	private static Controller controller;
 	private VueloDTO vuelo;
 	
+	private String precio;
+	
 	/**
 	 * Create the frame.
 	 */
-	public Pago(Controller controller, VueloDTO vuelo) 
+	public Pago(Controller controller, VueloDTO vuelo, String precio) 
 	{
 		Pago.controller = controller;
 		this.vuelo= vuelo;
+		this.precio = precio;
 		init_componentes(vuelo);
 		setVisible(true);
 	}
@@ -94,7 +97,7 @@ public class Pago extends JFrame {
 		panel.add(lblServicioPagos);
 		
 		btnActualizarSaldo = new JButton("Actualizar Saldo");
-		btnActualizarSaldo.setBounds(475, 9, 153, 29);
+		btnActualizarSaldo.setBounds(458, 9, 170, 29);
 		btnActualizarSaldo.setFont(new Font("Century Gothic", Font.BOLD, 15));
 		panel.add(btnActualizarSaldo);
 		
@@ -102,7 +105,7 @@ public class Pago extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				actualizarSaldo frame = new actualizarSaldo(controller, vuelo);
+				actualizarSaldo frame = new actualizarSaldo(controller, vuelo, precio);
 				frame.setVisible(true);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
@@ -174,7 +177,7 @@ public class Pago extends JFrame {
 						{
 							JOptionPane.showMessageDialog(null,"Usuario creado con exito, ya puede realizar el pago de la reserva","Usuario Pago",JOptionPane.INFORMATION_MESSAGE);
 							dispose();
-							Pago frame = new Pago(controller, vuelo);
+							Pago frame = new Pago(controller, vuelo, precio);
 							frame.setVisible(true);
 							frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 						} else if(verificar == false) {
@@ -323,7 +326,7 @@ public class Pago extends JFrame {
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);
 		
-		lblAquiSaldrPrecio = new JLabel(Float.toString(vuelo.getPrecio()) + "€");
+		lblAquiSaldrPrecio = new JLabel( precio + "€");
 		lblAquiSaldrPrecio.setBounds(93, 50, 117, 20);
 		lblAquiSaldrPrecio.setFont(new Font("Century Gothic", Font.BOLD, 26));
 		panel_3.add(lblAquiSaldrPrecio);
