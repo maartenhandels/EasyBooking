@@ -88,6 +88,15 @@ public class Reserva extends JFrame {
 	private static Controller controller;
 	private UsuarioDTO usuario;
 	private VueloDTO vuelo;
+	
+	private int numero_pasajeros;
+	private float precio_total;
+	private float iva;
+//	private final float precio_con_iva;
+	
+	private String precio_total_string;
+	private String iva_string;
+//	private final String precio_con_iva_string;
 
 	public Reserva(Controller controller, UsuarioDTO usuario, VueloDTO vuelo) {
 		
@@ -308,16 +317,16 @@ public class Reserva extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{
 				
-				int numero_pasajeros = (int) comboBox.getSelectedItem();
+				numero_pasajeros = (int) comboBox.getSelectedItem();
 				
 				System.out.println("El numero_pasajeros se ha puesto a: " + numero_pasajeros);
 				
-				float precio_total = vuelo.getPrecio() * numero_pasajeros;
-				float iva = (float) (precio_total * 0.21);
+				precio_total = vuelo.getPrecio() * numero_pasajeros;
+				iva = (float) (precio_total * 0.21);
 				float precio_con_iva = precio_total + iva;
 				
-				String precio_total_string = String.format("%.2f", precio_total);
-				String iva_string = String.format("%.2f", iva);
+				precio_total_string = String.format("%.2f", precio_total);
+				iva_string = String.format("%.2f", iva);
 				String precio_con_iva_string = String.format("%.2f", precio_con_iva);
 				
 				lblNewLabel_7.setText(precio_total_string + "€");
