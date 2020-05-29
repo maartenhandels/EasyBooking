@@ -69,7 +69,7 @@ public class Reserva extends JFrame {
 	private JLabel lblNewLabel_5_1_1_1;
 	private JLabel lblNewLabel_5_1_1_1_1;
 	
-	private JComboBox<String> comboBox;
+	private JComboBox<Integer> comboBox;
 	private String strFloat2;
 	private String precio;
 	
@@ -211,37 +211,37 @@ public class Reserva extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		lblNewLabel_5 = new JLabel("TARIFAS");
-		lblNewLabel_5.setFont(new Font("Century Gothic", Font.BOLD, 16));
-		lblNewLabel_5.setBounds(269, 8, 97, 20);
-		panel_1.add(lblNewLabel_5);
+//		lblNewLabel_5 = new JLabel("TARIFAS");
+//		lblNewLabel_5.setFont(new Font("Century Gothic", Font.BOLD, 16));
+//		lblNewLabel_5.setBounds(269, 8, 97, 20);
+//		panel_1.add(lblNewLabel_5);
 		
 		lblNewLabel_6 = new JLabel("Núm. pasajeros:");
 		lblNewLabel_6.setBounds(15, 44, 117, 20);
 		panel_1.add(lblNewLabel_6);
 		
-		comboBox = new JComboBox<String>();
+		comboBox = new JComboBox<>();
 		comboBox.setBounds(147, 41, 67, 26);
-		comboBox.addItem("1 per.");
-		comboBox.addItem("2 pers.");
-		comboBox.addItem("3 pers.");
-		comboBox.addItem("4 pers.");
-		comboBox.addItem("5 pers.");
+		comboBox.addItem(1);
+		comboBox.addItem(2);
+		comboBox.addItem(3);
+		comboBox.addItem(4);
+		comboBox.addItem(5);
 		panel_1.add(comboBox);
 		
 		
 				
-		rdbtnNewRadioButton = new JRadioButton("Turista");
-		rdbtnNewRadioButton.setBounds(269, 40, 109, 29);
-		panel_1.add(rdbtnNewRadioButton);
-		
-		rdbtnNewRadioButton_1 = new JRadioButton("Premium");
-		rdbtnNewRadioButton_1.setBounds(445, 40, 155, 29);
-		panel_1.add(rdbtnNewRadioButton_1);
+//		rdbtnNewRadioButton = new JRadioButton("Turista");
+//		rdbtnNewRadioButton.setBounds(269, 40, 109, 29);
+//		panel_1.add(rdbtnNewRadioButton);
+//		
+//		rdbtnNewRadioButton_1 = new JRadioButton("Premium");
+//		rdbtnNewRadioButton_1.setBounds(445, 40, 155, 29);
+//		panel_1.add(rdbtnNewRadioButton_1);
 		
 		panel_2 = new JPanel();
 		panel_2.setBorder(new LineBorder(new Color(0, 128, 128), 2));
-		panel_2.setBounds(58, 248, 256, 173);
+		panel_2.setBounds(58, 248, 300, 173);
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -280,90 +280,71 @@ public class Reserva extends JFrame {
 		canvas_1_1_1.setBounds(158, 114, 81, 4);
 		panel_2.add(canvas_1_1_1);
 		
-//		comboBox.addActionListener(new ActionListener() {
-//			
-//			public void actionPerformed(ActionEvent e) 
-//			{
-//				System.out.println("El num pasajeros: " + Integer.parseInt(comboBox.getSelectedItem().toString()));
-//
-//				precio = Float.toString(vuelo.getPrecio()*Integer.parseInt(comboBox.getSelectedItem().toString()));
-//				
-//				lblNewLabel_7 = new JLabel( precio+"€");
-//				lblNewLabel_7.setBounds(163, 16, 69, 20);
-//				panel_2.add(lblNewLabel_7);
-//				
-//				System.out.println("El precio es: " + precio);
-//				float precio2 = Float.parseFloat(precio);
-//				System.out.println("El precio en float es: " + precio2);
-//				float precioIva = (float) (Float.parseFloat(precio) * 0.21);
-//				String strFloat = String.format("%.2f", precioIva);
-//				
-//				System.out.println("IVA es "+strFloat);
-//				
-//				float precioTotal = Float.parseFloat(precio)+precioIva;
-//				System.out.println("El precio total float es: " + precioTotal);
-//				strFloat2 = String.format("%.2f", precioTotal);
-//				
-//				System.out.println("El precio total es: " + strFloat2);
-//				
-//				lblNewLabel_8 = new JLabel(strFloat+"€");
-//				lblNewLabel_8.setBounds(163, 48, 69, 20);
-//				panel_2.add(lblNewLabel_8);
-//				
-//				lblNewLabel_9 = new JLabel("0,00€");
-//				lblNewLabel_9.setBounds(163, 84, 69, 20);
-//				panel_2.add(lblNewLabel_9);
-//				
-//				lblNewLabel_10 = new JLabel(strFloat2 +"€");
-//				lblNewLabel_10.setFont(new Font("Century Gothic", Font.BOLD, 20));
-//				lblNewLabel_10.setBounds(163, 138, 98, 20);
-//				panel_2.add(lblNewLabel_10);
-//				
-//			}
-//			});
-				
-		lblNewLabel_7 = new JLabel(Float.toString(vuelo.getPrecio())+"€");
+		lblNewLabel_7 = new JLabel( Float.toString(vuelo.getPrecio()) +"€");
 		lblNewLabel_7.setBounds(163, 16, 69, 20);
 		panel_2.add(lblNewLabel_7);
 		
-		//Aqui hay que llamar a un metodo que haga esto: (pero no se bien dnd tiene q estar)
-		float precioIva =  (float) (vuelo.getPrecio() * 0.21);
-		String strFloat = String.format("%.2f", precioIva);
+		float iva_inicial = (float) (vuelo.getPrecio() * 0.21);
+		float precio_con_iva = vuelo.getPrecio() + iva_inicial;
 		
+		String precio_con_iva_string = String.format("%.2f", precio_con_iva);
+		String iva_inicial_string = String.format("%.2f", iva_inicial);
 		
-		lblNewLabel_8 = new JLabel(strFloat+"€");
+		lblNewLabel_8 = new JLabel(iva_inicial_string + "€");
 		lblNewLabel_8.setBounds(163, 48, 69, 20);
 		panel_2.add(lblNewLabel_8);
 		
-		lblNewLabel_9 = new JLabel("0,00 €");
-		lblNewLabel_9.setBounds(168, 84, 69, 20);
+		lblNewLabel_9 = new JLabel("0,00€");
+		lblNewLabel_9.setBounds(163, 84, 69, 20);
 		panel_2.add(lblNewLabel_9);
 		
-		//Aqui hay que llamar a un metodo que haga esto: (pero no se bien dnd tiene q estar)
-		float precioTotal = vuelo.getPrecio()+precioIva;
-		String strFloat2 = String.format("%.2f", precioTotal);
-		
-		lblNewLabel_10 = new JLabel(strFloat2+"€");
+		lblNewLabel_10 = new JLabel(precio_con_iva_string +"€");
 		lblNewLabel_10.setFont(new Font("Century Gothic", Font.BOLD, 20));
-		lblNewLabel_10.setBounds(158, 138, 98, 20);
+		lblNewLabel_10.setBounds(163, 138, 98, 20);
 		panel_2.add(lblNewLabel_10);
+		
+		comboBox.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) 
+			{
+				
+				int numero_pasajeros = (int) comboBox.getSelectedItem();
+				
+				System.out.println("El numero_pasajeros se ha puesto a: " + numero_pasajeros);
+				
+				float precio_total = vuelo.getPrecio() * numero_pasajeros;
+				float iva = (float) (precio_total * 0.21);
+				float precio_con_iva = precio_total + iva;
+				
+				String precio_total_string = String.format("%.2f", precio_total);
+				String iva_string = String.format("%.2f", iva);
+				String precio_con_iva_string = String.format("%.2f", precio_con_iva);
+				
+				lblNewLabel_7.setText(precio_total_string + "€");
+				lblNewLabel_8.setText(iva_string + "€");
+				lblNewLabel_10.setText(precio_con_iva_string + "€");
+				
+			}
+		});
+				
+
 		
 		panel_3 = new Panel();
 		panel_3.setBackground(new Color(176, 224, 230));
 		panel_3.setBounds(342, 250, 348, 171);
 		contentPane.add(panel_3);
 		panel_3.setLayout(null);
-		
-		lblNewLabel_11 = new JLabel("¿Cómo prefieres a pagar?");
-		lblNewLabel_11.setFont(new Font("Century Gothic", Font.BOLD, 16));
-		lblNewLabel_11.setBackground(Color.WHITE);
-		lblNewLabel_11.setBounds(25, 16, 209, 20);
-		panel_3.add(lblNewLabel_11);
-		
-		checkbox = new Checkbox("VISA");
-		checkbox.setBounds(25, 42, 110, 50);
-		panel_3.add(checkbox);
-		
+//		
+//		lblNewLabel_11 = new JLabel("¿Cómo prefieres a pagar?");
+//		lblNewLabel_11.setFont(new Font("Century Gothic", Font.BOLD, 16));
+//		lblNewLabel_11.setBackground(Color.WHITE);
+//		lblNewLabel_11.setBounds(25, 16, 209, 20);
+//		panel_3.add(lblNewLabel_11);
+//		
+//		checkbox = new Checkbox("VISA");
+//		checkbox.setBounds(25, 42, 110, 50);
+//		panel_3.add(checkbox);
+//		
 		
 		btnNewButton_1 = new JButton("Cancelar");
 		btnNewButton_1.setFont(new Font("Century Gothic", Font.BOLD, 16));

@@ -531,32 +531,6 @@ public class buscadorPrincipal extends JFrame{
 			}
 		});
 		
-//		btnBuscar = new JButton("Buscar");
-//		btnBuscar.setIcon(new ImageIcon("src/main/resources/images/lupa.png"));
-//		btnBuscar.setFont(new Font("Century Gothic", Font.BOLD, 16));
-//		btnBuscar.setBounds(879, 63, 156, 27);
-//		contentPane.add(btnBuscar);
-//		btnBuscar.addActionListener(new ActionListener() {
-//			
-//			public void actionPerformed(ActionEvent e) {
-//				
-//				System.out.println("Me dispongo a hacer la llamada...");
-//				// ArrayList<VueloDTO> allFlights =  controller.getAllFlights();
-//				ArrayList<VueloDTO> allFlights = new ArrayList<VueloDTO>();
-//				try {
-//					allFlights = controller.getAllFlights();
-//				} catch (RemoteException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				}
-//				System.out.println("La llamada se ha realizado");
-//				System.out.println("El aeropuerto de salida del primer vuelo en LP es: "+ 
-//						allFlights.get(0).getAeropuertoDestino().getNombre());
-//				
-//				createListVuelos(allFlights, usuario);
-//			}
-//		});
-		
 		panel_2 = new JPanel();
 		panel_2.setBackground(new Color(95, 158, 160));
 		panel_2.setBounds(279, 588, 756, 39);
