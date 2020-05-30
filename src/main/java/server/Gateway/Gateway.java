@@ -263,7 +263,7 @@ public class Gateway implements itfGateway
 	{	
 		RestClient<Usuario> client = new RestClient<>(hostname, port_auth);
 		System.out.println("Entra en el Gateway");
-		String contrasenya = "";
+		String contrasenya = null;
 		
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Authentication Create User Server test (POST)");
@@ -292,6 +292,7 @@ public class Gateway implements itfGateway
 		System.out.println("Pasa el trycatch");
 
 		String reply = response.readEntity(String.class);
+		System.out.println(reply);
 
 		try {
 			result_class_password = new Simple_pass_result(reply);
@@ -300,13 +301,16 @@ public class Gateway implements itfGateway
 			e.printStackTrace();
 			e.toString();
 		}
-
+		
+		System.out.println(reply);
 		result_class_password.print();
-		
 
-		contrasenya = Long.toString(result_class_password.getContentNumber());
-		
-		System.out.println("La contrasenya devuelta por auth es: " + contrasenya);
+		if (result_class_password.getContent() != null) {
+			contrasenya = Long.toString(result_class_password.getContentNumber());
+			System.out.println("La contrasenya devuelta por auth es: " + contrasenya);
+		} else {
+			System.out.println("La contrasenya devuelta por auth es null");
+		}
 		
 		return contrasenya;
 		

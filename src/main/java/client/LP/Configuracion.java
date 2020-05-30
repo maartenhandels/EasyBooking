@@ -245,7 +245,7 @@ public class Configuracion extends JFrame{
 					{
 						dispose();
 						String email = textFieldEmail2.getText();
-						String password = String.valueOf(passwordField);
+						String password = String.valueOf(passwordField.getPassword());
 						try {
 							controller.eliminarUsuario(email, password);
 						} catch (RemoteException e1) {

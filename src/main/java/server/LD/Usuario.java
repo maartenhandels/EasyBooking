@@ -16,6 +16,9 @@ import externalServices.Print;
 @PersistenceCapable
 public class Usuario implements Print, Serializable{
     
+	
+	private static final long serialVersionUID = 1L;
+	
 	@PrimaryKey
 	private String email;
 	private String dni;
@@ -53,6 +56,14 @@ public class Usuario implements Print, Serializable{
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
+	}
+	
+	public Usuario(String nombre, String apellido, String email, String dni)
+	{
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.dni = dni;
 	}
 
 	public Usuario(String email, String nombre, String apellido, String dni, Aeropuerto aeropuerto)

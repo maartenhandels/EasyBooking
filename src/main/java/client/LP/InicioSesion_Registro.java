@@ -330,7 +330,7 @@ public class InicioSesion_Registro extends JFrame{
 						System.out.println("LLega aquii dni\n");
 						String aero_nombre = (String)comboAero.getSelectedItem();
 						
-						UsuarioDTO user = new UsuarioDTO(nombre, apellido, email, dni);
+						UsuarioDTO user = new UsuarioDTO(email, nombre, apellido, dni);
 						
 						System.out.println("LLega aquii\n");
 						
@@ -348,21 +348,30 @@ public class InicioSesion_Registro extends JFrame{
 						}
 					
 						System.out.println("salgo del for\n");
-						String contrasenya = "";
+						String contrasenya = null;
+						
 						try {
 							System.out.println("voy al controller\n");
-							contrasenya = controller.registroUsuario(nombre, apellido, email);
+							contrasenya = controller.registroUsuario(nombre, apellido, email, dni, aero_nombre);
 						} catch (RemoteException e1)
 						{
-						
 							e1.printStackTrace();
 						}
-						JOptionPane.showMessageDialog(null,"Tu contraseña es: " + contrasenya.toString() + " ¡NO LA OLVIDE!", "USUARIO CREADO", JOptionPane.INFORMATION_MESSAGE);
-						dispose();
-						buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, user);
-						frameBuscador.setVisible(true);
-						frameBuscador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-						frameBuscador.setResizable(false);
+						
+						System.out.println("Ha hecho la llamada a registroUsuario");
+						
+						if(contrasenya != null) {
+							JOptionPane.showMessageDialog(null,"Tu contraseña es: " + contrasenya.toString() + " ¡NO LA OLVIDE!", "USUARIO CREADO", JOptionPane.INFORMATION_MESSAGE);
+							dispose();
+							buscadorPrincipal frameBuscador = new buscadorPrincipal(controller, user);
+							frameBuscador.setVisible(true);
+							frameBuscador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+							frameBuscador.setResizable(false);
+						} else {
+							JOptionPane.showMessageDialog(null,"Este usuario no ha podido crearse, es posible que este email ya este registrado", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+
+						}
+						
 					}
 					else
 					{

@@ -17,17 +17,19 @@ public class AppServiceAuth {
 	private Gateway gateway = new Gateway();
 	private DAO dao = new DAO();
 	
-	public String registroUsuario(String nombre, String apellido, String email) throws RemoteException
+	public String registroUsuario(String nombre, String apellido, String email, String dni, String aero_nombre) throws RemoteException
 	{
 		System.out.println("Entra en el AppService - registro");
 		
 		String contrasenya = gateway.create_User_Auth(nombre, apellido, email);
-		
-		// String contrasenya = "HOLA";
+
 		System.out.println("Pasa la llamada del gateway");
 		
-		Usuario nuevo_usuario = new Usuario(email, nombre, apellido);
-		dao.guardarElemto(nuevo_usuario);
+		if(contrasenya != null) {
+			System.out.println("Intenta guardar en usuario");
+			Usuario nuevo_usuario = new Usuario(nombre, apellido, email, dni);
+			dao.guardarElemto(nuevo_usuario);
+		}
 	
 		
 		return contrasenya;
@@ -39,7 +41,8 @@ public class AppServiceAuth {
 		System.out.println("Entra AppService - Inicio Sesion");
 		boolean iniSesCorrecto = gateway.log_in(email, password);
 		
-		Usuario usuario;
+		Usuario usuario = null;
+		boolean encontrado_en_bd = false;
 		
 		//ESTO HE HECHO PERO NOSE SI HABRA QUE HACER ALGUNA BUSQUEDA ASI 
 //		ArrayList<Usuario> lista = dao.LeerUsuarios();
@@ -59,15 +62,27 @@ public class AppServiceAuth {
 //		}
 		// DEBERIAMOS BUSCAR EN LA BASE DE DATOS EL USUARIO
 		// DE MOMENTO CREAREMOS UN USUARIO CADA VEZ QUE SE LE LLAME
+		
+		
 		if(iniSesCorrecto) {
-			usuario = new Usuario(email, password);
-//			String nombre = dao.buscarNombreUsuario(usuario);
-			usuario = new Usuario("Manolo", "Lama", "manololama@gmail.com");
+			ArrayList<Usuario> usuarios_bd = dao.LeerUsuarios();
+			
+			for(Usuario u:usuarios_bd) 
+			{
+				if(u.getEmail().equalsIgnoreCase(email)) {
+					usuario = u;
+					encontrado_en_bd = true;
+					break;
+				}
+			}
 		}else {
 			usuario = null;
 		}
 		
-		//return nombre;
+		if(iniSesCorrecto == true && encontrado_en_bd == false) {
+			usuario = new Usuario("Default", "Default", "default@gmail.com");
+		}
+		
 		return usuario;
 		
 	}
@@ -79,11 +94,11 @@ public class AppServiceAuth {
 	{
 		return null;
 	}
-	public boolean eliminarUsuario(String email, String password )
+	public boolean eliminarUsuario(String email, String password)
 	{
 		Usuario userBorrar =  new Usuario(email, password);
 		
-		dao.eliminarObjeto(userBorrar);
+		// dao.eliminarObjeto(userBorrar);
 		
 		return gateway.delete_user(email, password);
 		

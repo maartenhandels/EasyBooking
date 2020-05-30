@@ -32,11 +32,11 @@ public class Controller {
 	}
 
 	
-	public String registroUsuario(String nombre, String apellido, String email) throws RemoteException
+	public String registroUsuario(String nombre, String apellido, String email, String dni, String aero_nombre) throws RemoteException
 	{
-		String contrasenya = "";
+		String contrasenya = null;
 
-		contrasenya = fachada.registroUsuario(nombre, apellido, email);
+		contrasenya = fachada.registroUsuario(nombre, apellido, email, dni, aero_nombre);
 		
 		return contrasenya;
 	}
