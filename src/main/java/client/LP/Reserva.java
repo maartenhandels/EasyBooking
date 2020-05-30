@@ -92,6 +92,7 @@ public class Reserva extends JFrame {
 	private int numero_pasajeros;
 	private float precio_total;
 	private float iva;
+	private float precio_total_con_iva;
 //	private final float precio_con_iva;
 	
 	private String precio_total_string;
@@ -293,11 +294,11 @@ public class Reserva extends JFrame {
 		lblNewLabel_7.setBounds(163, 16, 69, 20);
 		panel_2.add(lblNewLabel_7);
 		
-		float iva_inicial = (float) (vuelo.getPrecio() * 0.21);
-		float precio_con_iva = vuelo.getPrecio() + iva_inicial;
+		iva = (float) (vuelo.getPrecio() * 0.21);
+		precio_total_con_iva = vuelo.getPrecio() + iva;
 		
-		String precio_con_iva_string = String.format("%.2f", precio_con_iva);
-		String iva_inicial_string = String.format("%.2f", iva_inicial);
+		String precio_con_iva_string = String.format("%.2f", precio_total_con_iva);
+		String iva_inicial_string = String.format("%.2f", iva);
 		
 		lblNewLabel_8 = new JLabel(iva_inicial_string + "€");
 		lblNewLabel_8.setBounds(163, 48, 69, 20);
@@ -323,11 +324,11 @@ public class Reserva extends JFrame {
 				
 				precio_total = vuelo.getPrecio() * numero_pasajeros;
 				iva = (float) (precio_total * 0.21);
-				float precio_con_iva = precio_total + iva;
+				precio_total_con_iva = precio_total + iva;
 				
 				precio_total_string = String.format("%.2f", precio_total);
 				iva_string = String.format("%.2f", iva);
-				String precio_con_iva_string = String.format("%.2f", precio_con_iva);
+				String precio_con_iva_string = String.format("%.2f", precio_total_con_iva);
 				
 				lblNewLabel_7.setText(precio_total_string + "€");
 				lblNewLabel_8.setText(iva_string + "€");
@@ -343,17 +344,7 @@ public class Reserva extends JFrame {
 		panel_3.setBounds(342, 250, 348, 171);
 		contentPane.add(panel_3);
 		panel_3.setLayout(null);
-//		
-//		lblNewLabel_11 = new JLabel("¿Cómo prefieres a pagar?");
-//		lblNewLabel_11.setFont(new Font("Century Gothic", Font.BOLD, 16));
-//		lblNewLabel_11.setBackground(Color.WHITE);
-//		lblNewLabel_11.setBounds(25, 16, 209, 20);
-//		panel_3.add(lblNewLabel_11);
-//		
-//		checkbox = new Checkbox("VISA");
-//		checkbox.setBounds(25, 42, 110, 50);
-//		panel_3.add(checkbox);
-//		
+		
 		
 		btnNewButton_1 = new JButton("Cancelar");
 		btnNewButton_1.setFont(new Font("Century Gothic", Font.BOLD, 16));
@@ -379,7 +370,7 @@ public class Reserva extends JFrame {
 			{
 				
 				dispose();
-				Pago frame = new Pago(controller, vuelo, strFloat2);
+				Pago frame = new Pago(controller, usuario, vuelo, precio_total_con_iva);
 				frame.setVisible(true);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}

@@ -61,6 +61,27 @@ public class Reserva implements Serializable{
 		}
 		
 	}
+	
+	public Reserva(Usuario usuario, String codReserva, String codPago, Vuelo vuelo) {
+		
+		super();
+		this.usuario = usuario;
+		this.codReserva = codReserva;
+		this.codPago = codPago;
+		this.vuelo = vuelo;
+		this.aerolinea = vuelo.getAerolinea();
+		
+	}
+	
+	public Reserva(String codReserva, String codPago, Vuelo vuelo) {
+		
+		super();
+		this.codReserva = codReserva;
+		this.codPago = codPago;
+		this.vuelo = vuelo;
+		this.aerolinea = vuelo.getAerolinea();
+		
+	}
 
 	public Reserva(String cod_reserva, String cod_pago) 
 	{

@@ -52,5 +52,21 @@ public class UsuarioAssembler
 		return usuarios;
 		
 	}
+	
+	public Usuario assembletoUsuario_Objeto(UsuarioDTO u)
+	{
+		
+		
+		Usuario us = new Usuario();
+		us.setEmail(u.getEmail());
+		us.setNombre(u.getNombre());
+		us.setApellido(u.getApellido());
+		us.setDni(u.getDni());
+		
+		System.out.println("* Assembling usuariosDTO to usuarios ...");
+		
+		return us;
+		
+	}
 
 }

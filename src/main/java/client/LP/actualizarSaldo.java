@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import client.Controller.Controller;
+import server.DTO.UsuarioDTO;
 import server.DTO.VueloDTO;
 
 import java.awt.Color;
@@ -38,16 +39,19 @@ public class actualizarSaldo extends JFrame {
 
 	private static Controller controller;
 	private VueloDTO vuelo;
-	private String precio;
+	private float precio;
+	
+	private UsuarioDTO usuario;
 	
 	/**
 	 * Create the frame.
 	 */
-	public actualizarSaldo(Controller controller, VueloDTO vuelo, String precio) 
+	public actualizarSaldo(Controller controller, UsuarioDTO usuario, VueloDTO vuelo, float precio) 
 	{
 		actualizarSaldo.controller = controller;
 		this.vuelo= vuelo;
 		this.precio = precio;
+		this.usuario = usuario;
 		init_componentes(vuelo);
 		setVisible(true);
 	}
@@ -129,7 +133,7 @@ public class actualizarSaldo extends JFrame {
 						
 						JOptionPane.showMessageDialog(null,"Saldo actualizado correctamente","Actualizar saldo",JOptionPane.INFORMATION_MESSAGE);
 						dispose();
-						Pago frame = new Pago(controller, vuelo, precio);
+						Pago frame = new Pago(controller, usuario, vuelo, precio);
 						frame.setVisible(true);
 						frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					}

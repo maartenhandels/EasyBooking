@@ -154,9 +154,9 @@ public class Controller {
 		fachada.eliminarReserva(cod_reserva, cod_pago);
 	}
 	
-	public String  make_Payment(String email, double total_amount, String concept) throws RemoteException
+	public String  make_Payment(String email, double total_amount, String concept, VueloDTO vuelo, UsuarioDTO usuario) throws RemoteException
 	{
-		return fachada.make_Payment(email, total_amount, concept);
+		return fachada.make_Payment(email, total_amount, concept, vuelo, usuario);
 	}
 	
 	public boolean update_currency(String email, float currency)throws RemoteException

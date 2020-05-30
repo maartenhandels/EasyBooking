@@ -59,17 +59,19 @@ public class Pago extends JFrame {
 	
 	private static Controller controller;
 	private VueloDTO vuelo;
+	private UsuarioDTO usuario;
 	
-	private String precio;
+	private float precio;
 	
 	/**
 	 * Create the frame.
 	 */
-	public Pago(Controller controller, VueloDTO vuelo, String precio) 
+	public Pago(Controller controller, UsuarioDTO usuario, VueloDTO vuelo, float precio) 
 	{
 		Pago.controller = controller;
 		this.vuelo= vuelo;
 		this.precio = precio;
+		this.usuario = usuario;
 		init_componentes(vuelo);
 		setVisible(true);
 	}
@@ -77,7 +79,6 @@ public class Pago extends JFrame {
 		public void init_componentes(VueloDTO vuelo)
 		{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		setBounds(100, 100, 658, 602);
 		setSize(658,602);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
@@ -105,7 +106,7 @@ public class Pago extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				actualizarSaldo frame = new actualizarSaldo(controller, vuelo, precio);
+				actualizarSaldo frame = new actualizarSaldo(controller, usuario, vuelo, precio);
 				frame.setVisible(true);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
@@ -159,7 +160,7 @@ public class Pago extends JFrame {
 						
 						String div = textField_Saldo_Ini.getText();
 						
-						//tendremos que comprobar que es un numero
+						// Tendremos que comprobar que es un numero
 						float divisa = Float.parseFloat(div);
 						
 						boolean verificar=false;
@@ -177,7 +178,7 @@ public class Pago extends JFrame {
 						{
 							JOptionPane.showMessageDialog(null,"Usuario creado con exito, ya puede realizar el pago de la reserva","Usuario Pago",JOptionPane.INFORMATION_MESSAGE);
 							dispose();
-							Pago frame = new Pago(controller, vuelo, precio);
+							Pago frame = new Pago(controller, usuario, vuelo, precio);
 							frame.setVisible(true);
 							frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 						} else if(verificar == false) {
@@ -287,14 +288,14 @@ public class Pago extends JFrame {
 						String email = textField_Email_Pago.getText();
 						String concepto = textField_Concepto.getText();
 					
-						double total_amount = vuelo.getPrecio();
+						// double total_amount = vuelo.getPrecio();
 						
 						String id_pago="";
 						
 						
 						try 
 						{
-							id_pago = controller.make_Payment(email, total_amount, concepto);
+							id_pago = controller.make_Payment(email, precio, concepto, vuelo, usuario);
 						} catch (RemoteException e1) 
 						{
 							System.out.println("No se puede realizar pago");

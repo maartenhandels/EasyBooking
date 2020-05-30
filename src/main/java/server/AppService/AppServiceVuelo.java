@@ -8,6 +8,7 @@ import externalServices.Flight_parameters;
 import server.DAO.DAO;
 import server.DTO.UsuarioDTO;
 import server.Gateway.Gateway;
+import server.LD.Aeropuerto;
 import server.LD.Pasajero;
 import server.LD.Reserva;
 import server.LD.Usuario;
@@ -20,7 +21,17 @@ public class AppServiceVuelo {
 	
 	public ArrayList<Vuelo> search_flights_with_filter (Flight_parameters parametros) 
 	{
+		
 		ArrayList<Vuelo> vuelos = gateway.search_flights_with_filter(parametros);
+		
+		for(Vuelo v:vuelos)
+		{
+			int aux = (int)(Math.random()*1000000);
+			String codigo = "AERO-" + Integer.toString(aux);
+			v.getAerolinea().setCodAerolinea(codigo);
+			
+			System.out.println("El codigo random es: " + codigo);
+		}
 		
 		return vuelos;
 	}
@@ -53,6 +64,15 @@ public class AppServiceVuelo {
 		
 		System.out.println("Entro en el AppService de buscar vuelos...");
 		ArrayList <Vuelo> vuelos = gateway.search_all_flights();
+		
+		for(Vuelo v:vuelos)
+		{
+			int aux = (int)(Math.random()*1000000);
+			String codigo = "AERO-" + Integer.toString(aux);
+			v.getAerolinea().setCodAerolinea(codigo);
+			
+			System.out.println("El codigo random es: " + codigo);
+		}
 		
 		System.out.println("Voy a salir del AppService de buscar vuelos...");
 		

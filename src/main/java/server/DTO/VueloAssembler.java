@@ -48,5 +48,25 @@ public class VueloAssembler
 		return vuelos;
 		
 	}
+	
+	public Vuelo assembletoVuelo_Objeto(VueloDTO u)
+	{
+		
+		Vuelo vu = new Vuelo();
+		
+		vu.setAerolinea(u.getAerolinea());
+		vu.setAeropuertoSalida(u.getAeropuertoSalida());
+		vu.setAeropuertoSalida(u.getAeropuertoSalida());
+		vu.setAsientosLibres(u.getAsientosLibres());
+		vu.setSalida(u.getSalida());
+		vu.setLlegada(u.getLlegada());
+		vu.setPrecio(u.getPrecio());
+			
+		
+		System.out.println("* Assembling usuariosDTO to usuarios ...");
+		
+		return vu;
+		
+	}
 
 }

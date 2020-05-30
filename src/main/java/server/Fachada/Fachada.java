@@ -124,10 +124,14 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	// PARTE FACHADA PAGO
 	
 	@Override
-	public String make_Payment(String email, double total_amount, String concept) throws RemoteException 
+	public String make_Payment(String email, double total_amount, String concept, VueloDTO vueloDTO, UsuarioDTO usuarioDTO) throws RemoteException 
 	{
+		
+		Vuelo vuelo = vuAssem.assembletoVuelo_Objeto(vueloDTO);
+		Usuario usuario = usAssem.assembletoUsuario_Objeto(usuarioDTO);
+		
 		Usuario_Pago usuario_pago = new Usuario_Pago(email, total_amount, concept);
-		return servPago.make_Payment(usuario_pago);
+		return servPago.make_Payment(usuario_pago, vuelo, usuario);
 	}
 	
 	@Override

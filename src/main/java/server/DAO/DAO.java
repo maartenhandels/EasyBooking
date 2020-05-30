@@ -87,6 +87,63 @@ public class DAO implements itfDAO {
 		 
 	}
 	
+	public <T> boolean guardarReserva(T a, Usuario usuario){
+		
+		 boolean guardado = true;
+		 
+		 try 
+		 {
+			 
+			 System.out.println("- Guardar objetos en la BD");			
+			 
+			 //Obtain the current transaction
+			 tx = pm.currentTransaction();		
+			 
+			 System.out.println("Prueba1");
+
+			 //Start the transaction
+			 tx.begin();
+			
+				 
+			 System.out.println("Prueba3");
+			 System.out.println(a);
+			 
+			 Usuario us = (Usuario)pm.detachCopy(usuario);
+			 
+			 pm.makePersistent(us);
+			 
+			 pm.makePersistent(a);
+			 
+			 
+			 
+			 System.out.println("Prueba4");
+				 
+	
+			 //End the transaction
+			 tx.commit();			
+			
+			 System.out.println("Los objetos se han guardado satisfactoriamente");
+		 }
+
+		 catch (Exception ex) 
+		 {
+			 guardado = false;
+			 
+			 System.err.println(" $ Error storing objects in the DB: " + ex.getMessage());
+			 ex.printStackTrace();
+		 }
+
+		 finally 
+		 {
+			 if (tx != null && tx.isActive()) {
+				 tx.rollback();
+			 }
+		 }
+		 
+		 return guardado;
+		 
+	}
+	
 	public <T> boolean guardarVariosElemtos(ArrayList<T> a){
 		
 		 boolean guardado = true;

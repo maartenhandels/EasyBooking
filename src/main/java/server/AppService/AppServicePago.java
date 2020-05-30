@@ -5,6 +5,7 @@ import java.util.List;
 
 import server.DAO.DAO;
 import server.Gateway.Gateway;
+import server.LD.Reserva;
 import server.LD.Usuario;
 import server.LD.Usuario_Pago;
 import server.LD.Vuelo;
@@ -12,10 +13,35 @@ import server.LD.Vuelo;
 public class AppServicePago {
 
 	private Gateway gateway = new Gateway();
+	private DAO dao = new DAO();
 	
-	public String make_Payment(Usuario_Pago usuario_pago) 
+	public String make_Payment(Usuario_Pago usuario_pago, Vuelo vuelo, Usuario usuario) 
 	{
-		return gateway.make_Payment(usuario_pago);
+		String reciboPago = gateway.make_Payment(usuario_pago);
+		
+		if(reciboPago != null) {
+			
+			ArrayList<Reserva> reservas = dao.LeerReservas();
+			
+			String codReserva;
+			
+			if(reservas.size()>0) {
+				int numReserva = reservas.size() + 1;
+				codReserva = "RES-" + numReserva;
+			}else {
+				codReserva = "RES-1";
+			}
+			
+			// Reserva reserva = new Reserva(usuario, codReserva, reciboPago, vuelo); DUPLICATE ENTRY ERROR POR USUARIO....
+			
+			Usuario usuario_aux = null;
+			Reserva reserva = new Reserva(usuario_aux, codReserva, reciboPago, vuelo);
+			
+			dao.guardarElemto(reserva);
+			
+		}
+		
+		return reciboPago;
 	}
 	
 	public List <Usuario> getUsuarios()
