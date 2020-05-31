@@ -29,6 +29,7 @@ import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Calendar;
 import java.util.Date;
 import java.awt.Checkbox;
 import java.awt.Button;
@@ -139,7 +140,6 @@ public class Reserva extends JFrame {
 		lblNewLabel_1.setBounds(174, 85, 69, 20);
 		panel.add(lblNewLabel_1);
 		
-		//Aqui hay que llamar a un metodo que haga esto: (pero no se bien dnd tiene q estar)
 		long salidaHora = vuelo.getSalida();
         Date datesalidaHora = new Date(salidaHora*1000L);
         SimpleDateFormat jdfSalidahora = new SimpleDateFormat("HH:mm");
@@ -150,10 +150,17 @@ public class Reserva extends JFrame {
         SimpleDateFormat jdfllegadaHora = new SimpleDateFormat("HH:mm");
         String fecha_llegHora = jdfllegadaHora.format(datellegadaHora);
         
+        long digminutes = (datellegadaHora.getTime()  - datesalidaHora.getTime()) % 60;
+        
+        System.out.println("la dif en minutos es" + digminutes);
+        
         Date diff = new Date(datellegadaHora.getTime() - datesalidaHora.getTime());
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(diff);
+        cal.add(Calendar.HOUR, -1);
+        Date onehourback = cal.getTime();
         SimpleDateFormat jdfDuracion = new SimpleDateFormat("HH:mm");
-        String duracion = jdfDuracion.format(diff);
-		//Hasta aqui yo creo
+        String duracion = jdfDuracion.format(onehourback);
         
 		lblNewLabel_2 = new JLabel("  " + fecha_salHora + "-" + fecha_llegHora);
 		lblNewLabel_2.setFont(new Font("Century Gothic", Font.BOLD, 50));

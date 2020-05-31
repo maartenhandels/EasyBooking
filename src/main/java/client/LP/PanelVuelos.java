@@ -88,7 +88,7 @@ public class PanelVuelos extends JPanel {
 			vueling.setIcon(new ImageIcon ("src/main/resources/images/vueling.jpg"));
 			fotosPanel.add(vueling);
 		}
-		else if(vuelo.getAerolinea().getNombre().toUpperCase()=="KLM")
+		else if(vuelo.getAerolinea().getNombre().toUpperCase().equalsIgnoreCase("KLM"))
 		{
 			klm = new JLabel("");
 			klm.setIcon(new ImageIcon ("src/main/resources/images/klm.png"));

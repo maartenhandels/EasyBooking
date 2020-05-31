@@ -484,7 +484,28 @@ public class Gateway implements itfGateway
 			
 			vuelo_aux.setAerolinea(new Aerolinea("123", "KLM"));
 			
-			vuelo_aux.setLlegada(0);
+			double aleatorio =  Math.random();
+			
+			System.out.println(aleatorio);
+			
+			while(aleatorio < 1)
+			{
+				aleatorio = aleatorio*10;
+				System.out.println(aleatorio);
+			}
+			
+			int num = (int) aleatorio;
+			
+			
+			long duracion = 3600*num;
+			
+			vuelo_aux.setLlegada(milliseconds+duracion);
+			
+			System.out.println("la duracion es:" + duracion);
+			
+			System.out.println("el long d llegada es:" + vuelo_aux.getLlegada());
+			
+			System.out.println("el long d salida es:" + vuelo_aux.getSalida());
 			
 			vuelos.add(vuelo_aux);
 			
@@ -597,7 +618,28 @@ public class Gateway implements itfGateway
 			
 			vuelo_aux.setAerolinea(new Aerolinea("123", "KLM"));
 			
-			vuelo_aux.setLlegada(0);
+			double aleatorio =  Math.random();
+			
+			System.out.println(aleatorio);
+			
+			while(aleatorio < 1)
+			{
+				aleatorio = aleatorio*10;
+				System.out.println(aleatorio);
+			}
+			
+			int num = (int) aleatorio;
+			
+			
+			long duracion = 3600*num;
+			
+			vuelo_aux.setLlegada(milliseconds+duracion);
+			
+			System.out.println("la duracion es:" + duracion);
+			
+			System.out.println("el long d llegada es:" + vuelo_aux.getLlegada());
+			
+			System.out.println("el long d salida es:" + vuelo_aux.getSalida());
 			
 			vuelos.add(vuelo_aux);
 			
