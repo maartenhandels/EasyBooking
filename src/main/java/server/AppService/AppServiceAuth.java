@@ -18,12 +18,8 @@ public class AppServiceAuth {
 	private DAO dao = new DAO();
 	
 	public String registroUsuario(String nombre, String apellido, String email, String dni, String aero_nombre) throws RemoteException
-	{
-		System.out.println("Entra en el AppService - registro");
-		
+	{		
 		String contrasenya = gateway.create_User_Auth(nombre, apellido, email);
-
-		System.out.println("Pasa la llamada del gateway");
 		
 		if(contrasenya != null) {
 			System.out.println("Intenta guardar en usuario");

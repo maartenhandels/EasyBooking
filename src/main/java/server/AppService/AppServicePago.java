@@ -31,9 +31,7 @@ public class AppServicePago {
 			}else {
 				codReserva = "RES-1";
 			}
-			
-			// Reserva reserva = new Reserva(usuario, codReserva, reciboPago, vuelo); DUPLICATE ENTRY ERROR POR USUARIO....
-			
+						
 			Usuario usuario_aux = null;
 			Reserva reserva = new Reserva(usuario_aux, codReserva, reciboPago, vuelo);
 			
@@ -56,7 +54,6 @@ public class AppServicePago {
 	
 	public boolean update_currency(Usuario_Pago usuario_pago) 
 	{
-		System.out.println("Entro en el appService de update currency");
 		return gateway.update_currency(usuario_pago);
 	}
 	

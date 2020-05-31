@@ -71,11 +71,8 @@ public class AppServiceVuelo {
 			String codigo = "AERO-" + Integer.toString(aux);
 			v.getAerolinea().setCodAerolinea(codigo);
 			
-			System.out.println("El codigo random es: " + codigo);
 		}
-		
-		System.out.println("Voy a salir del AppService de buscar vuelos...");
-		
+				
 		return vuelos;
 		
 		
