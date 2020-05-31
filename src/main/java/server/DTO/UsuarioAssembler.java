@@ -16,7 +16,7 @@ public class UsuarioAssembler
 				usuario.getApellido(), usuario.getDni());
 		
 		System.out.println("* Assembling usuarios to usuariosDTO ...");
-		
+				
 		return usDTO;
 		
 	}
@@ -29,6 +29,7 @@ public class UsuarioAssembler
 			UsuarioDTO usDTO = new UsuarioDTO(u.getEmail(), u.getNombre(), u.getApellido(), u.getDni());
 			usuarioDTO.add(usDTO);
 		}
+		
 		System.out.println("* Assembling usuarios to usuariosDTO ...");
 		
 		return usuarioDTO;
@@ -47,6 +48,7 @@ public class UsuarioAssembler
 			us.setDni(u.getDni());
 			usuarios.add(us);
 		}
+		
 		System.out.println("* Assembling usuariosDTO to usuarios ...");
 		
 		return usuarios;
@@ -64,7 +66,7 @@ public class UsuarioAssembler
 		us.setDni(u.getDni());
 		
 		System.out.println("* Assembling usuariosDTO to usuarios ...");
-		
+				
 		return us;
 		
 	}

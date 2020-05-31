@@ -116,10 +116,7 @@ public class actualizarSaldo extends JFrame {
 					{
 						String email = textField.getText();
 						String div = textField_1.getText();
-						
-						System.out.println("El email que manda es: " + email);
-						
-						//tendremos que comprobar que es un numero
+												
 						float currency = Float.parseFloat(div);
 						
 						try 
@@ -127,7 +124,6 @@ public class actualizarSaldo extends JFrame {
 							controller.update_currency(email, currency);
 						} catch (RemoteException e1) 
 						{
-							System.out.println("Datos actualizar saldo incorrectos");
 							e1.printStackTrace();
 						}
 						

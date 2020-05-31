@@ -170,7 +170,6 @@ public class Pago extends JFrame {
 							verificar = controller.create_User_Pago(name, username, email, divisa);
 						} catch (RemoteException e1) 
 						{
-							System.out.println("No se puede crear usuario pago");
 							e1.printStackTrace();
 						}
 						
@@ -298,7 +297,6 @@ public class Pago extends JFrame {
 							id_pago = controller.make_Payment(email, precio, concepto, vuelo, usuario);
 						} catch (RemoteException e1) 
 						{
-							System.out.println("No se puede realizar pago");
 							e1.printStackTrace();
 						}
 						if(id_pago != null) {

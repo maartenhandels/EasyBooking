@@ -92,10 +92,6 @@ public class Gateway implements itfGateway
         String path = "/Payments/Make_payment";
         System.out.println("Trying POST at " + path );
         System.out.println("CURL call: curl http://127.0.0.1:5001/Payments/Make_payment -d '{\"email\":\"inigo.lopezgazpio@deusto.es\", \"total_amount\":\"20.5\", \"concept\":\"Hello World Payment\" }' -X POST -H \"Content-Type: application/json\" -v");
-
-        System.out.println("El email que envio es: " + usuario_pago.getEmail());
-        System.out.println("La cant. total que voy a pagar: " + usuario_pago.getTotal_amount());
-        System.out.println("El concepto es: " + usuario_pago.getConcept());
         
         String idOP2 = null;
         String responseString = null;
@@ -107,23 +103,16 @@ public class Gateway implements itfGateway
                            client.createInvocationBuilder(path) , usuario_pago
                       ).readEntity(String.class);
            
-           System.out.println("El id antes del parseo es: " + responseString);
-
            JSONParser myParser = new JSONParser();
            JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
            idOP2 =  (String) myJsonObject.get("Result");
-           System.out.println(idOP2);
         }
         catch (Exception e) 
         { 
         	e.printStackTrace(); 
         	e.toString(); 
         }
-        
-        System.out.println(responseString);
-        
-        System.out.println("el id devuelto es: " + idOP2);
-        
+              
 		return idOP2;
 	}
 
@@ -137,10 +126,6 @@ public class Gateway implements itfGateway
         System.out.println("-------------------------------------------------------");
 
         String path = "/Payments/Create_user";
-        System.out.println("El nombre del usuario es: " + us.getName());
-        System.out.println("El apellido del usuario es: " + us.getLastname());
-        System.out.println("El email del usuario es: " + us.getEmail());
-        System.out.println("El saldo del usuario es: " + us.getCurrency());
         
 		boolean create = false;
         
@@ -151,7 +136,6 @@ public class Gateway implements itfGateway
            JSONParser myParser = new JSONParser();
            JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
            create = (boolean) myJsonObject.get("Result");
-           System.out.println(create);
         }
         catch (Exception e) 
         { 
@@ -159,8 +143,6 @@ public class Gateway implements itfGateway
         	e.toString(); 
         }
         
-        System.out.println(responseString);
-
 		return create;
 	}
 
@@ -168,7 +150,6 @@ public class Gateway implements itfGateway
 	public boolean update_currency(Usuario_Pago usuario_pago) 
 	{
 		
-		System.out.println("Entro en el gateway de update_currency ");
 		String responseString = null;
 		RestClient<Usuario_Pago> client = new RestClient<>(hostname, port_pay);
 		System.out.println("-------------------------------------------------------");
@@ -179,31 +160,21 @@ public class Gateway implements itfGateway
 		System.out.println("Trying POST at " + path);
 		
 		boolean update = false;
-		
-		
-		System.out.println("El email que se va a mandar es: " + usuario_pago.getEmail());
-		System.out.println("La divisa que se va a mandar es: " + usuario_pago.getCurrency());
-		
-      
+		      
 		try {
 			responseString =
 					client.makePutRequest(client.createInvocationBuilder(path),usuario_pago
 							).readEntity(String.class);
-
-			System.out.println("Antes del parseo: " + responseString);
 			
 			 JSONParser myParser = new JSONParser();
              JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
              update = (boolean) myJsonObject.get("Result");
-             System.out.println("El resultado es: " + update);
              
 		} catch (Exception e) {
 			e.printStackTrace();
 			e.toString();
 		}
-		
-		System.out.println(responseString);
-		
+				
 		return update;
 	}
 	
@@ -224,15 +195,8 @@ public class Gateway implements itfGateway
 
         boolean login = false;
         
-        System.out.println("El email que se va a mandar es: " + email);
-        System.out.println("El password que se va a mandar es: " + password);
-        
-        
-        
         try {
-        	System.out.println("Entra en el trycatch inicio Sesion del Gateway \n");
         	
-                            
             responseString =
                             client.makePostRequest(
                                     client.createInvocationBuilder(path) , new Usuario(email, password)
@@ -242,8 +206,7 @@ public class Gateway implements itfGateway
                     JSONParser myParser = new JSONParser();
                     JSONObject myJsonObject = (JSONObject) myParser.parse(responseString);
                     login = (boolean) myJsonObject.get("Result");
-                    System.out.println(login);
-
+                    
         }
         catch (Exception e) 
         { 
@@ -251,9 +214,7 @@ public class Gateway implements itfGateway
         	e.toString(); 
         }
 
-        
         System.out.println("The response of login is..." + login);
-        
         
 		return login;
 	}
@@ -282,17 +243,14 @@ public class Gateway implements itfGateway
 		Response response = null;
 		
 		try {
-			System.out.println("Entra en el trycatch crearUsuario del Gateway \n");
 			response = client.makePostRequest(client.createInvocationBuilder(path),
 					new Usuario(nombre, apellido, email));
 		} catch (Exception e) {
 			e.printStackTrace();
 			e.toString();
 		}
-		System.out.println("Pasa el trycatch");
 
 		String reply = response.readEntity(String.class);
-		System.out.println(reply);
 
 		try {
 			result_class_password = new Simple_pass_result(reply);
@@ -302,7 +260,6 @@ public class Gateway implements itfGateway
 			e.toString();
 		}
 		
-		System.out.println(reply);
 		result_class_password.print();
 
 		if (result_class_password.getContent() != null) {
@@ -325,10 +282,6 @@ public class Gateway implements itfGateway
 		System.out.println("--------------------------------------------------------");
 		System.out.println("Authentication Change Password Server test (POST)");
 		System.out.println("--------------------------------------------------------");
-		
-		System.out.println("La contrasenya que se va a cambiar es de: " + email);
-        System.out.println("El password que se va a cambiar es: " + old_password);
-        System.out.println("El nuevo password es: " + new_password);
 
 		String path = "/Authentication/Change_password";
 		System.out.println("Trying POST at " + path + " (Change_password resource)");
@@ -359,9 +312,6 @@ public class Gateway implements itfGateway
 		System.out.println("--------------------------------------------------------");
 		System.out.println("Authentication Delete_user Server test (POST)");
 		System.out.println("--------------------------------------------------------");
-		
-		System.out.println("El email que se va a eliminar es: " + email);
-        System.out.println("El password que se va a eliminar es: " + password);
 
 		String path = "/Authentication/Delete_user";
 		System.out.println("Trying POST at " + path + " (delete user resource)");
@@ -454,31 +404,22 @@ public class Gateway implements itfGateway
 			
 			vuelo_aux.setAeropuertoDestino(new Aeropuerto(myFlightArray.get(i).getAirportArrivalCode(),
 					myFlightArray.get(i).getAirportArrivalCity()));
-			
-			System.out.println("El aeropuerto destino en el gateway es: " + vuelo_aux.getAeropuertoDestino().getNombre());
-			
+						
 			vuelo_aux.setAeropuertoSalida(new Aeropuerto(myFlightArray.get(i).getAirportDepartureCode(),
 					myFlightArray.get(i).getAirportDepartureCity()));
-			
-			System.out.println("El aeropuerto salida en el gateway es: " + vuelo_aux.getAeropuertoSalida().getNombre());
-			
+						
 			vuelo_aux.setCodVuelo(myFlightArray.get(i).getCode());
-			
-			System.out.println("El codigo vuelo en el gateway es: " + vuelo_aux.getCodVuelo());
-			
+						
 			ZoneId zoneId = ZoneId.systemDefault();
 			
 			long milliseconds = 0;
 		    milliseconds = myFlightArray.get(i).getDepartureDate(true).atZone(zoneId).toEpochSecond();
 			
-		    System.out.println("La fecha en long es: " + milliseconds);
 			vuelo_aux.setSalida(milliseconds);
 			
 			vuelo_aux.setAsientosLibres(myFlightArray.get(i).getFreeSeats());
-			System.out.println("Los asientos libres en el gateway son: " + vuelo_aux.getAsientosLibres());
 			
 			vuelo_aux.setAsientosTotales(myFlightArray.get(i).getTotalSeats());
-			System.out.println("Los asientos totales en el gateway son: " + vuelo_aux.getAsientosTotales());
 			
 			vuelo_aux.setPrecio(myFlightArray.get(i).getPrice());
 			
@@ -491,29 +432,19 @@ public class Gateway implements itfGateway
 			while(aleatorio < 1)
 			{
 				aleatorio = aleatorio*10;
-				System.out.println(aleatorio);
 			}
 			
 			int num = (int) aleatorio;
 			
-			
 			long duracion = 3600*num;
 			
 			vuelo_aux.setLlegada(milliseconds+duracion);
-			
-			System.out.println("la duracion es:" + duracion);
-			
-			System.out.println("el long d llegada es:" + vuelo_aux.getLlegada());
-			
-			System.out.println("el long d salida es:" + vuelo_aux.getSalida());
-			
+					
 			vuelos.add(vuelo_aux);
 			
 			
 		}
-		
-		System.out.println("El tamaño del array 'vuelos' es: " + vuelos.size());
-		
+				
 		return vuelos;
 		
 	}
@@ -587,32 +518,22 @@ public class Gateway implements itfGateway
 			
 			vuelo_aux.setAeropuertoDestino(new Aeropuerto(myFlightArray.get(i).getAirportArrivalCode(),
 					myFlightArray.get(i).getAirportArrivalCity()));
-			
-			System.out.println("El aeropuerto destino en el gateway es: " + vuelo_aux.getAeropuertoDestino().getNombre());
-			
+						
 			vuelo_aux.setAeropuertoSalida(new Aeropuerto(myFlightArray.get(i).getAirportDepartureCode(),
 					myFlightArray.get(i).getAirportDepartureCity()));
-			
-			System.out.println("El aeropuerto salida en el gateway es: " + vuelo_aux.getAeropuertoSalida().getNombre());
-			
+						
 			vuelo_aux.setCodVuelo(myFlightArray.get(i).getCode());
-			
-			System.out.println("El codigo vuelo en el gateway es: " + vuelo_aux.getCodVuelo());
-			
+						
 			ZoneId zoneId = ZoneId.systemDefault();
 			
 			long milliseconds = 0;
 		    milliseconds = myFlightArray.get(i).getDepartureDate(true).atZone(zoneId).toEpochSecond();
 			
-		    System.out.println("La fecha en LocalDateTime es: " + myFlightArray.get(i).getDepartureDate());
-		    System.out.println("La fecha en long es: " + milliseconds);
 			vuelo_aux.setSalida(milliseconds);
 			
 			vuelo_aux.setAsientosLibres(myFlightArray.get(i).getFreeSeats());
-			System.out.println("Los asientos libres en el gateway son: " + vuelo_aux.getAsientosLibres());
 			
 			vuelo_aux.setAsientosTotales(myFlightArray.get(i).getTotalSeats());
-			System.out.println("Los asientos totales en el gateway son: " + vuelo_aux.getAsientosTotales());
 			
 			vuelo_aux.setPrecio(myFlightArray.get(i).getPrice());
 			
@@ -635,19 +556,11 @@ public class Gateway implements itfGateway
 			
 			vuelo_aux.setLlegada(milliseconds+duracion);
 			
-			System.out.println("la duracion es:" + duracion);
-			
-			System.out.println("el long d llegada es:" + vuelo_aux.getLlegada());
-			
-			System.out.println("el long d salida es:" + vuelo_aux.getSalida());
-			
 			vuelos.add(vuelo_aux);
 			
 			
 		}
-		
-		System.out.println("El tamaño del array 'vuelos' es: " + vuelos.size());
-		
+				
 		return vuelos;
 	}
 }

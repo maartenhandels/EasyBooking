@@ -20,8 +20,8 @@ public class Reserva implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	@PrimaryKey
-	private String codReserva; // Habría que generar de alguna manera un numero random
-	private String codPago; // Habría que generar de alguna manera un numero random
+	private String codReserva; 
+	private String codPago; 
 	
 	@Column(name="USUARIO_EMAIL")
 	private Usuario usuario;
@@ -43,10 +43,7 @@ public class Reserva implements Serializable{
 	
 	@NotPersistent
 	private boolean usuarioViaja;
-	
-	
-	
-	
+
 	public Reserva(Usuario usuario, String codReserva, String codPago, ArrayList<Pasajero> pasajeros, boolean usuarioViaja, Vuelo vuelo) {
 		
 		super();

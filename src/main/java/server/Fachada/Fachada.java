@@ -32,29 +32,20 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	private UsuarioAssembler usAssem = new UsuarioAssembler();
 	private VueloAssembler vuAssem = new VueloAssembler();
 	
-	
-	
-	
 	public Fachada() throws RemoteException {
 		
-		super();
-		System.out.println("Llega al constructor de la Fachada");
-		
+		super();		
 	}
-	
-	
 	
 	// PARTE FACHADA AUTH
 
 	@Override
 	public String registroUsuario(String nombre, String apellido, String email, String dni, String aero_nombre) {
 		
-		System.out.println("Entra en registroUsuario de la fachada");
 		String contrasenya = null;
 		
 		try 
 		{
-			System.out.println("Entro en el try de registro");
 			contrasenya = servAuth.registroUsuario(nombre, apellido, email, dni, aero_nombre);
 			
 		} catch (RemoteException e) 
@@ -72,7 +63,6 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 		Usuario usuario = new Usuario();
 		UsuarioDTO usuarioDTO = null;
 		
-		System.out.println("Llega a la fachada de inicio sesion");
 		try 
 		{
 			usuario = servAuth.iniciarSesion(email, contrasenya);
@@ -115,11 +105,9 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	@Override
 	public boolean change_password (String email, String old_password, String new_password) 
 	{
-		System.out.println("Llega a la fachada de change password");
 		return servAuth.change_password(email, old_password,new_password );
 		
 	}
-	
 	
 	// PARTE FACHADA PAGO
 	
@@ -168,10 +156,6 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 			
 		return vueloDTO;
 	}
-	
-	
-	
-	
 	
 	// PARTE FACHADA AERO
 	
@@ -251,9 +235,7 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	@Override
 	public ArrayList<VueloDTO> search_flights_with_filter_4 (String origen, String destino, int asientos, double precio, String fecha) 
 	{
-		
-		// String fecha_String = fecha.toString();
-		
+				
 		Flight_parameters parametros= new Flight_parameters(origen, destino, asientos, precio, fecha);
 		ArrayList<VueloDTO> vuelosDTO;
 		
@@ -272,7 +254,6 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	@Override
 	public void aplicarFiltro(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida) 
 	{
-		//Aqui creo que tendriamos que llamar a la clase de LN que haga esta funcionalidad.
 		servVuelo.aplicarFiltros(aero_origen, aero_dest, num_pasajeros, precio, salida);
 	}
 	
@@ -291,15 +272,10 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	@Override
 	public ArrayList<VueloDTO> search_all_flights () 
 	{
-		System.out.println("Entro en la Fachada de buscar vuelos...");
 		ArrayList <Vuelo> vuelos = servVuelo.search_all_flights ();
-		
-		System.out.println("El aeropuerto destino del primer vuelo en la fachada es: " + vuelos.get(0).getAeropuertoDestino().getNombre());
-		
+				
 		ArrayList<VueloDTO> vuelosDTO= vuAssem.assembleTovueloDTO(vuelos);
-		
-		System.out.println("Voy a salir de la Fachada de buscar vuelos...");
-			
+					
 		return vuelosDTO;
 	}
 

@@ -31,7 +31,7 @@ public class Usuario implements Print, Serializable{
 	private String password_new;
 	
 	@Column(name="CODAEROPUERTO")
-	private Aeropuerto aeropuerto; // No se como llamarle a esto
+	private Aeropuerto aeropuerto; 
 	
 	
 	@Persistent(mappedBy="usuario")

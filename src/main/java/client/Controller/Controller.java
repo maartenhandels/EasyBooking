@@ -46,7 +46,6 @@ public class Controller {
 		boolean inicioSesion = false;
 		UsuarioDTO usuario = null;
 		
-		System.out.println("Llega al controller de Iniciar Sesion");
 		usuario = fachada.iniciarSesion(email, password);
 		
 		return usuario;
@@ -54,7 +53,6 @@ public class Controller {
 	
 	public ArrayList<VueloDTO> getAllFlights() throws RemoteException{
 		
-		System.out.println("Entro en el controler de buscar vuelos...");
 		ArrayList<VueloDTO> vuelos = new ArrayList<VueloDTO>();
 		
 		
@@ -65,20 +63,12 @@ public class Controller {
 			e.printStackTrace();
 		}
 		
-		System.out.println("El aeropuerto de salida del primer vuelo en LP es: "+ 
-				vuelos.get(0).getAeropuertoDestino().getNombre());
-			
-		
- 		
-		System.out.println("Voy a salir del controler de buscar vuelos...");
-		
 		return vuelos;
 	}
 	
 	public ArrayList<VueloDTO> search_flights_with_filter_0(String origen) throws RemoteException
 	{
 		
-		// System.out.println("El aeropuerto de llegada de los filtros en el controller es: " + parametros.getAirport_arrival_name());
 		ArrayList<VueloDTO> vuelos = fachada.search_flights_with_filter_0(origen);
 		
 		return vuelos;
@@ -87,7 +77,6 @@ public class Controller {
 	public ArrayList<VueloDTO> search_flights_with_filter_1(String origen, String destino) throws RemoteException
 	{
 		
-		// System.out.println("El aeropuerto de llegada de los filtros en el controller es: " + parametros.getAirport_arrival_name());
 		ArrayList<VueloDTO> vuelos = fachada.search_flights_with_filter_1(origen, destino);
 		
 		return vuelos;
@@ -96,7 +85,6 @@ public class Controller {
 	public ArrayList<VueloDTO> search_flights_with_filter_2(String origen, String destino, int asientos) throws RemoteException
 	{
 		
-		// System.out.println("El aeropuerto de llegada de los filtros en el controller es: " + parametros.getAirport_arrival_name());
 		ArrayList<VueloDTO> vuelos = fachada.search_flights_with_filter_2(origen, destino, asientos);
 		
 		return vuelos;
@@ -125,7 +113,6 @@ public class Controller {
 	
 	public boolean change_password (String email, String old_password, String new_password) throws RemoteException
 	{
-		System.out.println("Entro en el controller de change password");
 		return fachada.change_password(email, old_password, new_password);
 	}
 	/**
@@ -161,7 +148,6 @@ public class Controller {
 	
 	public boolean update_currency(String email, float currency)throws RemoteException
 	{
-		System.out.println("Entro en el controller de update_currency");
 		return fachada.update_currency(email, currency);
 	}
 	public boolean create_User_Pago (String name, String lastname, String email, float currency)throws RemoteException

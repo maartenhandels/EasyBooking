@@ -166,13 +166,7 @@ public class InicioSesion_Registro extends JFrame{
 					if (ValidarMail(TxtField_Email_Login.getText()) == true) 
 					{
 						String email = TxtField_Email_Login.getText();
-						//String contra = contraField.getPassword().toString();
-						String contra = String.valueOf(contraField.getPassword());
-						
-						System.out.println("La contraseña del passwordField es: "+ contra);
-						
-						System.out.println("La contrasenya en LP es: " + contra);
-						
+						String contra = String.valueOf(contraField.getPassword());												
 						UsuarioDTO usuario = null;
 						
 						try 
@@ -330,39 +324,30 @@ public class InicioSesion_Registro extends JFrame{
 						String apellido = textField_ape.getText();
 						String email = textField_email.getText();
 						String dni = textField_dni.getText();
-						System.out.println("LLega aquii dni\n");
 						String aero_nombre = (String)comboAero.getSelectedItem();
 						
 						UsuarioDTO user = new UsuarioDTO(email, nombre, apellido, dni);
-						
-						System.out.println("LLega aquii\n");
-						
+												
 						Aeropuerto aero_seleccionado = new Aeropuerto();
 						
 						for(Aeropuerto a: aeros)
 						{
-							System.out.println("entro al for\n");
 							if(a.getNombre().equalsIgnoreCase(aero_nombre)) 
 							{
 								aero_seleccionado = a;
-								System.out.println("Aeropuerto Seleccionado: " +aero_seleccionado.getNombre());
 								break;
 							}
 						}
 					
-						System.out.println("salgo del for\n");
 						String contrasenya = null;
 						
 						try {
-							System.out.println("voy al controller\n");
 							contrasenya = controller.registroUsuario(nombre, apellido, email, dni, aero_nombre);
 						} catch (RemoteException e1)
 						{
 							e1.printStackTrace();
 						}
-						
-						System.out.println("Ha hecho la llamada a registroUsuario");
-						
+												
 						if(contrasenya != null) {
 							JOptionPane.showMessageDialog(null,"Tu contraseña es: " + contrasenya.toString() + " ¡NO LA OLVIDE!", "USUARIO CREADO", JOptionPane.INFORMATION_MESSAGE);
 							dispose();

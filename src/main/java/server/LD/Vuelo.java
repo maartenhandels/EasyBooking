@@ -20,8 +20,8 @@ public class Vuelo implements Print, Serializable{
 	private long asientosTotales;
 	private long asientosLibres;
 	
-	private long salida; // Esto es porque hay que usar UNIX (fecha y hora) pero no se muy bien como va
-	private long llegada; // Esto es porque hay que usar UNIX (fecha y hora) pero no se muy bien como va
+	private long salida; 
+	private long llegada; 
 	
 	public Vuelo()
 	{}

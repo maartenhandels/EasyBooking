@@ -38,15 +38,10 @@ public class AppServiceAuth {
 	
 	public Usuario iniciarSesion (String email, String password) throws RemoteException
 	{
-		System.out.println("Entra AppService - Inicio Sesion");
 		boolean iniSesCorrecto = gateway.log_in(email, password);
 		
 		Usuario usuario = null;
 		boolean encontrado_en_bd = false;
-		
-		// DEBERIAMOS BUSCAR EN LA BASE DE DATOS EL USUARIO
-		// DE MOMENTO CREAREMOS UN USUARIO CADA VEZ QUE SE LE LLAME
-		
 		
 		if(iniSesCorrecto) {
 			ArrayList<Usuario> usuarios_bd = dao.LeerUsuarios();
@@ -82,7 +77,7 @@ public class AppServiceAuth {
 	{
 		Usuario userBorrar =  new Usuario(email, password);
 		
-		// dao.eliminarObjeto(userBorrar);
+		 dao.eliminarObjeto(userBorrar);
 		
 		return gateway.delete_user(email, password);
 		

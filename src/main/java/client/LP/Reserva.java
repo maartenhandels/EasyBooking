@@ -151,9 +151,7 @@ public class Reserva extends JFrame {
         String fecha_llegHora = jdfllegadaHora.format(datellegadaHora);
         
         long digminutes = (datellegadaHora.getTime()  - datesalidaHora.getTime()) % 60;
-        
-        System.out.println("la dif en minutos es" + digminutes);
-        
+                
         Date diff = new Date(datellegadaHora.getTime() - datesalidaHora.getTime());
         Calendar cal = Calendar.getInstance();
         cal.setTime(diff);
@@ -325,10 +323,7 @@ public class Reserva extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{
 				
-				numero_pasajeros = (int) comboBox.getSelectedItem();
-				
-				System.out.println("El numero_pasajeros se ha puesto a: " + numero_pasajeros);
-				
+				numero_pasajeros = (int) comboBox.getSelectedItem();				
 				precio_total = vuelo.getPrecio() * numero_pasajeros;
 				iva = (float) (precio_total * 0.21);
 				precio_total_con_iva = precio_total + iva;

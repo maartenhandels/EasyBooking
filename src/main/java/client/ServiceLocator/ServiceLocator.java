@@ -45,7 +45,6 @@ public class ServiceLocator {
 	}
 	public itfFachada getService()
 	{
-		System.out.println("Llega al servicelocator");
 		return fachada;
 	}
 }

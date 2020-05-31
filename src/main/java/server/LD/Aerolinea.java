@@ -17,9 +17,7 @@ public class Aerolinea implements Serializable{
 	
 	@NotPersistent
 	private String nombre; 
-	
-	// Hay algo de unas comisiones que nose si deberian ir aqui
-	
+		
 	
 	public Aerolinea(String codAerolinea, String nombre) 
 	{

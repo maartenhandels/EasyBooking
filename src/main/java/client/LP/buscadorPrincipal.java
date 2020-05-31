@@ -245,15 +245,11 @@ public class buscadorPrincipal extends JFrame{
 		
 		textField_Origen.getDocument().addDocumentListener(new DocumentListener() {
 			  public void changedUpdate(DocumentEvent e) {
-				  
-				  System.out.println("Ha entrado en el document listener update");
-				  
+				  				  
 			  }
 			  public void removeUpdate(DocumentEvent e) {
 				  if(textField_Origen.getText().isEmpty()== true || textField_Destino.getText().isEmpty()== true) 
-					{
-						System.out.println("He entrado en el if de textfields remove");
-						
+					{						
 						lblNPasajeros.setVisible(false);
 						spinner.setVisible(false);
 						
@@ -270,11 +266,8 @@ public class buscadorPrincipal extends JFrame{
 					}
 			  }
 			  public void insertUpdate(DocumentEvent e) {
-				  System.out.println("Ha entrado en el document listener insert");
 				  if(textField_Origen.getText().isEmpty()== false && textField_Destino.getText().isEmpty()== false) 
-					{
-						System.out.println("He entrado en el if de textfields");
-						
+					{						
 						lblNPasajeros.setVisible(true);
 						spinner.setVisible(true);
 						
@@ -305,15 +298,11 @@ public class buscadorPrincipal extends JFrame{
 		
 		textField_Destino.getDocument().addDocumentListener(new DocumentListener() {
 			  public void changedUpdate(DocumentEvent e) {
-				  
-				  System.out.println("Ha entrado en el document listener update");
-				  
+				  				  
 			  }
 			  public void removeUpdate(DocumentEvent e) {
 				  if(textField_Origen.getText().isEmpty()== true || textField_Destino.getText().isEmpty()== true) 
-					{
-						System.out.println("He entrado en el if de textfields remove");
-						
+					{						
 						lblNPasajeros.setVisible(false);
 						spinner.setVisible(false);
 						
@@ -330,11 +319,8 @@ public class buscadorPrincipal extends JFrame{
 					}
 			  }
 			  public void insertUpdate(DocumentEvent e) {
-				  System.out.println("Ha entrado en el document listener insert");
 				  if(textField_Origen.getText().isEmpty()== false && textField_Destino.getText().isEmpty()== false) 
-					{
-						System.out.println("He entrado en el if de textfields insert");
-						
+					{						
 						lblNPasajeros.setVisible(true);
 						spinner.setVisible(true);
 						
@@ -456,7 +442,6 @@ public class buscadorPrincipal extends JFrame{
 				}
 				
 				if(datIda.getDate().after(today)) {
-					System.out.println("Se ha puesto filtroFecha a true");
 	                filtroFecha = true;
 				}
 				
@@ -474,7 +459,6 @@ public class buscadorPrincipal extends JFrame{
 					if(filtroFecha)
 					{
 						try {
-							System.out.println("Ha hecho la llamada con filtro de origen, destino, asientos, precio y fecha: ");
 							vuelos = controller.search_flights_with_filter_4(textField_Origen.getText().toUpperCase(), textField_Destino.getText().toUpperCase(),
 									num_pasajeros, precio, fecha_string);
 							
@@ -484,7 +468,6 @@ public class buscadorPrincipal extends JFrame{
 						}
 					}else if(filtroPrecio && !filtroFecha) {
 						try {
-							System.out.println("Ha hecho la llamada con filtro de origen, destino, asientos y precio: ");
 							vuelos = controller.search_flights_with_filter_3(textField_Origen.getText(), textField_Destino.getText(),
 									num_pasajeros, precio);
 							
@@ -494,7 +477,6 @@ public class buscadorPrincipal extends JFrame{
 						}
 					}else if(filtroAsientos && !filtroFecha && !filtroPrecio) {
 						try {
-							System.out.println("Ha hecho la llamada con filtro de origen, destino y asientos: ");
 							vuelos = controller.search_flights_with_filter_2(textField_Origen.getText(), textField_Destino.getText(),
 									num_pasajeros);
 						} catch (RemoteException e1) {
@@ -503,7 +485,6 @@ public class buscadorPrincipal extends JFrame{
 						}
 					}else {
 						try {
-							System.out.println("Ha hecho la llamada con filtro de origen y destino: ");
 							vuelos = controller.search_flights_with_filter_1(textField_Origen.getText(), textField_Destino.getText());
 						} catch (RemoteException e1) {
 							
@@ -516,7 +497,6 @@ public class buscadorPrincipal extends JFrame{
 					
 					// Llamada sin filtros
 					try {
-						System.out.println("Ha hecho la llamada sin filtros: ");
 						vuelos = controller.getAllFlights();
 					} catch (RemoteException e1) {
 
@@ -524,7 +504,6 @@ public class buscadorPrincipal extends JFrame{
 					}
 				}
 				
-				System.out.println("El tamaño de vuelos antes de la llamada a createList es: " + vuelos.size());
 				createListVuelos(vuelos, usuario);
 				
 				JOptionPane.showMessageDialog(null,"Filtros aplicados","Filtros",JOptionPane.INFORMATION_MESSAGE);
@@ -540,7 +519,6 @@ public class buscadorPrincipal extends JFrame{
 	public void createListVuelos(ArrayList<VueloDTO>vuelos, UsuarioDTO usuario)
 	{
 		
-		System.out.println("Entra en el createListVuelos");
 		rowHolderPanel.removeAll();
 		rowHolderPanel.revalidate();
         rowHolderPanel.repaint();
