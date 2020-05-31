@@ -273,10 +273,13 @@ public class InicioSesion_Registro extends JFrame{
 		Aeropuerto aer1 = new Aeropuerto("BIO", "Loiu");
 		Aeropuerto aer2 = new Aeropuerto("MAD", "Barajas");
 		Aeropuerto aer3 = new Aeropuerto("CDG", "Paris");
+		Aeropuerto aer4 = new Aeropuerto("DON", "Donostia");
+		Aeropuerto aer5 = new Aeropuerto("TAB", "Tabarnia");
 		
 		aeros.add(aer1);
 		aeros.add(aer2);
 		aeros.add(aer3);
+		aeros.add(aer4);
 		
 		List <String> aero_n = new ArrayList<>();
 		

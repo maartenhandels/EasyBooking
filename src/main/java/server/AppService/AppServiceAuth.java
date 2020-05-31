@@ -44,22 +44,6 @@ public class AppServiceAuth {
 		Usuario usuario = null;
 		boolean encontrado_en_bd = false;
 		
-		//ESTO HE HECHO PERO NOSE SI HABRA QUE HACER ALGUNA BUSQUEDA ASI 
-//		ArrayList<Usuario> lista = dao.LeerUsuarios();
-//		Usuario usuario = null;
-		
-//		for(int i=0; i<lista.size(); i++)
-//		{
-//			if(usuario.getEmail().equals(lista.get(i).getEmail()))
-//			{
-//				usuario = new Usuario(email, password);
-//			}
-//			else
-//			{
-//				System.out.println("Este usuario no es correcto");
-//				usuario = null;
-//			}
-//		}
 		// DEBERIAMOS BUSCAR EN LA BASE DE DATOS EL USUARIO
 		// DE MOMENTO CREAREMOS UN USUARIO CADA VEZ QUE SE LE LLAME
 		

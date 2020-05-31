@@ -475,7 +475,7 @@ public class buscadorPrincipal extends JFrame{
 					{
 						try {
 							System.out.println("Ha hecho la llamada con filtro de origen, destino, asientos, precio y fecha: ");
-							vuelos = controller.search_flights_with_filter_4(textField_Origen.getText(), textField_Destino.getText(),
+							vuelos = controller.search_flights_with_filter_4(textField_Origen.getText().toUpperCase(), textField_Destino.getText().toUpperCase(),
 									num_pasajeros, precio, fecha_string);
 							
 						} catch (RemoteException e1) {

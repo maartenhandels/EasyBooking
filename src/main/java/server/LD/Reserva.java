@@ -15,6 +15,10 @@ import javax.jdo.annotations.PrimaryKey;
 @PersistenceCapable
 public class Reserva implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@PrimaryKey
 	private String codReserva; // Habría que generar de alguna manera un numero random
 	private String codPago; // Habría que generar de alguna manera un numero random
