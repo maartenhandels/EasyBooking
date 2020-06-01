@@ -81,15 +81,6 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	}
 
 	@Override
-	public List<UsuarioDTO> getUsuariosAuth() 
-	{
-		List <Usuario> us = servAuth.getUsuarios();
-		List<UsuarioDTO> usuarioDTO= usAssem.assembleTousuarioDTO_Lista(us);
-		
-		return usuarioDTO;
-	}
-
-	@Override
 	public boolean eliminarUsuario(String email, String password) 
 	{
 		return servAuth.eliminarUsuario(email, password);
@@ -131,46 +122,8 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 		Usuario_Pago usuario_pago = new Usuario_Pago(name, lastname, email, currency);
 		return servPago.create_User_Pago(usuario_pago);
 	}
-
-	@Override
-	public List<UsuarioDTO> getUsuariosPago() throws RemoteException
-	{
-		List <Usuario> us = servPago.getUsuarios();
-		List<UsuarioDTO> usuarioDTO= usAssem.assembleTousuarioDTO_Lista(us);
-			
-		return usuarioDTO;
-	}
-
-	@Override
-	public ArrayList<VueloDTO> getVuelosPago() throws RemoteException
-	{
-		
-		ArrayList <Vuelo> vu = servPago.getVuelos();
-		ArrayList<VueloDTO> vueloDTO= vuAssem.assembleTovueloDTO(vu);
-			
-		return vueloDTO;
-	}
 	
 	// PARTE FACHADA AERO
-	
-	@Override
-	public ArrayList<VueloDTO> search_flights_with_filter_0 (String origen) 
-	{
-		Flight_parameters parametros= new Flight_parameters(origen);
-		ArrayList<VueloDTO> vuelosDTO;
-		
-		ArrayList<Vuelo> vuelos = servVuelo.search_flights_with_filter(parametros);
-		
-		if(vuelos.size()>0) {
-			vuelosDTO= vuAssem.assembleTovueloDTO(vuelos);
-		}else {
-			vuelosDTO = new ArrayList<VueloDTO>();
-		}
-		
-		
-		return vuelosDTO;
-		
-	}
 	
 	@Override
 	public ArrayList<VueloDTO> search_flights_with_filter_1 (String origen, String destino) 
@@ -246,12 +199,6 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	}
 	
 	@Override
-	public void aplicarFiltro(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida) 
-	{
-		servVuelo.aplicarFiltros(aero_origen, aero_dest, num_pasajeros, precio, salida);
-	}
-	
-	@Override
 	public void createReserva (String cod_reserva, String cod_pago)
 	{
 		servVuelo.createReserva(cod_reserva, cod_pago);
@@ -271,17 +218,6 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 		ArrayList<VueloDTO> vuelosDTO= vuAssem.assembleTovueloDTO(vuelos);
 					
 		return vuelosDTO;
-	}
-
-	@Override
-	public List<UsuarioDTO> getUsuariosAero()
-	{
-		
-		List <Usuario> us = servVuelo.getUsuarios();
-		List<UsuarioDTO> usuarioDTO= usAssem.assembleTousuarioDTO_Lista(us);
-			
-		return usuarioDTO;
-		
 	}
 
 

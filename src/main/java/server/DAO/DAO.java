@@ -36,7 +36,7 @@ public class DAO implements itfDAO {
 	}
 	
 	
-	public <T> boolean guardarElemto(T a){
+	public <T> boolean guardarElemento(T a){
 		
 		 boolean guardado = true;
 		 
@@ -126,7 +126,7 @@ public class DAO implements itfDAO {
 		 
 	}
 	
-	public <T> boolean guardarVariosElemtos(ArrayList<T> a){
+	public <T> boolean guardarVariosElementos(ArrayList<T> a){
 		
 		 boolean guardado = true;
 		 

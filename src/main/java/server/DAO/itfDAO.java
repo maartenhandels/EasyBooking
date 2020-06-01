@@ -10,8 +10,8 @@ import server.LD.Vuelo;
 
 public interface itfDAO {
 	
-	public <T> boolean guardarElemto(T a);
-	public <T> boolean guardarVariosElemtos(ArrayList<T> a);
+	public <T> boolean guardarElemento(T a);
+	public <T> boolean guardarVariosElementos(ArrayList<T> a);
 	
 	public <T> boolean eliminarObjeto(T a);
 	

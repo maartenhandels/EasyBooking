@@ -24,7 +24,7 @@ public class AppServiceAuth {
 		if(contrasenya != null) {
 			System.out.println("Intenta guardar en usuario");
 			Usuario nuevo_usuario = new Usuario(nombre, apellido, email, dni);
-			dao.guardarElemto(nuevo_usuario);
+			dao.guardarElemento(nuevo_usuario);
 		}
 	
 		
@@ -61,17 +61,14 @@ public class AppServiceAuth {
 		return usuario;
 		
 	}
-	public List <Usuario> getUsuarios()
-	{
-		return null;
-	}
+	
 	public boolean eliminarUsuario(String email, String password)
 	{
 		Usuario userBorrar =  new Usuario(email, password);
 		
 		 dao.eliminarObjeto(userBorrar);
 		
-		return gateway.delete_user(email, password);
+		return gateway.delete_user_Auth(email, password);
 		
 	}
 	public boolean change_password (String email, String old_password, String new_password)

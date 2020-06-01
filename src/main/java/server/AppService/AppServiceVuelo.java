@@ -35,28 +35,19 @@ public class AppServiceVuelo {
 		
 		return vuelos;
 	}
-	public void aplicarFiltros(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida)
-	{
-		
-	}
 	public void createReserva(String cod_reserva, String cod_pago)
 	{	
 		cod_reserva = String.valueOf(Math.random()*6);	
 		cod_pago = String.valueOf(Math.random()*6+6);
 		
 		Reserva reserva = new Reserva(cod_reserva, cod_pago);	
-		dao.guardarElemto(reserva);
+		dao.guardarElemento(reserva);
 		
 	}
 	public void eliminarReserva(String cod_reserva, String cod_pago)
 	{
 		Reserva reserva = new Reserva(cod_reserva, cod_pago);	
 		dao.eliminarObjeto(reserva);
-	}
-	
-	public List <Usuario> getUsuarios()
-	{
-		return null;
 	}
 	
 	public ArrayList <Vuelo> search_all_flights ()

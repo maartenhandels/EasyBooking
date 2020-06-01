@@ -305,7 +305,7 @@ public class Gateway implements itfGateway
 	}
 
 	@Override
-	public boolean delete_user(String email, String password) 
+	public boolean delete_user_Auth(String email, String password) 
 	{
 		String responseString = null;
 		RestClient<Usuario> client = new RestClient<>(hostname, port_auth);

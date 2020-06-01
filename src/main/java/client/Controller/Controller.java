@@ -43,7 +43,6 @@ public class Controller {
 	
 	public UsuarioDTO iniciarSesion (String email, String password) throws RemoteException
 	{
-		boolean inicioSesion = false;
 		UsuarioDTO usuario = null;
 		
 		usuario = fachada.iniciarSesion(email, password);
@@ -51,7 +50,8 @@ public class Controller {
 		return usuario;
 	}
 	
-	public ArrayList<VueloDTO> getAllFlights() throws RemoteException{
+	public ArrayList<VueloDTO> getAllFlights() throws RemoteException
+	{
 		
 		ArrayList<VueloDTO> vuelos = new ArrayList<VueloDTO>();
 		
@@ -62,14 +62,6 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return vuelos;
-	}
-	
-	public ArrayList<VueloDTO> search_flights_with_filter_0(String origen) throws RemoteException
-	{
-		
-		ArrayList<VueloDTO> vuelos = fachada.search_flights_with_filter_0(origen);
 		
 		return vuelos;
 	}
@@ -115,21 +107,21 @@ public class Controller {
 	{
 		return fachada.change_password(email, old_password, new_password);
 	}
-	/**
-	 * Este metodo deberia tener el conjunto de filtros y aplicarlos a la lista de vuelos que conseguimos con buscarVuelo. Realmente este metodo no tiene
-	 * que utilizar servicios externos, porque aplicamos los filtros sobre la lista que ya hemos recogido. Asi que no tendra que pasar mas alla del servicelocator
-	 * @param aero_origen
-	 * @param aero_dest
-	 * @param num_pasajeros
-	 * @param precio
-	 * @param salida
-	 * @param llegada
-	 * @throws RemoteException 
-	 */
-	public void aplicarFiltro(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida) throws RemoteException 
-	{
-		fachada.aplicarFiltro(aero_origen, aero_dest, num_pasajeros, precio, salida);
-	}
+//	/**
+//	 * Este metodo deberia tener el conjunto de filtros y aplicarlos a la lista de vuelos que conseguimos con buscarVuelo. Realmente este metodo no tiene
+//	 * que utilizar servicios externos, porque aplicamos los filtros sobre la lista que ya hemos recogido. Asi que no tendra que pasar mas alla del servicelocator
+//	 * @param aero_origen
+//	 * @param aero_dest
+//	 * @param num_pasajeros
+//	 * @param precio
+//	 * @param salida
+//	 * @param llegada
+//	 * @throws RemoteException 
+//	 */
+//	public void aplicarFiltro(String aero_origen, String aero_dest, int num_pasajeros, double precio, Date salida) throws RemoteException 
+//	{
+//		fachada.aplicarFiltro(aero_origen, aero_dest, num_pasajeros, precio, salida);
+//	}
 	
 	public void createReserva (String cod_reserva, String cod_pago)throws RemoteException
 	{

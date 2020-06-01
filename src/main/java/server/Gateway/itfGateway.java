@@ -27,6 +27,6 @@ public interface itfGateway
 	public boolean log_in (String email, String password);
 	public String create_User_Auth (String nombre, String apellido, String email);
 	public boolean change_password (String email, String old_password, String new_password);
-	public boolean delete_user (String email, String password);
+	public boolean delete_user_Auth (String email, String password);
 	
 }

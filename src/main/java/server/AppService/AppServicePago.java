@@ -35,7 +35,7 @@ public class AppServicePago {
 			Usuario usuario_aux = null;
 			Reserva reserva = new Reserva(usuario_aux, codReserva, reciboPago, vuelo);
 			
-			dao.guardarElemto(reserva);
+			dao.guardarElemento(reserva);
 			
 		}
 		
@@ -43,11 +43,6 @@ public class AppServicePago {
 	}
 	
 	public List <Usuario> getUsuarios()
-	{
-		return null;
-	}
-	
-	public ArrayList <Vuelo> getVuelos()
 	{
 		return null;
 	}
