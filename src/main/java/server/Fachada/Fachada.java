@@ -81,12 +81,6 @@ public class Fachada extends UnicastRemoteObject implements itfFachada {
 	}
 
 	@Override
-	public void cerrarSesion() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public List<UsuarioDTO> getUsuariosAuth() 
 	{
 		List <Usuario> us = servAuth.getUsuarios();

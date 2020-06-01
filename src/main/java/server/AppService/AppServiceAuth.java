@@ -61,10 +61,6 @@ public class AppServiceAuth {
 		return usuario;
 		
 	}
-	public void cerrarSesion (String email)throws RemoteException
-	{
-		
-	}
 	public List <Usuario> getUsuarios()
 	{
 		return null;

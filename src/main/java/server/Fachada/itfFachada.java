@@ -22,7 +22,6 @@ public interface itfFachada extends Remote{
 	public boolean change_password (String email, String old_password, String new_password)throws RemoteException;
 	public boolean eliminarUsuario(String email, String password)throws RemoteException;
 	public UsuarioDTO iniciarSesion (String email, String password)throws RemoteException;
-	public void cerrarSesion ()throws RemoteException;
 	
 	// Parte Fachada Pago
 	public List <UsuarioDTO> getUsuariosPago() throws RemoteException;

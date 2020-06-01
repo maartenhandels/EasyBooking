@@ -154,8 +154,4 @@ public class Controller {
 	{
 		return fachada.create_User_Pago(name, lastname, email, currency);
 	}
-	public void cerrarSesion ()
-	{
-
-	}
 }
